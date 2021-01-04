@@ -1,0 +1,4 @@
+OpenXRProvider/third_party/* linguist-vendored
+Sandbox/third_party/* linguist-vendored
+OpenXRProvider/docs/* linguist-documentation
+Sandbox/docs/* linguist-documentation
