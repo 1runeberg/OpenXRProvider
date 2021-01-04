@@ -5,11 +5,11 @@ Provides application and engine developers a simpler method to access OpenXR run
 A general overview and introduction to this library can be found here: 
 https://runeberg.medium.com/the-dawn-of-openxr-6824989613b9
 
-OpenXR Provider Library developer documentation (generated via Doxygen) can be found here:
-https://github.com/1runeberg/OpenXRProvider/OpenXRProvider/docs/html/index.html
+OpenXR Provider Library developer documentation (generated via Doxygen) can be found in:
+`OpenXRProvider\docs`
 
 Sandbox developer documentation (generated via Doxygen) that can be used to quickly test the library and underlying api calls can be found here:
-https://github.com/1runeberg/OpenXRProvider/Sandbox/docs/html/index.html
+`Sandbox\docs`
 
 
 **I. Pre-built binaries**
