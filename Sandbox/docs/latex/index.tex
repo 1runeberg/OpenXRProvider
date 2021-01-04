@@ -1,0 +1,26 @@
+Provides application and engine developers a simpler method to access Open\+XR runtimes (e.\+g. Steam\+VR, Oculus, W\+MR, Monado, etc) without having to wade through the intricacies of directly using the raw Open\+XR Loader library.
+
+A general overview and introduction to this library can be found here\+: \href{https://medium.com/p/6824989613b9}{\texttt{ https\+://medium.\+com/p/6824989613b9}}
+
+Open\+XR Provider Library developer documentation (generated via Doxygen) can be found here\+: \href{https://github.com/1runeberg/OpenXRProvider/OpenXRProvider/docs/html/index.html}{\texttt{ https\+://github.\+com/1runeberg/\+Open\+X\+R\+Provider/\+Open\+X\+R\+Provider/docs/html/index.\+html}}
+
+Sandbox developer documentation (generated via Doxygen) that can be used to quickly test the library and underlying api calls can be found here\+: \href{https://github.com/1runeberg/OpenXRProvider/Sandbox/docs/html/index.html}{\texttt{ https\+://github.\+com/1runeberg/\+Open\+X\+R\+Provider/\+Sandbox/docs/html/index.\+html}}
+
+{\bfseries{I. Pre-\/built binaries}} You can find pre-\/built library files (.lib, .dll) as well as a Sandbox application (.exe) file for quick testing in the {\ttfamily bin} directory
+
+As a quick Open\+XR lifecycle demo, the Sandbox app renders a skyblue clear color to the swapchain images which then gets rendered to the hmd by the active Open\+XR runtime. Sandbox also blits (copies) this texture to the desktop window (XR Mirror).
+
+Detailed logs in the console and {\ttfamily bin/logs} directory could be of particular interest to developers looking to see the Open\+XR api calls being made by the library
+
+{\bfseries{II. Building Pre-\/requisites}} Visual Studio 2019 with C++ modules C\+Make 3.\+14.\+4 and above
+
+{\bfseries{I\+II. Building}}
+\begin{DoxyEnumerate}
+\item Clone or copy the repository from Git\+Hub
+\item From the root directory of the repository, create a build directory ({\ttfamily mkdir build})
+\item Go to the build directory ({\ttfamily cd build})
+\item Run C\+Make ({\ttfamily cmake ..}) A {\itshape openxr\+\_\+provider.\+sln} file is generated in the build directory which you can then open and use in Visual Studio 2019
+\item Optional\+: Build the library and Sandbox application in C\+Make ({\ttfamily cmake -\/-\/build .})
+\end{DoxyEnumerate}
+
+Note\+: Currently supports Windows x64, Open\+GL 3.\+2 and above 

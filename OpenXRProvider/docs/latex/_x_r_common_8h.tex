@@ -1,0 +1,150 @@
+\hypertarget{_x_r_common_8h}{}\section{include/\+X\+R\+Common.h File Reference}
+\label{_x_r_common_8h}\index{include/XRCommon.h@{include/XRCommon.h}}
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$spdlog/sinks/basic\+\_\+file\+\_\+sink.\+h$>$}\newline
+{\ttfamily \#include $<$spdlog/sinks/stdout\+\_\+color\+\_\+sinks.\+h$>$}\newline
+{\ttfamily \#include $<$spdlog/spdlog.\+h$>$}\newline
+{\ttfamily \#include $<$X\+R\+Base.\+h$>$}\newline
+{\ttfamily \#include $<$X\+R\+Base\+Ext.\+h$>$}\newline
+{\ttfamily \#include $<$X\+R\+Graphics\+A\+P\+I\+Defines.\+h$>$}\newline
+{\ttfamily \#include $<$X\+R\+Platform\+Defines.\+h$>$}\newline
+{\ttfamily \#include $<$openxr/openxr.\+h$>$}\newline
+{\ttfamily \#include $<$openxr/openxr\+\_\+platform.\+h$>$}\newline
+{\ttfamily \#include $<$openxr/openxr\+\_\+reflection.\+h$>$}\newline
+{\ttfamily \#include $<$openxr/xr\+\_\+linear.\+h$>$}\newline
+Include dependency graph for X\+R\+Common.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_x_r_common_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_x_r_common_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_vector2}{Open\+X\+R\+Provider\+::\+X\+R\+Vector2}}
+\begin{DoxyCompactList}\small\item\em A vector2 float. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_vector3}{Open\+X\+R\+Provider\+::\+X\+R\+Vector3}}
+\begin{DoxyCompactList}\small\item\em A vector3 float. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_quat}{Open\+X\+R\+Provider\+::\+X\+R\+Quat}}
+\begin{DoxyCompactList}\small\item\em Quaternion. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_fo_v}{Open\+X\+R\+Provider\+::\+X\+R\+FoV}}
+\begin{DoxyCompactList}\small\item\em Field of view in angles (float) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_pose}{Open\+X\+R\+Provider\+::\+X\+R\+Pose}}
+\begin{DoxyCompactList}\small\item\em Pose (orientation in 3d space and orientation in quaternion) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_eye_state}{Open\+X\+R\+Provider\+::\+X\+R\+Eye\+State}}
+\begin{DoxyCompactList}\small\item\em Eye State -\/ contains pose, field of view info for an eye. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_h_m_d_state}{Open\+X\+R\+Provider\+::\+X\+R\+H\+M\+D\+State}}
+\item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{Open\+X\+R\+Provider\+::\+X\+R\+Callback}}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_open_x_r_provider}{Open\+X\+R\+Provider}}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_x_r_common_8h_a1ddd77b0b38be0e02faf3215b64c7725}{E\+N\+U\+M\+\_\+\+S\+TR}}(in\+Enum)~Enum\+To\+String( \#in\+Enum );
+\begin{DoxyCompactList}\small\item\em Gets the string value of an enum. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_x_r_common_8h_a7602015fbcf35ef47d4127544130fdd3}{X\+R\+\_\+\+C\+A\+LL}}(xr\+Call,  xr\+Logger,  b\+Throw)~Check\+Xr\+Result( xr\+Call, xr\+Logger, b\+Throw, \#xr\+Call, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+ );
+\begin{DoxyCompactList}\small\item\em Execute a call to the Open\+XR api and evaluate the result, will log success and fail and throw an exception if request. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_x_r_common_8h_a9891a59e383c82e70dd213a48325989a}{X\+R\+\_\+\+C\+A\+L\+L\+\_\+\+S\+I\+L\+E\+NT}}(xr\+Call,  xr\+Logger)~Check\+Xr\+Result( xr\+Call, xr\+Logger, \#xr\+Call, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+ );
+\begin{DoxyCompactList}\small\item\em Execute a call to the Open\+XR api and evaluate the result, will log failures only. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{namespace_open_x_r_provider_a658d364c78f8aa6deb33009e9c4ac0b8}{Open\+X\+R\+Provider\+::\+Callback\+\_\+\+X\+R\+Event}}) (const E\+X\+R\+Event\+Type, const E\+X\+R\+Event\+Data)
+\begin{DoxyCompactList}\small\item\em Event callback function used for registering functions to the Event Handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{Open\+X\+R\+Provider\+::\+E\+X\+R\+Tracking\+Space}} \{ \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05a192dfa44253ba4815ec1a5335f52b578}{Open\+X\+R\+Provider\+::\+R\+O\+O\+M\+S\+C\+A\+LE}} = 0, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05af05478b3d52c3a40a3f66aea7af03dfc}{Open\+X\+R\+Provider\+::\+S\+E\+A\+T\+ED}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em Tracking space (e.\+g. roomscale, seated) \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}} \{ \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a81ab813676876f34a0aa640d9b3da242}{Open\+X\+R\+Provider\+::\+L\+E\+FT}} = 0, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a6306b44e379151146b66ee8100703cb0}{Open\+X\+R\+Provider\+::\+R\+I\+G\+HT}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em Eye. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3}{Open\+X\+R\+Provider\+::\+E\+X\+R\+Event\+Type}} \{ \newline
+\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a6d77b7e96db929c6e81bd4cc00e90b57}{Open\+X\+R\+Provider\+::\+A\+LL}} = 0, 
+\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a846f256c013f1ddde4f2bfb88c19567d}{Open\+X\+R\+Provider\+::\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+C\+H\+A\+N\+G\+ED}} = 1, 
+\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a8c2148677b3be0b94db1aebff7342f3e}{Open\+X\+R\+Provider\+::\+R\+E\+F\+E\+R\+E\+N\+C\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+P\+E\+N\+D\+I\+NG}} = 2, 
+\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a389520016336a58552b602aacc89d602}{Open\+X\+R\+Provider\+::\+I\+N\+T\+E\+R\+A\+C\+T\+I\+O\+N\+\_\+\+P\+R\+O\+F\+I\+L\+E\+\_\+\+C\+H\+A\+N\+G\+ED}} = 3, 
+\newline
+\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3ad2a50c337955d71964454a17b5474740}{Open\+X\+R\+Provider\+::\+I\+N\+S\+T\+A\+N\+C\+E\+\_\+\+L\+O\+S\+S\+\_\+\+P\+E\+N\+D\+I\+NG}} = 4, 
+\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3ac3a23aa5a60beea1c939e80d191229ca}{Open\+X\+R\+Provider\+::\+E\+V\+E\+N\+T\+S\+\_\+\+L\+O\+ST}} = 5
+ \}
+\begin{DoxyCompactList}\small\item\em The type of Open\+XR event raised by the currently active Open\+XR runtime. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853d}{Open\+X\+R\+Provider\+::\+E\+X\+R\+Event\+Data}} \{ \newline
+\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da997161bd7da303efa7ad15a7f8822785}{Open\+X\+R\+Provider\+::\+E\+V\+E\+N\+T\+\_\+\+D\+A\+T\+A\+\_\+\+I\+N\+V\+A\+L\+ID}} = 0, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853daa3b9036ff98c585c242f695e6c84ac73}{Open\+X\+R\+Provider\+::\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+D\+LE}} = 1, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da67151eda1481cf5be744e14ac547b5ad}{Open\+X\+R\+Provider\+::\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+E\+A\+DY}} = 2, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da622e21f2be0137b273203c4e25651ed7}{Open\+X\+R\+Provider\+::\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+I\+Z\+ED}} = 3, 
+\newline
+\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da58182d525d291667c7b0f4a884adc607}{Open\+X\+R\+Provider\+::\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+V\+I\+S\+I\+B\+LE}} = 4, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da0e5e5d205a9c8b0cd7631980c152c64c}{Open\+X\+R\+Provider\+::\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+F\+O\+C\+U\+S\+ED}} = 5, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da5291b6afca2465c8293baa5aa5a0c481}{Open\+X\+R\+Provider\+::\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+S\+T\+O\+P\+P\+I\+NG}} = 6, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853dae1118c60be3405cf3b09e49594d011f2}{Open\+X\+R\+Provider\+::\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+L\+O\+S\+S\+\_\+\+P\+E\+N\+D\+I\+NG}} = 7, 
+\newline
+\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853dac36a3497630be208504c1c413843041c}{Open\+X\+R\+Provider\+::\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+E\+X\+I\+T\+I\+NG}} = 8
+ \}
+\begin{DoxyCompactList}\small\item\em The data payload of an Open\+XR event. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespace_open_x_r_provider_ab4e3f4c6f1f2b69f87608b992c505371}{Open\+X\+R\+Provider\+::\+E\+X\+R\+Extension}} \{ \mbox{\hyperlink{namespace_open_x_r_provider_ab4e3f4c6f1f2b69f87608b992c505371a18a9581473453414550c09bd6750b050}{Open\+X\+R\+Provider\+::\+E\+X\+T\+E\+N\+S\+I\+O\+N\+\_\+\+V\+I\+S\+I\+B\+I\+L\+I\+T\+Y\+\_\+\+M\+A\+SK}} = 0
+ \}
+\begin{DoxyCompactList}\small\item\em Supported extensions by the Open\+XR Provider library (excluding Graphics A\+PI extensions) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{namespace_open_x_r_provider_a9d83a2b1a5d6649210b47ab49a592b47}{Open\+X\+R\+Provider\+::\+Enum\+To\+String}} (const char $\ast$enum\+Str)
+\item 
+Xr\+Result \mbox{\hyperlink{namespace_open_x_r_provider_a832e6cc66984ff274e355f5771a04f57}{Open\+X\+R\+Provider\+::\+Check\+Xr\+Result}} (Xr\+Result xr\+Result, std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ xr\+Logger, bool b\+Throw, const char $\ast$xr\+Call=nullptr, const char $\ast$src\+File=nullptr, int src\+Line\+Num=0)
+\item 
+Xr\+Result \mbox{\hyperlink{namespace_open_x_r_provider_a9e6665bb283f00adb11c3c4ee57c05dd}{Open\+X\+R\+Provider\+::\+Check\+Xr\+Result}} (Xr\+Result xr\+Result, std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ xr\+Logger, const char $\ast$xr\+Call=nullptr, const char $\ast$src\+File=nullptr, int src\+Line\+Num=0)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_x_r_common_8h_a1ddd77b0b38be0e02faf3215b64c7725}\label{_x_r_common_8h_a1ddd77b0b38be0e02faf3215b64c7725}} 
+\index{XRCommon.h@{XRCommon.h}!ENUM\_STR@{ENUM\_STR}}
+\index{ENUM\_STR@{ENUM\_STR}!XRCommon.h@{XRCommon.h}}
+\subsubsection{\texorpdfstring{ENUM\_STR}{ENUM\_STR}}
+{\footnotesize\ttfamily \#define E\+N\+U\+M\+\_\+\+S\+TR(\begin{DoxyParamCaption}\item[{}]{in\+Enum }\end{DoxyParamCaption})~Enum\+To\+String( \#in\+Enum );}
+
+
+
+Gets the string value of an enum. 
+
+\mbox{\Hypertarget{_x_r_common_8h_a7602015fbcf35ef47d4127544130fdd3}\label{_x_r_common_8h_a7602015fbcf35ef47d4127544130fdd3}} 
+\index{XRCommon.h@{XRCommon.h}!XR\_CALL@{XR\_CALL}}
+\index{XR\_CALL@{XR\_CALL}!XRCommon.h@{XRCommon.h}}
+\subsubsection{\texorpdfstring{XR\_CALL}{XR\_CALL}}
+{\footnotesize\ttfamily \#define X\+R\+\_\+\+C\+A\+LL(\begin{DoxyParamCaption}\item[{}]{xr\+Call,  }\item[{}]{xr\+Logger,  }\item[{}]{b\+Throw }\end{DoxyParamCaption})~Check\+Xr\+Result( xr\+Call, xr\+Logger, b\+Throw, \#xr\+Call, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+ );}
+
+
+
+Execute a call to the Open\+XR api and evaluate the result, will log success and fail and throw an exception if request. 
+
+\mbox{\Hypertarget{_x_r_common_8h_a9891a59e383c82e70dd213a48325989a}\label{_x_r_common_8h_a9891a59e383c82e70dd213a48325989a}} 
+\index{XRCommon.h@{XRCommon.h}!XR\_CALL\_SILENT@{XR\_CALL\_SILENT}}
+\index{XR\_CALL\_SILENT@{XR\_CALL\_SILENT}!XRCommon.h@{XRCommon.h}}
+\subsubsection{\texorpdfstring{XR\_CALL\_SILENT}{XR\_CALL\_SILENT}}
+{\footnotesize\ttfamily \#define X\+R\+\_\+\+C\+A\+L\+L\+\_\+\+S\+I\+L\+E\+NT(\begin{DoxyParamCaption}\item[{}]{xr\+Call,  }\item[{}]{xr\+Logger }\end{DoxyParamCaption})~Check\+Xr\+Result( xr\+Call, xr\+Logger, \#xr\+Call, \+\_\+\+\_\+\+F\+I\+L\+E\+\_\+\+\_\+, \+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+ );}
+
+
+
+Execute a call to the Open\+XR api and evaluate the result, will log failures only. 
+

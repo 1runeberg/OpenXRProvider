@@ -1,0 +1,132 @@
+\hypertarget{struct_open_x_r_provider_1_1_x_r_app_info}{}\section{Open\+X\+R\+Provider\+::X\+R\+App\+Info Struct Reference}
+\label{struct_open_x_r_provider_1_1_x_r_app_info}\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
+
+
+Open\+XR application info used to initialize an Open\+XR Instance and create a Session with the active Open\+XR runtime.  
+
+
+
+
+{\ttfamily \#include \char`\"{}Open\+X\+R\+Provider.\+h\char`\"{}}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_aadc36b8e45d7bc4c37978f087d9a8dc6}{X\+R\+App\+Info}} (std\+::string app\+Name, uint32\+\_\+t app\+Version, std\+::string engine\+Name, uint32\+\_\+t engine\+Version, \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}} tracking\+Space, std\+::vector$<$ void $\ast$ $>$ xr\+Extensions)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a3f925ed1613048c762d3d4dc66d5ac30}{App\+Name}}
+\begin{DoxyCompactList}\small\item\em The name of the application using the Open\+XR Provider library. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_af56a88a507d77b363c6984560511578c}{App\+Version}}
+\begin{DoxyCompactList}\small\item\em The version of the application using the Open\+XR Provider library. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_af7200994789e0e1edd4acb80bd8742f1}{Engine\+Name}}
+\begin{DoxyCompactList}\small\item\em The name of the engine using the Open\+XR Provider library. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a941d70698375c4ccdbffdaa0cef92122}{Engine\+Version}}
+\begin{DoxyCompactList}\small\item\em The version of the engine using the Open\+XR Provider library. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}} \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_adc373e7d26617bc10d2d46d6152a6a17}{Tracking\+Space}}
+\begin{DoxyCompactList}\small\item\em The application\textquotesingle{}s tracking space -\/ e.\+g. room scale, seated, etc. \end{DoxyCompactList}\item 
+std\+::vector$<$ void $\ast$ $>$ \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a8b51fa00d11c4b3711440bf4b20b57fe}{X\+R\+Extensions}}
+\begin{DoxyCompactList}\small\item\em List of extension objects representing each extension that the app wants to activate depending on runtime support. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a134d71f0d127123dc1b4b1682102b0ee}{Log\+File}}
+\begin{DoxyCompactList}\small\item\em The absolute path and filename of the log file the Open\+XR Provider library will write in to (optional) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Open\+XR application info used to initialize an Open\+XR Instance and create a Session with the active Open\+XR runtime. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_aadc36b8e45d7bc4c37978f087d9a8dc6}\label{struct_open_x_r_provider_1_1_x_r_app_info_aadc36b8e45d7bc4c37978f087d9a8dc6}} 
+\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!XRAppInfo@{XRAppInfo}}
+\index{XRAppInfo@{XRAppInfo}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
+\subsubsection{\texorpdfstring{XRAppInfo()}{XRAppInfo()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+X\+R\+App\+Info (\begin{DoxyParamCaption}\item[{std\+::string}]{app\+Name,  }\item[{uint32\+\_\+t}]{app\+Version,  }\item[{std\+::string}]{engine\+Name,  }\item[{uint32\+\_\+t}]{engine\+Version,  }\item[{\mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}}}]{tracking\+Space,  }\item[{std\+::vector$<$ void $\ast$ $>$}]{xr\+Extensions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Struct Constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em app\+Name} & Name of the application using the Open\+XR Provider library \\
+\hline
+\mbox{\texttt{ in}}  & {\em app\+Version} & Version of the application using the Open\+XR Provider library \\
+\hline
+\mbox{\texttt{ in}}  & {\em tracking\+Space} & Application\textquotesingle{}s tracking space -\/ e.\+g. room scale, seated, etc \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_a3f925ed1613048c762d3d4dc66d5ac30}\label{struct_open_x_r_provider_1_1_x_r_app_info_a3f925ed1613048c762d3d4dc66d5ac30}} 
+\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!AppName@{AppName}}
+\index{AppName@{AppName}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
+\subsubsection{\texorpdfstring{AppName}{AppName}}
+{\footnotesize\ttfamily std\+::string Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+App\+Name}
+
+
+
+The name of the application using the Open\+XR Provider library. 
+
+\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_af56a88a507d77b363c6984560511578c}\label{struct_open_x_r_provider_1_1_x_r_app_info_af56a88a507d77b363c6984560511578c}} 
+\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!AppVersion@{AppVersion}}
+\index{AppVersion@{AppVersion}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
+\subsubsection{\texorpdfstring{AppVersion}{AppVersion}}
+{\footnotesize\ttfamily uint32\+\_\+t Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+App\+Version}
+
+
+
+The version of the application using the Open\+XR Provider library. 
+
+\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_af7200994789e0e1edd4acb80bd8742f1}\label{struct_open_x_r_provider_1_1_x_r_app_info_af7200994789e0e1edd4acb80bd8742f1}} 
+\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!EngineName@{EngineName}}
+\index{EngineName@{EngineName}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
+\subsubsection{\texorpdfstring{EngineName}{EngineName}}
+{\footnotesize\ttfamily std\+::string Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+Engine\+Name}
+
+
+
+The name of the engine using the Open\+XR Provider library. 
+
+\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_a941d70698375c4ccdbffdaa0cef92122}\label{struct_open_x_r_provider_1_1_x_r_app_info_a941d70698375c4ccdbffdaa0cef92122}} 
+\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!EngineVersion@{EngineVersion}}
+\index{EngineVersion@{EngineVersion}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
+\subsubsection{\texorpdfstring{EngineVersion}{EngineVersion}}
+{\footnotesize\ttfamily uint32\+\_\+t Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+Engine\+Version}
+
+
+
+The version of the engine using the Open\+XR Provider library. 
+
+\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_a134d71f0d127123dc1b4b1682102b0ee}\label{struct_open_x_r_provider_1_1_x_r_app_info_a134d71f0d127123dc1b4b1682102b0ee}} 
+\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!LogFile@{LogFile}}
+\index{LogFile@{LogFile}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
+\subsubsection{\texorpdfstring{LogFile}{LogFile}}
+{\footnotesize\ttfamily const char$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+Log\+File}
+
+
+
+The absolute path and filename of the log file the Open\+XR Provider library will write in to (optional) 
+
+\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_adc373e7d26617bc10d2d46d6152a6a17}\label{struct_open_x_r_provider_1_1_x_r_app_info_adc373e7d26617bc10d2d46d6152a6a17}} 
+\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!TrackingSpace@{TrackingSpace}}
+\index{TrackingSpace@{TrackingSpace}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
+\subsubsection{\texorpdfstring{TrackingSpace}{TrackingSpace}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}} Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+Tracking\+Space}
+
+
+
+The application\textquotesingle{}s tracking space -\/ e.\+g. room scale, seated, etc. 
+
+\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_a8b51fa00d11c4b3711440bf4b20b57fe}\label{struct_open_x_r_provider_1_1_x_r_app_info_a8b51fa00d11c4b3711440bf4b20b57fe}} 
+\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!XRExtensions@{XRExtensions}}
+\index{XRExtensions@{XRExtensions}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
+\subsubsection{\texorpdfstring{XRExtensions}{XRExtensions}}
+{\footnotesize\ttfamily std\+::vector$<$ void $\ast$ $>$ Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+X\+R\+Extensions}
+
+
+
+List of extension objects representing each extension that the app wants to activate depending on runtime support. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_open_x_r_provider_8h}{Open\+X\+R\+Provider.\+h}}\end{DoxyCompactItemize}

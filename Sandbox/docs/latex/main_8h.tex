@@ -1,0 +1,340 @@
+\hypertarget{main_8h}{}\section{include/main.h File Reference}
+\label{main_8h}\index{include/main.h@{include/main.h}}
+{\ttfamily \#include $<$X\+R\+Mirror.\+h$>$}\newline
+{\ttfamily \#include $<$Open\+X\+R\+Provider.\+h$>$}\newline
+{\ttfamily \#include $<$X\+R\+Render\+Manager.\+h$>$}\newline
+Include dependency graph for main.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{main_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8h_a695892b1d53467aeed888e3789aef34c}{App\+Setup}} ()
+\begin{DoxyCompactList}\small\item\em Setup the sandbox application -\/ windowing and opengl support. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8h_ab5a763045c08ee555125d07e990fbc60}{Graphics\+A\+P\+I\+Objects\+Setup}} ()
+\begin{DoxyCompactList}\small\item\em Setup the Open\+GL objects (V\+AO, V\+BO, F\+BO) needed for rendering to textures from the Open\+XR runtime. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_a92218fb47e6a8d9497a22b2d2f826d44}{Blit\+To\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_adb87c742093b790e17359ec17647b0f5}{Draw\+Frame}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$\mbox{\hyperlink{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}{p\+X\+R\+Render\+Manager}}, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, unsigned int \mbox{\hyperlink{main_8h_a3891930b135f1ac6e2f307639219024e}{F\+BO}}, G\+Luint \mbox{\hyperlink{main_8h_a8f6bf5aa2103d3f51c013733389dd4bd}{n\+Shader\+Vis\+Mask}})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{main_8h_a3891930b135f1ac6e2f307639219024e}{F\+BO}}
+\begin{DoxyCompactList}\small\item\em The Open\+GL Frame Buffer Object used in rendering processes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{main_8h_a9e558a92738c55339369908a95415fca}{V\+AO}}
+\begin{DoxyCompactList}\small\item\em The Open\+GL Vertex Array Object used in rendering processes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{main_8h_ad9a24fe28e2326cb0445791525781160}{V\+BO}}
+\begin{DoxyCompactList}\small\item\em The Open\+GL Vertex Buffer Object used in rendering processes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8h_ad3af6abc3694a26372dc97344127702e}{n\+Screen\+Width}} = 1920
+\begin{DoxyCompactList}\small\item\em The width of the desktop window (XR Mirror) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8h_a106276f6621f348fd220319a0c5ca275}{n\+Screen\+Height}} = 1080
+\begin{DoxyCompactList}\small\item\em The height of the desktop window (XR Mirror) \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{main_8h_a90485357d3af01d962f1befe5ec9199a}{n\+Swapchain\+Capacity}} = 0
+\begin{DoxyCompactList}\small\item\em The number of images (Texture2D) that are in the swapchain created by the Open\+XR runtime. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}} = 0
+\begin{DoxyCompactList}\small\item\em The current index of the swapchain array. \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{main_8h_a717bd1588444dddd960d9889f5f092d7}{n\+Frame\+Number}} = 1
+\begin{DoxyCompactList}\small\item\em The current frame number (internal to the sandbox application) \end{DoxyCompactList}\item 
+G\+Luint \mbox{\hyperlink{main_8h_a8f6bf5aa2103d3f51c013733389dd4bd}{n\+Shader\+Vis\+Mask}}
+\begin{DoxyCompactList}\small\item\em The shader program ID for visibility mask that will be applied on all textures. \end{DoxyCompactList}\item 
+std\+::wstring \mbox{\hyperlink{main_8h_ab08061433add74e5b598f52b7f0cdacd}{s\+Current\+Path}}
+\begin{DoxyCompactList}\small\item\em The absolute path to the built Sandbox executable. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{main_8h_afdd3e4a98a83be17fc862c35da31a4b5}{p\+App\+Log\+File}} \mbox{[}M\+A\+X\+\_\+\+P\+A\+TH\mbox{]} = \char`\"{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em The path and filename to write the Open\+XR Provider library file to. \end{DoxyCompactList}\item 
+std\+::vector$<$ uint32\+\_\+t $>$ \mbox{\hyperlink{main_8h_ae1dfd6e5fadf1da2664c1617e189a06c}{v\+Mask\+Indices\+\_\+L}}
+\begin{DoxyCompactList}\small\item\em Indices for the left eye visibility mask (hmd specific occlusion mesh reported by the active Open\+XR runtime) \end{DoxyCompactList}\item 
+std\+::vector$<$ uint32\+\_\+t $>$ \mbox{\hyperlink{main_8h_ad421570592914cc66daade1c4941f168}{v\+Mask\+Indices\+\_\+R}}
+\begin{DoxyCompactList}\small\item\em Indices for the right eye visibility mask (hmd specific occlusion mesh reported by the active Open\+XR runtime) \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{main_8h_acdb99f9355147649df3b24765f066db3}{v\+Mask\+Vertices\+\_\+L}}
+\begin{DoxyCompactList}\small\item\em Vertices for the left eye visibility mask (hmd specific occlusion mesh reported by the active Open\+XR runtime) \end{DoxyCompactList}\item 
+std\+::vector$<$ float $>$ \mbox{\hyperlink{main_8h_a7f2a98fc8e67834e753ae8f7330ecd25}{v\+Mask\+Vertices\+\_\+R}}
+\begin{DoxyCompactList}\small\item\em Indices for the right eye visibility mask (hmd specific occlusion mesh reported by the active Open\+XR runtime) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_utils}{Utils}} $\ast$ \mbox{\hyperlink{main_8h_a0d5111066310aa3c3805d599c138b141}{p\+Utils}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the Utilities (\mbox{\hyperlink{class_utils}{Utils}}) class instantiated and used by the sandbox app (logging utility lives here) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_x_r_mirror}{X\+R\+Mirror}} $\ast$ \mbox{\hyperlink{main_8h_af4f45dfd4ee1a2c3b1562398252c7bec}{p\+X\+R\+Mirror}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the \mbox{\hyperlink{class_x_r_mirror}{X\+R\+Mirror}} class that handles the desktop window where textures sent to the H\+MD are blitted (copied) to. \end{DoxyCompactList}\item 
+Open\+X\+R\+Provider\+::\+E\+X\+R\+Event\+Data \mbox{\hyperlink{main_8h_a28518e935c0ff9e4c730e57d48c60c0a}{xr\+Current\+Session\+State}}
+\begin{DoxyCompactList}\small\item\em Stores the current Open\+XR session state. \end{DoxyCompactList}\item 
+Open\+X\+R\+Provider\+::\+X\+R\+Provider $\ast$ \mbox{\hyperlink{main_8h_a444f316e5ddad52f3f37f1e34a2e290b}{p\+X\+R\+Provider}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the X\+R\+Provider class of the Open\+XR Provider library which handles all state, system and generic calls to the Open\+XR runtime. \end{DoxyCompactList}\item 
+Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$ \mbox{\hyperlink{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}{p\+X\+R\+Render\+Manager}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the X\+R\+Render\+Manager class of the Open\+XR Provider library which handles all Open\+XR rendering. \end{DoxyCompactList}\item 
+Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask $\ast$ \mbox{\hyperlink{main_8h_aa258e1cafc71c21ca80015a29c4454f4}{p\+X\+R\+Visibility\+Mask}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the X\+R\+Ext\+Visibility\+Mask class of the Open\+XR Provider library which handles the Open\+XR visibility mask extension for runtimes that support it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8h_a695892b1d53467aeed888e3789aef34c}\label{main_8h_a695892b1d53467aeed888e3789aef34c}} 
+\index{main.h@{main.h}!AppSetup@{AppSetup}}
+\index{AppSetup@{AppSetup}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{AppSetup()}{AppSetup()}}
+{\footnotesize\ttfamily int App\+Setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Setup the sandbox application -\/ windowing and opengl support. 
+
+\mbox{\Hypertarget{main_8h_a92218fb47e6a8d9497a22b2d2f826d44}\label{main_8h_a92218fb47e6a8d9497a22b2d2f826d44}} 
+\index{main.h@{main.h}!BlitToWindow@{BlitToWindow}}
+\index{BlitToWindow@{BlitToWindow}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{BlitToWindow()}{BlitToWindow()}}
+{\footnotesize\ttfamily void Blit\+To\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) 
+
+\mbox{\Hypertarget{main_8h_adb87c742093b790e17359ec17647b0f5}\label{main_8h_adb87c742093b790e17359ec17647b0f5}} 
+\index{main.h@{main.h}!DrawFrame@{DrawFrame}}
+\index{DrawFrame@{DrawFrame}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{DrawFrame()}{DrawFrame()}}
+{\footnotesize\ttfamily void Draw\+Frame (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+X\+R\+Render\+Manager,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{unsigned int}]{F\+BO,  }\item[{G\+Luint}]{n\+Shader\+Vis\+Mask }\end{DoxyParamCaption})}
+
+Render to the swapchain image (texture) that\textquotesingle{}ll be rendered to the user\textquotesingle{}s H\+MD and blitted (copied) to the Sandbox\textquotesingle{}s window (XR Mirror) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+X\+R\+Render\+Manager} & Pointer to the XR Render Manager object \\
+\hline
+\mbox{\texttt{ in}}  & {\em e\+Eye} & The eye (left/right) texture that will be rendered on \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & The index of the swapchain image (texture) \\
+\hline
+\mbox{\texttt{ in}}  & {\em F\+BO} & The Open\+GL Frame Buffer Object needed to draw to a Texture2D \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Shader\+Vis\+Mask} & The Open\+GL shader program that will be used for the Visibility Mask \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8h_ab5a763045c08ee555125d07e990fbc60}\label{main_8h_ab5a763045c08ee555125d07e990fbc60}} 
+\index{main.h@{main.h}!GraphicsAPIObjectsSetup@{GraphicsAPIObjectsSetup}}
+\index{GraphicsAPIObjectsSetup@{GraphicsAPIObjectsSetup}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{GraphicsAPIObjectsSetup()}{GraphicsAPIObjectsSetup()}}
+{\footnotesize\ttfamily int Graphics\+A\+P\+I\+Objects\+Setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Setup the Open\+GL objects (V\+AO, V\+BO, F\+BO) needed for rendering to textures from the Open\+XR runtime. 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{main_8h_a3891930b135f1ac6e2f307639219024e}\label{main_8h_a3891930b135f1ac6e2f307639219024e}} 
+\index{main.h@{main.h}!FBO@{FBO}}
+\index{FBO@{FBO}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{FBO}{FBO}}
+{\footnotesize\ttfamily unsigned int F\+BO}
+
+
+
+The Open\+GL Frame Buffer Object used in rendering processes. 
+
+\mbox{\Hypertarget{main_8h_a717bd1588444dddd960d9889f5f092d7}\label{main_8h_a717bd1588444dddd960d9889f5f092d7}} 
+\index{main.h@{main.h}!nFrameNumber@{nFrameNumber}}
+\index{nFrameNumber@{nFrameNumber}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{nFrameNumber}{nFrameNumber}}
+{\footnotesize\ttfamily uint64\+\_\+t n\+Frame\+Number = 1}
+
+
+
+The current frame number (internal to the sandbox application) 
+
+\mbox{\Hypertarget{main_8h_a106276f6621f348fd220319a0c5ca275}\label{main_8h_a106276f6621f348fd220319a0c5ca275}} 
+\index{main.h@{main.h}!nScreenHeight@{nScreenHeight}}
+\index{nScreenHeight@{nScreenHeight}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{nScreenHeight}{nScreenHeight}}
+{\footnotesize\ttfamily int n\+Screen\+Height = 1080}
+
+
+
+The height of the desktop window (XR Mirror) 
+
+\mbox{\Hypertarget{main_8h_ad3af6abc3694a26372dc97344127702e}\label{main_8h_ad3af6abc3694a26372dc97344127702e}} 
+\index{main.h@{main.h}!nScreenWidth@{nScreenWidth}}
+\index{nScreenWidth@{nScreenWidth}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{nScreenWidth}{nScreenWidth}}
+{\footnotesize\ttfamily int n\+Screen\+Width = 1920}
+
+
+
+The width of the desktop window (XR Mirror) 
+
+\mbox{\Hypertarget{main_8h_a8f6bf5aa2103d3f51c013733389dd4bd}\label{main_8h_a8f6bf5aa2103d3f51c013733389dd4bd}} 
+\index{main.h@{main.h}!nShaderVisMask@{nShaderVisMask}}
+\index{nShaderVisMask@{nShaderVisMask}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{nShaderVisMask}{nShaderVisMask}}
+{\footnotesize\ttfamily G\+Luint n\+Shader\+Vis\+Mask}
+
+
+
+The shader program ID for visibility mask that will be applied on all textures. 
+
+\mbox{\Hypertarget{main_8h_a90485357d3af01d962f1befe5ec9199a}\label{main_8h_a90485357d3af01d962f1befe5ec9199a}} 
+\index{main.h@{main.h}!nSwapchainCapacity@{nSwapchainCapacity}}
+\index{nSwapchainCapacity@{nSwapchainCapacity}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{nSwapchainCapacity}{nSwapchainCapacity}}
+{\footnotesize\ttfamily uint32\+\_\+t n\+Swapchain\+Capacity = 0}
+
+
+
+The number of images (Texture2D) that are in the swapchain created by the Open\+XR runtime. 
+
+\mbox{\Hypertarget{main_8h_a4eb41db6c24b2e7190d293273d6e0230}\label{main_8h_a4eb41db6c24b2e7190d293273d6e0230}} 
+\index{main.h@{main.h}!nSwapchainIndex@{nSwapchainIndex}}
+\index{nSwapchainIndex@{nSwapchainIndex}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{nSwapchainIndex}{nSwapchainIndex}}
+{\footnotesize\ttfamily uint32\+\_\+t n\+Swapchain\+Index = 0}
+
+
+
+The current index of the swapchain array. 
+
+\mbox{\Hypertarget{main_8h_afdd3e4a98a83be17fc862c35da31a4b5}\label{main_8h_afdd3e4a98a83be17fc862c35da31a4b5}} 
+\index{main.h@{main.h}!pAppLogFile@{pAppLogFile}}
+\index{pAppLogFile@{pAppLogFile}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{pAppLogFile}{pAppLogFile}}
+{\footnotesize\ttfamily char p\+App\+Log\+File\mbox{[}M\+A\+X\+\_\+\+P\+A\+TH\mbox{]} = \char`\"{}\char`\"{}}
+
+
+
+The path and filename to write the Open\+XR Provider library file to. 
+
+\mbox{\Hypertarget{main_8h_a0d5111066310aa3c3805d599c138b141}\label{main_8h_a0d5111066310aa3c3805d599c138b141}} 
+\index{main.h@{main.h}!pUtils@{pUtils}}
+\index{pUtils@{pUtils}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{pUtils}{pUtils}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_utils}{Utils}}$\ast$ p\+Utils = nullptr}
+
+
+
+Pointer to the Utilities (\mbox{\hyperlink{class_utils}{Utils}}) class instantiated and used by the sandbox app (logging utility lives here) 
+
+\mbox{\Hypertarget{main_8h_af4f45dfd4ee1a2c3b1562398252c7bec}\label{main_8h_af4f45dfd4ee1a2c3b1562398252c7bec}} 
+\index{main.h@{main.h}!pXRMirror@{pXRMirror}}
+\index{pXRMirror@{pXRMirror}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{pXRMirror}{pXRMirror}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_x_r_mirror}{X\+R\+Mirror}}$\ast$ p\+X\+R\+Mirror = nullptr}
+
+
+
+Pointer to the \mbox{\hyperlink{class_x_r_mirror}{X\+R\+Mirror}} class that handles the desktop window where textures sent to the H\+MD are blitted (copied) to. 
+
+\mbox{\Hypertarget{main_8h_a444f316e5ddad52f3f37f1e34a2e290b}\label{main_8h_a444f316e5ddad52f3f37f1e34a2e290b}} 
+\index{main.h@{main.h}!pXRProvider@{pXRProvider}}
+\index{pXRProvider@{pXRProvider}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{pXRProvider}{pXRProvider}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Provider$\ast$ p\+X\+R\+Provider = nullptr}
+
+
+
+Pointer to the X\+R\+Provider class of the Open\+XR Provider library which handles all state, system and generic calls to the Open\+XR runtime. 
+
+\mbox{\Hypertarget{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}\label{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}} 
+\index{main.h@{main.h}!pXRRenderManager@{pXRRenderManager}}
+\index{pXRRenderManager@{pXRRenderManager}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{pXRRenderManager}{pXRRenderManager}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager$\ast$ p\+X\+R\+Render\+Manager = nullptr}
+
+
+
+Pointer to the X\+R\+Render\+Manager class of the Open\+XR Provider library which handles all Open\+XR rendering. 
+
+\mbox{\Hypertarget{main_8h_aa258e1cafc71c21ca80015a29c4454f4}\label{main_8h_aa258e1cafc71c21ca80015a29c4454f4}} 
+\index{main.h@{main.h}!pXRVisibilityMask@{pXRVisibilityMask}}
+\index{pXRVisibilityMask@{pXRVisibilityMask}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{pXRVisibilityMask}{pXRVisibilityMask}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask$\ast$ p\+X\+R\+Visibility\+Mask = nullptr}
+
+
+
+Pointer to the X\+R\+Ext\+Visibility\+Mask class of the Open\+XR Provider library which handles the Open\+XR visibility mask extension for runtimes that support it. 
+
+\mbox{\Hypertarget{main_8h_ab08061433add74e5b598f52b7f0cdacd}\label{main_8h_ab08061433add74e5b598f52b7f0cdacd}} 
+\index{main.h@{main.h}!sCurrentPath@{sCurrentPath}}
+\index{sCurrentPath@{sCurrentPath}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{sCurrentPath}{sCurrentPath}}
+{\footnotesize\ttfamily std\+::wstring s\+Current\+Path}
+
+
+
+The absolute path to the built Sandbox executable. 
+
+\mbox{\Hypertarget{main_8h_a9e558a92738c55339369908a95415fca}\label{main_8h_a9e558a92738c55339369908a95415fca}} 
+\index{main.h@{main.h}!VAO@{VAO}}
+\index{VAO@{VAO}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{VAO}{VAO}}
+{\footnotesize\ttfamily unsigned int V\+AO}
+
+
+
+The Open\+GL Vertex Array Object used in rendering processes. 
+
+\mbox{\Hypertarget{main_8h_ad9a24fe28e2326cb0445791525781160}\label{main_8h_ad9a24fe28e2326cb0445791525781160}} 
+\index{main.h@{main.h}!VBO@{VBO}}
+\index{VBO@{VBO}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{VBO}{VBO}}
+{\footnotesize\ttfamily unsigned int V\+BO}
+
+
+
+The Open\+GL Vertex Buffer Object used in rendering processes. 
+
+\mbox{\Hypertarget{main_8h_ae1dfd6e5fadf1da2664c1617e189a06c}\label{main_8h_ae1dfd6e5fadf1da2664c1617e189a06c}} 
+\index{main.h@{main.h}!vMaskIndices\_L@{vMaskIndices\_L}}
+\index{vMaskIndices\_L@{vMaskIndices\_L}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{vMaskIndices\_L}{vMaskIndices\_L}}
+{\footnotesize\ttfamily std\+::vector$<$ uint32\+\_\+t $>$ v\+Mask\+Indices\+\_\+L}
+
+
+
+Indices for the left eye visibility mask (hmd specific occlusion mesh reported by the active Open\+XR runtime) 
+
+\mbox{\Hypertarget{main_8h_ad421570592914cc66daade1c4941f168}\label{main_8h_ad421570592914cc66daade1c4941f168}} 
+\index{main.h@{main.h}!vMaskIndices\_R@{vMaskIndices\_R}}
+\index{vMaskIndices\_R@{vMaskIndices\_R}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{vMaskIndices\_R}{vMaskIndices\_R}}
+{\footnotesize\ttfamily std\+::vector$<$ uint32\+\_\+t $>$ v\+Mask\+Indices\+\_\+R}
+
+
+
+Indices for the right eye visibility mask (hmd specific occlusion mesh reported by the active Open\+XR runtime) 
+
+\mbox{\Hypertarget{main_8h_acdb99f9355147649df3b24765f066db3}\label{main_8h_acdb99f9355147649df3b24765f066db3}} 
+\index{main.h@{main.h}!vMaskVertices\_L@{vMaskVertices\_L}}
+\index{vMaskVertices\_L@{vMaskVertices\_L}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{vMaskVertices\_L}{vMaskVertices\_L}}
+{\footnotesize\ttfamily std\+::vector$<$ float $>$ v\+Mask\+Vertices\+\_\+L}
+
+
+
+Vertices for the left eye visibility mask (hmd specific occlusion mesh reported by the active Open\+XR runtime) 
+
+\mbox{\Hypertarget{main_8h_a7f2a98fc8e67834e753ae8f7330ecd25}\label{main_8h_a7f2a98fc8e67834e753ae8f7330ecd25}} 
+\index{main.h@{main.h}!vMaskVertices\_R@{vMaskVertices\_R}}
+\index{vMaskVertices\_R@{vMaskVertices\_R}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{vMaskVertices\_R}{vMaskVertices\_R}}
+{\footnotesize\ttfamily std\+::vector$<$ float $>$ v\+Mask\+Vertices\+\_\+R}
+
+
+
+Indices for the right eye visibility mask (hmd specific occlusion mesh reported by the active Open\+XR runtime) 
+
+\mbox{\Hypertarget{main_8h_a28518e935c0ff9e4c730e57d48c60c0a}\label{main_8h_a28518e935c0ff9e4c730e57d48c60c0a}} 
+\index{main.h@{main.h}!xrCurrentSessionState@{xrCurrentSessionState}}
+\index{xrCurrentSessionState@{xrCurrentSessionState}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrCurrentSessionState}{xrCurrentSessionState}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+E\+X\+R\+Event\+Data xr\+Current\+Session\+State}
+
+
+
+Stores the current Open\+XR session state. 
+

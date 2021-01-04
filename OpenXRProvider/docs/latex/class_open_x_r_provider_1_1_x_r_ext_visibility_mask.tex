@@ -1,0 +1,175 @@
+\hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask}{}\section{Open\+X\+R\+Provider\+::X\+R\+Ext\+Visibility\+Mask Class Reference}
+\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask}\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}
+
+
+{\ttfamily \#include \char`\"{}X\+R\+Ext\+Visibility\+Mask.\+h\char`\"{}}
+
+
+
+Inheritance diagram for Open\+X\+R\+Provider\+::X\+R\+Ext\+Visibility\+Mask\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{class_open_x_r_provider_1_1_x_r_ext_visibility_mask__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Open\+X\+R\+Provider\+::X\+R\+Ext\+Visibility\+Mask\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=260pt]{class_open_x_r_provider_1_1_x_r_ext_visibility_mask__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41}{E\+Mask\+Type}} \{ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41a629db3f30b899c37ebf19918d30613cb}{M\+A\+S\+K\+\_\+\+V\+I\+S\+I\+B\+LE}} = 0, 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41a062fb7c54994a14383b061d451ecff35}{M\+A\+S\+K\+\_\+\+H\+I\+D\+D\+EN}} = 1, 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41a07b15a3130a6be88c659bfdcd9065ff0}{M\+A\+S\+K\+\_\+\+L\+I\+N\+E\+\_\+\+L\+O\+OP}} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em The visibility mask type (visible, hidden, line-\/loop) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_abd25bf0e035d9322df864ca3a87996ca}{X\+R\+Ext\+Visibility\+Mask}} (std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ p\+Logger)
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a868e9fcab3dd68d76fd94d14fcedada2}{$\sim$\+X\+R\+Ext\+Visibility\+Mask}} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a7560c4d28687a01f8b7ef80107d09b20}{Get\+Extension\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Override from \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext}{X\+R\+Base\+Ext}} returning the official Open\+XR extension name that this object represents. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_abba0f5bc2a79600d137ee98941865947}{Get\+Visibility\+Mask}} (\mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}} e\+Eye, \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41}{E\+Mask\+Type}} e\+Mask\+Type, std\+::vector$<$ float $>$ \&v\+Mask\+Vertices, std\+::vector$<$ uint32\+\_\+t $>$ \&v\+Mask\+Indices)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Xr\+Instance \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_ab44f504f9549760d91f08f09a3036d51}{m\+\_\+xr\+Instance}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\begin{DoxyCompactList}\small\item\em The active Open\+XR Instance. \end{DoxyCompactList}\item 
+Xr\+Session \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a9329d2062215a848d8b9e937036d1ee3}{m\+\_\+xr\+Session}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\begin{DoxyCompactList}\small\item\em The active Open\+XR Session. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a723f9f77ad7e320d4857b3c082009e46}{m\+\_\+xr\+Last\+Call\+Result}} = X\+R\+\_\+\+S\+U\+C\+C\+E\+SS
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41}} 
+\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!EMaskType@{EMaskType}}
+\index{EMaskType@{EMaskType}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}
+\subsubsection{\texorpdfstring{EMaskType}{EMaskType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41}{Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask\+::\+E\+Mask\+Type}}}
+
+
+
+The visibility mask type (visible, hidden, line-\/loop) 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MASK\_VISIBLE@{MASK\_VISIBLE}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!MASK\_VISIBLE@{MASK\_VISIBLE}}}\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41a629db3f30b899c37ebf19918d30613cb}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41a629db3f30b899c37ebf19918d30613cb}} 
+M\+A\+S\+K\+\_\+\+V\+I\+S\+I\+B\+LE&Visible area of the user\textquotesingle{}s hmd. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MASK\_HIDDEN@{MASK\_HIDDEN}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!MASK\_HIDDEN@{MASK\_HIDDEN}}}\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41a062fb7c54994a14383b061d451ecff35}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41a062fb7c54994a14383b061d451ecff35}} 
+M\+A\+S\+K\+\_\+\+H\+I\+D\+D\+EN&Hidden area of the user\textquotesingle{}s hmd. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MASK\_LINE\_LOOP@{MASK\_LINE\_LOOP}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!MASK\_LINE\_LOOP@{MASK\_LINE\_LOOP}}}\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41a07b15a3130a6be88c659bfdcd9065ff0}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41a07b15a3130a6be88c659bfdcd9065ff0}} 
+M\+A\+S\+K\+\_\+\+L\+I\+N\+E\+\_\+\+L\+O\+OP&Line loop vertices indicating mask shape. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_abd25bf0e035d9322df864ca3a87996ca}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_abd25bf0e035d9322df864ca3a87996ca}} 
+\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!XRExtVisibilityMask@{XRExtVisibilityMask}}
+\index{XRExtVisibilityMask@{XRExtVisibilityMask}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}
+\subsubsection{\texorpdfstring{XRExtVisibilityMask()}{XRExtVisibilityMask()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask\+::\+X\+R\+Ext\+Visibility\+Mask (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$}]{p\+Logger }\end{DoxyParamCaption})}
+
+Class Constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Logger} & Pointer to the logger object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a868e9fcab3dd68d76fd94d14fcedada2}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a868e9fcab3dd68d76fd94d14fcedada2}} 
+\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!````~XRExtVisibilityMask@{$\sim$XRExtVisibilityMask}}
+\index{````~XRExtVisibilityMask@{$\sim$XRExtVisibilityMask}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}
+\subsubsection{\texorpdfstring{$\sim$XRExtVisibilityMask()}{~XRExtVisibilityMask()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask\+::$\sim$\+X\+R\+Ext\+Visibility\+Mask (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Class Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a7560c4d28687a01f8b7ef80107d09b20}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a7560c4d28687a01f8b7ef80107d09b20}} 
+\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!GetExtensionName@{GetExtensionName}}
+\index{GetExtensionName@{GetExtensionName}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}
+\subsubsection{\texorpdfstring{GetExtensionName()}{GetExtensionName()}}
+{\footnotesize\ttfamily const char$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask\+::\+Get\+Extension\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Override from \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext}{X\+R\+Base\+Ext}} returning the official Open\+XR extension name that this object represents. 
+
+
+
+Implements \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext_af23385b0dc226b0c4533a796ddc37352}{Open\+X\+R\+Provider\+::\+X\+R\+Base\+Ext}}.
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_abba0f5bc2a79600d137ee98941865947}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_abba0f5bc2a79600d137ee98941865947}} 
+\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!GetVisibilityMask@{GetVisibilityMask}}
+\index{GetVisibilityMask@{GetVisibilityMask}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}
+\subsubsection{\texorpdfstring{GetVisibilityMask()}{GetVisibilityMask()}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask\+::\+Get\+Visibility\+Mask (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}}}]{e\+Eye,  }\item[{\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a80c9de64fb067663f183e0b36a819b41}{E\+Mask\+Type}}}]{e\+Mask\+Type,  }\item[{std\+::vector$<$ float $>$ \&}]{v\+Mask\+Vertices,  }\item[{std\+::vector$<$ uint32\+\_\+t $>$ \&}]{v\+Mask\+Indices }\end{DoxyParamCaption})}
+
+Retrieve the visibility mask vertices and indices 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Which eye the visibility mask request is for \\
+\hline
+\mbox{\texttt{ in}}  & {\em e\+Mask\+Type} & The type of mask needed (hidden, visible, line loop) \\
+\hline
+\mbox{\texttt{ out}}  & {\em v\+Mask\+Vertices} & Vector that will hold the mask vertices (x,y coordinates in a flat float vector) \\
+\hline
+\mbox{\texttt{ out}}  & {\em v\+Mask\+Vertices} & Vector that will hold the mask indices \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_ab44f504f9549760d91f08f09a3036d51}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_ab44f504f9549760d91f08f09a3036d51}} 
+\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!m\_xrInstance@{m\_xrInstance}}
+\index{m\_xrInstance@{m\_xrInstance}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}
+\subsubsection{\texorpdfstring{m\_xrInstance}{m\_xrInstance}}
+{\footnotesize\ttfamily Xr\+Instance Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask\+::m\+\_\+xr\+Instance = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE}
+
+
+
+The active Open\+XR Instance. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a723f9f77ad7e320d4857b3c082009e46}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a723f9f77ad7e320d4857b3c082009e46}} 
+\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!m\_xrLastCallResult@{m\_xrLastCallResult}}
+\index{m\_xrLastCallResult@{m\_xrLastCallResult}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}
+\subsubsection{\texorpdfstring{m\_xrLastCallResult}{m\_xrLastCallResult}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask\+::m\+\_\+xr\+Last\+Call\+Result = X\+R\+\_\+\+S\+U\+C\+C\+E\+SS\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a9329d2062215a848d8b9e937036d1ee3}\label{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a9329d2062215a848d8b9e937036d1ee3}} 
+\index{OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}!m\_xrSession@{m\_xrSession}}
+\index{m\_xrSession@{m\_xrSession}!OpenXRProvider::XRExtVisibilityMask@{OpenXRProvider::XRExtVisibilityMask}}
+\subsubsection{\texorpdfstring{m\_xrSession}{m\_xrSession}}
+{\footnotesize\ttfamily Xr\+Session Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask\+::m\+\_\+xr\+Session = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE}
+
+
+
+The active Open\+XR Session. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_x_r_ext_visibility_mask_8h}{X\+R\+Ext\+Visibility\+Mask.\+h}}\item 
+src/\mbox{\hyperlink{_x_r_ext_visibility_mask_8cpp}{X\+R\+Ext\+Visibility\+Mask.\+cpp}}\end{DoxyCompactItemize}

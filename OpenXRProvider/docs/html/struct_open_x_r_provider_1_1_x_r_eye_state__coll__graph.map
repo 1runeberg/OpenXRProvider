@@ -1,0 +1,7 @@
+<map id="OpenXRProvider::XREyeState" name="OpenXRProvider::XREyeState">
+<area shape="rect" id="node1" title="Eye State &#45; contains pose, field of view info for an eye." alt="" coords="19,184,213,211"/>
+<area shape="rect" id="node2" href="$struct_open_x_r_provider_1_1_x_r_fo_v.html" title="Field of view in angles (float)" alt="" coords="5,95,168,121"/>
+<area shape="rect" id="node3" href="$struct_open_x_r_provider_1_1_x_r_pose.html" title="Pose (orientation in 3d space and orientation in quaternion)" alt="" coords="193,95,362,121"/>
+<area shape="rect" id="node4" href="$struct_open_x_r_provider_1_1_x_r_quat.html" title="Quaternion." alt="" coords="94,5,261,32"/>
+<area shape="rect" id="node5" href="$struct_open_x_r_provider_1_1_x_r_vector3.html" title="A vector3 float." alt="" coords="285,5,469,32"/>
+</map>

@@ -1,0 +1,132 @@
+\hypertarget{class_open_x_r_provider_1_1_x_r_event_handler}{}\section{Open\+X\+R\+Provider\+::X\+R\+Event\+Handler Class Reference}
+\label{class_open_x_r_provider_1_1_x_r_event_handler}\index{OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}}
+
+
+{\ttfamily \#include \char`\"{}X\+R\+Event\+Handler.\+h\char`\"{}}
+
+
+
+Inheritance diagram for Open\+X\+R\+Provider\+::X\+R\+Event\+Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{class_open_x_r_provider_1_1_x_r_event_handler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Open\+X\+R\+Provider\+::X\+R\+Event\+Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{class_open_x_r_provider_1_1_x_r_event_handler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler_a9ffef59d9ec597ceecad19c3fc935ae0}{X\+R\+Event\+Handler}} (std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ p\+Logger)
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler_a4cc2395d94544372270850eac7eba0ff}{$\sim$\+X\+R\+Event\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler_a027d2cf96cc56161e2db566733f984d5}{Register\+Callback}} (\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{X\+R\+Callback}} $\ast$p\+X\+R\+Callback)
+\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler_ae64f5c0e0ab34c71a3ab3e9e3d3a3323}{Deregister\+Callback}} (\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{X\+R\+Callback}} $\ast$p\+X\+R\+Callback)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{X\+R\+Callback}} $\ast$ $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler_a6e6ce6065716adc4fcd6cba723fe1b0b}{Get\+X\+R\+Callbacks}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler_a51b30482e74bc38c40482700be47da85}{m\+\_\+xr\+Last\+Call\+Result}} = X\+R\+\_\+\+S\+U\+C\+C\+E\+SS
+\begin{DoxyCompactList}\small\item\em Results of the last call to the Open\+XR api. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{X\+R\+Callback}} $\ast$ $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler_ad0b2610427d3b8cff4ed01dff2baed95}{m\+\_\+p\+X\+R\+Callbacks}}
+\begin{DoxyCompactList}\small\item\em Array of callback function pointers that are currently registered in the Open\+XR Provider event system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_event_handler_a9ffef59d9ec597ceecad19c3fc935ae0}\label{class_open_x_r_provider_1_1_x_r_event_handler_a9ffef59d9ec597ceecad19c3fc935ae0}} 
+\index{OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}!XREventHandler@{XREventHandler}}
+\index{XREventHandler@{XREventHandler}!OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}}
+\subsubsection{\texorpdfstring{XREventHandler()}{XREventHandler()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Event\+Handler\+::\+X\+R\+Event\+Handler (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$}]{p\+Logger }\end{DoxyParamCaption})}
+
+Class Constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Logger} & Pointer to the logger object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_event_handler_a4cc2395d94544372270850eac7eba0ff}\label{class_open_x_r_provider_1_1_x_r_event_handler_a4cc2395d94544372270850eac7eba0ff}} 
+\index{OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}!````~XREventHandler@{$\sim$XREventHandler}}
+\index{````~XREventHandler@{$\sim$XREventHandler}!OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}}
+\subsubsection{\texorpdfstring{$\sim$XREventHandler()}{~XREventHandler()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Event\+Handler\+::$\sim$\+X\+R\+Event\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Class Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_event_handler_ae64f5c0e0ab34c71a3ab3e9e3d3a3323}\label{class_open_x_r_provider_1_1_x_r_event_handler_ae64f5c0e0ab34c71a3ab3e9e3d3a3323}} 
+\index{OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}!DeregisterCallback@{DeregisterCallback}}
+\index{DeregisterCallback@{DeregisterCallback}!OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}}
+\subsubsection{\texorpdfstring{DeregisterCallback()}{DeregisterCallback()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Event\+Handler\+::\+Deregister\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{X\+R\+Callback}} $\ast$}]{p\+X\+R\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+De-\/register a registered callback in the Open\+XR Provider event system 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+X\+R\+Callback} & Pointer to callback that needs de-\/registering \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_event_handler_a6e6ce6065716adc4fcd6cba723fe1b0b}\label{class_open_x_r_provider_1_1_x_r_event_handler_a6e6ce6065716adc4fcd6cba723fe1b0b}} 
+\index{OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}!GetXRCallbacks@{GetXRCallbacks}}
+\index{GetXRCallbacks@{GetXRCallbacks}!OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}}
+\subsubsection{\texorpdfstring{GetXRCallbacks()}{GetXRCallbacks()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{X\+R\+Callback}} $\ast$ $>$ Open\+X\+R\+Provider\+::\+X\+R\+Event\+Handler\+::\+Get\+X\+R\+Callbacks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the array of callback function pointers \begin{DoxyReturn}{Returns}
+Array of callback function pointers that are currently registered in the Open\+XR Provider event system 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_event_handler_a027d2cf96cc56161e2db566733f984d5}\label{class_open_x_r_provider_1_1_x_r_event_handler_a027d2cf96cc56161e2db566733f984d5}} 
+\index{OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}!RegisterCallback@{RegisterCallback}}
+\index{RegisterCallback@{RegisterCallback}!OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}}
+\subsubsection{\texorpdfstring{RegisterCallback()}{RegisterCallback()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Event\+Handler\+::\+Register\+Callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{X\+R\+Callback}} $\ast$}]{p\+X\+R\+Callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Register a callback to the Open\+XR Provider event system 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Logger} & Pointer to the logger object \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_event_handler_ad0b2610427d3b8cff4ed01dff2baed95}\label{class_open_x_r_provider_1_1_x_r_event_handler_ad0b2610427d3b8cff4ed01dff2baed95}} 
+\index{OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}!m\_pXRCallbacks@{m\_pXRCallbacks}}
+\index{m\_pXRCallbacks@{m\_pXRCallbacks}!OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}}
+\subsubsection{\texorpdfstring{m\_pXRCallbacks}{m\_pXRCallbacks}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{X\+R\+Callback}} $\ast$ $>$ Open\+X\+R\+Provider\+::\+X\+R\+Event\+Handler\+::m\+\_\+p\+X\+R\+Callbacks\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Array of callback function pointers that are currently registered in the Open\+XR Provider event system. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_event_handler_a51b30482e74bc38c40482700be47da85}\label{class_open_x_r_provider_1_1_x_r_event_handler_a51b30482e74bc38c40482700be47da85}} 
+\index{OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}!m\_xrLastCallResult@{m\_xrLastCallResult}}
+\index{m\_xrLastCallResult@{m\_xrLastCallResult}!OpenXRProvider::XREventHandler@{OpenXRProvider::XREventHandler}}
+\subsubsection{\texorpdfstring{m\_xrLastCallResult}{m\_xrLastCallResult}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Event\+Handler\+::m\+\_\+xr\+Last\+Call\+Result = X\+R\+\_\+\+S\+U\+C\+C\+E\+SS\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Results of the last call to the Open\+XR api. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_x_r_event_handler_8h}{X\+R\+Event\+Handler.\+h}}\item 
+src/\mbox{\hyperlink{_x_r_event_handler_8cpp}{X\+R\+Event\+Handler.\+cpp}}\end{DoxyCompactItemize}

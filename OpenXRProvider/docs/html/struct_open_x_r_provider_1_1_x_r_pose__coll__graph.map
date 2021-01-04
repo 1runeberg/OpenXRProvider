@@ -1,0 +1,5 @@
+<map id="OpenXRProvider::XRPose" name="OpenXRProvider::XRPose">
+<area shape="rect" id="node1" title="Pose (orientation in 3d space and orientation in quaternion)" alt="" coords="104,95,273,121"/>
+<area shape="rect" id="node2" href="$struct_open_x_r_provider_1_1_x_r_quat.html" title="Quaternion." alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node3" href="$struct_open_x_r_provider_1_1_x_r_vector3.html" title="A vector3 float." alt="" coords="197,5,381,32"/>
+</map>

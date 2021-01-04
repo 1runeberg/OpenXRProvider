@@ -1,0 +1,167 @@
+\hypertarget{main_8cpp}{}\section{src/main.cpp File Reference}
+\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include $<$main.\+h$>$}\newline
+Include dependency graph for main.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a74cad4d33c48bff14f3629536d4e10aa}{A\+P\+P\+\_\+\+P\+R\+O\+J\+E\+C\+T\+\_\+\+N\+A\+ME}}~\char`\"{}Open\+XR Sandbox\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a0a7da9c95a4480e5054820103ec0ee44}{A\+P\+P\+\_\+\+P\+R\+O\+J\+E\+C\+T\+\_\+\+V\+ER}}~1
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a877f3507f52e1186d33b4100eec6f605}{A\+P\+P\+\_\+\+E\+N\+G\+I\+N\+E\+\_\+\+N\+A\+ME}}~\char`\"{}Custom\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a5fd2922fb01e5c4a605e6a77078e89d0}{A\+P\+P\+\_\+\+E\+N\+G\+I\+N\+E\+\_\+\+V\+ER}}~1
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a84aa3a9b6cf97686ec60e4c62178ec5d}{A\+P\+P\+\_\+\+M\+I\+R\+R\+O\+R\+\_\+\+W\+I\+D\+TH}}~800
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a6542aac1ef8d9b7767fb888ae4653679}{A\+P\+P\+\_\+\+M\+I\+R\+R\+O\+R\+\_\+\+H\+E\+I\+G\+HT}}~600
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a0d4b4003857720aafe0ed9009bd3250d}{A\+P\+P\+\_\+\+L\+O\+G\+\_\+\+T\+I\+T\+LE}}~\char`\"{}Sandbox\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a5798b06ad3a7ed340d01b819cb0f4e76}{A\+P\+P\+\_\+\+L\+O\+G\+\_\+\+F\+I\+LE}}~L\char`\"{}\textbackslash{}\textbackslash{}logs\textbackslash{}\textbackslash{}openxr-\/provider-\/sandbox-\/log.\+txt\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_ac983703c46aee0ff3bde2564bf0c0f1c}{V\+I\+S\+\_\+\+M\+A\+S\+K\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}vert-\/vismask.\+glsl\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a3f62286ab97f2f43fd624aae1723f3bb}{V\+I\+S\+\_\+\+M\+A\+S\+K\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}frag-\/vismask.\+glsl\char`\"{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\item 
+int \mbox{\hyperlink{main_8cpp_a695892b1d53467aeed888e3789aef34c}{App\+Setup}} ()
+\begin{DoxyCompactList}\small\item\em Setup the sandbox application -\/ windowing and opengl support. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_ab5a763045c08ee555125d07e990fbc60}{Graphics\+A\+P\+I\+Objects\+Setup}} ()
+\begin{DoxyCompactList}\small\item\em Setup the Open\+GL objects (V\+AO, V\+BO, F\+BO) needed for rendering to textures from the Open\+XR runtime. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_adb87c742093b790e17359ec17647b0f5}{Draw\+Frame}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$\mbox{\hyperlink{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}{p\+X\+R\+Render\+Manager}}, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, unsigned int \mbox{\hyperlink{main_8h_a3891930b135f1ac6e2f307639219024e}{F\+BO}}, G\+Luint \mbox{\hyperlink{main_8h_a8f6bf5aa2103d3f51c013733389dd4bd}{n\+Shader\+Vis\+Mask}})
+\item 
+void \mbox{\hyperlink{main_8cpp_a92218fb47e6a8d9497a22b2d2f826d44}{Blit\+To\+Window}} ()
+\begin{DoxyCompactList}\small\item\em Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main_8cpp_a877f3507f52e1186d33b4100eec6f605}\label{main_8cpp_a877f3507f52e1186d33b4100eec6f605}} 
+\index{main.cpp@{main.cpp}!APP\_ENGINE\_NAME@{APP\_ENGINE\_NAME}}
+\index{APP\_ENGINE\_NAME@{APP\_ENGINE\_NAME}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{APP\_ENGINE\_NAME}{APP\_ENGINE\_NAME}}
+{\footnotesize\ttfamily \#define A\+P\+P\+\_\+\+E\+N\+G\+I\+N\+E\+\_\+\+N\+A\+ME~\char`\"{}Custom\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_a5fd2922fb01e5c4a605e6a77078e89d0}\label{main_8cpp_a5fd2922fb01e5c4a605e6a77078e89d0}} 
+\index{main.cpp@{main.cpp}!APP\_ENGINE\_VER@{APP\_ENGINE\_VER}}
+\index{APP\_ENGINE\_VER@{APP\_ENGINE\_VER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{APP\_ENGINE\_VER}{APP\_ENGINE\_VER}}
+{\footnotesize\ttfamily \#define A\+P\+P\+\_\+\+E\+N\+G\+I\+N\+E\+\_\+\+V\+ER~1}
+
+\mbox{\Hypertarget{main_8cpp_a5798b06ad3a7ed340d01b819cb0f4e76}\label{main_8cpp_a5798b06ad3a7ed340d01b819cb0f4e76}} 
+\index{main.cpp@{main.cpp}!APP\_LOG\_FILE@{APP\_LOG\_FILE}}
+\index{APP\_LOG\_FILE@{APP\_LOG\_FILE}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{APP\_LOG\_FILE}{APP\_LOG\_FILE}}
+{\footnotesize\ttfamily \#define A\+P\+P\+\_\+\+L\+O\+G\+\_\+\+F\+I\+LE~L\char`\"{}\textbackslash{}\textbackslash{}logs\textbackslash{}\textbackslash{}openxr-\/provider-\/sandbox-\/log.\+txt\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_a0d4b4003857720aafe0ed9009bd3250d}\label{main_8cpp_a0d4b4003857720aafe0ed9009bd3250d}} 
+\index{main.cpp@{main.cpp}!APP\_LOG\_TITLE@{APP\_LOG\_TITLE}}
+\index{APP\_LOG\_TITLE@{APP\_LOG\_TITLE}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{APP\_LOG\_TITLE}{APP\_LOG\_TITLE}}
+{\footnotesize\ttfamily \#define A\+P\+P\+\_\+\+L\+O\+G\+\_\+\+T\+I\+T\+LE~\char`\"{}Sandbox\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_a6542aac1ef8d9b7767fb888ae4653679}\label{main_8cpp_a6542aac1ef8d9b7767fb888ae4653679}} 
+\index{main.cpp@{main.cpp}!APP\_MIRROR\_HEIGHT@{APP\_MIRROR\_HEIGHT}}
+\index{APP\_MIRROR\_HEIGHT@{APP\_MIRROR\_HEIGHT}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{APP\_MIRROR\_HEIGHT}{APP\_MIRROR\_HEIGHT}}
+{\footnotesize\ttfamily \#define A\+P\+P\+\_\+\+M\+I\+R\+R\+O\+R\+\_\+\+H\+E\+I\+G\+HT~600}
+
+\mbox{\Hypertarget{main_8cpp_a84aa3a9b6cf97686ec60e4c62178ec5d}\label{main_8cpp_a84aa3a9b6cf97686ec60e4c62178ec5d}} 
+\index{main.cpp@{main.cpp}!APP\_MIRROR\_WIDTH@{APP\_MIRROR\_WIDTH}}
+\index{APP\_MIRROR\_WIDTH@{APP\_MIRROR\_WIDTH}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{APP\_MIRROR\_WIDTH}{APP\_MIRROR\_WIDTH}}
+{\footnotesize\ttfamily \#define A\+P\+P\+\_\+\+M\+I\+R\+R\+O\+R\+\_\+\+W\+I\+D\+TH~800}
+
+\mbox{\Hypertarget{main_8cpp_a74cad4d33c48bff14f3629536d4e10aa}\label{main_8cpp_a74cad4d33c48bff14f3629536d4e10aa}} 
+\index{main.cpp@{main.cpp}!APP\_PROJECT\_NAME@{APP\_PROJECT\_NAME}}
+\index{APP\_PROJECT\_NAME@{APP\_PROJECT\_NAME}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{APP\_PROJECT\_NAME}{APP\_PROJECT\_NAME}}
+{\footnotesize\ttfamily \#define A\+P\+P\+\_\+\+P\+R\+O\+J\+E\+C\+T\+\_\+\+N\+A\+ME~\char`\"{}Open\+XR Sandbox\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_a0a7da9c95a4480e5054820103ec0ee44}\label{main_8cpp_a0a7da9c95a4480e5054820103ec0ee44}} 
+\index{main.cpp@{main.cpp}!APP\_PROJECT\_VER@{APP\_PROJECT\_VER}}
+\index{APP\_PROJECT\_VER@{APP\_PROJECT\_VER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{APP\_PROJECT\_VER}{APP\_PROJECT\_VER}}
+{\footnotesize\ttfamily \#define A\+P\+P\+\_\+\+P\+R\+O\+J\+E\+C\+T\+\_\+\+V\+ER~1}
+
+\mbox{\Hypertarget{main_8cpp_a3f62286ab97f2f43fd624aae1723f3bb}\label{main_8cpp_a3f62286ab97f2f43fd624aae1723f3bb}} 
+\index{main.cpp@{main.cpp}!VIS\_MASK\_FRAGMENT\_SHADER@{VIS\_MASK\_FRAGMENT\_SHADER}}
+\index{VIS\_MASK\_FRAGMENT\_SHADER@{VIS\_MASK\_FRAGMENT\_SHADER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{VIS\_MASK\_FRAGMENT\_SHADER}{VIS\_MASK\_FRAGMENT\_SHADER}}
+{\footnotesize\ttfamily \#define V\+I\+S\+\_\+\+M\+A\+S\+K\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+ER~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}frag-\/vismask.\+glsl\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_ac983703c46aee0ff3bde2564bf0c0f1c}\label{main_8cpp_ac983703c46aee0ff3bde2564bf0c0f1c}} 
+\index{main.cpp@{main.cpp}!VIS\_MASK\_VERTEX\_SHADER@{VIS\_MASK\_VERTEX\_SHADER}}
+\index{VIS\_MASK\_VERTEX\_SHADER@{VIS\_MASK\_VERTEX\_SHADER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{VIS\_MASK\_VERTEX\_SHADER}{VIS\_MASK\_VERTEX\_SHADER}}
+{\footnotesize\ttfamily \#define V\+I\+S\+\_\+\+M\+A\+S\+K\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+ER~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}vert-\/vismask.\+glsl\char`\"{}}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_a695892b1d53467aeed888e3789aef34c}\label{main_8cpp_a695892b1d53467aeed888e3789aef34c}} 
+\index{main.cpp@{main.cpp}!AppSetup@{AppSetup}}
+\index{AppSetup@{AppSetup}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{AppSetup()}{AppSetup()}}
+{\footnotesize\ttfamily int App\+Setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Setup the sandbox application -\/ windowing and opengl support. 
+
+\mbox{\Hypertarget{main_8cpp_a92218fb47e6a8d9497a22b2d2f826d44}\label{main_8cpp_a92218fb47e6a8d9497a22b2d2f826d44}} 
+\index{main.cpp@{main.cpp}!BlitToWindow@{BlitToWindow}}
+\index{BlitToWindow@{BlitToWindow}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{BlitToWindow()}{BlitToWindow()}}
+{\footnotesize\ttfamily void Blit\+To\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) 
+
+\mbox{\Hypertarget{main_8cpp_adb87c742093b790e17359ec17647b0f5}\label{main_8cpp_adb87c742093b790e17359ec17647b0f5}} 
+\index{main.cpp@{main.cpp}!DrawFrame@{DrawFrame}}
+\index{DrawFrame@{DrawFrame}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{DrawFrame()}{DrawFrame()}}
+{\footnotesize\ttfamily void Draw\+Frame (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+X\+R\+Render\+Manager,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{unsigned int}]{F\+BO,  }\item[{G\+Luint}]{n\+Shader\+Vis\+Mask }\end{DoxyParamCaption})}
+
+Render to the swapchain image (texture) that\textquotesingle{}ll be rendered to the user\textquotesingle{}s H\+MD and blitted (copied) to the Sandbox\textquotesingle{}s window (XR Mirror) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+X\+R\+Render\+Manager} & Pointer to the XR Render Manager object \\
+\hline
+\mbox{\texttt{ in}}  & {\em e\+Eye} & The eye (left/right) texture that will be rendered on \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & The index of the swapchain image (texture) \\
+\hline
+\mbox{\texttt{ in}}  & {\em F\+BO} & The Open\+GL Frame Buffer Object needed to draw to a Texture2D \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Shader\+Vis\+Mask} & The Open\+GL shader program that will be used for the Visibility Mask \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_ab5a763045c08ee555125d07e990fbc60}\label{main_8cpp_ab5a763045c08ee555125d07e990fbc60}} 
+\index{main.cpp@{main.cpp}!GraphicsAPIObjectsSetup@{GraphicsAPIObjectsSetup}}
+\index{GraphicsAPIObjectsSetup@{GraphicsAPIObjectsSetup}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{GraphicsAPIObjectsSetup()}{GraphicsAPIObjectsSetup()}}
+{\footnotesize\ttfamily int Graphics\+A\+P\+I\+Objects\+Setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Setup the Open\+GL objects (V\+AO, V\+BO, F\+BO) needed for rendering to textures from the Open\+XR runtime. 
+
+\mbox{\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
