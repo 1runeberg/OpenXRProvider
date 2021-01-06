@@ -125,6 +125,7 @@ namespace OpenXRProvider
 			vMaskVertices.push_back( pXRVisibilityMask.vertices[ i ].y );
 		}
 
+		vMaskIndices.insert( vMaskIndices.end(), &pXRVisibilityMask.indices[ 0 ], &pXRVisibilityMask.indices[ nIndexCount ] );
 		return true;
 	}
 

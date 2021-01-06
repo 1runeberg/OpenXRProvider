@@ -97,10 +97,10 @@ int main()
 	//     using the render information provided here
 
 	OpenXRProvider::XRRenderInfo xrRenderInfo(
-		{ 0 }, // Request texture formats here in order of preference.
-			   // These are uint64_t nums that's defined by the graphics API
-			   // (e.g. GL_RGBA16, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, etc)
-			   // Otherwise, put 0 in the array to let the runtime decide the format
+		{ GL_SRGB8_ALPHA8 }, // Request texture formats here in order of preference.
+							 // These are uint64_t nums that's defined by the graphics API
+							 // (e.g. GL_RGBA16, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, etc)
+							 // Otherwise, put 0 in the array to let the runtime decide the format
 
 		false, // Set to true if you want/need depth textures generated as well
 			   // along with the color textures that we will render to
@@ -148,9 +148,9 @@ int main()
 	}
 
 	pUtils->GetLogger()->info(
-		"Runtime returned a visibility mask with {} verts and {} indices for the left eye (0)", vMaskVertices_L.size(), vMaskIndices_L.size() );
+		"Runtime returned a visibility mask with {} verts and {} indices for the left eye (0)", vMaskVertices_L.size()/2, vMaskIndices_L.size() );
 	pUtils->GetLogger()->info(
-		"Runtime returned a visibility mask with {} verts and {} indices for the right eye (1)", vMaskVertices_R.size(), vMaskIndices_R.size() );
+		"Runtime returned a visibility mask with {} verts and {} indices for the right eye (1)", vMaskVertices_R.size()/2, vMaskIndices_R.size() );
 
 #pragma endregion OPENXR_PROVIDER_SETUP
 
@@ -160,7 +160,7 @@ int main()
 	if ( GraphicsAPIObjectsSetup() != 0 )
 		return -1;
 
-		// [DEBUG] Sleep(10000);
+
 
 #pragma region SANDBOX_FRAME_LOOP
 
