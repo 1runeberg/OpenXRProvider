@@ -47,31 +47,43 @@ namespace OpenXRProvider
 			
 		/// The application's tracking space - e.g. room scale, seated, etc
 		EXRTrackingSpace TrackingSpace;
-		
+	
 		/// List of extension objects representing each extension that the app wants to activate depending on runtime support
 		std::vector< void * > XRExtensions;
 
+		/// If the application plans to send depth textures along with the color textures
+		bool EnableDepthTextureSupport;
+		
 		/// The absolute path and filename of the log file the OpenXR Provider library will write in to (optional)
 		const char *LogFile;
 
 		/// Struct Constructor
-		/// @param[in]	appName			Name of the application using the OpenXR Provider library
-		/// @param[in]	appVersion		Version of the application using the OpenXR Provider library
-		/// @param[in]	trackingSpace	Application's tracking space - e.g. room scale, seated, etc	
+		/// @param[in]	appName						Name of the application using the OpenXR Provider library
+		/// @param[in]	appVersion					Version of the application using the OpenXR Provider library
+		/// @param[in]	engineName					Name of the engine using the OpenXR Provider library
+		/// @param[in]	engineVersion				Version of the engine using the OpenXR Provider library
+		/// @param[in]	trackingSpace				Application's tracking space - e.g. room scale, seated, etc
+		/// @param[in]	xrExtensions				Array of supported extensions (objects) that app wants enabled if the runtime supports it
+		/// @param[in]	bEnableDepthTextureSupport	(optional: false) If depth composition (XR_KHR_composition_layer_depth) should be enabled if runtime supports it
+		/// @param[in]	pLogFile					(optional: null) Absolute path and filename for the logfile
 		XRAppInfo(
 			std::string				appName,
 			uint32_t				appVersion,
 			std::string				engineName,
 			uint32_t				engineVersion,
 			EXRTrackingSpace		trackingSpace,
-			std::vector< void * >	xrExtensions )
+			std::vector< void * >	xrExtensions,
+			bool					bEnableDepthTextureSupport = false,
+			const char*				pLogFile = nullptr
+			)
 			: AppName( appName )
 			, AppVersion( appVersion )
 			, EngineName( engineName )
 			, EngineVersion( engineVersion )
 			, TrackingSpace( trackingSpace )
 			, XRExtensions( xrExtensions )
-			, LogFile( nullptr )
+			, EnableDepthTextureSupport( bEnableDepthTextureSupport )
+			, LogFile( pLogFile )
 		{
 		}
 	};
@@ -97,47 +109,51 @@ namespace OpenXRProvider
 
 		/// Getter for the array of extensions names that are active in the current OpenXR session
 		/// @return		Array of extensions names that are active in the current OpenXR session
-		std::vector< const char * > GetEnabledExtensionNames() { return m_vAppEnabledExtensions; }
+		std::vector< const char * > GetEnabledExtensionNames() const { return m_vAppEnabledExtensions; }
 		
 		/// Getter for the graphics api object that handles graphics api (e.g. OpenGL, Vulkan, etc) specific rendering state and functions
 		/// @return		Pointer to graphics api object that handles graphics api (e.g. OpenGL, Vulkan, etc) specific rendering state and functions	
-		XRGraphicsAPI *GetGraphicsAPI() { return m_pXRGraphicsAPI; }	
+		XRGraphicsAPI *GetGraphicsAPI() const { return m_pXRGraphicsAPI; }	
+
+		/// Getter if depth textures are supported and enabled
+		/// @return		If  depth textures are supported and runtime supports it
+		bool GetIsDepthSupported() const { return m_bIsDepthSupported; }
 		
 		/// Getter for the logger object
 		/// @return		Pointer to the logger object
-		std::shared_ptr< spdlog::logger > GetLogger() { return m_pLogger; }
+		std::shared_ptr< spdlog::logger > GetLogger() const { return m_pLogger; }
 		
 		/// Getter for the Event Handler object that broadcasts events to listeners via their registered callback functions
 		/// @return		Pointer to the event handler object
-		XREventHandler *GetXREventHandler() { return m_pXREventHandler; }
+		XREventHandler *GetXREventHandler() const { return m_pXREventHandler; }
 
 		/// Getter for the enabled OpenXR extension objects
 		/// @return		Array of enabled OpenXR extensions
-		std::vector< void * > GetXREnabledExtensions() { return m_vXRAppEnabledExtensions; } 
+		std::vector< void * > GetXREnabledExtensions() const { return m_vXRAppEnabledExtensions; } 
 
 		/// Getter for the active OpenXR instance
 		/// @return		Active OpenXR instance
-		XrInstance GetXRInstance() { return m_xrInstance; } 
+		XrInstance GetXRInstance() const { return m_xrInstance; } 
 
 		/// Getter for the XR Render Manager object that handles rendering call to the OpenXR api
 		/// @return		Pointer to the XR Render Manager
-		XRRenderManager *GetXRRenderManager() { return m_pXRRenderManager; } 
+		XRRenderManager *GetXRRenderManager() const { return m_pXRRenderManager; } 
 
 		/// Getter for the active OpenXR session
 		/// @return		The active OpenXR session
-		XrSession GetXRSession() { return m_xrSession; }
+		XrSession GetXRSession() const { return m_xrSession; }
 
 		/// Getter for the current app reference space
 		/// @return		The current app reference space
-		XrSpace GetXRSpace() { return m_xrSpace; }
+		XrSpace GetXRSpace() const { return m_xrSpace; }
 
 		/// Getter for the current OpenXR System Id
 		/// @return		The current OpenXR System Id of the active OpenXR runtime
-		XrSystemId GetXRSystemId() { return m_xrSystemId; }			
+		XrSystemId GetXRSystemId() const { return m_xrSystemId; }			
 
 		/// Getter for the current OpenXR system properties
 		/// @return		The current OpenXR System Properties of the active OpenXR runtime
-		XrSystemProperties GetXRSystemProperties() { return m_xrSystemProperties; } 
+		XrSystemProperties GetXRSystemProperties() const { return m_xrSystemProperties; } 
 
 		/// Setter for the currently active OpenXR session
 		/// @param[in]	xrSession	Set the active OpenXR session
@@ -152,11 +168,11 @@ namespace OpenXRProvider
 		/// (2) Check runtime's supported extensions and tag ones selected by the app to enable (e.g. Graphics type, Visibility Mask, Handtracking, etc),
 		/// (3) Create an instance (object that allows communication to the runtime) and
 		/// (4) Get xr system (representing a collection of physical xr devices) from active OpenXR runtime
-		void OpenXRInit();
+		void OpenXRInit( bool bEnableDepthTextureSupport = false );
 
 		/// Enable provided extensions if supported by the currently active OpenXR runtime
 		/// @param[in]	pXRExtensions	List of extensions names to enable if the active OpenXR runtime supports it
-		void EnableExtensions( std::vector< const char * > &pXRExtensions );
+		void EnableExtensions( std::vector< const char * > &pXRExtensions, bool bEnableDepthTextureSupport );
 
 		/// Execute all registered callback functions. Used after an OpenXR poll and an event state has been triggered by the runtime
 		/// @param[in]	xrEventType	The type of OpenXR event that triggered the callback
@@ -179,6 +195,9 @@ namespace OpenXRProvider
 
 	  private:
 		// ** MEMBER VARIABLES (PRIVATE) **/
+
+		///  If depth textures are supported
+		bool m_bIsDepthSupported = false;
 
 		/// Version of the application using this library
 		uint32_t m_nAppVersion;

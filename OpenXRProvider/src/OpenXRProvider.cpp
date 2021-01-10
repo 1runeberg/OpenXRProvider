@@ -49,12 +49,12 @@ namespace OpenXRProvider
 		m_pLogger->set_pattern( "[%Y-%b-%d %a] [%T %z] [%^%L%$] [%n] %v" );
 		m_pLogger->info( "G'day from {}! Logging to: {}", LOG_TITLE, xrAppInfo.LogFile );
 		m_pLogger->info( "Logs powered by spdlog version {}.{}.{}", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH );
-
+	
 		// Create event handler
 		m_pXREventHandler = new XREventHandler( m_pLogger );
 
 		// Initialize OpenXR
-		OpenXRInit();
+		OpenXRInit( xrAppInfo.EnableDepthTextureSupport );
 
 		// Setup world
 		WorldInit( &xrAppGraphicsInfo );
@@ -83,7 +83,7 @@ namespace OpenXRProvider
 		spdlog::shutdown();
 	}
 
-	void XRProvider::OpenXRInit()
+	void XRProvider::OpenXRInit( bool bEnableDepthTextureSupport )
 	{
 
 		// ========================================================================
@@ -112,7 +112,7 @@ namespace OpenXRProvider
 		// (2) Check runtime's supported extensions and tag ones selected by the app to enable (e.g. Graphics type, Visibility Mask, Handtracking, etc)
 		// ========================================================================
 
-		EnableExtensions( m_vAppEnabledExtensions );
+		EnableExtensions( m_vAppEnabledExtensions, bEnableDepthTextureSupport );
 		uint32_t nNumEnxtesions = m_vAppEnabledExtensions.empty() ? 0 : ( uint32_t )m_vAppEnabledExtensions.size();
 
 		if ( nNumEnxtesions > 0 )
@@ -217,7 +217,7 @@ namespace OpenXRProvider
 		return m_xrLastCallResult;
 	}
 
-	void XRProvider::EnableExtensions( std::vector< const char * > &vXRExtensions )
+	void XRProvider::EnableExtensions( std::vector< const char * > &vXRExtensions, bool bEnableDepthTextureSupport )
 	{
 		vXRExtensions.clear();
 
@@ -238,29 +238,47 @@ namespace OpenXRProvider
 		bool bEnable = false;
 		for ( uint32_t i = 0; i < nExtensionCount; ++i )
 		{
-			// Check if this extension was requested by the app
-			for ( size_t j = 0; j < m_vAppRequestedExtensions.size(); j++ )
+			// Check for graphics api extension
+			if ( strcmp( s_GraphicsExtensionName, &vExtensions[ i ].extensionName[ 0 ] ) == 0 )
 			{
-				XRBaseExt *xrRequestedExtension = static_cast< XRBaseExt * >( m_vAppRequestedExtensions[ j ] );
-				if ( strcmp( xrRequestedExtension->GetExtensionName(), &vExtensions[ i ].extensionName[ 0 ] ) == 0 )
-				{
-					// Add to the list of extensions that would be enabled when we create the openxr instance
-					vXRExtensions.push_back( xrRequestedExtension->GetExtensionName() );
-					m_vXRAppEnabledExtensions.push_back( m_vAppRequestedExtensions[ j ] );
-					m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
-					bEnable = true;
-					break;
-				}
-				else if ( strcmp( s_GraphicsExtensionName, &vExtensions[ i ].extensionName[ 0 ] ) == 0 )
-				{
-					// Add to the list of extensions that would be enabled when we create the openxr instance
-					vXRExtensions.push_back( s_GraphicsExtensionName );
-					m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
-					bEnable = true;
-					break;
-				}
+				// Add graphics api to the list of extensions that would be enabled when we create the openxr instance
+				vXRExtensions.push_back( s_GraphicsExtensionName );
+				m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
+
+				bEnable = true;
 			}
 
+			// Check for depth extension
+			else if ( bEnableDepthTextureSupport && 
+				strcmp( XR_KHR_COMPOSITION_LAYER_DEPTH_EXTENSION_NAME, &vExtensions[ i ].extensionName[ 0 ] ) == 0 )
+			{
+				// Add depth handling to the list of extensions that would be enabled when we create the openxr instance
+				vXRExtensions.push_back( XR_KHR_COMPOSITION_LAYER_DEPTH_EXTENSION_NAME );
+				m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
+				m_bIsDepthSupported = true;
+
+				bEnable = true;
+			}
+			else
+			{
+				// Otherwise, check if this extension was requested by the app
+				for ( size_t j = 0; j < m_vAppRequestedExtensions.size(); j++ )
+				{
+					XRBaseExt *xrRequestedExtension = static_cast< XRBaseExt * >( m_vAppRequestedExtensions[ j ] );
+
+					if ( strcmp( xrRequestedExtension->GetExtensionName(), &vExtensions[ i ].extensionName[ 0 ] ) == 0 )
+					{
+						// Add to the list of extensions that would be enabled when we create the openxr instance
+						vXRExtensions.push_back( xrRequestedExtension->GetExtensionName() );
+						m_vXRAppEnabledExtensions.push_back( m_vAppRequestedExtensions[ j ] );
+						m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
+
+						bEnable = true;
+						break;
+					}
+				}
+			}
+			
 			if ( !bEnable )
 				m_pLogger->info( "{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
 			bEnable = false;

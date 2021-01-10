@@ -23,6 +23,8 @@
 
 #pragma once
 
+#include "../../Sandbox/third_party/glad/include/glad/glad.h"
+
 #include <XRGraphicsAwareTypes.h>
 
 namespace OpenXRProvider
@@ -84,7 +86,7 @@ namespace OpenXRProvider
 		if ( xrResult != XR_SUCCESS )
 			return xrResult;
 
-			// Generate swapchain image holders based on retrieved count from the runtime
+		// Generate swapchain image holders based on retrieved count from the runtime
 #if XR_USE_GRAPHICS_API_OPENGL
 		std::vector< XrSwapchainImageOpenGLKHR > xrSwapchainImages;
 		xrSwapchainImages.resize( nNumOfSwapchainImages );
@@ -173,26 +175,53 @@ namespace OpenXRProvider
 	{
 		switch ( nTextureFormat )
 		{
-			case 32859:
+			case GL_RGBA16:
 				return "GL_RGBA16";
 
-			case 34842:
-				return "GL_RGBA16F_ARB";
+			case GL_RGBA16F:
+				return "GL_RGBA16F";
 
-			case 34843:
-				return "GL_RGB16F_ARB";
+			case GL_RGB16F:
+				return "GL_RGB16F";
 
-			case 35905:
-				return "GL_SRGB8_EXT";
+			case GL_SRGB8:
+				return "GL_SRGB8";
 
-			case 35907:
-				return "GL_SRGB8_ALPHA8_EXT";
+			case GL_SRGB8_ALPHA8:
+				return "GL_SRGB8_ALPHA8";
 
+			case GL_DEPTH_COMPONENT16:
+				return "GL_DEPTH_COMPONENT16";
+
+			case GL_DEPTH_COMPONENT24:
+				return "GL_DEPTH_COMPONENT24";
+
+			case GL_DEPTH_COMPONENT32:
+				return "GL_DEPTH_COMPONENT32";
+			
 			default:
 				return std::to_string( nTextureFormat );
 		}
 
 		return std::to_string( nTextureFormat );
+	}
+
+	bool XRGraphicsAPI::IsDepth( int64_t nDepthFormat )
+	{
+		switch ( nDepthFormat )
+		{
+		case GL_DEPTH_COMPONENT16:
+		case GL_DEPTH_COMPONENT24:
+		case GL_DEPTH_COMPONENT32:
+			return true;
+		}
+		
+		return false;
+	}
+	
+	int64_t XRGraphicsAPI::GetDefaultDepthFormat()
+	{
+		return GL_DEPTH_COMPONENT16;
 	}
 #endif
 } // namespace OpenXRProvider

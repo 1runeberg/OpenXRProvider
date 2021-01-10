@@ -125,7 +125,7 @@ namespace OpenXRProvider
 			m_pXRLogger,
 			true );
 
-		m_pXRLogger->info( "Succesfully retrieved {} configuration views from the runtime. Should be two for VR (one for each eye)", nViewCount );
+		m_pXRLogger->info( "Successfully retrieved {} configuration views from the runtime. Should be two for VR (one for each eye)", nViewCount );
 
 		// Begin XR Session
 		XrSessionBeginInfo xrSessionBeginInfo = { XR_TYPE_SESSION_BEGIN_INFO };
@@ -150,19 +150,20 @@ namespace OpenXRProvider
 		ResetHMDState();
 
 		// Set swapchain details
-		m_bDepthHandling = xrRenderInfo.AlsoGenerateDepthTextures;
+		m_bDepthHandling = m_xrProvider->GetIsDepthSupported();
 		m_nTextureArraySize = xrRenderInfo.TextureArraySize;
 		m_nTextureMipCount = xrRenderInfo.TextureMipCount;
 		m_nTextureWidth = m_vXRViewConfigs[ 0 ].recommendedImageRectWidth;
 		m_nTextureHeight = m_vXRViewConfigs[ 0 ].recommendedImageRectHeight;
-		SetSwapchainFormat( pXRProvider, xrRenderInfo.RequestTextureFormats );
-
+		SetSwapchainFormat( pXRProvider, xrRenderInfo.RequestTextureFormats, xrRenderInfo.RequestDepthFormats );
+	
 		// Generate Swapchains
 		GenerateSwapchains( false ); // Color textures
+
 		if ( m_bDepthHandling )
 			GenerateSwapchains( true ); // Depth textures
 
-		// Generate Swapchain images
+		// Generate Swapchain images (color)
 		for ( uint32_t i = 0; i < m_vXRSwapChainsColor.size(); i++ )
 		{
 			m_xrLastCallResult = pXRProvider->GetGraphicsAPI()->GenerateSwapchainImages( m_vXRSwapChainsColor[ i ], i, false );
@@ -181,22 +182,30 @@ namespace OpenXRProvider
 				"{} Swapchain color buffers generated for eye ({})", pXRProvider->GetGraphicsAPI()->GetSwapchainImageCount( i == 0 ? LEFT : RIGHT, false ), i );
 		}
 
-		for ( uint32_t i = 0; i < m_vXRSwapChainsDepth.size(); i++ )
+		// Generate Swapchain images (depth)
+		if ( m_bDepthHandling )
 		{
-			pXRProvider->GetGraphicsAPI()->GenerateSwapchainImages( m_vXRSwapChainsDepth[ i ], i, true );
-
-			if ( m_xrLastCallResult != XR_SUCCESS )
+			for ( uint32_t i = 0; i < m_vXRSwapChainsDepth.size(); i++ )
 			{
-				const char *xrEnumStr = ENUM_STR( m_xrLastCallResult );
-				std::string eMessage = "Failed to generate swapchain depth buffers with error ";
-				eMessage.append( xrEnumStr );
+				pXRProvider->GetGraphicsAPI()->GenerateSwapchainImages( m_vXRSwapChainsDepth[ i ], i, true );
 
-				m_pXRLogger->error( "{} ({})", eMessage, std::to_string( m_xrLastCallResult ) );
-				throw std::runtime_error( eMessage );
+				if ( m_xrLastCallResult != XR_SUCCESS )
+				{
+					const char *xrEnumStr = ENUM_STR( m_xrLastCallResult );
+					std::string eMessage = "Failed to generate swapchain depth buffers with error ";
+					eMessage.append( xrEnumStr );
+
+					m_pXRLogger->error( "{} ({})", eMessage, std::to_string( m_xrLastCallResult ) );
+					throw std::runtime_error( eMessage );
+				}
+
+				m_pXRLogger->info(
+					"{} Swapchain depth buffers generated for eye ({})", pXRProvider->GetGraphicsAPI()->GetSwapchainImageCount( i == 0 ? LEFT : RIGHT, true ), i );
 			}
-
-			m_pXRLogger->info(
-				"{} Swapchain depth buffers generated for eye ({})", pXRProvider->GetGraphicsAPI()->GetSwapchainImageCount( i == 0 ? LEFT : RIGHT, true ), i );
+		}
+		else
+		{
+			m_pXRLogger->info("Runtime does not support depth composition. No Swapchain depth buffers will be generated");
 		}
 
 		// Add supported extension - Visibility Mask
@@ -352,6 +361,7 @@ namespace OpenXRProvider
 					// ----------------------------------------------------------------
 					// (c) Add projection view to swapchain image
 					// ----------------------------------------------------------------
+
 					xrFrameLayerProjectionViews[ i ] = { XR_TYPE_COMPOSITION_LAYER_PROJECTION_VIEW };
 					xrFrameLayerProjectionViews[ i ].pose = m_vXRViews[ i ].pose;
 					xrFrameLayerProjectionViews[ i ].fov = m_vXRViews[ i ].fov;
@@ -359,6 +369,21 @@ namespace OpenXRProvider
 					xrFrameLayerProjectionViews[ i ].subImage.imageArrayIndex = 0;
 					xrFrameLayerProjectionViews[ i ].subImage.imageRect.offset = { 0, 0 };
 					xrFrameLayerProjectionViews[ i ].subImage.imageRect.extent = { ( int32_t )m_nTextureWidth, ( int32_t )m_nTextureHeight };
+
+					if ( m_bDepthHandling )
+					{
+						XrCompositionLayerDepthInfoKHR xrDepthInfo{ XR_TYPE_COMPOSITION_LAYER_DEPTH_INFO_KHR };
+						xrDepthInfo.subImage.swapchain = m_vXRSwapChainsDepth[ i ];
+						xrDepthInfo.subImage.imageArrayIndex = 0;
+						xrDepthInfo.subImage.imageRect.offset = { 0, 0 };
+						xrDepthInfo.subImage.imageRect.extent = { ( int32_t )m_nTextureWidth, ( int32_t )m_nTextureHeight };
+						xrDepthInfo.minDepth = 0.0f;
+						xrDepthInfo.maxDepth = 1.0f;
+						xrDepthInfo.nearZ = 0.1f;
+						xrDepthInfo.farZ = FLT_MAX;
+
+						xrFrameLayerProjectionViews[i].next = &xrDepthInfo;
+					}
 
 					// ----------------------------------------------------------------
 					// (d) Release swapchain image
@@ -458,14 +483,14 @@ namespace OpenXRProvider
 		return XRPose { midEyePosition, m_pXRHMDState->LeftEye.Pose.Orientation };
 	}
 
-	void XRRenderManager::SetSwapchainFormat( XRProvider *pXRProvider, std::vector< int64_t > vAppTextureFormats )
+	void XRRenderManager::SetSwapchainFormat( XRProvider *pXRProvider, std::vector< int64_t > vAppTextureFormats, std::vector< int64_t > vAppDepthFormats )
 	{
 		assert( pXRProvider );
 		assert( pXRProvider->GetXRSession() != XR_NULL_HANDLE );
 
 		// Check number of swapchain formats supported by the runtime
 		uint32_t nNumOfSupportedFormats = 0;
-		m_xrLastCallResult = XR_CALL( xrEnumerateSwapchainFormats( pXRProvider->GetXRSession(), 0, &nNumOfSupportedFormats, nullptr ), m_pXRLogger, true );
+		m_xrLastCallResult = XR_CALL( xrEnumerateSwapchainFormats( pXRProvider->GetXRSession(), 0, &nNumOfSupportedFormats, nullptr ), m_pXRLogger, true )
 
 		// Get swapchain formats supported by the runtime
 		std::vector< int64_t > vRuntimeSwapChainFormats;
@@ -474,32 +499,61 @@ namespace OpenXRProvider
 		m_xrLastCallResult = XR_CALL(
 			xrEnumerateSwapchainFormats( pXRProvider->GetXRSession(), nNumOfSupportedFormats, &nNumOfSupportedFormats, vRuntimeSwapChainFormats.data() ),
 			m_pXRLogger,
-			true );
+			true )
 
 		// Look for a matching texture format that the app requested vs what's supported by the runtime
 		m_pXRLogger->info( "Runtime supports the following texture formats in order of preference:" );
 		uint32_t nNum = 0;
-		int64_t nMatch = 0;
+		int64_t nMatchColor = 0;
+		int64_t nMatchDepth = 0;
 
 		for ( int64_t SwapChainFormat : vRuntimeSwapChainFormats )
 		{
 			m_pXRLogger->info( "{}. {} ({})", ++nNum, pXRProvider->GetGraphicsAPI()->GetTextureFormatName( SwapChainFormat ), SwapChainFormat );
 
+			// Look for matching color texture format
 			for ( size_t i = 0; i < vAppTextureFormats.size(); i++ )
 			{
-				if ( nMatch == 0 )
+				if ( nMatchColor == 0 )
+					nMatchColor = SwapChainFormat == vAppTextureFormats[ i ] ? SwapChainFormat : 0;
+			}
+
+			// Look for matching depth texture format
+			if ( m_bDepthHandling )
+			{
+				for ( size_t i = 0; i < vAppDepthFormats.size(); i++ )
 				{
-					nMatch = SwapChainFormat == vAppTextureFormats[ i ] ? SwapChainFormat : 0;
+					// Check if the this texture format is a depth format
+					if ( nMatchDepth == 0 && m_xrProvider->GetGraphicsAPI()->IsDepth( SwapChainFormat ) )
+					{
+						nMatchDepth = SwapChainFormat == vAppDepthFormats[i] ? SwapChainFormat : 0;
+					}
 				}
 			}
 		}
 
 		// Choose the strongest runtime preference if app texture request can't be found
-		if ( nMatch == 0 )
-			nMatch = vRuntimeSwapChainFormats[ 0 ];
+		if ( nMatchColor == 0 )
+			nMatchColor = vRuntimeSwapChainFormats[ 0 ];
+	
+		m_nTextureFormat = nMatchColor;
+		m_pXRLogger->info( "XR Texture color format will be {} ({})", pXRProvider->GetGraphicsAPI()->GetTextureFormatName( nMatchColor ), nMatchColor );
 
-		m_nTextureFormat = nMatch;
-		m_pXRLogger->info( "XR Texture format will be {} ({})", pXRProvider->GetGraphicsAPI()->GetTextureFormatName( nMatch ), nMatch );
+		// Process depth textures if available
+		if ( m_bDepthHandling && vAppDepthFormats.size() > 0 )
+		{
+			// Choose a known depth format if app texture request can't be found or the app requested an invalid depth format
+			if (nMatchDepth == 0 || !m_xrProvider->GetGraphicsAPI()->IsDepth(nMatchDepth))
+				nMatchDepth = m_xrProvider->GetGraphicsAPI()->GetDefaultDepthFormat();
+
+			m_nDepthFormat = nMatchDepth;
+			m_pXRLogger->info( "XR Texture depth format will be {} ({})", pXRProvider->GetGraphicsAPI()->GetTextureFormatName( nMatchDepth ), nMatchDepth );
+		}
+		else
+		{
+			m_pXRLogger->info( "Session will not support depth textures" );
+			m_bDepthHandling = false;
+		}	
 	}
 
 	void XRRenderManager::GenerateSwapchains( bool bIsDepth )
@@ -509,7 +563,7 @@ namespace OpenXRProvider
 			XrSwapchain xrSwapChain;
 			XrSwapchainCreateInfo xrSwapChainCreateInfo { XR_TYPE_SWAPCHAIN_CREATE_INFO };
 			xrSwapChainCreateInfo.arraySize = m_nTextureArraySize;
-			xrSwapChainCreateInfo.format = m_nTextureFormat;
+			xrSwapChainCreateInfo.format = bIsDepth ? m_nDepthFormat : m_nTextureFormat;
 			xrSwapChainCreateInfo.width = m_vXRViewConfigs[ i ].recommendedImageRectWidth;
 			xrSwapChainCreateInfo.height = m_vXRViewConfigs[ i ].recommendedImageRectHeight;
 			xrSwapChainCreateInfo.mipCount = m_nTextureMipCount;

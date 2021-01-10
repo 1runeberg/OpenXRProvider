@@ -70,10 +70,11 @@ int main()
 		APP_ENGINE_NAME,
 		APP_ENGINE_VER,
 		OpenXRProvider::ROOMSCALE,
-		RequestExtensions				// See optional step (1), otherwise an empty vector
+		RequestExtensions,			 	// optional: see step (1), otherwise an empty vector
+		true,							// optional: depth texture support if the active runtime supports it
+		pAppLogFile					    // optional: log file logging for the library
 	);
-
-	xrAppInfo.LogFile = pAppLogFile;	// optional log file logging for the library
+	
 
 	// App graphics info is a struct that holds graphics-api dependent values that'll be used
 	// to access the user's hardware and app context
@@ -91,19 +92,22 @@ int main()
 		return -1;
 	}
 		
+
 	// (3) Create OpenXR Render manager - this handles all the OpenXR rendering calls.
 	//	   The OpenXR session created by the XRProvider class will be started and
 	//     textures to render to will be created in an accessible image swapchain
 	//     using the render information provided here
 
 	OpenXRProvider::XRRenderInfo xrRenderInfo(
-		{ GL_SRGB8_ALPHA8 }, // Request texture formats here in order of preference.
+		{ 0 }, 				 // Request texture formats here in order of preference.
 							 // These are uint64_t nums that's defined by the graphics API
 							 // (e.g. GL_RGBA16, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, etc)
 							 // Otherwise, put 0 in the array to let the runtime decide the format
 
-		false, // Set to true if you want/need depth textures generated as well
-			   // along with the color textures that we will render to
+		{ 0 },				 // Request depth texture formats here in order of preference.
+							 // These are uint64_t nums that's defined by the graphics API
+							 // (e.g. GL_DEPTH_COMPONENT, DXGI_FORMAT_D16_UNORM, etc)
+							 // Otherwise, put 0 in the array to get a default depth format
 
 		1,	  // Texture array size. 1 if not an array.
 		1	  // Mip count
