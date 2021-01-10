@@ -6,13 +6,16 @@ A general overview and introduction to this library can be found here:
 https://runeberg.medium.com/the-dawn-of-openxr-6824989613b9
 
 OpenXR Provider Library developer documentation (generated via Doxygen) can be found in:
+
 `OpenXRProvider\docs`
 
 Sandbox developer documentation (generated via Doxygen) that can be used to quickly test the library and underlying api calls can be found here:
+
 `Sandbox\docs`
 
 
 **I. Pre-built binaries**
+
 You can find pre-built library files (.lib, .dll) as well as a Sandbox application (.exe) file for quick testing in the `bin` directory
 
 As a quick OpenXR lifecycle demo, the Sandbox app renders a skyblue clear color to the swapchain images which then gets rendered to the hmd by the active OpenXR runtime. Sandbox also blits (copies) this texture to the desktop window (XR Mirror). 
@@ -21,11 +24,13 @@ Detailed logs in the console and `bin/logs` directory could be of particular int
 
 
 **II. Building Pre-requisites**
+
 Visual Studio 2019 with C++ modules
 CMake 3.14.4 and above
 
 
 **III. Building**
+
  1. Clone or copy the repository from GitHub
  2. From the root directory of the repository, create a build directory (`mkdir build`)
  3. Go to the build directory (`cd build`)

@@ -1,0 +1,267 @@
+\hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i}{}\section{Open\+X\+R\+Provider\+::X\+R\+Graphics\+A\+PI Class Reference}
+\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i}\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+
+
+Class that handles graphics api dependent state and transactions. This class is meant to be handled completely internally by the Open\+XR Provider.  
+
+
+
+
+{\ttfamily \#include \char`\"{}X\+R\+Graphics\+Aware\+Types.\+h\char`\"{}}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a7e10c7996b39f1f5740a2a0145e25a9c}{X\+R\+Graphics\+A\+PI}} (Xr\+Instance $\ast$xr\+Instance, Xr\+System\+Id $\ast$xr\+System\+Id, \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_graphics_info}{X\+R\+App\+Graphics\+Info}} $\ast$xr\+App\+Graphics\+Info, Xr\+Session $\ast$xr\+Session, Xr\+Result $\ast$xr\+Result)
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_af28c914f792ab81e991644d517ce054c}{$\sim$\+X\+R\+Graphics\+A\+PI}} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \end{DoxyCompactList}\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a093e5898b7868dad3beebc3d3ed63054}{Generate\+Swapchain\+Images}} (const Xr\+Swapchain \&xr\+Swap\+Chain, const uint32\+\_\+t n\+Eye, const bool b\+Is\+Depth=false)
+\item 
+void $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a2c474282e17bf45b87bae7e0c95efa57}{Get\+Graphics\+Binding}} ()
+\item 
+uint32\+\_\+t \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a41503928a4dfb8832ee9485228fe8372}{Get\+Swapchain\+Image\+Count}} (const \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}} e\+Eye, const bool b\+Is\+Depth=false)
+\item 
+std\+::string \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a6ff0969adb40b16428d5489d07c1d4f5}{Get\+Texture\+Format\+Name}} (int64\+\_\+t n\+Texture\+Format)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_abb6b87fd88ffb9df871405acefc90011}{Get\+Texture2D}} (const \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}} e\+Eye, uint32\+\_\+t n\+Swapchain\+Index, const bool b\+Get\+Depth=false)
+\item 
+std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_ae3cfae0f48a2095420b3f0e3319ab2a1}{Get\+Textures2D}} (const \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}} e\+Eye, const bool b\+Get\+Depth=false)
+\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_aaf7cedacd99180d7ef1c3d4da85aba3b}{Is\+Depth}} (int64\+\_\+t n\+Depth\+Format)
+\item 
+int64\+\_\+t \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a40a8a4e304fb260d46a9f4f9fa7b0e1b}{Get\+Default\+Depth\+Format}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_ad535f6ce61cdf73d056a90bca80f26bf}{m\+\_\+xr\+Graphics\+Binding}} = nullptr
+\begin{DoxyCompactList}\small\item\em The active Open\+XR Graphics binding. \end{DoxyCompactList}\item 
+Xr\+Session $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a65e23dceb82b75b9cf0b9e8a4c5f90a5}{m\+\_\+xr\+Session}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\begin{DoxyCompactList}\small\item\em The Open\+XR Session that was created by this class. \end{DoxyCompactList}\item 
+std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a19858e17f839f6742b35e6fb7c44506b}{m\+\_\+xr\+Swapchain\+Images\+\_\+\+Color\+\_\+L}}
+\begin{DoxyCompactList}\small\item\em O\+P\+E\+N\+GL\+: Swapchain color images for the left eye that the app should render to. \end{DoxyCompactList}\item 
+std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a34305192c60366d37790cca77d1dbcc9}{m\+\_\+xr\+Swapchain\+Images\+\_\+\+Color\+\_\+R}}
+\begin{DoxyCompactList}\small\item\em O\+P\+E\+N\+GL\+: Swapchain color images for the right eye that the app should render to. \end{DoxyCompactList}\item 
+std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a9a05367721766121eec6e528cb325e7a}{m\+\_\+xr\+Swapchain\+Images\+\_\+\+Depth\+\_\+L}}
+\begin{DoxyCompactList}\small\item\em O\+P\+E\+N\+GL\+: Swapchain depth images for the left eye that the app should render to. \end{DoxyCompactList}\item 
+std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_aa13dbac8a084165d6340f47693e12128}{m\+\_\+xr\+Swapchain\+Images\+\_\+\+Depth\+\_\+R}}
+\begin{DoxyCompactList}\small\item\em O\+P\+E\+N\+GL\+: Swapchain depth images for the right eye that the app should render to. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class that handles graphics api dependent state and transactions. This class is meant to be handled completely internally by the Open\+XR Provider. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a7e10c7996b39f1f5740a2a0145e25a9c}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a7e10c7996b39f1f5740a2a0145e25a9c}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!XRGraphicsAPI@{XRGraphicsAPI}}
+\index{XRGraphicsAPI@{XRGraphicsAPI}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{XRGraphicsAPI()}{XRGraphicsAPI()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::\+X\+R\+Graphics\+A\+PI (\begin{DoxyParamCaption}\item[{Xr\+Instance $\ast$}]{xr\+Instance,  }\item[{Xr\+System\+Id $\ast$}]{xr\+System\+Id,  }\item[{\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_graphics_info}{X\+R\+App\+Graphics\+Info}} $\ast$}]{xr\+App\+Graphics\+Info,  }\item[{Xr\+Session $\ast$}]{xr\+Session,  }\item[{Xr\+Result $\ast$}]{xr\+Result }\end{DoxyParamCaption})}
+
+Class constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em xr\+Instance} & The active Open\+XR instance \\
+\hline
+\mbox{\texttt{ in}}  & {\em xr\+System\+Id} & The id of the active Open\+XR system \\
+\hline
+\mbox{\texttt{ in}}  & {\em xr\+App\+Graphics\+Info} & Information payload to create graphics api dependent variables and transactions \\
+\hline
+\mbox{\texttt{ out}}  & {\em xr\+Session} & The created Open\+XR session \\
+\hline
+\mbox{\texttt{ out}}  & {\em xr\+Result} & Result of negotiation of the graphics api with the current Open\+XR runtime \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_af28c914f792ab81e991644d517ce054c}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_af28c914f792ab81e991644d517ce054c}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!````~XRGraphicsAPI@{$\sim$XRGraphicsAPI}}
+\index{````~XRGraphicsAPI@{$\sim$XRGraphicsAPI}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{$\sim$XRGraphicsAPI()}{~XRGraphicsAPI()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::$\sim$\+X\+R\+Graphics\+A\+PI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Class Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a093e5898b7868dad3beebc3d3ed63054}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a093e5898b7868dad3beebc3d3ed63054}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!GenerateSwapchainImages@{GenerateSwapchainImages}}
+\index{GenerateSwapchainImages@{GenerateSwapchainImages}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{GenerateSwapchainImages()}{GenerateSwapchainImages()}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::\+Generate\+Swapchain\+Images (\begin{DoxyParamCaption}\item[{const Xr\+Swapchain \&}]{xr\+Swap\+Chain,  }\item[{const uint32\+\_\+t}]{n\+Eye,  }\item[{const bool}]{b\+Is\+Depth = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Create swapchain images in the correct active graphics api format (e.\+g. G\+L\+\_\+\+R\+G\+B\+A16, D\+X\+G\+I\+\_\+\+F\+O\+R\+M\+A\+T\+\_\+\+R8\+G8\+B8\+A8\+\_\+\+U\+N\+O\+R\+M\+\_\+\+S\+R\+GB, etc) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em xr\+Swap\+Chain} & The Open\+XR swapchain generated by the XR Render Manager \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Eye} & Eye to generate the texture for \\
+\hline
+\mbox{\texttt{ in}}  & {\em b\+Is\+Depth} & (optional\+: false) If a depth texture should be generated as well \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a40a8a4e304fb260d46a9f4f9fa7b0e1b}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a40a8a4e304fb260d46a9f4f9fa7b0e1b}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!GetDefaultDepthFormat@{GetDefaultDepthFormat}}
+\index{GetDefaultDepthFormat@{GetDefaultDepthFormat}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{GetDefaultDepthFormat()}{GetDefaultDepthFormat()}}
+{\footnotesize\ttfamily int64\+\_\+t Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::\+Get\+Default\+Depth\+Format (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get a default depth texture format \begin{DoxyReturn}{Returns}
+n\+Depth\+Format The depth format to check 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a2c474282e17bf45b87bae7e0c95efa57}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a2c474282e17bf45b87bae7e0c95efa57}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!GetGraphicsBinding@{GetGraphicsBinding}}
+\index{GetGraphicsBinding@{GetGraphicsBinding}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{GetGraphicsBinding()}{GetGraphicsBinding()}}
+{\footnotesize\ttfamily void$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::\+Get\+Graphics\+Binding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the Open\+XR Graphics Binding (graphics api dependent) \begin{DoxyReturn}{Returns}
+Open\+XR Graphics Binding 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a41503928a4dfb8832ee9485228fe8372}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a41503928a4dfb8832ee9485228fe8372}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!GetSwapchainImageCount@{GetSwapchainImageCount}}
+\index{GetSwapchainImageCount@{GetSwapchainImageCount}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{GetSwapchainImageCount()}{GetSwapchainImageCount()}}
+{\footnotesize\ttfamily uint32\+\_\+t Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::\+Get\+Swapchain\+Image\+Count (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}}}]{e\+Eye,  }\item[{const bool}]{b\+Is\+Depth = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Retrieve the number of swapchain images 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Which eye texture \\
+\hline
+\mbox{\texttt{ in}}  & {\em b\+Is\+Depth} & (optional\+: false) Get the depth texture \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of images (depth/color) in the swapchain for the requested eye 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_abb6b87fd88ffb9df871405acefc90011}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_abb6b87fd88ffb9df871405acefc90011}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!GetTexture2D@{GetTexture2D}}
+\index{GetTexture2D@{GetTexture2D}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{GetTexture2D()}{GetTexture2D()}}
+{\footnotesize\ttfamily uint32\+\_\+t Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::\+Get\+Texture2D (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}}}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{const bool}]{b\+Get\+Depth = {\ttfamily false} }\end{DoxyParamCaption})}
+
+O\+P\+E\+N\+GL\+: Retrieve the graphics api dependent texture2d that the app should render to 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Which eye texture \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & The index of the image in the swapchain to retrieve \\
+\hline
+\mbox{\texttt{ in}}  & {\em b\+Is\+Depth} & (optional\+: false) If this is a depth texture \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The graphics api dependent texture (a uint32\+\_\+t id in Open\+GL) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a6ff0969adb40b16428d5489d07c1d4f5}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a6ff0969adb40b16428d5489d07c1d4f5}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!GetTextureFormatName@{GetTextureFormatName}}
+\index{GetTextureFormatName@{GetTextureFormatName}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{GetTextureFormatName()}{GetTextureFormatName()}}
+{\footnotesize\ttfamily std\+::string Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::\+Get\+Texture\+Format\+Name (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{n\+Texture\+Format }\end{DoxyParamCaption})}
+
+Retrieve the name of the graphics api dependent format (e.\+g. G\+L\+\_\+\+R\+G\+B\+A16, D\+X\+G\+I\+\_\+\+F\+O\+R\+M\+A\+T\+\_\+\+R8\+G8\+B8\+A8\+\_\+\+U\+N\+O\+R\+M\+\_\+\+S\+R\+GB, etc) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em n\+Texture\+Format} & The texture format represented in int64\+\_\+t (usually macro definitions from the graphics api library) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The name of the texture format in string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_ae3cfae0f48a2095420b3f0e3319ab2a1}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_ae3cfae0f48a2095420b3f0e3319ab2a1}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!GetTextures2D@{GetTextures2D}}
+\index{GetTextures2D@{GetTextures2D}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{GetTextures2D()}{GetTextures2D()}}
+{\footnotesize\ttfamily std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::\+Get\+Textures2D (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}}}]{e\+Eye,  }\item[{const bool}]{b\+Get\+Depth = {\ttfamily false} }\end{DoxyParamCaption})}
+
+O\+P\+E\+N\+GL\+: Retrieve all the graphics api dependent texture2d that the app should render to 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Which eye texture \\
+\hline
+\mbox{\texttt{ in}}  & {\em b\+Get\+Depth} & (optional\+: false) Whether the textures to retrieve are depth textures \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array of graphics api dependent textures that the app should render to 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_aaf7cedacd99180d7ef1c3d4da85aba3b}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_aaf7cedacd99180d7ef1c3d4da85aba3b}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!IsDepth@{IsDepth}}
+\index{IsDepth@{IsDepth}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{IsDepth()}{IsDepth()}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::\+Is\+Depth (\begin{DoxyParamCaption}\item[{int64\+\_\+t}]{n\+Depth\+Format }\end{DoxyParamCaption})}
+
+Check whether the texture format supports depth 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em n\+Depth\+Format} & The depth format to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the provided texture format supports depth 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_ad535f6ce61cdf73d056a90bca80f26bf}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_ad535f6ce61cdf73d056a90bca80f26bf}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!m\_xrGraphicsBinding@{m\_xrGraphicsBinding}}
+\index{m\_xrGraphicsBinding@{m\_xrGraphicsBinding}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{m\_xrGraphicsBinding}{m\_xrGraphicsBinding}}
+{\footnotesize\ttfamily void$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::m\+\_\+xr\+Graphics\+Binding = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The active Open\+XR Graphics binding. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a65e23dceb82b75b9cf0b9e8a4c5f90a5}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a65e23dceb82b75b9cf0b9e8a4c5f90a5}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!m\_xrSession@{m\_xrSession}}
+\index{m\_xrSession@{m\_xrSession}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{m\_xrSession}{m\_xrSession}}
+{\footnotesize\ttfamily Xr\+Session$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::m\+\_\+xr\+Session = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The Open\+XR Session that was created by this class. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a19858e17f839f6742b35e6fb7c44506b}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a19858e17f839f6742b35e6fb7c44506b}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!m\_xrSwapchainImages\_Color\_L@{m\_xrSwapchainImages\_Color\_L}}
+\index{m\_xrSwapchainImages\_Color\_L@{m\_xrSwapchainImages\_Color\_L}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{m\_xrSwapchainImages\_Color\_L}{m\_xrSwapchainImages\_Color\_L}}
+{\footnotesize\ttfamily std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::m\+\_\+xr\+Swapchain\+Images\+\_\+\+Color\+\_\+L\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+O\+P\+E\+N\+GL\+: Swapchain color images for the left eye that the app should render to. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a34305192c60366d37790cca77d1dbcc9}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a34305192c60366d37790cca77d1dbcc9}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!m\_xrSwapchainImages\_Color\_R@{m\_xrSwapchainImages\_Color\_R}}
+\index{m\_xrSwapchainImages\_Color\_R@{m\_xrSwapchainImages\_Color\_R}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{m\_xrSwapchainImages\_Color\_R}{m\_xrSwapchainImages\_Color\_R}}
+{\footnotesize\ttfamily std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::m\+\_\+xr\+Swapchain\+Images\+\_\+\+Color\+\_\+R\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+O\+P\+E\+N\+GL\+: Swapchain color images for the right eye that the app should render to. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a9a05367721766121eec6e528cb325e7a}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_a9a05367721766121eec6e528cb325e7a}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!m\_xrSwapchainImages\_Depth\_L@{m\_xrSwapchainImages\_Depth\_L}}
+\index{m\_xrSwapchainImages\_Depth\_L@{m\_xrSwapchainImages\_Depth\_L}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{m\_xrSwapchainImages\_Depth\_L}{m\_xrSwapchainImages\_Depth\_L}}
+{\footnotesize\ttfamily std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::m\+\_\+xr\+Swapchain\+Images\+\_\+\+Depth\+\_\+L\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+O\+P\+E\+N\+GL\+: Swapchain depth images for the left eye that the app should render to. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_aa13dbac8a084165d6340f47693e12128}\label{class_open_x_r_provider_1_1_x_r_graphics_a_p_i_aa13dbac8a084165d6340f47693e12128}} 
+\index{OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}!m\_xrSwapchainImages\_Depth\_R@{m\_xrSwapchainImages\_Depth\_R}}
+\index{m\_xrSwapchainImages\_Depth\_R@{m\_xrSwapchainImages\_Depth\_R}!OpenXRProvider::XRGraphicsAPI@{OpenXRProvider::XRGraphicsAPI}}
+\subsubsection{\texorpdfstring{m\_xrSwapchainImages\_Depth\_R}{m\_xrSwapchainImages\_Depth\_R}}
+{\footnotesize\ttfamily std\+::vector$<$ Xr\+Swapchain\+Image\+Open\+G\+L\+K\+HR $>$ Open\+X\+R\+Provider\+::\+X\+R\+Graphics\+A\+P\+I\+::m\+\_\+xr\+Swapchain\+Images\+\_\+\+Depth\+\_\+R\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+O\+P\+E\+N\+GL\+: Swapchain depth images for the right eye that the app should render to. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_x_r_graphics_aware_types_8h}{X\+R\+Graphics\+Aware\+Types.\+h}}\item 
+src/\mbox{\hyperlink{_x_r_graphics_aware_types_8cpp}{X\+R\+Graphics\+Aware\+Types.\+cpp}}\end{DoxyCompactItemize}
