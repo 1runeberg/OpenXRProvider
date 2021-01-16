@@ -2,6 +2,10 @@
 
 Provides application and engine developers a simpler method to access OpenXR runtimes (e.g. SteamVR, Oculus, WMR, Monado, etc) without having to wade through the intricacies of directly using the raw OpenXR Loader library. 
 
+
+NOTE: Sandbox test app requires SteamVR Beta 1.16
+
+
 A general overview and introduction to this library can be found here: 
 
 
@@ -21,7 +25,7 @@ Sandbox developer documentation (generated via Doxygen) that can be used to quic
 
 **I. Pre-built binaries**
 
-You can find pre-built library files (.lib, .dll) as well as a Sandbox application (.exe) file for quick testing in the `bin` directory
+You can find pre-built library files (.lib, .dll) as well as a OpenGL Sandbox application (.exe)  for quick testing in the `bin` directory. This requires SteamVR Beta 1.16
 
 As a quick OpenXR lifecycle demo, the Sandbox app renders a skyblue clear color to the swapchain images which then gets rendered to the hmd by the active OpenXR runtime. Sandbox also blits (copies) this texture to the desktop window (XR Mirror). 
 

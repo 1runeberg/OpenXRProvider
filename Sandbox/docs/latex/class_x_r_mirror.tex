@@ -21,6 +21,8 @@ Collaboration diagram for X\+R\+Mirror\+:\nopagebreak
 \mbox{\hyperlink{class_x_r_mirror_a2406d486889b31a1854d7d276a9e71f2}{$\sim$\+X\+R\+Mirror}} ()
 \begin{DoxyCompactList}\small\item\em Class Destructor. \end{DoxyCompactList}\item 
 G\+L\+F\+Wwindow $\ast$ \mbox{\hyperlink{class_x_r_mirror_a966faccfee88f1f4ca2b8cfc881658c0}{Get\+Window}} ()
+\item 
+unsigned int \mbox{\hyperlink{class_x_r_mirror_aee8cb008c3732293fb45ef056a4f1fc6}{Load\+Texture}} (const wchar\+\_\+t $\ast$p\+Texture\+File, G\+Luint n\+Shader, const char $\ast$p\+Sampler\+Param, G\+Lint n\+Min\+Filter=G\+L\+\_\+\+L\+I\+N\+E\+AR, G\+Lint n\+Magnitude\+Filter=G\+L\+\_\+\+N\+E\+A\+R\+E\+ST, G\+Lint n\+WrapS=G\+L\+\_\+\+R\+E\+P\+E\+AT, G\+Lint n\+WrapT=G\+L\+\_\+\+R\+E\+P\+E\+AT)
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -68,8 +70,34 @@ Class Destructor.
 \subsubsection{\texorpdfstring{GetWindow()}{GetWindow()}}
 {\footnotesize\ttfamily G\+L\+F\+Wwindow$\ast$ X\+R\+Mirror\+::\+Get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\begin{DoxyReturn}{Returns}
+Getter for the G\+L\+FW window \begin{DoxyReturn}{Returns}
 The current G\+L\+FW desktop window (XR Mirror) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_x_r_mirror_aee8cb008c3732293fb45ef056a4f1fc6}\label{class_x_r_mirror_aee8cb008c3732293fb45ef056a4f1fc6}} 
+\index{XRMirror@{XRMirror}!LoadTexture@{LoadTexture}}
+\index{LoadTexture@{LoadTexture}!XRMirror@{XRMirror}}
+\subsubsection{\texorpdfstring{LoadTexture()}{LoadTexture()}}
+{\footnotesize\ttfamily unsigned int X\+R\+Mirror\+::\+Load\+Texture (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{p\+Texture\+File,  }\item[{G\+Luint}]{n\+Shader,  }\item[{const char $\ast$}]{p\+Sampler\+Param,  }\item[{G\+Lint}]{n\+Min\+Filter = {\ttfamily GL\+\_\+LINEAR},  }\item[{G\+Lint}]{n\+Magnitude\+Filter = {\ttfamily GL\+\_\+NEAREST},  }\item[{G\+Lint}]{n\+WrapS = {\ttfamily GL\+\_\+REPEAT},  }\item[{G\+Lint}]{n\+WrapT = {\ttfamily GL\+\_\+REPEAT} }\end{DoxyParamCaption})}
+
+Load a texture file from disk 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Texture\+File} & The absolute file to the texture on disk \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Shader} & The program id for the shader \\
+\hline
+\mbox{\texttt{ in}}  & {\em p\+Sampler\+Param} & The texture sampler2d parameter name \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Min\+Filter} & (optional\+: G\+L\+\_\+\+L\+I\+N\+E\+AR) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Magnitude\+Filter} & (optional\+: G\+L\+\_\+\+N\+E\+A\+R\+E\+ST) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+WrapS} & (optional\+: G\+L\+\_\+\+R\+E\+P\+E\+AT) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+WrapT} & (optional\+: G\+L\+\_\+\+R\+E\+P\+E\+AT) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int The texture id of the loaded texture 
 \end{DoxyReturn}
 
 

@@ -1,7 +1,8 @@
 \hypertarget{main_8cpp}{}\section{src/main.cpp File Reference}
 \label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
 {\ttfamily \#include $<$main.\+h$>$}\newline
-Include dependency graph for main.\+cpp\+:\nopagebreak
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -30,6 +31,18 @@ Include dependency graph for main.\+cpp\+:\nopagebreak
 \#define \mbox{\hyperlink{main_8cpp_ac983703c46aee0ff3bde2564bf0c0f1c}{V\+I\+S\+\_\+\+M\+A\+S\+K\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}vert-\/vismask.\+glsl\char`\"{}
 \item 
 \#define \mbox{\hyperlink{main_8cpp_a3f62286ab97f2f43fd624aae1723f3bb}{V\+I\+S\+\_\+\+M\+A\+S\+K\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}frag-\/vismask.\+glsl\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a0036fe3d2ef31361f3ed2f54b862874d}{L\+I\+T\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}vert-\/lit.\+glsl\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_ac55f0adec52d6796486a317b8ee235ac}{L\+I\+T\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}frag-\/lit.\+glsl\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a7dc30ea38a133e29fddb046aa884073a}{U\+N\+L\+I\+T\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}vert-\/unlit.\+glsl\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a217064f8511ccf51de6eacc10db9de9f}{U\+N\+L\+I\+T\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}frag-\/unlit.\+glsl\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a7d85845126f7ef795ffabd876ab8fdb5}{T\+E\+X\+T\+U\+R\+E\+D\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}vert-\/textured.\+glsl\char`\"{}
+\item 
+\#define \mbox{\hyperlink{main_8cpp_a9ae162bc100d1efc67f288997ea7e314}{T\+E\+X\+T\+U\+R\+E\+D\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+ER}}~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}frag-\/textured.\+glsl\char`\"{}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -43,7 +56,19 @@ int \mbox{\hyperlink{main_8cpp_ab5a763045c08ee555125d07e990fbc60}{Graphics\+A\+P
 void \mbox{\hyperlink{main_8cpp_adb87c742093b790e17359ec17647b0f5}{Draw\+Frame}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$\mbox{\hyperlink{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}{p\+X\+R\+Render\+Manager}}, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, unsigned int \mbox{\hyperlink{main_8h_a3891930b135f1ac6e2f307639219024e}{F\+BO}}, G\+Luint \mbox{\hyperlink{main_8h_a8f6bf5aa2103d3f51c013733389dd4bd}{n\+Shader\+Vis\+Mask}})
 \item 
 void \mbox{\hyperlink{main_8cpp_a92218fb47e6a8d9497a22b2d2f826d44}{Blit\+To\+Window}} ()
-\begin{DoxyCompactList}\small\item\em Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a577f462ef25b1ec015549427c81f4715}{Draw\+Cube}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$p\+Render\+Manager, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, G\+Luint n\+Shader, unsigned int n\+Texture, unsigned int V\+AO, glm\+::vec3 cube\+Position)
+\item 
+void \mbox{\hyperlink{main_8cpp_ab0d92156fea00ea02d3f12b43eb6f509}{Draw\+Sea\+Of\+Cubes}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$p\+Render\+Manager, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, G\+Luint n\+Shader, unsigned int V\+BO, unsigned V\+AO, glm\+::vec3 cube\+Scale, std\+::vector$<$ unsigned $>$ v\+Textures, float f\+Spacing\+Plane, float f\+Spacing\+Height)
+\item 
+void \mbox{\hyperlink{main_8cpp_a6d76cd1a3bb155b629c7ff2ed98adc16}{Fill\+Eye\+M\+VP}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$p\+Render\+Manager, glm\+::mat4 $\ast$v\+Eye\+Projections, glm\+::mat4 eye\+View, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t n\+Cube\+Index, G\+Luint n\+Shader, unsigned n\+Texture, glm\+::vec3 cube\+Position, glm\+::vec3 cube\+Scale)
+\item 
+glm\+::mat4 \mbox{\hyperlink{main_8cpp_a81e9dc653f8019bdd50b23bf3cc9ef3f}{Get\+Eye\+Projection}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$p\+Render\+Manager, Open\+X\+R\+Provider\+::\+X\+R\+FoV eye\+FoV, float f\+Near, float f\+Far)
+\item 
+glm\+::mat4 \mbox{\hyperlink{main_8cpp_a9e4a2accecb47c58ed592c9a2010ab15}{Invert\+Matrix}} (const glm\+::mat4 m\+Matrix)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{main_8cpp_aafdebc28cb0db5e42ec24a88bcfa566f}{Get\+Depth}} (uint32\+\_\+t n\+Texture, G\+Lint n\+Min\+Filter, G\+Lint n\+Magnitude\+Filter, G\+Lint n\+WrapS, G\+Lint n\+WrapT, G\+Lint n\+Depth\+Format)
+\end{DoxyCompactItemize}
 
 
 \subsection{Macro Definition Documentation}
@@ -95,6 +120,42 @@ void \mbox{\hyperlink{main_8cpp_a92218fb47e6a8d9497a22b2d2f826d44}{Blit\+To\+Win
 \subsubsection{\texorpdfstring{APP\_PROJECT\_VER}{APP\_PROJECT\_VER}}
 {\footnotesize\ttfamily \#define A\+P\+P\+\_\+\+P\+R\+O\+J\+E\+C\+T\+\_\+\+V\+ER~1}
 
+\mbox{\Hypertarget{main_8cpp_ac55f0adec52d6796486a317b8ee235ac}\label{main_8cpp_ac55f0adec52d6796486a317b8ee235ac}} 
+\index{main.cpp@{main.cpp}!LIT\_FRAGMENT\_SHADER@{LIT\_FRAGMENT\_SHADER}}
+\index{LIT\_FRAGMENT\_SHADER@{LIT\_FRAGMENT\_SHADER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{LIT\_FRAGMENT\_SHADER}{LIT\_FRAGMENT\_SHADER}}
+{\footnotesize\ttfamily \#define L\+I\+T\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+ER~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}frag-\/lit.\+glsl\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_a0036fe3d2ef31361f3ed2f54b862874d}\label{main_8cpp_a0036fe3d2ef31361f3ed2f54b862874d}} 
+\index{main.cpp@{main.cpp}!LIT\_VERTEX\_SHADER@{LIT\_VERTEX\_SHADER}}
+\index{LIT\_VERTEX\_SHADER@{LIT\_VERTEX\_SHADER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{LIT\_VERTEX\_SHADER}{LIT\_VERTEX\_SHADER}}
+{\footnotesize\ttfamily \#define L\+I\+T\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+ER~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}vert-\/lit.\+glsl\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_a9ae162bc100d1efc67f288997ea7e314}\label{main_8cpp_a9ae162bc100d1efc67f288997ea7e314}} 
+\index{main.cpp@{main.cpp}!TEXTURED\_FRAGMENT\_SHADER@{TEXTURED\_FRAGMENT\_SHADER}}
+\index{TEXTURED\_FRAGMENT\_SHADER@{TEXTURED\_FRAGMENT\_SHADER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{TEXTURED\_FRAGMENT\_SHADER}{TEXTURED\_FRAGMENT\_SHADER}}
+{\footnotesize\ttfamily \#define T\+E\+X\+T\+U\+R\+E\+D\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+ER~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}frag-\/textured.\+glsl\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_a7d85845126f7ef795ffabd876ab8fdb5}\label{main_8cpp_a7d85845126f7ef795ffabd876ab8fdb5}} 
+\index{main.cpp@{main.cpp}!TEXTURED\_VERTEX\_SHADER@{TEXTURED\_VERTEX\_SHADER}}
+\index{TEXTURED\_VERTEX\_SHADER@{TEXTURED\_VERTEX\_SHADER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{TEXTURED\_VERTEX\_SHADER}{TEXTURED\_VERTEX\_SHADER}}
+{\footnotesize\ttfamily \#define T\+E\+X\+T\+U\+R\+E\+D\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+ER~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}vert-\/textured.\+glsl\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_a217064f8511ccf51de6eacc10db9de9f}\label{main_8cpp_a217064f8511ccf51de6eacc10db9de9f}} 
+\index{main.cpp@{main.cpp}!UNLIT\_FRAGMENT\_SHADER@{UNLIT\_FRAGMENT\_SHADER}}
+\index{UNLIT\_FRAGMENT\_SHADER@{UNLIT\_FRAGMENT\_SHADER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{UNLIT\_FRAGMENT\_SHADER}{UNLIT\_FRAGMENT\_SHADER}}
+{\footnotesize\ttfamily \#define U\+N\+L\+I\+T\+\_\+\+F\+R\+A\+G\+M\+E\+N\+T\+\_\+\+S\+H\+A\+D\+ER~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}frag-\/unlit.\+glsl\char`\"{}}
+
+\mbox{\Hypertarget{main_8cpp_a7dc30ea38a133e29fddb046aa884073a}\label{main_8cpp_a7dc30ea38a133e29fddb046aa884073a}} 
+\index{main.cpp@{main.cpp}!UNLIT\_VERTEX\_SHADER@{UNLIT\_VERTEX\_SHADER}}
+\index{UNLIT\_VERTEX\_SHADER@{UNLIT\_VERTEX\_SHADER}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{UNLIT\_VERTEX\_SHADER}{UNLIT\_VERTEX\_SHADER}}
+{\footnotesize\ttfamily \#define U\+N\+L\+I\+T\+\_\+\+V\+E\+R\+T\+E\+X\+\_\+\+S\+H\+A\+D\+ER~L\char`\"{}\textbackslash{}\textbackslash{}shaders\textbackslash{}\textbackslash{}vert-\/unlit.\+glsl\char`\"{}}
+
 \mbox{\Hypertarget{main_8cpp_a3f62286ab97f2f43fd624aae1723f3bb}\label{main_8cpp_a3f62286ab97f2f43fd624aae1723f3bb}} 
 \index{main.cpp@{main.cpp}!VIS\_MASK\_FRAGMENT\_SHADER@{VIS\_MASK\_FRAGMENT\_SHADER}}
 \index{VIS\_MASK\_FRAGMENT\_SHADER@{VIS\_MASK\_FRAGMENT\_SHADER}!main.cpp@{main.cpp}}
@@ -130,6 +191,27 @@ Setup the sandbox application -\/ windowing and opengl support.
 
 Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) 
 
+\mbox{\Hypertarget{main_8cpp_a577f462ef25b1ec015549427c81f4715}\label{main_8cpp_a577f462ef25b1ec015549427c81f4715}} 
+\index{main.cpp@{main.cpp}!DrawCube@{DrawCube}}
+\index{DrawCube@{DrawCube}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{DrawCube()}{DrawCube()}}
+{\footnotesize\ttfamily void Draw\+Cube (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+Render\+Manager,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{G\+Luint}]{n\+Shader,  }\item[{unsigned int}]{n\+Texture,  }\item[{unsigned int}]{V\+AO,  }\item[{glm\+::vec3}]{cube\+Position }\end{DoxyParamCaption})}
+
+Draw a single cube (when not using instancing, will require a different shader) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Render\+Manager} & Pointer to Open\+XR Provider library\textquotesingle{}s Render manager \\
+\hline
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Current eye to render to \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & Texture in the swapchain to render to \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Shader} & Shader program id to use for the cube \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Texture} & The texture id to use for the cube \\
+\hline
+\mbox{\texttt{ in}}  & {\em V\+AO} & Vertex Array Object containing the cube vertices \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{main_8cpp_adb87c742093b790e17359ec17647b0f5}\label{main_8cpp_adb87c742093b790e17359ec17647b0f5}} 
 \index{main.cpp@{main.cpp}!DrawFrame@{DrawFrame}}
 \index{DrawFrame@{DrawFrame}!main.cpp@{main.cpp}}
@@ -149,6 +231,59 @@ Render to the swapchain image (texture) that\textquotesingle{}ll be rendered to 
 \mbox{\texttt{ in}}  & {\em n\+Shader\+Vis\+Mask} & The Open\+GL shader program that will be used for the Visibility Mask \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_ab0d92156fea00ea02d3f12b43eb6f509}\label{main_8cpp_ab0d92156fea00ea02d3f12b43eb6f509}} 
+\index{main.cpp@{main.cpp}!DrawSeaOfCubes@{DrawSeaOfCubes}}
+\index{DrawSeaOfCubes@{DrawSeaOfCubes}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{DrawSeaOfCubes()}{DrawSeaOfCubes()}}
+{\footnotesize\ttfamily void Draw\+Sea\+Of\+Cubes (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+Render\+Manager,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{G\+Luint}]{n\+Shader,  }\item[{unsigned int}]{V\+BO,  }\item[{unsigned}]{V\+AO,  }\item[{glm\+::vec3}]{cube\+Scale,  }\item[{std\+::vector$<$ unsigned $>$}]{v\+Textures,  }\item[{float}]{f\+Spacing\+Plane,  }\item[{float}]{f\+Spacing\+Height }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a6d76cd1a3bb155b629c7ff2ed98adc16}\label{main_8cpp_a6d76cd1a3bb155b629c7ff2ed98adc16}} 
+\index{main.cpp@{main.cpp}!FillEyeMVP@{FillEyeMVP}}
+\index{FillEyeMVP@{FillEyeMVP}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{FillEyeMVP()}{FillEyeMVP()}}
+{\footnotesize\ttfamily void Fill\+Eye\+M\+VP (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+Render\+Manager,  }\item[{glm\+::mat4 $\ast$}]{v\+Eye\+Projections,  }\item[{glm\+::mat4}]{eye\+View,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Cube\+Index,  }\item[{G\+Luint}]{n\+Shader,  }\item[{unsigned}]{n\+Texture,  }\item[{glm\+::vec3}]{cube\+Position,  }\item[{glm\+::vec3}]{cube\+Scale }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_aafdebc28cb0db5e42ec24a88bcfa566f}\label{main_8cpp_aafdebc28cb0db5e42ec24a88bcfa566f}} 
+\index{main.cpp@{main.cpp}!GetDepth@{GetDepth}}
+\index{GetDepth@{GetDepth}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{GetDepth()}{GetDepth()}}
+{\footnotesize\ttfamily uint32\+\_\+t Get\+Depth (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{n\+Texture,  }\item[{G\+Lint}]{n\+Min\+Filter = {\ttfamily GL\+\_\+LINEAR},  }\item[{G\+Lint}]{n\+Magnitude\+Filter = {\ttfamily GL\+\_\+NEAREST},  }\item[{G\+Lint}]{n\+WrapS = {\ttfamily GL\+\_\+REPEAT},  }\item[{G\+Lint}]{n\+WrapT = {\ttfamily GL\+\_\+REPEAT},  }\item[{G\+Lint}]{n\+Depth\+Format = {\ttfamily GL\+\_\+DEPTH\+\_\+COMPONENT24} }\end{DoxyParamCaption})}
+
+Get the corresponding depth texture for a give color texture, create one if it doesn\textquotesingle{}t exist If the runtime supports the X\+R\+\_\+\+K\+H\+R\+\_\+composition\+\_\+layer\+\_\+depth extension, the runtime provided depth texture will be used instead 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em n\+Texture} & Color texture to match with a depth texture to return \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Min\+Filter} & (Optional\+: G\+L\+\_\+\+L\+I\+N\+E\+AR) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Magnitude\+Filter} & (Optional\+: G\+L\+\_\+\+N\+E\+A\+R\+E\+ST) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+WrapS} & (Optional\+: G\+L\+\_\+\+C\+L\+A\+M\+P\+\_\+\+T\+O\+\_\+\+E\+D\+GE) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+WrapT} & (Optional\+: G\+L\+\_\+\+C\+L\+A\+M\+P\+\_\+\+T\+O\+\_\+\+E\+D\+GE) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Depth\+Format} & (Optional\+: G\+L\+\_\+\+D\+E\+P\+T\+H\+\_\+\+C\+O\+M\+P\+O\+N\+E\+N\+T24) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uin32\+\_\+t Depth texture Open\+GL id 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8cpp_a81e9dc653f8019bdd50b23bf3cc9ef3f}\label{main_8cpp_a81e9dc653f8019bdd50b23bf3cc9ef3f}} 
+\index{main.cpp@{main.cpp}!GetEyeProjection@{GetEyeProjection}}
+\index{GetEyeProjection@{GetEyeProjection}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{GetEyeProjection()}{GetEyeProjection()}}
+{\footnotesize\ttfamily glm\+::mat4 Get\+Eye\+Projection (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+Render\+Manager,  }\item[{Open\+X\+R\+Provider\+::\+X\+R\+FoV}]{eye\+FoV,  }\item[{float}]{f\+Near = {\ttfamily 0.1},  }\item[{float}]{f\+Far = {\ttfamily 1000.f} }\end{DoxyParamCaption})}
+
+Calculate the eye projection matrix for this Open\+XR session. This can be calculated only once per application run 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Render\+Manager} & Pointer to Open\+XR Provider library\textquotesingle{}s Render manager \\
+\hline
+\mbox{\texttt{ in}}  & {\em eye\+FoV} & The eye\textquotesingle{}s field of view angles in radians \\
+\hline
+\mbox{\texttt{ in}}  & {\em f\+Near} & Near plane distance (must be greater than 0 to use depth testing in Open\+GL) \\
+\hline
+\mbox{\texttt{ in}}  & {\em f\+Far} & Far plane distance \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{main_8cpp_ab5a763045c08ee555125d07e990fbc60}\label{main_8cpp_ab5a763045c08ee555125d07e990fbc60}} 
 \index{main.cpp@{main.cpp}!GraphicsAPIObjectsSetup@{GraphicsAPIObjectsSetup}}
 \index{GraphicsAPIObjectsSetup@{GraphicsAPIObjectsSetup}!main.cpp@{main.cpp}}
@@ -159,6 +294,19 @@ Render to the swapchain image (texture) that\textquotesingle{}ll be rendered to 
 
 Setup the Open\+GL objects (V\+AO, V\+BO, F\+BO) needed for rendering to textures from the Open\+XR runtime. 
 
+\mbox{\Hypertarget{main_8cpp_a9e4a2accecb47c58ed592c9a2010ab15}\label{main_8cpp_a9e4a2accecb47c58ed592c9a2010ab15}} 
+\index{main.cpp@{main.cpp}!InvertMatrix@{InvertMatrix}}
+\index{InvertMatrix@{InvertMatrix}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{InvertMatrix()}{InvertMatrix()}}
+{\footnotesize\ttfamily glm\+::mat4 Invert\+Matrix (\begin{DoxyParamCaption}\item[{const glm\+::mat4}]{p\+Projection\+Matrix }\end{DoxyParamCaption})}
+
+Get the inverse of a given projection matrix 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Projection\+Matrix} & The matrix to invert \\
+\hline
+\mbox{\texttt{ out}}  & {\em glm\+::mat4} & The inverted matrix \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
 \index{main.cpp@{main.cpp}!main@{main}}
 \index{main@{main}!main.cpp@{main.cpp}}

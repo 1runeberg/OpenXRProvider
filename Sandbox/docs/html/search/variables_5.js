@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['vao',['VAO',['../main_8h.html#a9e558a92738c55339369908a95415fca',1,'main.h']]],
-  ['vbo',['VBO',['../main_8h.html#ad9a24fe28e2326cb0445791525781160',1,'main.h']]],
-  ['vmaskindices_5fl',['vMaskIndices_L',['../main_8h.html#ae1dfd6e5fadf1da2664c1617e189a06c',1,'main.h']]],
-  ['vmaskindices_5fr',['vMaskIndices_R',['../main_8h.html#ad421570592914cc66daade1c4941f168',1,'main.h']]],
-  ['vmaskvertices_5fl',['vMaskVertices_L',['../main_8h.html#acdb99f9355147649df3b24765f066db3',1,'main.h']]],
-  ['vmaskvertices_5fr',['vMaskVertices_R',['../main_8h.html#a7f2a98fc8e67834e753ae8f7330ecd25',1,'main.h']]]
+  ['papplogfile',['pAppLogFile',['../main_8h.html#afdd3e4a98a83be17fc862c35da31a4b5',1,'main.h']]],
+  ['putils',['pUtils',['../main_8h.html#a0d5111066310aa3c3805d599c138b141',1,'main.h']]],
+  ['pxrmirror',['pXRMirror',['../main_8h.html#af4f45dfd4ee1a2c3b1562398252c7bec',1,'main.h']]],
+  ['pxrprovider',['pXRProvider',['../main_8h.html#a444f316e5ddad52f3f37f1e34a2e290b',1,'main.h']]],
+  ['pxrrendermanager',['pXRRenderManager',['../main_8h.html#a343faf29ffd3d2e18b872155c7f2fcda',1,'main.h']]],
+  ['pxrvisibilitymask',['pXRVisibilityMask',['../main_8h.html#aa258e1cafc71c21ca80015a29c4454f4',1,'main.h']]]
 ];

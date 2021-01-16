@@ -27,8 +27,10 @@ add_subdirectory(OpenXRProvider)
 set (LIBS_INCLUDE 
     ${CMAKE_SOURCE_DIR}/OpenXRProvider/include
     ${CMAKE_SOURCE_DIR}/OpenXRProvider/spdlog
+    ${CMAKE_SOURCE_DIR}/Sandbox/third_party
     ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glad/include
-    ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glfw/include)
+    ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glfw/include
+    )
 
 set (LIBS_SOURCES
     ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glad/src/glad.c)
@@ -57,6 +59,7 @@ file(GLOB OPENXR_SANDBOX_SOURCE
         "${CMAKE_SOURCE_DIR}/Sandbox/*.cpp"
 	    "${CMAKE_SOURCE_DIR}/Sandbox/src/*.cpp"
         "${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/*.glsl"
+        "${CMAKE_SOURCE_DIR}/Sandbox/third_party/stb/*.cpp"
 	)
 message(STATUS "Found OpenXR Sandbox source
     \  ${OPENXR_SANDBOX_SOURCE}")
@@ -114,4 +117,57 @@ add_custom_command(TARGET Sandbox POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy
             ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/frag-vismask.glsl
             ${CMAKE_SOURCE_DIR}/bin/shaders/frag-vismask.glsl
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/vert-lit.glsl
+            ${CMAKE_SOURCE_DIR}/bin/shaders/vert-lit.glsl
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/frag-lit.glsl
+            ${CMAKE_SOURCE_DIR}/bin/shaders/frag-lit.glsl
+         
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/vert-unlit.glsl
+            ${CMAKE_SOURCE_DIR}/bin/shaders/vert-unlit.glsl
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/frag-unlit.glsl
+            ${CMAKE_SOURCE_DIR}/bin/shaders/frag-unlit.glsl
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/vert-textured.glsl
+            ${CMAKE_SOURCE_DIR}/bin/shaders/vert-textured.glsl
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/frag-textured.glsl
+            ${CMAKE_SOURCE_DIR}/bin/shaders/frag-textured.glsl
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/img/t_bellevue_valve.png
+            ${CMAKE_SOURCE_DIR}/bin/img/t_bellevue_valve.png
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/img/t_hobart_mein_heim.png
+            ${CMAKE_SOURCE_DIR}/bin/img/t_hobart_mein_heim.png
+            
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/img/t_hobart_mein_kochen.png
+            ${CMAKE_SOURCE_DIR}/bin/img/t_hobart_mein_kochen.png
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/img/t_hobart_rose.png
+            ${CMAKE_SOURCE_DIR}/bin/img/t_hobart_rose.png
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/img/t_hobart_sunset.png
+            ${CMAKE_SOURCE_DIR}/bin/img/t_hobart_sunset.png
+            
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/img/t_munich_mein_schatz.png
+            ${CMAKE_SOURCE_DIR}/bin/img/t_munich_mein_schatz.png
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/img/t_munich_mein_schatz.png
+            ${CMAKE_SOURCE_DIR}/bin/img/t_munich_mein_schatz.png
+
 		)

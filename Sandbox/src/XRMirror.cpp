@@ -33,7 +33,7 @@ XRMirror::XRMirror( int nWidth, int nHeight, const char *pTitle, const char* sLo
 	// Initialize glfw
 	glfwInit();
 	glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 3 );
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 2 );
+	glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 3 );
 	glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 	// glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
@@ -72,4 +72,40 @@ XRMirror::~XRMirror()
 {
 	delete m_pUtils;
 	glfwTerminate();
+}
+
+
+unsigned int XRMirror::LoadTexture( const wchar_t* pTextureFile, GLuint nShader, const char *pSamplerParam, GLint nMinFilter, GLint nMagnitudeFilter, GLint nWrapS, GLint nWrapT )
+{
+	unsigned int nTexture = 0;
+
+	glGenTextures( 1, &nTexture );
+	glBindTexture( GL_TEXTURE_2D, nTexture );
+
+	// Set the texture parameters
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+
+	// Load image from disk
+	int nWidth, nHeight, nChannels;
+	char pTexture[ MAX_PATH ] = "";
+	std::wcstombs( pTexture, pTextureFile, MAX_PATH );
+
+	stbi_set_flip_vertically_on_load( true );
+
+	unsigned char *textureData = stbi_load( pTexture, &nWidth, &nHeight, &nChannels, 0 );
+	if ( textureData )
+		glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, nWidth, nHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData );
+	else
+		m_pUtils->GetLogger()->warn( "Unable to load cube texture from disk ({})", pTexture );
+
+	stbi_image_free( textureData );
+
+	// Set the 2d texture sampler param in the shader
+	glUseProgram( nShader );
+	glUniform1i( glGetUniformLocation( nShader, pSamplerParam ), 0 );
+
+	return nTexture;
 }

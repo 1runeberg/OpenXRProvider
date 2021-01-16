@@ -101,6 +101,12 @@ namespace OpenXRProvider
 		/// @return		The user's IPD
 		float GetCurrentIPD();
 
+		/// Get the projection matrix for the given eye
+		/// @param[in]	eEye				Eye
+		/// @param[in]	bInvert				(Optional: false) Whether to invert the matrix or not, set to true for OpenGL
+		/// @param[out]	mProjectionMatrix	The projection matrix to write to
+		void GetEyeProjection( EXREye eEye, std::vector<float> *mProjectionMatrix, bool bInvert = false );
+		
 		/// Retrieve the current position and orientation of the headset
 		/// @return		The current orientation and position of the user's HMD in their tracked space
 		XRPose GetHMDPose();

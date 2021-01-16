@@ -75,19 +75,19 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &lt;<a class="el" href="_x_r_mirror_8h_source.html">XRMirror.h</a>&gt;</code><br />
 <code>#include &lt;OpenXRProvider.h&gt;</code><br />
-<code>#include &lt;XRRenderManager.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8h__incl.png" border="0" usemap="#include_2main_8h" alt=""/></div>
 <map name="include_2main_8h" id="include_2main_8h">
-<area shape="rect"  title=" " alt="" coords="805,5,911,32"/>
-<area shape="rect"  href="_x_r_mirror_8h.html" title=" " alt="" coords="687,80,770,107"/>
-<area shape="rect"  title=" " alt="" coords="795,80,921,107"/>
-<area shape="rect"  title=" " alt="" coords="945,80,1085,107"/>
-<area shape="rect"  href="_utils_8h.html" title=" " alt="" coords="422,155,481,181"/>
-<area shape="rect"  title=" " alt="" coords="897,237,982,263"/>
-<area shape="rect"  title=" " alt="" coords="767,155,829,181"/>
+<area shape="rect"  title=" " alt="" coords="893,5,999,32"/>
+<area shape="rect"  href="_x_r_mirror_8h.html" title=" " alt="" coords="841,80,923,107"/>
+<area shape="rect"  title=" " alt="" coords="948,80,1075,107"/>
+<area shape="rect"  title=" " alt="" coords="715,155,761,181"/>
+<area shape="rect"  href="_utils_8h.html" title=" " alt="" coords="786,155,845,181"/>
+<area shape="rect"  title=" " alt="" coords="1713,237,1798,263"/>
+<area shape="rect"  title=" " alt="" coords="920,155,983,181"/>
+<area shape="rect"  title=" " alt="" coords="1007,155,1147,181"/>
 <area shape="rect"  title=" " alt="" coords="5,237,71,263"/>
 <area shape="rect"  title=" " alt="" coords="95,237,167,263"/>
 <area shape="rect"  title=" " alt="" coords="191,237,261,263"/>
@@ -96,6 +96,11 @@ Include dependency graph for main.h:</div>
 <area shape="rect"  title=" " alt="" coords="445,229,575,271"/>
 <area shape="rect"  title=" " alt="" coords="600,229,735,271"/>
 <area shape="rect"  title=" " alt="" coords="759,237,872,263"/>
+<area shape="rect"  title=" " alt="" coords="897,237,990,263"/>
+<area shape="rect"  title=" " alt="" coords="1015,237,1205,263"/>
+<area shape="rect"  title=" " alt="" coords="1230,237,1371,263"/>
+<area shape="rect"  title=" " alt="" coords="1395,237,1550,263"/>
+<area shape="rect"  title=" " alt="" coords="1574,237,1689,263"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -123,18 +128,42 @@ Functions</h2></td></tr>
 <tr class="separator:a92218fb47e6a8d9497a22b2d2f826d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb87c742093b790e17359ec17647b0f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#adb87c742093b790e17359ec17647b0f5">DrawFrame</a> (OpenXRProvider::XRRenderManager *<a class="el" href="main_8h.html#a343faf29ffd3d2e18b872155c7f2fcda">pXRRenderManager</a>, OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>, unsigned int <a class="el" href="main_8h.html#a3891930b135f1ac6e2f307639219024e">FBO</a>, GLuint <a class="el" href="main_8h.html#a8f6bf5aa2103d3f51c013733389dd4bd">nShaderVisMask</a>)</td></tr>
 <tr class="separator:adb87c742093b790e17359ec17647b0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7830315e48fb782da330266c7674165"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ad7830315e48fb782da330266c7674165">DrawSeaOfCubes</a> (OpenXRProvider::XRRenderManager *pRenderManager, OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>, GLuint nShader, unsigned int VBO, unsigned int VAO, glm::vec3 cubeScale, std::vector&lt; unsigned int &gt; vTextures, float fSpacingPlane, float fSpacingHeight)</td></tr>
+<tr class="separator:ad7830315e48fb782da330266c7674165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d7eb97ee1233ab7efb42d30b010167"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#aa5d7eb97ee1233ab7efb42d30b010167">FillEyeMVP</a> (OpenXRProvider::XRRenderManager *pRenderManager, glm::mat4 *vEyeProjections, glm::mat4 eyeView, OpenXRProvider::EXREye eEye, uint32_t nCubeIndex, GLuint nShader, unsigned int nTexture, glm::vec3 cubePosition, glm::vec3 cubeScale)</td></tr>
+<tr class="separator:aa5d7eb97ee1233ab7efb42d30b010167"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a577f462ef25b1ec015549427c81f4715"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a577f462ef25b1ec015549427c81f4715">DrawCube</a> (OpenXRProvider::XRRenderManager *pRenderManager, OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>, GLuint nShader, unsigned int nTexture, unsigned int VAO, glm::vec3 cubePosition)</td></tr>
+<tr class="separator:a577f462ef25b1ec015549427c81f4715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a436cce5b72533943c82830a144870e13"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a436cce5b72533943c82830a144870e13">GetEyeProjection</a> (OpenXRProvider::XRRenderManager *pRenderManager, OpenXRProvider::XRFoV eyeFoV, float fNear=0.1, float fFar=1000.f)</td></tr>
+<tr class="separator:a436cce5b72533943c82830a144870e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eed4c018b23237176352534826b9338"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a2eed4c018b23237176352534826b9338">GetEyeProjectionLeft</a> ()</td></tr>
+<tr class="separator:a2eed4c018b23237176352534826b9338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70e21f5375a54d2247643e90cfdc41f2"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a70e21f5375a54d2247643e90cfdc41f2">GetEyeProjectionRight</a> ()</td></tr>
+<tr class="separator:a70e21f5375a54d2247643e90cfdc41f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05f778f08b7c62edb5bc1b36df42ab83"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a05f778f08b7c62edb5bc1b36df42ab83">GetDepth</a> (uint32_t nTexture, GLint nMinFilter=GL_LINEAR, GLint nMagnitudeFilter=GL_NEAREST, GLint nWrapS=GL_REPEAT, GLint nWrapT=GL_REPEAT, GLint nDepthFormat=GL_DEPTH_COMPONENT24)</td></tr>
+<tr class="separator:a05f778f08b7c62edb5bc1b36df42ab83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1e725be8811bd85f2fb82ae2ff665e5"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ad1e725be8811bd85f2fb82ae2ff665e5">InvertMatrix</a> (const glm::mat4 pProjectionMatrix)</td></tr>
+<tr class="separator:ad1e725be8811bd85f2fb82ae2ff665e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:ab894ef2bd7686d1b45dc527ec30babe7"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ab894ef2bd7686d1b45dc527ec30babe7">cubeInstanceDataVBO</a></td></tr>
+<tr class="separator:ab894ef2bd7686d1b45dc527ec30babe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e28ee15d5917508a418320699852af"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ab9e28ee15d5917508a418320699852af">cubeVBO</a></td></tr>
+<tr class="memdesc:ab9e28ee15d5917508a418320699852af"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Buffer Object (cube) used in rendering processes.  <a href="#ab9e28ee15d5917508a418320699852af">More...</a><br /></td></tr>
+<tr class="separator:ab9e28ee15d5917508a418320699852af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f2b9380dce6ab7cac897fd8979647fd"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a7f2b9380dce6ab7cac897fd8979647fd">cubeVAO</a></td></tr>
+<tr class="memdesc:a7f2b9380dce6ab7cac897fd8979647fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Array Object (cube) used in rendering processes.  <a href="#a7f2b9380dce6ab7cac897fd8979647fd">More...</a><br /></td></tr>
+<tr class="separator:a7f2b9380dce6ab7cac897fd8979647fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c518da7ccac992646ba4d74225c6d17"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a5c518da7ccac992646ba4d74225c6d17">lightVAO</a></td></tr>
+<tr class="memdesc:a5c518da7ccac992646ba4d74225c6d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Array Object (light source) used in rendering processes.  <a href="#a5c518da7ccac992646ba4d74225c6d17">More...</a><br /></td></tr>
+<tr class="separator:a5c518da7ccac992646ba4d74225c6d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5f4ab0a7dd2028e911fe4b37cb8cd22"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ac5f4ab0a7dd2028e911fe4b37cb8cd22">cubeEBO</a></td></tr>
+<tr class="memdesc:ac5f4ab0a7dd2028e911fe4b37cb8cd22"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Element Buffer Object (cube) used in rendering processes.  <a href="#ac5f4ab0a7dd2028e911fe4b37cb8cd22">More...</a><br /></td></tr>
+<tr class="separator:ac5f4ab0a7dd2028e911fe4b37cb8cd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3891930b135f1ac6e2f307639219024e"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a3891930b135f1ac6e2f307639219024e">FBO</a></td></tr>
-<tr class="memdesc:a3891930b135f1ac6e2f307639219024e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Frame Buffer Object used in rendering processes.  <a href="#a3891930b135f1ac6e2f307639219024e">More...</a><br /></td></tr>
+<tr class="memdesc:a3891930b135f1ac6e2f307639219024e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Frame Buffer Object (hmd texture) used in rendering processes.  <a href="#a3891930b135f1ac6e2f307639219024e">More...</a><br /></td></tr>
 <tr class="separator:a3891930b135f1ac6e2f307639219024e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e558a92738c55339369908a95415fca"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a9e558a92738c55339369908a95415fca">VAO</a></td></tr>
-<tr class="memdesc:a9e558a92738c55339369908a95415fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Array Object used in rendering processes.  <a href="#a9e558a92738c55339369908a95415fca">More...</a><br /></td></tr>
-<tr class="separator:a9e558a92738c55339369908a95415fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9a24fe28e2326cb0445791525781160"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ad9a24fe28e2326cb0445791525781160">VBO</a></td></tr>
-<tr class="memdesc:ad9a24fe28e2326cb0445791525781160"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Buffer Object used in rendering processes.  <a href="#ad9a24fe28e2326cb0445791525781160">More...</a><br /></td></tr>
-<tr class="separator:ad9a24fe28e2326cb0445791525781160"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3af6abc3694a26372dc97344127702e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ad3af6abc3694a26372dc97344127702e">nScreenWidth</a> = 1920</td></tr>
 <tr class="memdesc:ad3af6abc3694a26372dc97344127702e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of the desktop window (XR Mirror)  <a href="#ad3af6abc3694a26372dc97344127702e">More...</a><br /></td></tr>
 <tr class="separator:ad3af6abc3694a26372dc97344127702e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,12 +182,24 @@ Variables</h2></td></tr>
 <tr class="memitem:a8f6bf5aa2103d3f51c013733389dd4bd"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a8f6bf5aa2103d3f51c013733389dd4bd">nShaderVisMask</a></td></tr>
 <tr class="memdesc:a8f6bf5aa2103d3f51c013733389dd4bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The shader program ID for visibility mask that will be applied on all textures.  <a href="#a8f6bf5aa2103d3f51c013733389dd4bd">More...</a><br /></td></tr>
 <tr class="separator:a8f6bf5aa2103d3f51c013733389dd4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9a863c8ce6916659a046f416a32faf8"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ac9a863c8ce6916659a046f416a32faf8">nShaderLit</a></td></tr>
+<tr class="memdesc:ac9a863c8ce6916659a046f416a32faf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The shader program ID for lit objects.  <a href="#ac9a863c8ce6916659a046f416a32faf8">More...</a><br /></td></tr>
+<tr class="separator:ac9a863c8ce6916659a046f416a32faf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a762351bcd57a83c9f7aba43e994eeef5"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a762351bcd57a83c9f7aba43e994eeef5">nShaderUnlit</a></td></tr>
+<tr class="memdesc:a762351bcd57a83c9f7aba43e994eeef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The shader program ID for unlit.  <a href="#a762351bcd57a83c9f7aba43e994eeef5">More...</a><br /></td></tr>
+<tr class="separator:a762351bcd57a83c9f7aba43e994eeef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40ae0a91a7ebb0009db938414ae02e28"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a40ae0a91a7ebb0009db938414ae02e28">nShaderTextured</a></td></tr>
+<tr class="memdesc:a40ae0a91a7ebb0009db938414ae02e28"><td class="mdescLeft">&#160;</td><td class="mdescRight">The shader program ID for textured.  <a href="#a40ae0a91a7ebb0009db938414ae02e28">More...</a><br /></td></tr>
+<tr class="separator:a40ae0a91a7ebb0009db938414ae02e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab08061433add74e5b598f52b7f0cdacd"><td class="memItemLeft" align="right" valign="top">std::wstring&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ab08061433add74e5b598f52b7f0cdacd">sCurrentPath</a></td></tr>
 <tr class="memdesc:ab08061433add74e5b598f52b7f0cdacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The absolute path to the built Sandbox executable.  <a href="#ab08061433add74e5b598f52b7f0cdacd">More...</a><br /></td></tr>
 <tr class="separator:ab08061433add74e5b598f52b7f0cdacd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdd3e4a98a83be17fc862c35da31a4b5"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#afdd3e4a98a83be17fc862c35da31a4b5">pAppLogFile</a> [MAX_PATH] = &quot;&quot;</td></tr>
 <tr class="memdesc:afdd3e4a98a83be17fc862c35da31a4b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The path and filename to write the OpenXR Provider library file to.  <a href="#afdd3e4a98a83be17fc862c35da31a4b5">More...</a><br /></td></tr>
 <tr class="separator:afdd3e4a98a83be17fc862c35da31a4b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36a525d0179ef4cb545c78242cdf29dd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a36a525d0179ef4cb545c78242cdf29dd">vSeaOfCubesTextures</a></td></tr>
+<tr class="memdesc:a36a525d0179ef4cb545c78242cdf29dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sea of Cubes textures.  <a href="#a36a525d0179ef4cb545c78242cdf29dd">More...</a><br /></td></tr>
+<tr class="separator:a36a525d0179ef4cb545c78242cdf29dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1dfd6e5fadf1da2664c1617e189a06c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ae1dfd6e5fadf1da2664c1617e189a06c">vMaskIndices_L</a></td></tr>
 <tr class="memdesc:ae1dfd6e5fadf1da2664c1617e189a06c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indices for the left eye visibility mask (hmd specific occlusion mesh reported by the active OpenXR runtime)  <a href="#ae1dfd6e5fadf1da2664c1617e189a06c">More...</a><br /></td></tr>
 <tr class="separator:ae1dfd6e5fadf1da2664c1617e189a06c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,6 +230,20 @@ Variables</h2></td></tr>
 <tr class="memitem:aa258e1cafc71c21ca80015a29c4454f4"><td class="memItemLeft" align="right" valign="top">OpenXRProvider::XRExtVisibilityMask *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#aa258e1cafc71c21ca80015a29c4454f4">pXRVisibilityMask</a> = nullptr</td></tr>
 <tr class="memdesc:aa258e1cafc71c21ca80015a29c4454f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the XRExtVisibilityMask class of the OpenXR Provider library which handles the OpenXR visibility mask extension for runtimes that support it.  <a href="#aa258e1cafc71c21ca80015a29c4454f4">More...</a><br /></td></tr>
 <tr class="separator:aa258e1cafc71c21ca80015a29c4454f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a930e294af25433106ebe08293277f70d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a930e294af25433106ebe08293277f70d">vCube</a> []</td></tr>
+<tr class="memdesc:a930e294af25433106ebe08293277f70d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cube vertices and texture coordinates (x, y, z, s ,t)  <a href="#a930e294af25433106ebe08293277f70d">More...</a><br /></td></tr>
+<tr class="separator:a930e294af25433106ebe08293277f70d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c125e8e376c9f4517e2c62c5d71a30f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a5c125e8e376c9f4517e2c62c5d71a30f">m_bEyeProjectionsSet</a> = false</td></tr>
+<tr class="separator:a5c125e8e376c9f4517e2c62c5d71a30f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b1156fe603224a80ab35f35df92f5c"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ae5b1156fe603224a80ab35f35df92f5c">m_EyeProjectionLeft</a></td></tr>
+<tr class="memdesc:ae5b1156fe603224a80ab35f35df92f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The left eye view (camera) projection matrix.  <a href="#ae5b1156fe603224a80ab35f35df92f5c">More...</a><br /></td></tr>
+<tr class="separator:ae5b1156fe603224a80ab35f35df92f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c2dadf81d3d7b6034ebfcc79ebaf24a"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a9c2dadf81d3d7b6034ebfcc79ebaf24a">m_EyeProjectionRight</a></td></tr>
+<tr class="memdesc:a9c2dadf81d3d7b6034ebfcc79ebaf24a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The right eye view (camera) projection matrix.  <a href="#a9c2dadf81d3d7b6034ebfcc79ebaf24a">More...</a><br /></td></tr>
+<tr class="separator:a9c2dadf81d3d7b6034ebfcc79ebaf24a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89c081507a33c914503b3fa23fe0db09"><td class="memItemLeft" align="right" valign="top">std::map&lt; uint32_t, uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a89c081507a33c914503b3fa23fe0db09">m_mapColorDepth</a></td></tr>
+<tr class="memdesc:a89c081507a33c914503b3fa23fe0db09"><td class="mdescLeft">&#160;</td><td class="mdescRight">A OpenGL map of color texture id to depth texture id.  <a href="#a89c081507a33c914503b3fa23fe0db09">More...</a><br /></td></tr>
+<tr class="separator:a89c081507a33c914503b3fa23fe0db09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a695892b1d53467aeed888e3789aef34c"></a>
@@ -226,6 +281,75 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Blit (copy) swapchain image that's rendered to the HMD to the desktop screem (XR Mirror) </p>
+
+</div>
+</div>
+<a id="a577f462ef25b1ec015549427c81f4715"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a577f462ef25b1ec015549427c81f4715">&#9670;&nbsp;</a></span>DrawCube()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DrawCube </td>
+          <td>(</td>
+          <td class="paramtype">OpenXRProvider::XRRenderManager *&#160;</td>
+          <td class="paramname"><em>pRenderManager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nSwapchainIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLuint&#160;</td>
+          <td class="paramname"><em>nShader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>nTexture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>VAO</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3&#160;</td>
+          <td class="paramname"><em>cubePosition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Draw a single cube (when not using instancing, will require a different shader) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pRenderManager</td><td>Pointer to OpenXR Provider library's Render manager </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>Current eye to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>Texture in the swapchain to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nShader</td><td>Shader program id to use for the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nTexture</td><td>The texture id to use for the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">VAO</td><td>Vertex Array Object containing the cube vertices </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -285,6 +409,328 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ad7830315e48fb782da330266c7674165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7830315e48fb782da330266c7674165">&#9670;&nbsp;</a></span>DrawSeaOfCubes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DrawSeaOfCubes </td>
+          <td>(</td>
+          <td class="paramtype">OpenXRProvider::XRRenderManager *&#160;</td>
+          <td class="paramname"><em>pRenderManager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nSwapchainIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLuint&#160;</td>
+          <td class="paramname"><em>nShader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>VBO</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>VAO</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3&#160;</td>
+          <td class="paramname"><em>cubeScale</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; unsigned int &gt;&#160;</td>
+          <td class="paramname"><em>vTextures</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>fSpacingPlane</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>fSpacingHeight</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Draw a sea of instanced textured cubes in the scene based on the number of textures provided </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pRenderManager</td><td>Pointer to OpenXR Provider library's Render manager </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>Current eye to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>Texture in the swapchain to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">VBO</td><td>Vertex buffer object that contains instanced data for the projection matrices </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">VAO</td><td>Vertex Array Object containing the cube vertices </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubeScale</td><td>Scale to apply to the cubes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vTextures</td><td>Array of textures that will be applied on the cubes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fSpacingPlane</td><td>The amount of spacing in between cubes in the x,z axis </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fSpacingHeight</td><td>The amount of spacing in between cubes in the y axis </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa5d7eb97ee1233ab7efb42d30b010167"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5d7eb97ee1233ab7efb42d30b010167">&#9670;&nbsp;</a></span>FillEyeMVP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FillEyeMVP </td>
+          <td>(</td>
+          <td class="paramtype">OpenXRProvider::XRRenderManager *&#160;</td>
+          <td class="paramname"><em>pRenderManager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::mat4 *&#160;</td>
+          <td class="paramname"><em>vEyeProjections</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::mat4&#160;</td>
+          <td class="paramname"><em>eyeView</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nCubeIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLuint&#160;</td>
+          <td class="paramname"><em>nShader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>nTexture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3&#160;</td>
+          <td class="paramname"><em>cubePosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3&#160;</td>
+          <td class="paramname"><em>cubeScale</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Fill the array of model-view-projection matrices that will be applied on a cube in a single frame and eye. This is filled in as instanced variables to the shader </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pRenderManager</td><td>Pointer to OpenXR Provider library's Render manager </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">vEyeProjections</td><td>Array of eye view projection matrices that will be applied to each cube model vertex </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eyeView</td><td>The current eye view (camera) projection matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nCubeIndex</td><td>Index of the current cube being rendered (within the "sea") </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nShader</td><td>Shader program id to use for the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nTexture</td><td>The texture id to use for the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubePosition</td><td>The position of the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubeScale</td><td>The scale of the cube </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a05f778f08b7c62edb5bc1b36df42ab83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f778f08b7c62edb5bc1b36df42ab83">&#9670;&nbsp;</a></span>GetDepth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t GetDepth </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nTexture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLint&#160;</td>
+          <td class="paramname"><em>nMinFilter</em> = <code>GL_LINEAR</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLint&#160;</td>
+          <td class="paramname"><em>nMagnitudeFilter</em> = <code>GL_NEAREST</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLint&#160;</td>
+          <td class="paramname"><em>nWrapS</em> = <code>GL_REPEAT</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLint&#160;</td>
+          <td class="paramname"><em>nWrapT</em> = <code>GL_REPEAT</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLint&#160;</td>
+          <td class="paramname"><em>nDepthFormat</em> = <code>GL_DEPTH_COMPONENT24</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the corresponding depth texture for a give color texture, create one if it doesn't exist If the runtime supports the XR_KHR_composition_layer_depth extension, the runtime provided depth texture will be used instead </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">nTexture</td><td>Color texture to match with a depth texture to return </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nMinFilter</td><td>(Optional: GL_LINEAR) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nMagnitudeFilter</td><td>(Optional: GL_NEAREST) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nWrapS</td><td>(Optional: GL_CLAMP_TO_EDGE) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nWrapT</td><td>(Optional: GL_CLAMP_TO_EDGE) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nDepthFormat</td><td>(Optional: GL_DEPTH_COMPONENT24) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>uin32_t Depth texture OpenGL id </dd></dl>
+
+</div>
+</div>
+<a id="a436cce5b72533943c82830a144870e13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a436cce5b72533943c82830a144870e13">&#9670;&nbsp;</a></span>GetEyeProjection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 GetEyeProjection </td>
+          <td>(</td>
+          <td class="paramtype">OpenXRProvider::XRRenderManager *&#160;</td>
+          <td class="paramname"><em>pRenderManager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OpenXRProvider::XRFoV&#160;</td>
+          <td class="paramname"><em>eyeFoV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>fNear</em> = <code>0.1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>fFar</em> = <code>1000.f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculate the eye projection matrix for this OpenXR session. This can be calculated only once per application run </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pRenderManager</td><td>Pointer to OpenXR Provider library's Render manager </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eyeFoV</td><td>The eye's field of view angles in radians </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fNear</td><td>Near plane distance (must be greater than 0 to use depth testing in OpenGL) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fFar</td><td>Far plane distance </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2eed4c018b23237176352534826b9338"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eed4c018b23237176352534826b9338">&#9670;&nbsp;</a></span>GetEyeProjectionLeft()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 GetEyeProjectionLeft </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Getter for the left eye projection (for use in future refactoring) </p><dl class="section return"><dt>Returns</dt><dd>glm::mat4 The left eye view (camera) projection matrix for this frame </dd></dl>
+
+</div>
+</div>
+<a id="a70e21f5375a54d2247643e90cfdc41f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70e21f5375a54d2247643e90cfdc41f2">&#9670;&nbsp;</a></span>GetEyeProjectionRight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 GetEyeProjectionRight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Getter for the right eye projection (for use in future refactoring) </p><dl class="section return"><dt>Returns</dt><dd>glm::mat4 The right eye view (camera) projection matrix for this frame </dd></dl>
+
+</div>
+</div>
 <a id="ab5a763045c08ee555125d07e990fbc60"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab5a763045c08ee555125d07e990fbc60">&#9670;&nbsp;</a></span>GraphicsAPIObjectsSetup()</h2>
 
@@ -304,7 +750,94 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ad1e725be8811bd85f2fb82ae2ff665e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1e725be8811bd85f2fb82ae2ff665e5">&#9670;&nbsp;</a></span>InvertMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 InvertMatrix </td>
+          <td>(</td>
+          <td class="paramtype">const glm::mat4&#160;</td>
+          <td class="paramname"><em>pProjectionMatrix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the inverse of a given projection matrix </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pProjectionMatrix</td><td>The matrix to invert </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">glm::mat4</td><td>The inverted matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="ac5f4ab0a7dd2028e911fe4b37cb8cd22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5f4ab0a7dd2028e911fe4b37cb8cd22">&#9670;&nbsp;</a></span>cubeEBO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int cubeEBO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OpenGL Element Buffer Object (cube) used in rendering processes. </p>
+
+</div>
+</div>
+<a id="ab894ef2bd7686d1b45dc527ec30babe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab894ef2bd7686d1b45dc527ec30babe7">&#9670;&nbsp;</a></span>cubeInstanceDataVBO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int cubeInstanceDataVBO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f2b9380dce6ab7cac897fd8979647fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f2b9380dce6ab7cac897fd8979647fd">&#9670;&nbsp;</a></span>cubeVAO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int cubeVAO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OpenGL Vertex Array Object (cube) used in rendering processes. </p>
+
+</div>
+</div>
+<a id="ab9e28ee15d5917508a418320699852af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9e28ee15d5917508a418320699852af">&#9670;&nbsp;</a></span>cubeVBO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int cubeVBO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OpenGL Vertex Buffer Object (cube) used in rendering processes. </p>
+
+</div>
+</div>
 <a id="a3891930b135f1ac6e2f307639219024e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3891930b135f1ac6e2f307639219024e">&#9670;&nbsp;</a></span>FBO</h2>
 
@@ -317,7 +850,86 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The OpenGL Frame Buffer Object used in rendering processes. </p>
+<p>The OpenGL Frame Buffer Object (hmd texture) used in rendering processes. </p>
+
+</div>
+</div>
+<a id="a5c518da7ccac992646ba4d74225c6d17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c518da7ccac992646ba4d74225c6d17">&#9670;&nbsp;</a></span>lightVAO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int lightVAO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OpenGL Vertex Array Object (light source) used in rendering processes. </p>
+
+</div>
+</div>
+<a id="a5c125e8e376c9f4517e2c62c5d71a30f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c125e8e376c9f4517e2c62c5d71a30f">&#9670;&nbsp;</a></span>m_bEyeProjectionsSet</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool m_bEyeProjectionsSet = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Keeps track of whether both left and right eye projection matrices have been set. Ensure we calculate these only once per frame </p>
+
+</div>
+</div>
+<a id="ae5b1156fe603224a80ab35f35df92f5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5b1156fe603224a80ab35f35df92f5c">&#9670;&nbsp;</a></span>m_EyeProjectionLeft</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 m_EyeProjectionLeft</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The left eye view (camera) projection matrix. </p>
+
+</div>
+</div>
+<a id="a9c2dadf81d3d7b6034ebfcc79ebaf24a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c2dadf81d3d7b6034ebfcc79ebaf24a">&#9670;&nbsp;</a></span>m_EyeProjectionRight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4 m_EyeProjectionRight</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The right eye view (camera) projection matrix. </p>
+
+</div>
+</div>
+<a id="a89c081507a33c914503b3fa23fe0db09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89c081507a33c914503b3fa23fe0db09">&#9670;&nbsp;</a></span>m_mapColorDepth</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; uint32_t, uint32_t &gt; m_mapColorDepth</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A OpenGL map of color texture id to depth texture id. </p>
 
 </div>
 </div>
@@ -366,6 +978,54 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The width of the desktop window (XR Mirror) </p>
+
+</div>
+</div>
+<a id="ac9a863c8ce6916659a046f416a32faf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9a863c8ce6916659a046f416a32faf8">&#9670;&nbsp;</a></span>nShaderLit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint nShaderLit</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The shader program ID for lit objects. </p>
+
+</div>
+</div>
+<a id="a40ae0a91a7ebb0009db938414ae02e28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40ae0a91a7ebb0009db938414ae02e28">&#9670;&nbsp;</a></span>nShaderTextured</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint nShaderTextured</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The shader program ID for textured. </p>
+
+</div>
+</div>
+<a id="a762351bcd57a83c9f7aba43e994eeef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a762351bcd57a83c9f7aba43e994eeef5">&#9670;&nbsp;</a></span>nShaderUnlit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint nShaderUnlit</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The shader program ID for unlit. </p>
 
 </div>
 </div>
@@ -529,36 +1189,21 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a9e558a92738c55339369908a95415fca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e558a92738c55339369908a95415fca">&#9670;&nbsp;</a></span>VAO</h2>
+<a id="a930e294af25433106ebe08293277f70d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a930e294af25433106ebe08293277f70d">&#9670;&nbsp;</a></span>vCube</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned int VAO</td>
+          <td class="memname">float vCube[]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>The OpenGL Vertex Array Object used in rendering processes. </p>
-
-</div>
-</div>
-<a id="ad9a24fe28e2326cb0445791525781160"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9a24fe28e2326cb0445791525781160">&#9670;&nbsp;</a></span>VBO</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned int VBO</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The OpenGL Vertex Buffer Object used in rendering processes. </p>
-
+<p>Cube vertices and texture coordinates (x, y, z, s ,t) </p>
+<hr/>
+ 
 </div>
 </div>
 <a id="ae1dfd6e5fadf1da2664c1617e189a06c"></a>
@@ -622,6 +1267,22 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Indices for the right eye visibility mask (hmd specific occlusion mesh reported by the active OpenXR runtime) </p>
+
+</div>
+</div>
+<a id="a36a525d0179ef4cb545c78242cdf29dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36a525d0179ef4cb545c78242cdf29dd">&#9670;&nbsp;</a></span>vSeaOfCubesTextures</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; unsigned int &gt; vSeaOfCubesTextures</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sea of Cubes textures. </p>
 
 </div>
 </div>

@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['m_5fplogger',['m_pLogger',['../class_utils.html#a2d2d607e23e16fdd88f2983c1d1b408d',1,'Utils']]],
-  ['m_5fputils',['m_pUtils',['../class_x_r_mirror.html#aeb7f7a4cc3eb6fbe35d892876aac9fc0',1,'XRMirror']]],
-  ['m_5fpxrmirror',['m_pXRMirror',['../class_x_r_mirror.html#aa61d4a6537d0b5f41c24b831090075bd',1,'XRMirror']]],
-  ['main',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
-  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['main_2eh',['main.h',['../main_8h.html',1,'']]],
-  ['max_5fstring_5flen',['MAX_STRING_LEN',['../_utils_8h.html#a4fa9aad0e9c7cc2e344b679cdbb2b67d',1,'Utils.h']]]
+  ['lightvao',['lightVAO',['../main_8h.html#a5c518da7ccac992646ba4d74225c6d17',1,'main.h']]],
+  ['lit_5ffragment_5fshader',['LIT_FRAGMENT_SHADER',['../main_8cpp.html#ac55f0adec52d6796486a317b8ee235ac',1,'main.cpp']]],
+  ['lit_5fvertex_5fshader',['LIT_VERTEX_SHADER',['../main_8cpp.html#a0036fe3d2ef31361f3ed2f54b862874d',1,'main.cpp']]],
+  ['loadshaderfromdisk',['LoadShaderFromDisk',['../class_utils.html#a74d078eb4722f5ac705b1ffb010e10d4',1,'Utils']]],
+  ['loadtexture',['LoadTexture',['../class_x_r_mirror.html#aee8cb008c3732293fb45ef056a4f1fc6',1,'XRMirror']]]
 ];

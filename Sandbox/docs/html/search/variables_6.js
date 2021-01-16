@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xrcurrentsessionstate',['xrCurrentSessionState',['../main_8h.html#a28518e935c0ff9e4c730e57d48c60c0a',1,'main.h']]]
+  ['scurrentpath',['sCurrentPath',['../main_8h.html#ab08061433add74e5b598f52b7f0cdacd',1,'main.h']]]
 ];

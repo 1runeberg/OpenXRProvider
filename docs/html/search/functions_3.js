@@ -8,6 +8,7 @@ var searchData=
   ['getdepthhandling',['GetDepthHandling',['../class_open_x_r_provider_1_1_x_r_render_manager.html#af9c80d37753ba2ae24fe2f1aca91ebd0',1,'OpenXRProvider::XRRenderManager']]],
   ['getenabledextensionnames',['GetEnabledExtensionNames',['../class_open_x_r_provider_1_1_x_r_provider.html#a036e87ad498dc8e9b556dbba3499bf9a',1,'OpenXRProvider::XRProvider']]],
   ['getextensionname',['GetExtensionName',['../class_open_x_r_provider_1_1_x_r_base_ext.html#af23385b0dc226b0c4533a796ddc37352',1,'OpenXRProvider::XRBaseExt::GetExtensionName()'],['../class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#a7560c4d28687a01f8b7ef80107d09b20',1,'OpenXRProvider::XRExtVisibilityMask::GetExtensionName()']]],
+  ['geteyeprojection',['GetEyeProjection',['../class_open_x_r_provider_1_1_x_r_render_manager.html#ac0960870b34b29fe479feb4ae389abdf',1,'OpenXRProvider::XRRenderManager']]],
   ['getgraphicsapi',['GetGraphicsAPI',['../class_open_x_r_provider_1_1_x_r_provider.html#aa88f602edaeecefe0d3c1e5072a5f4fc',1,'OpenXRProvider::XRProvider::GetGraphicsAPI()'],['../class_open_x_r_provider_1_1_x_r_render_manager.html#a7484db5238c64c870c189c8db3403b83',1,'OpenXRProvider::XRRenderManager::GetGraphicsAPI()']]],
   ['getgraphicsbinding',['GetGraphicsBinding',['../class_open_x_r_provider_1_1_x_r_graphics_a_p_i.html#a2c474282e17bf45b87bae7e0c95efa57',1,'OpenXRProvider::XRGraphicsAPI']]],
   ['gethmdpose',['GetHMDPose',['../class_open_x_r_provider_1_1_x_r_render_manager.html#a02a943efc18f105316b86a669d20ef2e',1,'OpenXRProvider::XRRenderManager']]],

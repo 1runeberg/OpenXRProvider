@@ -113,6 +113,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7484db5238c64c870c189c8db3403b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abcef1310df0483107fbbb00dd41ff546"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#abcef1310df0483107fbbb00dd41ff546">GetCurrentIPD</a> ()</td></tr>
 <tr class="separator:abcef1310df0483107fbbb00dd41ff546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0960870b34b29fe479feb4ae389abdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#ac0960870b34b29fe479feb4ae389abdf">GetEyeProjection</a> (<a class="el" href="namespace_open_x_r_provider.html#a8aa379869e30772896e6c468eb54f155">EXREye</a> eEye, std::vector&lt; float &gt; *mProjectionMatrix, bool bInvert=false)</td></tr>
+<tr class="separator:ac0960870b34b29fe479feb4ae389abdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02a943efc18f105316b86a669d20ef2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_open_x_r_provider_1_1_x_r_pose.html">XRPose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#a02a943efc18f105316b86a669d20ef2e">GetHMDPose</a> ()</td></tr>
 <tr class="separator:a02a943efc18f105316b86a669d20ef2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6289267e9bf20f6e4d65e4051dd9944"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_open_x_r_provider_1_1_x_r_h_m_d_state.html">XRHMDState</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#af6289267e9bf20f6e4d65e4051dd9944">GetHMDState</a> ()</td></tr>
@@ -403,6 +405,48 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Getter for depth handling indicator </p><dl class="section return"><dt>Returns</dt><dd>If depth textures are also generated/handled </dd></dl>
+
+</div>
+</div>
+<a id="ac0960870b34b29fe479feb4ae389abdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0960870b34b29fe479feb4ae389abdf">&#9670;&nbsp;</a></span>GetEyeProjection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void OpenXRProvider::XRRenderManager::GetEyeProjection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_open_x_r_provider.html#a8aa379869e30772896e6c468eb54f155">EXREye</a>&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; float &gt; *&#160;</td>
+          <td class="paramname"><em>mProjectionMatrix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bInvert</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the projection matrix for the given eye </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>Eye </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bInvert</td><td>(Optional: false) Whether to invert the matrix or not, set to true for OpenGL </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">mProjectionMatrix</td><td>The projection matrix to write to </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

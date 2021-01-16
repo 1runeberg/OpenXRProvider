@@ -41,6 +41,13 @@
 // OpenGL includes
 #include <glad/glad.h>
 
+// Third party includes
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/quaternion.hpp>
+#include <stb/stb_image.h>
+
 class Utils
 {
   public:

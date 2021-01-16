@@ -91,6 +91,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2406d486889b31a1854d7d276a9e71f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a966faccfee88f1f4ca2b8cfc881658c0"><td class="memItemLeft" align="right" valign="top">GLFWwindow *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_r_mirror.html#a966faccfee88f1f4ca2b8cfc881658c0">GetWindow</a> ()</td></tr>
 <tr class="separator:a966faccfee88f1f4ca2b8cfc881658c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee8cb008c3732293fb45ef056a4f1fc6"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_r_mirror.html#aee8cb008c3732293fb45ef056a4f1fc6">LoadTexture</a> (const wchar_t *pTextureFile, GLuint nShader, const char *pSamplerParam, GLint nMinFilter=GL_LINEAR, GLint nMagnitudeFilter=GL_NEAREST, GLint nWrapS=GL_REPEAT, GLint nWrapT=GL_REPEAT)</td></tr>
+<tr class="separator:aee8cb008c3732293fb45ef056a4f1fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -193,7 +195,78 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>The current GLFW desktop window (XR Mirror) </dd></dl>
+<p>Getter for the GLFW window </p><dl class="section return"><dt>Returns</dt><dd>The current GLFW desktop window (XR Mirror) </dd></dl>
+
+</div>
+</div>
+<a id="aee8cb008c3732293fb45ef056a4f1fc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee8cb008c3732293fb45ef056a4f1fc6">&#9670;&nbsp;</a></span>LoadTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int XRMirror::LoadTexture </td>
+          <td>(</td>
+          <td class="paramtype">const wchar_t *&#160;</td>
+          <td class="paramname"><em>pTextureFile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLuint&#160;</td>
+          <td class="paramname"><em>nShader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pSamplerParam</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLint&#160;</td>
+          <td class="paramname"><em>nMinFilter</em> = <code>GL_LINEAR</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLint&#160;</td>
+          <td class="paramname"><em>nMagnitudeFilter</em> = <code>GL_NEAREST</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLint&#160;</td>
+          <td class="paramname"><em>nWrapS</em> = <code>GL_REPEAT</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GLint&#160;</td>
+          <td class="paramname"><em>nWrapT</em> = <code>GL_REPEAT</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Load a texture file from disk </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pTextureFile</td><td>The absolute file to the texture on disk </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nShader</td><td>The program id for the shader </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSamplerParam</td><td>The texture sampler2d parameter name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nMinFilter</td><td>(optional: GL_LINEAR) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nMagnitudeFilter</td><td>(optional: GL_NEAREST) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nWrapS</td><td>(optional: GL_REPEAT) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nWrapT</td><td>(optional: GL_REPEAT) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>unsigned int The texture id of the loaded texture </dd></dl>
 
 </div>
 </div>

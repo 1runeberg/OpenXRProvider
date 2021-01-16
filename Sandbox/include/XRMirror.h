@@ -23,6 +23,7 @@
 
 #pragma once
 
+#include <map>
 #include <Utils.h>
 
 // OpenGL includes
@@ -31,6 +32,7 @@
 // Windowing includes
 #include <glfw3.h>
 
+#include <XRRenderManager.h>
 
 class XRMirror
 {
@@ -47,11 +49,29 @@ class XRMirror
 	/// Class Destructor
 	~XRMirror();
 
-	// Getter for the GLFW window
+	/// Getter for the GLFW window
 	/// @return				The current GLFW desktop window (XR Mirror)
-	GLFWwindow *GetWindow() { return m_pXRMirror; }
+	GLFWwindow* GetWindow() { return m_pXRMirror; }
 
-  private:
+	/// Load a texture file from disk
+	/// @param[in]	pTextureFile		The absolute file to the texture on disk
+	/// @param[in]	nShader				The program id for the shader
+	/// @param[in]	pSamplerParam		The texture sampler2d parameter name
+	/// @param[in]	nMinFilter			(optional: GL_LINEAR)
+	/// @param[in]	nMagnitudeFilter	(optional: GL_NEAREST)
+	/// @param[in]	nWrapS				(optional: GL_REPEAT)
+	/// @param[in]	nWrapT				(optional: GL_REPEAT)
+	/// @return		unsigned int		The texture id of the loaded texture
+	unsigned int LoadTexture(
+		const wchar_t* pTextureFile, 
+		GLuint nShader,
+		const char* pSamplerParam,
+		GLint nMinFilter = GL_LINEAR,
+		GLint nMagnitudeFilter = GL_NEAREST,
+		GLint nWrapS = GL_REPEAT,
+		GLint nWrapT = GL_REPEAT);
+
+private:
 	// ** MEMBER VARIABLES (PRIVATE) **/
 
 	/// Pointer to the helper utilities log (logger lives here)
@@ -59,4 +79,5 @@ class XRMirror
 
 	/// Pointer to the GLFW desktop window (XR Mirror)
 	GLFWwindow *m_pXRMirror;
+
 };

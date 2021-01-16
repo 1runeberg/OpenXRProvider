@@ -28,6 +28,8 @@ bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_render_manager_af9c80d3775
 \item 
 float \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_render_manager_abcef1310df0483107fbbb00dd41ff546}{Get\+Current\+I\+PD}} ()
 \item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_render_manager_ac0960870b34b29fe479feb4ae389abdf}{Get\+Eye\+Projection}} (\mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}} e\+Eye, std\+::vector$<$ float $>$ $\ast$m\+Projection\+Matrix, bool b\+Invert=false)
+\item 
 \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_pose}{X\+R\+Pose}} \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_render_manager_a02a943efc18f105316b86a669d20ef2e}{Get\+H\+M\+D\+Pose}} ()
 \item 
 \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_h_m_d_state}{X\+R\+H\+M\+D\+State}} $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_render_manager_af6289267e9bf20f6e4d65e4051dd9944}{Get\+H\+M\+D\+State}} ()
@@ -187,6 +189,21 @@ The user\textquotesingle{}s I\+PD
 Getter for depth handling indicator \begin{DoxyReturn}{Returns}
 If depth textures are also generated/handled 
 \end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_render_manager_ac0960870b34b29fe479feb4ae389abdf}\label{class_open_x_r_provider_1_1_x_r_render_manager_ac0960870b34b29fe479feb4ae389abdf}} 
+\index{OpenXRProvider::XRRenderManager@{OpenXRProvider::XRRenderManager}!GetEyeProjection@{GetEyeProjection}}
+\index{GetEyeProjection@{GetEyeProjection}!OpenXRProvider::XRRenderManager@{OpenXRProvider::XRRenderManager}}
+\subsubsection{\texorpdfstring{GetEyeProjection()}{GetEyeProjection()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager\+::\+Get\+Eye\+Projection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}}}]{e\+Eye,  }\item[{std\+::vector$<$ float $>$ $\ast$}]{m\+Projection\+Matrix,  }\item[{bool}]{b\+Invert = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Get the projection matrix for the given eye 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Eye \\
+\hline
+\mbox{\texttt{ in}}  & {\em b\+Invert} & (Optional\+: false) Whether to invert the matrix or not, set to true for Open\+GL \\
+\hline
+\mbox{\texttt{ out}}  & {\em m\+Projection\+Matrix} & The projection matrix to write to \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_render_manager_a7484db5238c64c870c189c8db3403b83}\label{class_open_x_r_provider_1_1_x_r_render_manager_a7484db5238c64c870c189c8db3403b83}} 
 \index{OpenXRProvider::XRRenderManager@{OpenXRProvider::XRRenderManager}!GetGraphicsAPI@{GetGraphicsAPI}}
 \index{GetGraphicsAPI@{GetGraphicsAPI}!OpenXRProvider::XRRenderManager@{OpenXRProvider::XRRenderManager}}
