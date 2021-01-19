@@ -211,9 +211,12 @@ namespace OpenXRProvider
 		// Add supported extension - Visibility Mask
 		for	each( void *xrExtension in m_xrProvider->GetXREnabledExtensions() )
 			{
-				m_pXRVisibilityMask = static_cast< XRExtVisibilityMask * >( xrExtension );
-				if ( m_pXRVisibilityMask )
+				XRBaseExt *xrInstanceExtension = static_cast< XRBaseExt * >( xrExtension );
+
+				if ( strcmp( xrInstanceExtension->GetExtensionName(), XR_KHR_VISIBILITY_MASK_EXTENSION_NAME ) == 0 )
 				{
+					m_pXRVisibilityMask = static_cast< XRExtVisibilityMask * >( xrExtension );
+
 					m_pXRVisibilityMask->m_xrInstance = m_xrProvider->GetXRInstance();
 					m_pXRVisibilityMask->m_xrSession = m_xrProvider->GetXRSession();
 					break;

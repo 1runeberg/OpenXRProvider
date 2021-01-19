@@ -106,10 +106,10 @@ int main()
 	//     using the render information provided here
 
 	OpenXRProvider::XRRenderInfo xrRenderInfo(
-		{GL_SRGB8},		// Request texture formats here in order of preference.
-						// These are uint64_t nums that's defined by the graphics API
-						// (e.g. GL_RGBA16, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, etc)
-						// Otherwise, put 0 in the array to let the runtime decide the format
+		{ GL_SRGB8_ALPHA8 },	// Request texture formats here in order of preference.
+								// These are uint64_t nums that's defined by the graphics API
+								// (e.g. GL_RGBA16, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, etc)
+								// Otherwise, put 0 in the array to let the runtime decide the format
 
 		{0},			// Request depth texture formats here in order of preference.
 						// These are uint64_t nums that's defined by the graphics API
