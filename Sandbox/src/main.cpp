@@ -266,6 +266,9 @@ int AppSetup()
 	pXRMirror = new XRMirror( nScreenWidth, nScreenHeight, APP_PROJECT_NAME, pAppLogFile );
 	glfwMakeContextCurrent( pXRMirror->GetWindow() );
 
+	// Enable vsync
+	glfwSwapInterval(0);
+	
 	return 0;
 }
 
