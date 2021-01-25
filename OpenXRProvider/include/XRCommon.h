@@ -53,9 +53,16 @@ namespace OpenXRProvider
 {
 	//** MACRO DEFINITIONS */
 
-	/// Gets the string value of an enum
-	#define ENUM_STR( inEnum ) EnumToString( #inEnum );
-	inline const char *EnumToString( const char *enumStr ) { return enumStr; }
+	/// Gets the string value of an enum (as per sample code in openxr_reflection.h)
+	#define XR_ENUM_STRINGIFY( sEnum, val )	case sEnum: return #sEnum;
+	#define XR_ENUM_TYPE_STRINGIFY( xrEnumType ) constexpr const char* XrEnumToString( xrEnumType eNum ) \
+	{																		  						     \
+		switch ( eNum ) { XR_LIST_ENUM_##xrEnumType( XR_ENUM_STRINGIFY )  		   					     \
+		default : return "Unknown Enum. Define in openxr_reflection.h";	}				 			     \
+	}																							
+
+	XR_ENUM_TYPE_STRINGIFY( XrResult );
+	XR_ENUM_TYPE_STRINGIFY( XrSessionState );
 
 	/// Execute a call to the OpenXR api and evaluate the result, will log success and fail and throw an exception if request
 	#define XR_CALL( xrCall, xrLogger, bThrow ) CheckXrResult( xrCall, xrLogger, bThrow, #xrCall, __FILE__, __LINE__ );
@@ -69,7 +76,7 @@ namespace OpenXRProvider
 	{
 		if ( XR_UNQUALIFIED_SUCCESS( xrCall ) )
 		{
-			const char *xrEnumStr = ENUM_STR( xrResult );
+			const char *xrEnumStr = XrEnumToString( xrResult );
 			std::string eMessage = "Error on OpenXR call ";
 			if ( xrCall )
 				eMessage.append( xrCall );
@@ -98,7 +105,7 @@ namespace OpenXRProvider
 	{
 		if ( XR_UNQUALIFIED_SUCCESS( xrCall ) )
 		{
-			const char *xrEnumStr = ENUM_STR( xrResult );
+			const char *xrEnumStr = XrEnumToString( xrResult );
 			std::string eMessage = "Error on OpenXR call ";
 			if ( xrCall )
 				eMessage.append( xrCall );
@@ -115,92 +122,34 @@ namespace OpenXRProvider
 	/// Tracking space (e.g. roomscale, seated)
 	enum EXRTrackingSpace
 	{
-		ROOMSCALE = 0,
-		SEATED = 1
+		TRACKING_ROOMSCALE = 0,
+		TRACKING_SEATED = 1
 	};
 
 	/// Eye
 	enum EXREye
 	{
-		LEFT = 0,
-		RIGHT = 1
-	};
-
-	/// The type of OpenXR event raised by the currently active OpenXR runtime
-	enum EXREventType
-	{
-		ALL = 0,
-		SESSION_STATE_CHANGED = 1,
-		REFERENCE_SPACE_CHANGE_PENDING = 2,
-		INTERACTION_PROFILE_CHANGED = 3,
-		INSTANCE_LOSS_PENDING = 4,
-		EVENTS_LOST = 5
-	};
-
-	/// The data payload of an OpenXR event
-	enum EXREventData
-	{
-		EVENT_DATA_INVALID = 0,
-		SESSION_STATE_IDLE = 1,
-		SESSION_STATE_READY = 2,
-		SESSION_STATE_SYNCHRONIZED = 3,
-		SESSION_STATE_VISIBLE = 4,
-		SESSION_STATE_FOCUSED = 5,
-		SESSION_STATE_STOPPING = 6,
-		SESSION_STATE_LOSS_PENDING = 7,
-		SESSION_STATE_EXITING = 8
+		EYE_LEFT = 0,
+		EYE_RIGHT = 1
 	};
 
 	/// Supported extensions by the OpenXR Provider library (excluding Graphics API extensions)
-	enum EXRExtension
+	enum EXRInstanceExtension
 	{
-		EXTENSION_VISIBILITY_MASK = 0
+		EXT_INSTANCE_VISIBILITY_MASK = 0,
+		EXT_INSTANCE_HAND_TRACKING = 1
 	};
 
 
 	//** STRUCTS */
 
-	/// A vector2 float
-	struct XRVector2
-	{
-		float x, y;
-	};
-
-	/// A vector3 float
-	struct XRVector3
-	{
-		float x, y, z;
-	};
-
-	/// Quaternion
-	struct XRQuat
-	{
-		float x, y, z, w;
-	};
-
-	/// Field of view in angles (float)
-	struct XRFoV
-	{
-		float LeftAngle;
-		float RightAngle;
-		float UpAngle;
-		float DownAngle;
-	};
-
-	/// Pose (orientation in 3d space and orientation in quaternion)
-	struct XRPose
-	{
-		XRVector3 Position;
-		XRQuat Orientation;
-	};
-
 	/// Eye State - contains pose, field of view info for an eye
 	struct XREyeState
 	{
-		XRPose Pose;
-		XRFoV FoV;
+		XrPosef Pose;
+		XrFovf	FoV;
 	};
-
+	
 	// HMD State - contains info for each eye such as fov, current pose and whether or not tracking is active
 	struct XRHMDState
 	{
@@ -213,10 +162,10 @@ namespace OpenXRProvider
 	//** CUSTOM TYPES */
 
 	/// Event callback function used for registering functions to the Event Handler
-	typedef void ( *Callback_XREvent )( const EXREventType, const EXREventData );
+	typedef void ( *Callback_XREvent )( XrEventDataBuffer );
 	struct XRCallback
 	{
-		EXREventType type;
+		XrStructureType type;
 		Callback_XREvent callback;
 	};
 }

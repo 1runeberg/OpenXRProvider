@@ -24,6 +24,8 @@ void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a1eb2fce148d5ab2d
 \begin{DoxyCompactList}\small\item\em Poll for Open\+XR events so app can act on it (e.\+g. Session state changes, visibility mask changes, etc) \end{DoxyCompactList}\item 
 std\+::vector$<$ const char $\ast$ $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a036e87ad498dc8e9b556dbba3499bf9a}{Get\+Enabled\+Extension\+Names}} () const
 \item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking}{X\+R\+Ext\+Hand\+Tracking}} $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a3ed1b75d970694318105a44699768457}{Get\+Ext\+Hand\+Tracking}} () const
+\item 
 \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i}{X\+R\+Graphics\+A\+PI}} $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_aa88f602edaeecefe0d3c1e5072a5f4fc}{Get\+Graphics\+A\+PI}} () const
 \item 
 bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a20c6d026a126738127ed300039ff72e1}{Get\+Is\+Depth\+Supported}} () const
@@ -47,19 +49,21 @@ Xr\+System\+Id \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a8b2a2d
 Xr\+System\+Properties \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a6a1d17df601888feeb5481fc1d49bae2}{Get\+X\+R\+System\+Properties}} () const
 \item 
 void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a96ffa9e4f37cc4967cf41fce027e5234}{Set\+X\+R\+Session}} (Xr\+Session xr\+Session)
+\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a5599fa1da5f74f40e02fdf2a8d3f7a55}{X\+R\+Begin\+Session}} ()
+\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a972be4b6da3dbc7c2db5e5d98c815401}{X\+R\+End\+Session}} ()
 \end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a0d19487d4508a89e3554a9fa328b4a05}{Open\+X\+R\+Init}} (bool b\+Enable\+Depth\+Texture\+Support=false)
 \item 
-void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a58c1f88d3c9f28e99ac784767089357c}{Enable\+Extensions}} (std\+::vector$<$ const char $\ast$ $>$ \&p\+X\+R\+Extensions, bool b\+Enable\+Depth\+Texture\+Support)
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_acd79e785e586d9abcb47977e340a2739}{Enable\+Instance\+Extensions}} (std\+::vector$<$ const char $\ast$ $>$ \&p\+X\+R\+Extensions, bool b\+Enable\+Depth\+Texture\+Support)
 \item 
-void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a12702a0d244674e54443ccf5053a3efb}{Execute\+Callbacks}} (const \mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3}{E\+X\+R\+Event\+Type}} e\+X\+R\+Event\+Type, const \mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853d}{E\+X\+R\+Event\+Data}} e\+X\+R\+Event\+Data)
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a3d9a3ea0c9f8830d17f87fa10424690c}{Execute\+Callbacks}} (Xr\+Event\+Data\+Buffer xr\+Event)
 \item 
 Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a1bd2735b39ea943cd9e436bb0650bc43}{Load\+X\+R\+System}} ()
-\item 
-void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_ad8bb9f4fcd7a16440f89d3ad0b54b17b}{Process\+Event\+\_\+\+Session\+State\+Changed}} (const Xr\+Session\+State xr\+Session\+State)
 \item 
 void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a381bae7b1021638036878cad1c0ea3c2}{World\+Init}} (\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_graphics_info}{X\+R\+App\+Graphics\+Info}} $\ast$p\+X\+R\+App\+Graphics\+Info)
 \end{DoxyCompactItemize}
@@ -109,7 +113,9 @@ Xr\+System\+Properties \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider
 Xr\+Space \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a5c3ba17df358b63e82c13ae09700f943}{m\+\_\+xr\+View\+Space}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
 \begin{DoxyCompactList}\small\item\em The headset (H\+MD) view space. \end{DoxyCompactList}\item 
 Xr\+Time \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a5606d0dca9ff04f8936eeb77d9a8cea2}{m\+\_\+xr\+Predicted\+Display\+Time}} = \{ 0 \}
-\begin{DoxyCompactList}\small\item\em The current predicted display time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The current predicted display time. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking}{X\+R\+Ext\+Hand\+Tracking}} $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider_a2e519f21d14fda1629859ad3e490d8fa}{m\+\_\+p\+X\+R\+Hand\+Tracking}} = nullptr
+\end{DoxyCompactItemize}
 
 
 \subsection{Constructor \& Destructor Documentation}
@@ -139,22 +145,22 @@ Class Destructor.
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_a58c1f88d3c9f28e99ac784767089357c}\label{class_open_x_r_provider_1_1_x_r_provider_a58c1f88d3c9f28e99ac784767089357c}} 
-\index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!EnableExtensions@{EnableExtensions}}
-\index{EnableExtensions@{EnableExtensions}!OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}}
-\subsubsection{\texorpdfstring{EnableExtensions()}{EnableExtensions()}}
-{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Provider\+::\+Enable\+Extensions (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const char $\ast$ $>$ \&}]{p\+X\+R\+Extensions,  }\item[{bool}]{b\+Enable\+Depth\+Texture\+Support }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_acd79e785e586d9abcb47977e340a2739}\label{class_open_x_r_provider_1_1_x_r_provider_acd79e785e586d9abcb47977e340a2739}} 
+\index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!EnableInstanceExtensions@{EnableInstanceExtensions}}
+\index{EnableInstanceExtensions@{EnableInstanceExtensions}!OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}}
+\subsubsection{\texorpdfstring{EnableInstanceExtensions()}{EnableInstanceExtensions()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Provider\+::\+Enable\+Instance\+Extensions (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const char $\ast$ $>$ \&}]{p\+X\+R\+Extensions,  }\item[{bool}]{b\+Enable\+Depth\+Texture\+Support }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 Enable provided extensions if supported by the currently active Open\+XR runtime 
 \begin{DoxyParams}[1]{Parameters}
 \mbox{\texttt{ in}}  & {\em p\+X\+R\+Extensions} & List of extensions names to enable if the active Open\+XR runtime supports it \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_a12702a0d244674e54443ccf5053a3efb}\label{class_open_x_r_provider_1_1_x_r_provider_a12702a0d244674e54443ccf5053a3efb}} 
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_a3d9a3ea0c9f8830d17f87fa10424690c}\label{class_open_x_r_provider_1_1_x_r_provider_a3d9a3ea0c9f8830d17f87fa10424690c}} 
 \index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!ExecuteCallbacks@{ExecuteCallbacks}}
 \index{ExecuteCallbacks@{ExecuteCallbacks}!OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}}
 \subsubsection{\texorpdfstring{ExecuteCallbacks()}{ExecuteCallbacks()}}
-{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Provider\+::\+Execute\+Callbacks (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3}{E\+X\+R\+Event\+Type}}}]{e\+X\+R\+Event\+Type,  }\item[{const \mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853d}{E\+X\+R\+Event\+Data}}}]{e\+X\+R\+Event\+Data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Provider\+::\+Execute\+Callbacks (\begin{DoxyParamCaption}\item[{Xr\+Event\+Data\+Buffer}]{xr\+Event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 Execute all registered callback functions. Used after an Open\+XR poll and an event state has been triggered by the runtime 
 \begin{DoxyParams}[1]{Parameters}
@@ -171,6 +177,15 @@ Execute all registered callback functions. Used after an Open\+XR poll and an ev
 
 Getter for the array of extensions names that are active in the current Open\+XR session \begin{DoxyReturn}{Returns}
 Array of extensions names that are active in the current Open\+XR session 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_a3ed1b75d970694318105a44699768457}\label{class_open_x_r_provider_1_1_x_r_provider_a3ed1b75d970694318105a44699768457}} 
+\index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!GetExtHandTracking@{GetExtHandTracking}}
+\index{GetExtHandTracking@{GetExtHandTracking}!OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}}
+\subsubsection{\texorpdfstring{GetExtHandTracking()}{GetExtHandTracking()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking}{X\+R\+Ext\+Hand\+Tracking}}$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Provider\+::\+Get\+Ext\+Hand\+Tracking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for hand tracking extension object \begin{DoxyReturn}{Returns}
+Pointer to the hand tracking extension object 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_aa88f602edaeecefe0d3c1e5072a5f4fc}\label{class_open_x_r_provider_1_1_x_r_provider_aa88f602edaeecefe0d3c1e5072a5f4fc}} 
 \index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!GetGraphicsAPI@{GetGraphicsAPI}}
@@ -296,17 +311,6 @@ Initialize Open\+XR -\/ establish a connection to an active runtime. (1) Set app
 
 Poll for Open\+XR events so app can act on it (e.\+g. Session state changes, visibility mask changes, etc) 
 
-\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_ad8bb9f4fcd7a16440f89d3ad0b54b17b}\label{class_open_x_r_provider_1_1_x_r_provider_ad8bb9f4fcd7a16440f89d3ad0b54b17b}} 
-\index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!ProcessEvent\_SessionStateChanged@{ProcessEvent\_SessionStateChanged}}
-\index{ProcessEvent\_SessionStateChanged@{ProcessEvent\_SessionStateChanged}!OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}}
-\subsubsection{\texorpdfstring{ProcessEvent\_SessionStateChanged()}{ProcessEvent\_SessionStateChanged()}}
-{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Provider\+::\+Process\+Event\+\_\+\+Session\+State\+Changed (\begin{DoxyParamCaption}\item[{const Xr\+Session\+State}]{xr\+Session\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
-
-Actions the library needs to do during a session state change 
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em xr\+Session\+State} & The new session state \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_a96ffa9e4f37cc4967cf41fce027e5234}\label{class_open_x_r_provider_1_1_x_r_provider_a96ffa9e4f37cc4967cf41fce027e5234}} 
 \index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!SetXRSession@{SetXRSession}}
 \index{SetXRSession@{SetXRSession}!OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}}
@@ -329,6 +333,24 @@ Initialize the world -\/ setup the space and time the app will live in (1) Creat
 \mbox{\texttt{ in}}  & {\em p\+X\+R\+App\+Graphics\+Info} & Pointer to the application\textquotesingle{}s graphics api (e.\+g. Open\+GL, DirectX, Vulkan) dependent graphics info \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_a5599fa1da5f74f40e02fdf2a8d3f7a55}\label{class_open_x_r_provider_1_1_x_r_provider_a5599fa1da5f74f40e02fdf2a8d3f7a55}} 
+\index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!XRBeginSession@{XRBeginSession}}
+\index{XRBeginSession@{XRBeginSession}!OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}}
+\subsubsection{\texorpdfstring{XRBeginSession()}{XRBeginSession()}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Provider\+::\+X\+R\+Begin\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Call Open\+XR xr\+Begin\+Session to start app frame synchronization \begin{DoxyReturn}{Returns}
+Xr\+Result The result of the xr\+End\+Session call 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_a972be4b6da3dbc7c2db5e5d98c815401}\label{class_open_x_r_provider_1_1_x_r_provider_a972be4b6da3dbc7c2db5e5d98c815401}} 
+\index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!XREndSession@{XREndSession}}
+\index{XREndSession@{XREndSession}!OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}}
+\subsubsection{\texorpdfstring{XREndSession()}{XREndSession()}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Provider\+::\+X\+R\+End\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Call Open\+XR xr\+End\+Session to allow runtime to safely transition back to idle \begin{DoxyReturn}{Returns}
+Xr\+Result The result of the xr\+End\+Session call 
+\end{DoxyReturn}
 
 
 \subsection{Member Data Documentation}
@@ -391,6 +413,12 @@ Pointer to the active Event Handler that broadcasts events to listeners via thei
 
 
 Pointer to the graphics api object that handles graphics api (e.\+g. Open\+GL, Vulkan, etc) specific rendering state and functions. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_a2e519f21d14fda1629859ad3e490d8fa}\label{class_open_x_r_provider_1_1_x_r_provider_a2e519f21d14fda1629859ad3e490d8fa}} 
+\index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!m\_pXRHandTracking@{m\_pXRHandTracking}}
+\index{m\_pXRHandTracking@{m\_pXRHandTracking}!OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}}
+\subsubsection{\texorpdfstring{m\_pXRHandTracking}{m\_pXRHandTracking}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking}{X\+R\+Ext\+Hand\+Tracking}}$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Provider\+::m\+\_\+p\+X\+R\+Hand\+Tracking = nullptr\hspace{0.3cm}{\ttfamily [private]}}
 
 \mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_provider_a688536257f6d9329e2d431b1249a708a}\label{class_open_x_r_provider_1_1_x_r_provider_a688536257f6d9329e2d431b1249a708a}} 
 \index{OpenXRProvider::XRProvider@{OpenXRProvider::XRProvider}!m\_pXRRenderManager@{m\_pXRRenderManager}}

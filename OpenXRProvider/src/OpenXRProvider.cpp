@@ -32,7 +32,7 @@ namespace OpenXRProvider
 		, m_nAppVersion( xrAppInfo.AppVersion )
 		, m_sEngineName( xrAppInfo.EngineName )
 		, m_nEngineVersion( xrAppInfo.EngineVersion )
-		, m_xrReferenceSpaceType( xrAppInfo.TrackingSpace == OpenXRProvider::ROOMSCALE ? XR_REFERENCE_SPACE_TYPE_STAGE : XR_REFERENCE_SPACE_TYPE_LOCAL )
+		, m_xrReferenceSpaceType( xrAppInfo.TrackingSpace == OpenXRProvider::TRACKING_ROOMSCALE ? XR_REFERENCE_SPACE_TYPE_STAGE : XR_REFERENCE_SPACE_TYPE_LOCAL )
 		, m_vAppRequestedExtensions( xrAppInfo.XRExtensions )
 	{
 		// Set Loggers
@@ -62,6 +62,18 @@ namespace OpenXRProvider
 
 	XRProvider::~XRProvider()
 	{
+		// Destroy hand tracker
+		if ( m_pXRHandTracking )
+			delete m_pXRHandTracking;
+
+		// Destroy graphics API extension
+		if ( m_pXRGraphicsAPI )
+			delete m_pXRGraphicsAPI;
+
+		// Destroy event handler
+		if ( m_pXREventHandler )
+			delete m_pXREventHandler;
+			
 		// Destroy OpenXR Reference Space
 		if ( m_xrSpace != XR_NULL_HANDLE )
 			m_xrLastCallResult = XR_CALL( xrDestroySpace( m_xrSpace ), m_pLogger, false );
@@ -73,12 +85,6 @@ namespace OpenXRProvider
 		// Destroy OpenXR Instance
 		if ( m_xrInstance != XR_NULL_HANDLE )
 			m_xrLastCallResult = XR_CALL( xrDestroyInstance( m_xrInstance ), m_pLogger, false );
-
-		if ( m_pXRGraphicsAPI )
-			delete m_pXRGraphicsAPI;
-
-		if ( m_pXREventHandler )
-			delete m_pXREventHandler;
 
 		spdlog::shutdown();
 	}
@@ -112,7 +118,7 @@ namespace OpenXRProvider
 		// (2) Check runtime's supported extensions and tag ones selected by the app to enable (e.g. Graphics type, Visibility Mask, Handtracking, etc)
 		// ========================================================================
 
-		EnableExtensions( m_vAppEnabledExtensions, bEnableDepthTextureSupport );
+		EnableInstanceExtensions( m_vAppEnabledExtensions, bEnableDepthTextureSupport );
 		uint32_t nNumEnxtesions = m_vAppEnabledExtensions.empty() ? 0 : ( uint32_t )m_vAppEnabledExtensions.size();
 
 		if ( nNumEnxtesions > 0 )
@@ -141,6 +147,7 @@ namespace OpenXRProvider
 		// (4) Get xr system (representing a collection of physical xr devices) from active OpenXR runtime
 		// ========================================================================
 		LoadXRSystem();
+
 	}
 
 	void XRProvider::WorldInit( XRAppGraphicsInfo *pXRAppGraphicsInfo )
@@ -167,7 +174,7 @@ namespace OpenXRProvider
 
 		if ( m_xrLastCallResult != XR_SUCCESS )
 		{
-			const char *xrEnumStr = ENUM_STR( m_xrLastCallResult );
+			const char *xrEnumStr = XrEnumToString( m_xrLastCallResult );
 			std::string eMessage = "Failed creating OpenXR Session with Error ";
 			eMessage.append( xrEnumStr );
 
@@ -190,6 +197,25 @@ namespace OpenXRProvider
 
 		m_xrLastCallResult = XR_CALL( xrCreateReferenceSpace( m_xrSession, &xrReferenceSpaceCreateInfo, &m_xrSpace ), m_pLogger, true );
 		m_pLogger->info( "XR Reference Space for this app successfully created (Handle {})", ( uint64_t )m_xrSpace );
+
+		// ========================================================================
+		// (3) Keep track of instance extensions that's not render or input based
+		// ========================================================================
+		for	each( void *xrExtension in GetXREnabledExtensions() )
+			{
+				XRBaseExt *xrInstanceExtension = static_cast< XRBaseExt * >( xrExtension );
+
+				// Hand tracking
+				if ( strcmp( xrInstanceExtension->GetExtensionName(), XR_EXT_HAND_TRACKING_EXTENSION_NAME ) == 0 )
+				{
+					// Set the extension member
+					m_pXRHandTracking = static_cast< XRExtHandTracking * >( xrExtension );
+
+					// Initialize extension
+					m_pXRHandTracking->Init( GetXRInstance(), GetXRSession() );
+					break;
+				}
+			}
 	}
 
 	XrResult XRProvider::LoadXRSystem()
@@ -217,7 +243,7 @@ namespace OpenXRProvider
 		return m_xrLastCallResult;
 	}
 
-	void XRProvider::EnableExtensions( std::vector< const char * > &vXRExtensions, bool bEnableDepthTextureSupport )
+	void XRProvider::EnableInstanceExtensions( std::vector< const char * > &vXRExtensions, bool bEnableDepthTextureSupport )
 	{
 		vXRExtensions.clear();
 
@@ -266,11 +292,16 @@ namespace OpenXRProvider
 				{
 					XRBaseExt *xrRequestedExtension = static_cast< XRBaseExt * >( m_vAppRequestedExtensions[ j ] );
 
+					//m_pLogger->info("Processing extension: {} is equal to {}", xrRequestedExtension->GetExtensionName(), &vExtensions[i].extensionName[0]);
+					
 					if ( strcmp( xrRequestedExtension->GetExtensionName(), &vExtensions[ i ].extensionName[ 0 ] ) == 0 )
 					{
 						// Add to the list of extensions that would be enabled when we create the openxr instance
 						vXRExtensions.push_back( xrRequestedExtension->GetExtensionName() );
+
+						xrRequestedExtension->IsActive( true );
 						m_vXRAppEnabledExtensions.push_back( m_vAppRequestedExtensions[ j ] );
+
 						m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
 
 						bEnable = true;
@@ -299,84 +330,44 @@ namespace OpenXRProvider
 		if ( xrEvent.type == XR_TYPE_EVENT_DATA_BUFFER )
 			return;
 
-		// Check what event we received
-		switch ( xrEvent.type )
-		{
-			case XR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED:
-			{
-				const XrEventDataSessionStateChanged &session_state_changed_event = *reinterpret_cast< XrEventDataSessionStateChanged * >( &xrEvent );
-
-				ProcessEvent_SessionStateChanged( session_state_changed_event.state );
-			}
-			break;
-
-			case XR_TYPE_EVENT_DATA_VISIBILITY_MASK_CHANGED_KHR:
-				m_pLogger->info( "EVENT: XR_TYPE_EVENT_DATA_VISIBILITY_MASK_CHANGED_KHR" );
-				break;
-
-			case XR_TYPE_EVENT_DATA_REFERENCE_SPACE_CHANGE_PENDING:
-				ExecuteCallbacks( OpenXRProvider::REFERENCE_SPACE_CHANGE_PENDING, OpenXRProvider::EVENT_DATA_INVALID );
-				break;
-			case XR_TYPE_EVENT_DATA_INTERACTION_PROFILE_CHANGED:
-				ExecuteCallbacks( OpenXRProvider::INTERACTION_PROFILE_CHANGED, OpenXRProvider::EVENT_DATA_INVALID );
-				break;
-			case XR_TYPE_EVENT_DATA_INSTANCE_LOSS_PENDING:
-				ExecuteCallbacks( OpenXRProvider::INSTANCE_LOSS_PENDING, OpenXRProvider::EVENT_DATA_INVALID );
-				break;
-			case XR_TYPE_EVENT_DATA_EVENTS_LOST:
-				ExecuteCallbacks( OpenXRProvider::EVENTS_LOST, OpenXRProvider::EVENT_DATA_INVALID );
-				break;
-		}
+		// Execute any callbacks registered for this event
+		ExecuteCallbacks( xrEvent );
 	}
 
-	void XRProvider::ExecuteCallbacks( const EXREventType eXREventType, const EXREventData xrEventData )
+	XrResult XRProvider::XRBeginSession()
+	{
+		if ( m_xrSession == XR_NULL_HANDLE )
+		{
+			m_xrLastCallResult = XR_ERROR_HANDLE_INVALID;
+			return m_xrLastCallResult;
+		}
+
+		XrSessionBeginInfo xrSessionBeginInfo { XR_TYPE_SESSION_BEGIN_INFO };
+		xrSessionBeginInfo.primaryViewConfigurationType = XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO;
+
+		m_xrLastCallResult = XR_CALL_SILENT( xrBeginSession( m_xrSession, &xrSessionBeginInfo ), m_pLogger );
+		return m_xrLastCallResult;
+	}
+
+	XrResult XRProvider::XREndSession() 
+	{
+		if ( m_xrSession == XR_NULL_HANDLE )
+		{
+			m_xrLastCallResult = XR_ERROR_HANDLE_INVALID;
+			return m_xrLastCallResult;
+		}
+
+		m_xrLastCallResult = XR_CALL_SILENT( xrEndSession( m_xrSession ), m_pLogger );
+		return m_xrLastCallResult;
+	}
+
+	void XRProvider::ExecuteCallbacks( XrEventDataBuffer xrEvent )
 	{
 		for each( XRCallback * xrCallback in m_pXREventHandler->GetXRCallbacks() )
 			{
-				if ( xrCallback->type == eXREventType || xrCallback->type == OpenXRProvider::ALL )
-					xrCallback->callback( eXREventType, xrEventData );
+				if ( xrCallback->type == xrEvent.type || xrCallback->type == XR_TYPE_EVENT_DATA_BUFFER )
+					xrCallback->callback( xrEvent );
 			}
-	}
-
-	void XRProvider::ProcessEvent_SessionStateChanged( const XrSessionState xrSessionState )
-	{
-		switch ( xrSessionState )
-		{
-			case XR_SESSION_STATE_UNKNOWN:
-				ExecuteCallbacks( OpenXRProvider::SESSION_STATE_CHANGED, OpenXRProvider::EVENT_DATA_INVALID );
-				break;
-
-			case XR_SESSION_STATE_IDLE:
-				ExecuteCallbacks( OpenXRProvider::SESSION_STATE_CHANGED, OpenXRProvider::SESSION_STATE_IDLE );
-				break;
-
-			case XR_SESSION_STATE_READY:
-				ExecuteCallbacks( OpenXRProvider::SESSION_STATE_CHANGED, OpenXRProvider::SESSION_STATE_READY );
-				break;
-
-			case XR_SESSION_STATE_SYNCHRONIZED:
-				ExecuteCallbacks( OpenXRProvider::SESSION_STATE_CHANGED, OpenXRProvider::SESSION_STATE_SYNCHRONIZED );
-				break;
-
-			case XR_SESSION_STATE_VISIBLE:
-				ExecuteCallbacks( OpenXRProvider::SESSION_STATE_CHANGED, OpenXRProvider::SESSION_STATE_VISIBLE );
-				break;
-
-			case XR_SESSION_STATE_FOCUSED:
-				ExecuteCallbacks( OpenXRProvider::SESSION_STATE_CHANGED, OpenXRProvider::SESSION_STATE_FOCUSED );
-				break;
-
-			case XR_SESSION_STATE_LOSS_PENDING:
-				ExecuteCallbacks( OpenXRProvider::SESSION_STATE_CHANGED, OpenXRProvider::SESSION_STATE_LOSS_PENDING );
-				break;
-
-			case XR_SESSION_STATE_EXITING:
-				ExecuteCallbacks( OpenXRProvider::SESSION_STATE_CHANGED, OpenXRProvider::SESSION_STATE_EXITING );
-				break;
-
-			default:
-				break;
-		}
 	}
 
 } // namespace OpenXRProvider

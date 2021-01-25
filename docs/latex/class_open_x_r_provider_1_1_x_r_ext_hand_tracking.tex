@@ -1,0 +1,273 @@
+\hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking}{}\section{Open\+X\+R\+Provider\+::X\+R\+Ext\+Hand\+Tracking Class Reference}
+\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking}\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+
+
+{\ttfamily \#include \char`\"{}X\+R\+Ext\+Hand\+Tracking.\+h\char`\"{}}
+
+
+
+Inheritance diagram for Open\+X\+R\+Provider\+::X\+R\+Ext\+Hand\+Tracking\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_open_x_r_provider_1_1_x_r_ext_hand_tracking__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Open\+X\+R\+Provider\+::X\+R\+Ext\+Hand\+Tracking\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_open_x_r_provider_1_1_x_r_ext_hand_tracking__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ae93fec1405449c8a6f6027f82d869d44}{X\+R\+Ext\+Hand\+Tracking}} (std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ p\+Logger)
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a3a23c2516160d65a98d3323d4bdb9959}{$\sim$\+X\+R\+Ext\+Hand\+Tracking}} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a8706a0fc581e47e3b15fd6b58c9d5266}{Get\+Extension\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Override from \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext}{X\+R\+Base\+Ext}} returning the official Open\+XR extension name that this object represents. \end{DoxyCompactList}\item 
+Xr\+Hand\+Joint\+Locations\+E\+XT $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_aaa8a634f50dd27d3ef1b3c85b558a6c1}{Get\+Hand\+Joint\+Locations}} (Xr\+Hand\+E\+XT e\+Hand)
+\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a6e48f57912a57ed5280dc3e939cc78c4}{Init}} (const Xr\+Instance xr\+Instance, Xr\+Session xr\+Session)
+\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a1bc1b8d8b5dc0d10003c5f93a9f0c041}{Locate\+Hand\+Joints}} (Xr\+Hand\+E\+XT e\+Hand, Xr\+Space xr\+Space, Xr\+Time xr\+Time)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a9df35717b70f43e434b1ea5260cacf9d}{b\+Precise}}
+\item 
+Xr\+Session \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ad70ffa469b47c4564a654b1437502c32}{m\+\_\+xr\+Session}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\begin{DoxyCompactList}\small\item\em The active Open\+XR Session. \end{DoxyCompactList}\item 
+Xr\+Instance \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a9b2aec405cd831212c9e971c27fc6b6a}{m\+\_\+xr\+Instance}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\begin{DoxyCompactList}\small\item\em The active Open\+XR Instance. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a3d5df4010b7cb00f02d99a5a5c6d942b}{b\+Is\+Hand\+Tracking\+Active\+\_\+\+Left}} = true
+\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ab55735a17be5e1105ecd2469db6c98f4}{b\+Is\+Hand\+Tracking\+Active\+\_\+\+Right}} = true
+\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ab3b404042d122b61a979e3aa7be9b35a}{b\+Get\+Hand\+Joint\+Velocities\+\_\+\+Left}} = false
+\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a60050ac72944124945273dd031f9c1b8}{b\+Get\+Hand\+Joint\+Velocities\+\_\+\+Right}} = false
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a3ca093c9b4e0583098c44f5af6ba91ea}{m\+\_\+xr\+Last\+Call\+Result}} = X\+R\+\_\+\+S\+U\+C\+C\+E\+SS
+\item 
+Xr\+Hand\+Joint\+Location\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a0132ecc3194aba8f802b61aabb2f85f0}{m\+\_\+\+X\+R\+Hand\+Joints\+Data\+\_\+\+Left}} \mbox{[}X\+R\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+C\+O\+U\+N\+T\+\_\+\+E\+XT\mbox{]}
+\item 
+Xr\+Hand\+Joint\+Location\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a264f64fc45e0b93b877b22313acfd3eb}{m\+\_\+\+X\+R\+Hand\+Joints\+Data\+\_\+\+Right}} \mbox{[}X\+R\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+C\+O\+U\+N\+T\+\_\+\+E\+XT\mbox{]}
+\item 
+Xr\+Hand\+Joint\+Velocity\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a1f213ff768ffa3fc790edc132ab39039}{m\+\_\+\+X\+R\+Hand\+Joint\+Velocities\+\_\+\+Left}} \mbox{[}X\+R\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+C\+O\+U\+N\+T\+\_\+\+E\+XT\mbox{]}
+\item 
+Xr\+Hand\+Joint\+Velocity\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a9cf1f1a23aaad6e2d6ab18adddc74534}{m\+\_\+\+X\+R\+Hand\+Joint\+Velocities\+\_\+\+Right}} \mbox{[}X\+R\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+C\+O\+U\+N\+T\+\_\+\+E\+XT\mbox{]}
+\item 
+Xr\+Hand\+Joint\+Velocities\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a059e491f76ecfcf17fd4987a3d83921c}{m\+\_\+xr\+Velocities\+\_\+\+Left}} \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+V\+E\+L\+O\+C\+I\+T\+I\+E\+S\+\_\+\+E\+XT \}
+\item 
+Xr\+Hand\+Joint\+Velocities\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_adce3da1f63b9cc8b78616b9c0746c1b1}{m\+\_\+xr\+Velocities\+\_\+\+Right}} \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+V\+E\+L\+O\+C\+I\+T\+I\+E\+S\+\_\+\+E\+XT \}
+\item 
+Xr\+Hand\+Joint\+Locations\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a7c2498356df6fa9eaca23457ccff5ed7}{m\+\_\+xr\+Locations\+\_\+\+Left}} \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+L\+O\+C\+A\+T\+I\+O\+N\+S\+\_\+\+E\+XT \}
+\item 
+Xr\+Hand\+Joint\+Locations\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a2cfb06358c45a4ba3212b999a15a06c2}{m\+\_\+xr\+Locations\+\_\+\+Right}} \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+L\+O\+C\+A\+T\+I\+O\+N\+S\+\_\+\+E\+XT \}
+\item 
+Xr\+Hand\+Tracker\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_abe141459915e99f8159b5cd403f06c4f}{m\+\_\+\+Hand\+Tracker\+\_\+\+Left}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\item 
+Xr\+Hand\+Tracker\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_af2ade7e894fea5037cf94376046c911f}{m\+\_\+\+Hand\+Tracker\+\_\+\+Right}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\item 
+P\+F\+N\+\_\+xr\+Locate\+Hand\+Joints\+E\+XT \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a823fb0d1b4db88a56f2151021d3f4e59}{xr\+Locate\+Hand\+Joints\+E\+XT}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ae93fec1405449c8a6f6027f82d869d44}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ae93fec1405449c8a6f6027f82d869d44}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!XRExtHandTracking@{XRExtHandTracking}}
+\index{XRExtHandTracking@{XRExtHandTracking}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{XRExtHandTracking()}{XRExtHandTracking()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::\+X\+R\+Ext\+Hand\+Tracking (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$}]{p\+Logger }\end{DoxyParamCaption})}
+
+Class Constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Logger} & Pointer to the logger object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a3a23c2516160d65a98d3323d4bdb9959}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a3a23c2516160d65a98d3323d4bdb9959}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!````~XRExtHandTracking@{$\sim$XRExtHandTracking}}
+\index{````~XRExtHandTracking@{$\sim$XRExtHandTracking}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{$\sim$XRExtHandTracking()}{~XRExtHandTracking()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::$\sim$\+X\+R\+Ext\+Hand\+Tracking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Class Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a8706a0fc581e47e3b15fd6b58c9d5266}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a8706a0fc581e47e3b15fd6b58c9d5266}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!GetExtensionName@{GetExtensionName}}
+\index{GetExtensionName@{GetExtensionName}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{GetExtensionName()}{GetExtensionName()}}
+{\footnotesize\ttfamily const char$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::\+Get\+Extension\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Override from \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext}{X\+R\+Base\+Ext}} returning the official Open\+XR extension name that this object represents. 
+
+
+
+Implements \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext_af23385b0dc226b0c4533a796ddc37352}{Open\+X\+R\+Provider\+::\+X\+R\+Base\+Ext}}.
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_aaa8a634f50dd27d3ef1b3c85b558a6c1}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_aaa8a634f50dd27d3ef1b3c85b558a6c1}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!GetHandJointLocations@{GetHandJointLocations}}
+\index{GetHandJointLocations@{GetHandJointLocations}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{GetHandJointLocations()}{GetHandJointLocations()}}
+{\footnotesize\ttfamily Xr\+Hand\+Joint\+Locations\+E\+XT$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::\+Get\+Hand\+Joint\+Locations (\begin{DoxyParamCaption}\item[{Xr\+Hand\+E\+XT}]{e\+Hand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a6e48f57912a57ed5280dc3e939cc78c4}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a6e48f57912a57ed5280dc3e939cc78c4}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!Init@{Init}}
+\index{Init@{Init}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::\+Init (\begin{DoxyParamCaption}\item[{const Xr\+Instance}]{xr\+Instance,  }\item[{Xr\+Session}]{xr\+Session }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a1bc1b8d8b5dc0d10003c5f93a9f0c041}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a1bc1b8d8b5dc0d10003c5f93a9f0c041}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!LocateHandJoints@{LocateHandJoints}}
+\index{LocateHandJoints@{LocateHandJoints}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{LocateHandJoints()}{LocateHandJoints()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::\+Locate\+Hand\+Joints (\begin{DoxyParamCaption}\item[{Xr\+Hand\+E\+XT}]{e\+Hand,  }\item[{Xr\+Space}]{xr\+Space,  }\item[{Xr\+Time}]{xr\+Time }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ab3b404042d122b61a979e3aa7be9b35a}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ab3b404042d122b61a979e3aa7be9b35a}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!bGetHandJointVelocities\_Left@{bGetHandJointVelocities\_Left}}
+\index{bGetHandJointVelocities\_Left@{bGetHandJointVelocities\_Left}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{bGetHandJointVelocities\_Left}{bGetHandJointVelocities\_Left}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::b\+Get\+Hand\+Joint\+Velocities\+\_\+\+Left = false}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a60050ac72944124945273dd031f9c1b8}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a60050ac72944124945273dd031f9c1b8}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!bGetHandJointVelocities\_Right@{bGetHandJointVelocities\_Right}}
+\index{bGetHandJointVelocities\_Right@{bGetHandJointVelocities\_Right}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{bGetHandJointVelocities\_Right}{bGetHandJointVelocities\_Right}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::b\+Get\+Hand\+Joint\+Velocities\+\_\+\+Right = false}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a3d5df4010b7cb00f02d99a5a5c6d942b}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a3d5df4010b7cb00f02d99a5a5c6d942b}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!bIsHandTrackingActive\_Left@{bIsHandTrackingActive\_Left}}
+\index{bIsHandTrackingActive\_Left@{bIsHandTrackingActive\_Left}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{bIsHandTrackingActive\_Left}{bIsHandTrackingActive\_Left}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::b\+Is\+Hand\+Tracking\+Active\+\_\+\+Left = true}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ab55735a17be5e1105ecd2469db6c98f4}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ab55735a17be5e1105ecd2469db6c98f4}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!bIsHandTrackingActive\_Right@{bIsHandTrackingActive\_Right}}
+\index{bIsHandTrackingActive\_Right@{bIsHandTrackingActive\_Right}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{bIsHandTrackingActive\_Right}{bIsHandTrackingActive\_Right}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::b\+Is\+Hand\+Tracking\+Active\+\_\+\+Right = true}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a9df35717b70f43e434b1ea5260cacf9d}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a9df35717b70f43e434b1ea5260cacf9d}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!bPrecise@{bPrecise}}
+\index{bPrecise@{bPrecise}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{bPrecise}{bPrecise}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::b\+Precise}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_abe141459915e99f8159b5cd403f06c4f}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_abe141459915e99f8159b5cd403f06c4f}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_HandTracker\_Left@{m\_HandTracker\_Left}}
+\index{m\_HandTracker\_Left@{m\_HandTracker\_Left}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_HandTracker\_Left}{m\_HandTracker\_Left}}
+{\footnotesize\ttfamily Xr\+Hand\+Tracker\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+\+Hand\+Tracker\+\_\+\+Left = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_af2ade7e894fea5037cf94376046c911f}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_af2ade7e894fea5037cf94376046c911f}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_HandTracker\_Right@{m\_HandTracker\_Right}}
+\index{m\_HandTracker\_Right@{m\_HandTracker\_Right}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_HandTracker\_Right}{m\_HandTracker\_Right}}
+{\footnotesize\ttfamily Xr\+Hand\+Tracker\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+\+Hand\+Tracker\+\_\+\+Right = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a0132ecc3194aba8f802b61aabb2f85f0}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a0132ecc3194aba8f802b61aabb2f85f0}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_XRHandJointsData\_Left@{m\_XRHandJointsData\_Left}}
+\index{m\_XRHandJointsData\_Left@{m\_XRHandJointsData\_Left}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_XRHandJointsData\_Left}{m\_XRHandJointsData\_Left}}
+{\footnotesize\ttfamily Xr\+Hand\+Joint\+Location\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+\+X\+R\+Hand\+Joints\+Data\+\_\+\+Left\mbox{[}X\+R\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+C\+O\+U\+N\+T\+\_\+\+E\+XT\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a264f64fc45e0b93b877b22313acfd3eb}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a264f64fc45e0b93b877b22313acfd3eb}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_XRHandJointsData\_Right@{m\_XRHandJointsData\_Right}}
+\index{m\_XRHandJointsData\_Right@{m\_XRHandJointsData\_Right}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_XRHandJointsData\_Right}{m\_XRHandJointsData\_Right}}
+{\footnotesize\ttfamily Xr\+Hand\+Joint\+Location\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+\+X\+R\+Hand\+Joints\+Data\+\_\+\+Right\mbox{[}X\+R\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+C\+O\+U\+N\+T\+\_\+\+E\+XT\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a1f213ff768ffa3fc790edc132ab39039}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a1f213ff768ffa3fc790edc132ab39039}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_XRHandJointVelocities\_Left@{m\_XRHandJointVelocities\_Left}}
+\index{m\_XRHandJointVelocities\_Left@{m\_XRHandJointVelocities\_Left}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_XRHandJointVelocities\_Left}{m\_XRHandJointVelocities\_Left}}
+{\footnotesize\ttfamily Xr\+Hand\+Joint\+Velocity\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+\+X\+R\+Hand\+Joint\+Velocities\+\_\+\+Left\mbox{[}X\+R\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+C\+O\+U\+N\+T\+\_\+\+E\+XT\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a9cf1f1a23aaad6e2d6ab18adddc74534}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a9cf1f1a23aaad6e2d6ab18adddc74534}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_XRHandJointVelocities\_Right@{m\_XRHandJointVelocities\_Right}}
+\index{m\_XRHandJointVelocities\_Right@{m\_XRHandJointVelocities\_Right}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_XRHandJointVelocities\_Right}{m\_XRHandJointVelocities\_Right}}
+{\footnotesize\ttfamily Xr\+Hand\+Joint\+Velocity\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+\+X\+R\+Hand\+Joint\+Velocities\+\_\+\+Right\mbox{[}X\+R\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+C\+O\+U\+N\+T\+\_\+\+E\+XT\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a9b2aec405cd831212c9e971c27fc6b6a}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a9b2aec405cd831212c9e971c27fc6b6a}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_xrInstance@{m\_xrInstance}}
+\index{m\_xrInstance@{m\_xrInstance}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_xrInstance}{m\_xrInstance}}
+{\footnotesize\ttfamily Xr\+Instance Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+xr\+Instance = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE}
+
+
+
+The active Open\+XR Instance. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a3ca093c9b4e0583098c44f5af6ba91ea}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a3ca093c9b4e0583098c44f5af6ba91ea}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_xrLastCallResult@{m\_xrLastCallResult}}
+\index{m\_xrLastCallResult@{m\_xrLastCallResult}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_xrLastCallResult}{m\_xrLastCallResult}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+xr\+Last\+Call\+Result = X\+R\+\_\+\+S\+U\+C\+C\+E\+SS\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a7c2498356df6fa9eaca23457ccff5ed7}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a7c2498356df6fa9eaca23457ccff5ed7}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_xrLocations\_Left@{m\_xrLocations\_Left}}
+\index{m\_xrLocations\_Left@{m\_xrLocations\_Left}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_xrLocations\_Left}{m\_xrLocations\_Left}}
+{\footnotesize\ttfamily Xr\+Hand\+Joint\+Locations\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+xr\+Locations\+\_\+\+Left \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+L\+O\+C\+A\+T\+I\+O\+N\+S\+\_\+\+E\+XT \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a2cfb06358c45a4ba3212b999a15a06c2}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a2cfb06358c45a4ba3212b999a15a06c2}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_xrLocations\_Right@{m\_xrLocations\_Right}}
+\index{m\_xrLocations\_Right@{m\_xrLocations\_Right}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_xrLocations\_Right}{m\_xrLocations\_Right}}
+{\footnotesize\ttfamily Xr\+Hand\+Joint\+Locations\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+xr\+Locations\+\_\+\+Right \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+L\+O\+C\+A\+T\+I\+O\+N\+S\+\_\+\+E\+XT \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ad70ffa469b47c4564a654b1437502c32}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_ad70ffa469b47c4564a654b1437502c32}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_xrSession@{m\_xrSession}}
+\index{m\_xrSession@{m\_xrSession}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_xrSession}{m\_xrSession}}
+{\footnotesize\ttfamily Xr\+Session Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+xr\+Session = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE}
+
+
+
+The active Open\+XR Session. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a059e491f76ecfcf17fd4987a3d83921c}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a059e491f76ecfcf17fd4987a3d83921c}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_xrVelocities\_Left@{m\_xrVelocities\_Left}}
+\index{m\_xrVelocities\_Left@{m\_xrVelocities\_Left}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_xrVelocities\_Left}{m\_xrVelocities\_Left}}
+{\footnotesize\ttfamily Xr\+Hand\+Joint\+Velocities\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+xr\+Velocities\+\_\+\+Left \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+V\+E\+L\+O\+C\+I\+T\+I\+E\+S\+\_\+\+E\+XT \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_adce3da1f63b9cc8b78616b9c0746c1b1}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_adce3da1f63b9cc8b78616b9c0746c1b1}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!m\_xrVelocities\_Right@{m\_xrVelocities\_Right}}
+\index{m\_xrVelocities\_Right@{m\_xrVelocities\_Right}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{m\_xrVelocities\_Right}{m\_xrVelocities\_Right}}
+{\footnotesize\ttfamily Xr\+Hand\+Joint\+Velocities\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::m\+\_\+xr\+Velocities\+\_\+\+Right \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+H\+A\+N\+D\+\_\+\+J\+O\+I\+N\+T\+\_\+\+V\+E\+L\+O\+C\+I\+T\+I\+E\+S\+\_\+\+E\+XT \}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a823fb0d1b4db88a56f2151021d3f4e59}\label{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a823fb0d1b4db88a56f2151021d3f4e59}} 
+\index{OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}!xrLocateHandJointsEXT@{xrLocateHandJointsEXT}}
+\index{xrLocateHandJointsEXT@{xrLocateHandJointsEXT}!OpenXRProvider::XRExtHandTracking@{OpenXRProvider::XRExtHandTracking}}
+\subsubsection{\texorpdfstring{xrLocateHandJointsEXT}{xrLocateHandJointsEXT}}
+{\footnotesize\ttfamily P\+F\+N\+\_\+xr\+Locate\+Hand\+Joints\+E\+XT Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking\+::xr\+Locate\+Hand\+Joints\+E\+XT = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_x_r_ext_hand_tracking_8h}{X\+R\+Ext\+Hand\+Tracking.\+h}}\item 
+src/\mbox{\hyperlink{_x_r_ext_hand_tracking_8cpp}{X\+R\+Ext\+Hand\+Tracking.\+cpp}}\end{DoxyCompactItemize}

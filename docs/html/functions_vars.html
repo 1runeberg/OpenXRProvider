@@ -73,16 +73,31 @@ $(function() {
 </ul>
 
 
-<h3><a id="index_c"></a>- c -</h3><ul>
-<li>callback
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_callback.html#abf3c3676fca347f666e8c97906bec53d">OpenXRProvider::XRCallback</a>
+<h3><a id="index_b"></a>- b -</h3><ul>
+<li>bGetHandJointVelocities_Left
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#ab3b404042d122b61a979e3aa7be9b35a">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>bGetHandJointVelocities_Right
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a60050ac72944124945273dd031f9c1b8">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>bIsActive
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_base_ext.html#a7be8f3a5c24c3396c29cf37c4848b1b2">OpenXRProvider::XRBaseExt</a>
+</li>
+<li>bIsHandTrackingActive_Left
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a3d5df4010b7cb00f02d99a5a5c6d942b">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>bIsHandTrackingActive_Right
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#ab55735a17be5e1105ecd2469db6c98f4">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>bPrecise
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a9df35717b70f43e434b1ea5260cacf9d">OpenXRProvider::XRExtHandTracking</a>
 </li>
 </ul>
 
 
-<h3><a id="index_d"></a>- d -</h3><ul>
-<li>DownAngle
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_fo_v.html#ac47671f76b1ca147b8081c8e863a9e98">OpenXRProvider::XRFoV</a>
+<h3><a id="index_c"></a>- c -</h3><ul>
+<li>callback
+: <a class="el" href="struct_open_x_r_provider_1_1_x_r_callback.html#abf3c3676fca347f666e8c97906bec53d">OpenXRProvider::XRCallback</a>
 </li>
 </ul>
 
@@ -102,7 +117,7 @@ $(function() {
 
 <h3><a id="index_f"></a>- f -</h3><ul>
 <li>FoV
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_eye_state.html#a2f8fa57fe220846f33ceed97f6c7cc0f">OpenXRProvider::XREyeState</a>
+: <a class="el" href="struct_open_x_r_provider_1_1_x_r_eye_state.html#a4fd9c348f86def5a6e597e5cba63a10a">OpenXRProvider::XREyeState</a>
 </li>
 </ul>
 
@@ -144,9 +159,6 @@ $(function() {
 
 
 <h3><a id="index_l"></a>- l -</h3><ul>
-<li>LeftAngle
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_fo_v.html#aed03c0087fca307c5ef7477d1526e31d">OpenXRProvider::XRFoV</a>
-</li>
 <li>LeftEye
 : <a class="el" href="struct_open_x_r_provider_1_1_x_r_h_m_d_state.html#a601339a681e20dd9047e6d63da3a22fa">OpenXRProvider::XRHMDState</a>
 </li>
@@ -162,6 +174,12 @@ $(function() {
 </li>
 <li>m_bIsDepthSupported
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#ab5e48dc08aa6d7e3656ee9da55bcc076">OpenXRProvider::XRProvider</a>
+</li>
+<li>m_HandTracker_Left
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#abe141459915e99f8159b5cd403f06c4f">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>m_HandTracker_Right
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#af2ade7e894fea5037cf94376046c911f">OpenXRProvider::XRExtHandTracking</a>
 </li>
 <li>m_nAppVersion
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#aeede3bd8748b648cf9fd0d8527211047">OpenXRProvider::XRProvider</a>
@@ -198,6 +216,9 @@ $(function() {
 </li>
 <li>m_pXRGraphicsAPI
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a981c5add10cfe23149e821b470145957">OpenXRProvider::XRProvider</a>
+</li>
+<li>m_pXRHandTracking
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a2e519f21d14fda1629859ad3e490d8fa">OpenXRProvider::XRProvider</a>
 </li>
 <li>m_pXRHMDState
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#a20ef86e4265f435a761a010700d0e715">OpenXRProvider::XRRenderManager</a>
@@ -242,15 +263,35 @@ $(function() {
 <li>m_xrGraphicsBinding
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_graphics_a_p_i.html#ad535f6ce61cdf73d056a90bca80f26bf">OpenXRProvider::XRGraphicsAPI</a>
 </li>
+<li>m_XRHandJointsData_Left
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a0132ecc3194aba8f802b61aabb2f85f0">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>m_XRHandJointsData_Right
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a264f64fc45e0b93b877b22313acfd3eb">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>m_XRHandJointVelocities_Left
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a1f213ff768ffa3fc790edc132ab39039">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>m_XRHandJointVelocities_Right
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a9cf1f1a23aaad6e2d6ab18adddc74534">OpenXRProvider::XRExtHandTracking</a>
+</li>
 <li>m_xrInstance
-: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#ab44f504f9549760d91f08f09a3036d51">OpenXRProvider::XRExtVisibilityMask</a>
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a9b2aec405cd831212c9e971c27fc6b6a">OpenXRProvider::XRExtHandTracking</a>
+, <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#ab44f504f9549760d91f08f09a3036d51">OpenXRProvider::XRExtVisibilityMask</a>
 , <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a9e1f2a85f900c81ee109c134b609a80d">OpenXRProvider::XRProvider</a>
 </li>
 <li>m_xrLastCallResult
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_event_handler.html#a51b30482e74bc38c40482700be47da85">OpenXRProvider::XREventHandler</a>
+, <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a3ca093c9b4e0583098c44f5af6ba91ea">OpenXRProvider::XRExtHandTracking</a>
 , <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#a723f9f77ad7e320d4857b3c082009e46">OpenXRProvider::XRExtVisibilityMask</a>
 , <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a40f1a70863c7eec9a1d80f458a2f828a">OpenXRProvider::XRProvider</a>
 , <a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#a85321909f010e4314693433c83c14b2d">OpenXRProvider::XRRenderManager</a>
+</li>
+<li>m_xrLocations_Left
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a7c2498356df6fa9eaca23457ccff5ed7">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>m_xrLocations_Right
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a2cfb06358c45a4ba3212b999a15a06c2">OpenXRProvider::XRExtHandTracking</a>
 </li>
 <li>m_xrPredictedDisplayTime
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a5606d0dca9ff04f8936eeb77d9a8cea2">OpenXRProvider::XRProvider</a>
@@ -262,7 +303,8 @@ $(function() {
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a2d52dc8b79eca6fb9a61ac5f74520107">OpenXRProvider::XRProvider</a>
 </li>
 <li>m_xrSession
-: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#a9329d2062215a848d8b9e937036d1ee3">OpenXRProvider::XRExtVisibilityMask</a>
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#ad70ffa469b47c4564a654b1437502c32">OpenXRProvider::XRExtHandTracking</a>
+, <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#a9329d2062215a848d8b9e937036d1ee3">OpenXRProvider::XRExtVisibilityMask</a>
 , <a class="el" href="class_open_x_r_provider_1_1_x_r_graphics_a_p_i.html#a65e23dceb82b75b9cf0b9e8a4c5f90a5">OpenXRProvider::XRGraphicsAPI</a>
 , <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a7f982aef09ccb7e7774168dafcfee1ce">OpenXRProvider::XRProvider</a>
 </li>
@@ -290,25 +332,21 @@ $(function() {
 <li>m_xrSystemProperties
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a88b5c958163af32297db09ffc49ae23b">OpenXRProvider::XRProvider</a>
 </li>
+<li>m_xrVelocities_Left
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a059e491f76ecfcf17fd4987a3d83921c">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>m_xrVelocities_Right
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#adce3da1f63b9cc8b78616b9c0746c1b1">OpenXRProvider::XRExtHandTracking</a>
+</li>
 <li>m_xrViewSpace
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a5c3ba17df358b63e82c13ae09700f943">OpenXRProvider::XRProvider</a>
 </li>
 </ul>
 
 
-<h3><a id="index_o"></a>- o -</h3><ul>
-<li>Orientation
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_pose.html#ab121b9646f6c7afc5530a42e275b040f">OpenXRProvider::XRPose</a>
-</li>
-</ul>
-
-
 <h3><a id="index_p"></a>- p -</h3><ul>
 <li>Pose
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_eye_state.html#abd91b3f6fae38565d7caf0ec4b40a0c3">OpenXRProvider::XREyeState</a>
-</li>
-<li>Position
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_pose.html#ac882b1e6289497e3dd59a1befd66afab">OpenXRProvider::XRPose</a>
+: <a class="el" href="struct_open_x_r_provider_1_1_x_r_eye_state.html#a67d63a2e3f4ea9c04f80bed7747f9e3d">OpenXRProvider::XREyeState</a>
 </li>
 </ul>
 
@@ -319,9 +357,6 @@ $(function() {
 </li>
 <li>RequestTextureFormats
 : <a class="el" href="struct_open_x_r_provider_1_1_x_r_render_info.html#a84860b74dcb11fbc7494883b555f3029">OpenXRProvider::XRRenderInfo</a>
-</li>
-<li>RightAngle
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_fo_v.html#ab39e0b3bfc04f07935fac2124f876004">OpenXRProvider::XRFoV</a>
 </li>
 <li>RightEye
 : <a class="el" href="struct_open_x_r_provider_1_1_x_r_h_m_d_state.html#a72e6afc6875efdf77079f615b0e833d3">OpenXRProvider::XRHMDState</a>
@@ -340,50 +375,17 @@ $(function() {
 : <a class="el" href="struct_open_x_r_provider_1_1_x_r_app_info.html#adc373e7d26617bc10d2d46d6152a6a17">OpenXRProvider::XRAppInfo</a>
 </li>
 <li>type
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_callback.html#a2bc73be6cd45ed494ca09aea8c75d399">OpenXRProvider::XRCallback</a>
-</li>
-</ul>
-
-
-<h3><a id="index_u"></a>- u -</h3><ul>
-<li>UpAngle
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_fo_v.html#a129c62898a5880df4047e4ce250b1ee6">OpenXRProvider::XRFoV</a>
-</li>
-</ul>
-
-
-<h3><a id="index_w"></a>- w -</h3><ul>
-<li>w
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_quat.html#a4f3ffb20480b2402d59bdc1941aa49a4">OpenXRProvider::XRQuat</a>
+: <a class="el" href="struct_open_x_r_provider_1_1_x_r_callback.html#a40536357562a259c3a1bc91f99cc088e">OpenXRProvider::XRCallback</a>
 </li>
 </ul>
 
 
 <h3><a id="index_x"></a>- x -</h3><ul>
-<li>x
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_quat.html#aa22fd6ef34f0accae34d5032f36057bd">OpenXRProvider::XRQuat</a>
-, <a class="el" href="struct_open_x_r_provider_1_1_x_r_vector2.html#a80538197b221eb3fc106dd920617c762">OpenXRProvider::XRVector2</a>
-, <a class="el" href="struct_open_x_r_provider_1_1_x_r_vector3.html#a18a9ed5cd0b6dab8465b0de7f4e28a6c">OpenXRProvider::XRVector3</a>
-</li>
 <li>XRExtensions
 : <a class="el" href="struct_open_x_r_provider_1_1_x_r_app_info.html#a8b51fa00d11c4b3711440bf4b20b57fe">OpenXRProvider::XRAppInfo</a>
 </li>
-</ul>
-
-
-<h3><a id="index_y"></a>- y -</h3><ul>
-<li>y
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_quat.html#a0eb12175a81a55ff79d9774b15fb017e">OpenXRProvider::XRQuat</a>
-, <a class="el" href="struct_open_x_r_provider_1_1_x_r_vector2.html#abdfb93d1187fe492ad6452f66a165c53">OpenXRProvider::XRVector2</a>
-, <a class="el" href="struct_open_x_r_provider_1_1_x_r_vector3.html#aa0ce76b27aed3728d6457ad923f2be9c">OpenXRProvider::XRVector3</a>
-</li>
-</ul>
-
-
-<h3><a id="index_z"></a>- z -</h3><ul>
-<li>z
-: <a class="el" href="struct_open_x_r_provider_1_1_x_r_quat.html#a961ae9851e876a9cf40279e37f815fe8">OpenXRProvider::XRQuat</a>
-, <a class="el" href="struct_open_x_r_provider_1_1_x_r_vector3.html#a079a1b8f13c5520e7e23f1cbeea57da2">OpenXRProvider::XRVector3</a>
+<li>xrLocateHandJointsEXT
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a823fb0d1b4db88a56f2151021d3f4e59">OpenXRProvider::XRExtHandTracking</a>
 </li>
 </ul>
 </div><!-- contents -->

@@ -1,8 +1,7 @@
 \hypertarget{main_8cpp}{}\section{src/main.cpp File Reference}
 \label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
 {\ttfamily \#include $<$main.\+h$>$}\newline
-Include dependency graph for main.\+cpp\+:
-\nopagebreak
+Include dependency graph for main.\+cpp\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -49,21 +48,29 @@ Include dependency graph for main.\+cpp\+:
 \item 
 int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
 \item 
+void \mbox{\hyperlink{main_8cpp_a3e88bef0c0f8d7b2f955614ec0617452}{Callback\+\_\+\+G\+L\+F\+W\+\_\+\+Input\+\_\+\+Key}} (G\+L\+F\+Wwindow $\ast$p\+Window, int n\+Key, int n\+Scancode, int n\+Action, int n\+Modifier)
+\item 
 int \mbox{\hyperlink{main_8cpp_a695892b1d53467aeed888e3789aef34c}{App\+Setup}} ()
 \begin{DoxyCompactList}\small\item\em Setup the sandbox application -\/ windowing and opengl support. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{main_8cpp_ab5a763045c08ee555125d07e990fbc60}{Graphics\+A\+P\+I\+Objects\+Setup}} ()
 \begin{DoxyCompactList}\small\item\em Setup the Open\+GL objects (V\+AO, V\+BO, F\+BO) needed for rendering to textures from the Open\+XR runtime. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_adb87c742093b790e17359ec17647b0f5}{Draw\+Frame}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$\mbox{\hyperlink{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}{p\+X\+R\+Render\+Manager}}, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, unsigned int \mbox{\hyperlink{main_8h_a3891930b135f1ac6e2f307639219024e}{F\+BO}}, G\+Luint \mbox{\hyperlink{main_8h_a8f6bf5aa2103d3f51c013733389dd4bd}{n\+Shader\+Vis\+Mask}})
+void \mbox{\hyperlink{main_8cpp_a1ef1cd28afca32ba05253077cea17663}{Draw\+Frame}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}})
 \item 
 void \mbox{\hyperlink{main_8cpp_a92218fb47e6a8d9497a22b2d2f826d44}{Blit\+To\+Window}} ()
 \begin{DoxyCompactList}\small\item\em Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{main_8cpp_a577f462ef25b1ec015549427c81f4715}{Draw\+Cube}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$p\+Render\+Manager, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, G\+Luint n\+Shader, unsigned int n\+Texture, unsigned int V\+AO, glm\+::vec3 cube\+Position)
+void \mbox{\hyperlink{main_8cpp_a008988a16144bf83417d87d7facb2b61}{Draw\+Cube}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, glm\+::mat4 eye\+View, unsigned int n\+Texture, glm\+::vec3 cube\+Position, glm\+::vec3 cube\+Scale, glm\+::vec3 cube\+Rotation\+Over\+Time)
 \item 
-void \mbox{\hyperlink{main_8cpp_ab0d92156fea00ea02d3f12b43eb6f509}{Draw\+Sea\+Of\+Cubes}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$p\+Render\+Manager, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, G\+Luint n\+Shader, unsigned int V\+BO, unsigned V\+AO, glm\+::vec3 cube\+Scale, std\+::vector$<$ unsigned $>$ v\+Textures, float f\+Spacing\+Plane, float f\+Spacing\+Height)
+void \mbox{\hyperlink{main_8cpp_af202977a4e5649f9f0e9af3b96bb815e}{Draw\+Sea\+Of\+Cubes\+Scene}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, glm\+::vec3 cube\+Scale, float f\+Spacing\+Plane, float f\+Spacing\+Height)
 \item 
-void \mbox{\hyperlink{main_8cpp_a6d76cd1a3bb155b629c7ff2ed98adc16}{Fill\+Eye\+M\+VP}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$p\+Render\+Manager, glm\+::mat4 $\ast$v\+Eye\+Projections, glm\+::mat4 eye\+View, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t n\+Cube\+Index, G\+Luint n\+Shader, unsigned n\+Texture, glm\+::vec3 cube\+Position, glm\+::vec3 cube\+Scale)
+void \mbox{\hyperlink{main_8cpp_abf942dec42fef6c37d86da7db6e2be79}{Draw\+Hand\+Joints}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, glm\+::mat4 eye\+View)
 \item 
-glm\+::mat4 \mbox{\hyperlink{main_8cpp_a81e9dc653f8019bdd50b23bf3cc9ef3f}{Get\+Eye\+Projection}} (Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$p\+Render\+Manager, Open\+X\+R\+Provider\+::\+X\+R\+FoV eye\+FoV, float f\+Near, float f\+Far)
+void \mbox{\hyperlink{main_8cpp_aa707ebfc3b304b4c8a1810709f9f1af6}{Draw\+Hand\+Tracking\+Scene}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}})
+\item 
+void \mbox{\hyperlink{main_8cpp_ae4d011a3942eb4a62f14b031d6ad221b}{Fill\+Eye\+M\+VP}} (glm\+::mat4 $\ast$v\+Eye\+Projections, glm\+::mat4 eye\+View, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t n\+Cube\+Index, glm\+::vec3 cube\+Position, glm\+::vec3 cube\+Scale)
+\item 
+void \mbox{\hyperlink{main_8cpp_acdf5f092d3d490f1b5808042611eea1a}{Fill\+Eye\+M\+V\+P\+\_\+\+Rotate\+Over\+Time}} (glm\+::mat4 $\ast$v\+Eye\+Projections, glm\+::mat4 eye\+View, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t n\+Cube\+Index, unsigned n\+Texture, glm\+::vec3 cube\+Position, glm\+::vec3 cube\+Rotation, glm\+::vec3 cube\+Scale)
+\item 
+glm\+::mat4 \mbox{\hyperlink{main_8cpp_a7ccb68e575ebbafb4208fe880ccc755f}{Get\+Eye\+Projection}} (Xr\+Fovf eye\+FoV, float f\+Near, float f\+Far)
 \item 
 glm\+::mat4 \mbox{\hyperlink{main_8cpp_a9e4a2accecb47c58ed592c9a2010ab15}{Invert\+Matrix}} (const glm\+::mat4 m\+Matrix)
 \item 
@@ -191,58 +198,158 @@ Setup the sandbox application -\/ windowing and opengl support.
 
 Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) 
 
-\mbox{\Hypertarget{main_8cpp_a577f462ef25b1ec015549427c81f4715}\label{main_8cpp_a577f462ef25b1ec015549427c81f4715}} 
+\mbox{\Hypertarget{main_8cpp_a3e88bef0c0f8d7b2f955614ec0617452}\label{main_8cpp_a3e88bef0c0f8d7b2f955614ec0617452}} 
+\index{main.cpp@{main.cpp}!Callback\_GLFW\_Input\_Key@{Callback\_GLFW\_Input\_Key}}
+\index{Callback\_GLFW\_Input\_Key@{Callback\_GLFW\_Input\_Key}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{Callback\_GLFW\_Input\_Key()}{Callback\_GLFW\_Input\_Key()}}
+{\footnotesize\ttfamily void Callback\+\_\+\+G\+L\+F\+W\+\_\+\+Input\+\_\+\+Key (\begin{DoxyParamCaption}\item[{G\+L\+F\+Wwindow $\ast$}]{p\+Window,  }\item[{int}]{n\+Key,  }\item[{int}]{n\+Scancode,  }\item[{int}]{n\+Action,  }\item[{int}]{n\+Modifier }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Window} & Pointer to the G\+L\+FW window \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Key} & The key that was pressed that triggers this callback (e.\+g. G\+L\+F\+W\+\_\+\+K\+E\+Y\+\_\+1) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Scancode} & Platform specific scancode for the key that was pressed \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Action} & Action that triggered the key event (e.\+g. G\+L\+F\+W\+\_\+\+P\+R\+E\+SS) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Modifier} & Modifier bits (e.\+g. G\+L\+F\+W\+\_\+\+M\+O\+D\+\_\+\+N\+U\+M\+\_\+\+L\+O\+CK) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_a008988a16144bf83417d87d7facb2b61}\label{main_8cpp_a008988a16144bf83417d87d7facb2b61}} 
 \index{main.cpp@{main.cpp}!DrawCube@{DrawCube}}
 \index{DrawCube@{DrawCube}!main.cpp@{main.cpp}}
 \subsubsection{\texorpdfstring{DrawCube()}{DrawCube()}}
-{\footnotesize\ttfamily void Draw\+Cube (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+Render\+Manager,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{G\+Luint}]{n\+Shader,  }\item[{unsigned int}]{n\+Texture,  }\item[{unsigned int}]{V\+AO,  }\item[{glm\+::vec3}]{cube\+Position }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Draw\+Cube (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{glm\+::mat4}]{eye\+View,  }\item[{unsigned int}]{n\+Texture,  }\item[{glm\+::vec3}]{cube\+Position,  }\item[{glm\+::vec3}]{cube\+Scale,  }\item[{glm\+::vec3}]{cube\+Rotation\+Over\+Time }\end{DoxyParamCaption})}
 
-Draw a single cube (when not using instancing, will require a different shader) 
+Draw a single cube 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em p\+Render\+Manager} & Pointer to Open\+XR Provider library\textquotesingle{}s Render manager \\
-\hline
 \mbox{\texttt{ in}}  & {\em e\+Eye} & Current eye to render to \\
 \hline
 \mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & Texture in the swapchain to render to \\
+\hline
+\mbox{\texttt{ in}}  & {\em eye\+View} & The eye view matrix \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Texture} & The texture id to use for the cube \\
+\hline
+\mbox{\texttt{ in}}  & {\em cube\+Position} & The position of the cube in world space \\
+\hline
+\mbox{\texttt{ in}}  & {\em cube\+Scale} & The scale of the cube in world space \\
+\hline
+\mbox{\texttt{ in}}  & {\em cube\+Rotation\+Over\+Time} & Amount of rotation of the cube over time \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_a1ef1cd28afca32ba05253077cea17663}\label{main_8cpp_a1ef1cd28afca32ba05253077cea17663}} 
+\index{main.cpp@{main.cpp}!DrawFrame@{DrawFrame}}
+\index{DrawFrame@{DrawFrame}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{DrawFrame()}{DrawFrame()}}
+{\footnotesize\ttfamily void Draw\+Frame (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index }\end{DoxyParamCaption})}
+
+Render to the swapchain image (texture) that\textquotesingle{}ll be rendered to the user\textquotesingle{}s H\+MD and blitted (copied) to the Sandbox\textquotesingle{}s window (XR Mirror) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & The eye (left/right) texture that will be rendered on \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & The index of the swapchain image (texture) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_abf942dec42fef6c37d86da7db6e2be79}\label{main_8cpp_abf942dec42fef6c37d86da7db6e2be79}} 
+\index{main.cpp@{main.cpp}!DrawHandJoints@{DrawHandJoints}}
+\index{DrawHandJoints@{DrawHandJoints}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{DrawHandJoints()}{DrawHandJoints()}}
+{\footnotesize\ttfamily void Draw\+Hand\+Joints (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{glm\+::mat4}]{eye\+View }\end{DoxyParamCaption})}
+
+Draw the hand joints (hand tracking runtime support required) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Current eye to render to \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & Texture in the swapchain to render to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_aa707ebfc3b304b4c8a1810709f9f1af6}\label{main_8cpp_aa707ebfc3b304b4c8a1810709f9f1af6}} 
+\index{main.cpp@{main.cpp}!DrawHandTrackingScene@{DrawHandTrackingScene}}
+\index{DrawHandTrackingScene@{DrawHandTrackingScene}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{DrawHandTrackingScene()}{DrawHandTrackingScene()}}
+{\footnotesize\ttfamily void Draw\+Hand\+Tracking\+Scene (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index }\end{DoxyParamCaption})}
+
+Draw a scene with hand tracked joints and four large rotating cubes around the center of the playspace 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Current eye to render to \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & Texture in the swapchain to render to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_af202977a4e5649f9f0e9af3b96bb815e}\label{main_8cpp_af202977a4e5649f9f0e9af3b96bb815e}} 
+\index{main.cpp@{main.cpp}!DrawSeaOfCubesScene@{DrawSeaOfCubesScene}}
+\index{DrawSeaOfCubesScene@{DrawSeaOfCubesScene}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{DrawSeaOfCubesScene()}{DrawSeaOfCubesScene()}}
+{\footnotesize\ttfamily void Draw\+Sea\+Of\+Cubes\+Scene (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{glm\+::vec3}]{cube\+Scale,  }\item[{float}]{f\+Spacing\+Plane,  }\item[{float}]{f\+Spacing\+Height }\end{DoxyParamCaption})}
+
+Draw a scene with a sea of instanced textured cubes in the scene based on the number of textures provided 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Current eye to render to \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & Texture in the swapchain to render to \\
+\hline
+\mbox{\texttt{ in}}  & {\em cube\+Scale} & Scale to apply to the cubes \\
+\hline
+\mbox{\texttt{ in}}  & {\em f\+Spacing\+Plane} & The amount of spacing in between cubes in the x,z axis \\
+\hline
+\mbox{\texttt{ in}}  & {\em f\+Spacing\+Height} & The amount of spacing in between cubes in the y axis \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_ae4d011a3942eb4a62f14b031d6ad221b}\label{main_8cpp_ae4d011a3942eb4a62f14b031d6ad221b}} 
+\index{main.cpp@{main.cpp}!FillEyeMVP@{FillEyeMVP}}
+\index{FillEyeMVP@{FillEyeMVP}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{FillEyeMVP()}{FillEyeMVP()}}
+{\footnotesize\ttfamily void Fill\+Eye\+M\+VP (\begin{DoxyParamCaption}\item[{glm\+::mat4 $\ast$}]{v\+Eye\+Projections,  }\item[{glm\+::mat4}]{eye\+View,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Cube\+Index,  }\item[{glm\+::vec3}]{cube\+Position,  }\item[{glm\+::vec3}]{cube\+Scale = {\ttfamily glm\+:\+:vec3(0.f)} }\end{DoxyParamCaption})}
+
+Fill the array of model-\/view-\/projection matrices that will be applied on a cube in a single frame and eye. This is filled in as instanced variables to the shader 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Render\+Manager} & Pointer to Open\+XR Provider library\textquotesingle{}s Render manager \\
+\hline
+\mbox{\texttt{ out}}  & {\em v\+Eye\+Projections} & Array of eye view projection matrices that will be applied to each cube model vertex \\
+\hline
+\mbox{\texttt{ in}}  & {\em eye\+View} & The current eye view (camera) projection matrix \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Cube\+Index} & Index of the current cube being rendered (within the \char`\"{}sea\char`\"{}) \\
 \hline
 \mbox{\texttt{ in}}  & {\em n\+Shader} & Shader program id to use for the cube \\
 \hline
 \mbox{\texttt{ in}}  & {\em n\+Texture} & The texture id to use for the cube \\
 \hline
-\mbox{\texttt{ in}}  & {\em V\+AO} & Vertex Array Object containing the cube vertices \\
+\mbox{\texttt{ in}}  & {\em cube\+Position} & The position of the cube \\
+\hline
+\mbox{\texttt{ in}}  & {\em cube\+Scale} & The scale of the cube \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{main_8cpp_adb87c742093b790e17359ec17647b0f5}\label{main_8cpp_adb87c742093b790e17359ec17647b0f5}} 
-\index{main.cpp@{main.cpp}!DrawFrame@{DrawFrame}}
-\index{DrawFrame@{DrawFrame}!main.cpp@{main.cpp}}
-\subsubsection{\texorpdfstring{DrawFrame()}{DrawFrame()}}
-{\footnotesize\ttfamily void Draw\+Frame (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+X\+R\+Render\+Manager,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{unsigned int}]{F\+BO,  }\item[{G\+Luint}]{n\+Shader\+Vis\+Mask }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{main_8cpp_acdf5f092d3d490f1b5808042611eea1a}\label{main_8cpp_acdf5f092d3d490f1b5808042611eea1a}} 
+\index{main.cpp@{main.cpp}!FillEyeMVP\_RotateOverTime@{FillEyeMVP\_RotateOverTime}}
+\index{FillEyeMVP\_RotateOverTime@{FillEyeMVP\_RotateOverTime}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{FillEyeMVP\_RotateOverTime()}{FillEyeMVP\_RotateOverTime()}}
+{\footnotesize\ttfamily void Fill\+Eye\+M\+V\+P\+\_\+\+Rotate\+Over\+Time (\begin{DoxyParamCaption}\item[{glm\+::mat4 $\ast$}]{v\+Eye\+Projections,  }\item[{glm\+::mat4}]{eye\+View,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Cube\+Index,  }\item[{unsigned}]{n\+Texture,  }\item[{glm\+::vec3}]{cube\+Position,  }\item[{glm\+::vec3}]{cube\+Rotation,  }\item[{glm\+::vec3}]{cube\+Scale }\end{DoxyParamCaption})}
 
-Render to the swapchain image (texture) that\textquotesingle{}ll be rendered to the user\textquotesingle{}s H\+MD and blitted (copied) to the Sandbox\textquotesingle{}s window (XR Mirror) 
+Fill the array of model-\/view-\/projection matrices that will be applied on a rotating cube in a single frame and eye. This is filled in as instanced variables to the shader 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em p\+X\+R\+Render\+Manager} & Pointer to the XR Render Manager object \\
+\mbox{\texttt{ in}}  & {\em p\+Render\+Manager} & Pointer to Open\+XR Provider library\textquotesingle{}s Render manager \\
 \hline
-\mbox{\texttt{ in}}  & {\em e\+Eye} & The eye (left/right) texture that will be rendered on \\
+\mbox{\texttt{ out}}  & {\em v\+Eye\+Projections} & Array of eye view projection matrices that will be applied to each cube model vertex \\
 \hline
-\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & The index of the swapchain image (texture) \\
+\mbox{\texttt{ in}}  & {\em eye\+View} & The current eye view (camera) projection matrix \\
 \hline
-\mbox{\texttt{ in}}  & {\em F\+BO} & The Open\+GL Frame Buffer Object needed to draw to a Texture2D \\
+\mbox{\texttt{ in}}  & {\em n\+Cube\+Index} & Index of the current cube being rendered (within the \char`\"{}sea\char`\"{}) \\
 \hline
-\mbox{\texttt{ in}}  & {\em n\+Shader\+Vis\+Mask} & The Open\+GL shader program that will be used for the Visibility Mask \\
+\mbox{\texttt{ in}}  & {\em n\+Shader} & Shader program id to use for the cube \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Texture} & The texture id to use for the cube \\
+\hline
+\mbox{\texttt{ in}}  & {\em cube\+Position} & The position of the cube \\
+\hline
+\mbox{\texttt{ in}}  & {\em cube\+Rotation} & The amount of rotation applied to the cube over time \\
+\hline
+\mbox{\texttt{ in}}  & {\em cube\+Scale} & The scale of the cube \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{main_8cpp_ab0d92156fea00ea02d3f12b43eb6f509}\label{main_8cpp_ab0d92156fea00ea02d3f12b43eb6f509}} 
-\index{main.cpp@{main.cpp}!DrawSeaOfCubes@{DrawSeaOfCubes}}
-\index{DrawSeaOfCubes@{DrawSeaOfCubes}!main.cpp@{main.cpp}}
-\subsubsection{\texorpdfstring{DrawSeaOfCubes()}{DrawSeaOfCubes()}}
-{\footnotesize\ttfamily void Draw\+Sea\+Of\+Cubes (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+Render\+Manager,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Swapchain\+Index,  }\item[{G\+Luint}]{n\+Shader,  }\item[{unsigned int}]{V\+BO,  }\item[{unsigned}]{V\+AO,  }\item[{glm\+::vec3}]{cube\+Scale,  }\item[{std\+::vector$<$ unsigned $>$}]{v\+Textures,  }\item[{float}]{f\+Spacing\+Plane,  }\item[{float}]{f\+Spacing\+Height }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{main_8cpp_a6d76cd1a3bb155b629c7ff2ed98adc16}\label{main_8cpp_a6d76cd1a3bb155b629c7ff2ed98adc16}} 
-\index{main.cpp@{main.cpp}!FillEyeMVP@{FillEyeMVP}}
-\index{FillEyeMVP@{FillEyeMVP}!main.cpp@{main.cpp}}
-\subsubsection{\texorpdfstring{FillEyeMVP()}{FillEyeMVP()}}
-{\footnotesize\ttfamily void Fill\+Eye\+M\+VP (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+Render\+Manager,  }\item[{glm\+::mat4 $\ast$}]{v\+Eye\+Projections,  }\item[{glm\+::mat4}]{eye\+View,  }\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{uint32\+\_\+t}]{n\+Cube\+Index,  }\item[{G\+Luint}]{n\+Shader,  }\item[{unsigned}]{n\+Texture,  }\item[{glm\+::vec3}]{cube\+Position,  }\item[{glm\+::vec3}]{cube\+Scale }\end{DoxyParamCaption})}
-
 \mbox{\Hypertarget{main_8cpp_aafdebc28cb0db5e42ec24a88bcfa566f}\label{main_8cpp_aafdebc28cb0db5e42ec24a88bcfa566f}} 
 \index{main.cpp@{main.cpp}!GetDepth@{GetDepth}}
 \index{GetDepth@{GetDepth}!main.cpp@{main.cpp}}
@@ -267,11 +374,11 @@ Get the corresponding depth texture for a give color texture, create one if it d
 \begin{DoxyReturn}{Returns}
 uin32\+\_\+t Depth texture Open\+GL id 
 \end{DoxyReturn}
-\mbox{\Hypertarget{main_8cpp_a81e9dc653f8019bdd50b23bf3cc9ef3f}\label{main_8cpp_a81e9dc653f8019bdd50b23bf3cc9ef3f}} 
+\mbox{\Hypertarget{main_8cpp_a7ccb68e575ebbafb4208fe880ccc755f}\label{main_8cpp_a7ccb68e575ebbafb4208fe880ccc755f}} 
 \index{main.cpp@{main.cpp}!GetEyeProjection@{GetEyeProjection}}
 \index{GetEyeProjection@{GetEyeProjection}!main.cpp@{main.cpp}}
 \subsubsection{\texorpdfstring{GetEyeProjection()}{GetEyeProjection()}}
-{\footnotesize\ttfamily glm\+::mat4 Get\+Eye\+Projection (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$}]{p\+Render\+Manager,  }\item[{Open\+X\+R\+Provider\+::\+X\+R\+FoV}]{eye\+FoV,  }\item[{float}]{f\+Near = {\ttfamily 0.1},  }\item[{float}]{f\+Far = {\ttfamily 1000.f} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily glm\+::mat4 Get\+Eye\+Projection (\begin{DoxyParamCaption}\item[{Xr\+Fovf}]{eye\+FoV,  }\item[{float}]{f\+Near = {\ttfamily 0.1},  }\item[{float}]{f\+Far = {\ttfamily 1000.f} }\end{DoxyParamCaption})}
 
 Calculate the eye projection matrix for this Open\+XR session. This can be calculated only once per application run 
 \begin{DoxyParams}[1]{Parameters}

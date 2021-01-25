@@ -109,7 +109,7 @@ namespace OpenXRProvider
 		
 		/// Retrieve the current position and orientation of the headset
 		/// @return		The current orientation and position of the user's HMD in their tracked space
-		XRPose GetHMDPose();
+		XrPosef GetHMDPose();
 
 		/// Getter for the current HMD State (eye poses, fov, if hmd is tracked, etc)
 		/// @return		The eye poses, fov, tracking status, etc of the user's HMD

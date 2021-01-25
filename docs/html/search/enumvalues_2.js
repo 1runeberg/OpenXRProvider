@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['instance_5floss_5fpending',['INSTANCE_LOSS_PENDING',['../namespace_open_x_r_provider.html#aa80d286c249d35071f2ff4d19d9dc4c3ad2a50c337955d71964454a17b5474740',1,'OpenXRProvider']]],
-  ['interaction_5fprofile_5fchanged',['INTERACTION_PROFILE_CHANGED',['../namespace_open_x_r_provider.html#aa80d286c249d35071f2ff4d19d9dc4c3a389520016336a58552b602aacc89d602',1,'OpenXRProvider']]]
+  ['tracking_5froomscale',['TRACKING_ROOMSCALE',['../namespace_open_x_r_provider.html#a005dd91723b05b123b8fccbc41798b05a5f2a13c525612f19c5c2a6db5f22f836',1,'OpenXRProvider']]],
+  ['tracking_5fseated',['TRACKING_SEATED',['../namespace_open_x_r_provider.html#a005dd91723b05b123b8fccbc41798b05aba26293ac81cbb568b44ae10f4af4ec9',1,'OpenXRProvider']]]
 ];

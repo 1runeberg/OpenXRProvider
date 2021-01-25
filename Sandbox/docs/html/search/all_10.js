@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['unlit_5ffragment_5fshader',['UNLIT_FRAGMENT_SHADER',['../main_8cpp.html#a217064f8511ccf51de6eacc10db9de9f',1,'main.cpp']]],
-  ['unlit_5fvertex_5fshader',['UNLIT_VERTEX_SHADER',['../main_8cpp.html#a7dc30ea38a133e29fddb046aa884073a',1,'main.cpp']]],
-  ['utils',['Utils',['../class_utils.html',1,'Utils'],['../class_utils.html#a059a8e013417d7a5e3a0b6244e47c88c',1,'Utils::Utils()']]],
-  ['utils_2ecpp',['Utils.cpp',['../_utils_8cpp.html',1,'']]],
-  ['utils_2eh',['Utils.h',['../_utils_8h.html',1,'']]]
+  ['sandbox_5fscene_5fhand_5ftracking',['SANDBOX_SCENE_HAND_TRACKING',['../main_8h.html#a761b4b1e33f66c425a818b79f2f87db2a95d927625e2ce2cc27470aa5a4e9f329',1,'main.h']]],
+  ['sandbox_5fscene_5fsea_5fof_5fcubes',['SANDBOX_SCENE_SEA_OF_CUBES',['../main_8h.html#a761b4b1e33f66c425a818b79f2f87db2a6d8e1548461a0acf5c9f5912bf8562f1',1,'main.h']]],
+  ['scurrentpath',['sCurrentPath',['../main_8h.html#ab08061433add74e5b598f52b7f0cdacd',1,'main.h']]]
 ];

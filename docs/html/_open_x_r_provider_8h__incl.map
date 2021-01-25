@@ -1,7 +1,8 @@
 <map id="include/OpenXRProvider.h" name="include/OpenXRProvider.h">
 <area shape="rect" id="node1" title=" " alt="" coords="848,5,1019,32"/>
-<area shape="rect" id="node2" href="$_x_r_event_handler_8h.html" title=" " alt="" coords="784,80,909,107"/>
-<area shape="rect" id="node21" href="$_x_r_graphics_aware_types_8h.html" title=" " alt="" coords="934,80,1106,107"/>
+<area shape="rect" id="node2" href="$_x_r_event_handler_8h.html" title=" " alt="" coords="697,80,823,107"/>
+<area shape="rect" id="node21" href="$_x_r_graphics_aware_types_8h.html" title=" " alt="" coords="847,80,1019,107"/>
+<area shape="rect" id="node22" href="$_x_r_ext_hand_tracking_8h.html" title=" " alt="" coords="1043,80,1191,107"/>
 <area shape="rect" id="node3" href="$_x_r_common_8h.html" title=" " alt="" coords="883,155,984,181"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,237,80,263"/>
 <area shape="rect" id="node5" title=" " alt="" coords="104,237,163,263"/>

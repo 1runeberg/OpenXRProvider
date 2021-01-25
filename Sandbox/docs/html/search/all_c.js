@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['papplogfile',['pAppLogFile',['../main_8h.html#afdd3e4a98a83be17fc862c35da31a4b5',1,'main.h']]],
-  ['putils',['pUtils',['../main_8h.html#a0d5111066310aa3c3805d599c138b141',1,'main.h']]],
-  ['pxrmirror',['pXRMirror',['../main_8h.html#af4f45dfd4ee1a2c3b1562398252c7bec',1,'main.h']]],
-  ['pxrprovider',['pXRProvider',['../main_8h.html#a444f316e5ddad52f3f37f1e34a2e290b',1,'main.h']]],
-  ['pxrrendermanager',['pXRRenderManager',['../main_8h.html#a343faf29ffd3d2e18b872155c7f2fcda',1,'main.h']]],
-  ['pxrvisibilitymask',['pXRVisibilityMask',['../main_8h.html#aa258e1cafc71c21ca80015a29c4454f4',1,'main.h']]]
+  ['nframenumber',['nFrameNumber',['../main_8h.html#a717bd1588444dddd960d9889f5f092d7',1,'main.h']]],
+  ['nscreenheight',['nScreenHeight',['../main_8h.html#a106276f6621f348fd220319a0c5ca275',1,'main.h']]],
+  ['nscreenwidth',['nScreenWidth',['../main_8h.html#ad3af6abc3694a26372dc97344127702e',1,'main.h']]],
+  ['nshaderlit',['nShaderLit',['../main_8h.html#ac9a863c8ce6916659a046f416a32faf8',1,'main.h']]],
+  ['nshadertextured',['nShaderTextured',['../main_8h.html#a40ae0a91a7ebb0009db938414ae02e28',1,'main.h']]],
+  ['nshaderunlit',['nShaderUnlit',['../main_8h.html#a762351bcd57a83c9f7aba43e994eeef5',1,'main.h']]],
+  ['nshadervismask',['nShaderVisMask',['../main_8h.html#a8f6bf5aa2103d3f51c013733389dd4bd',1,'main.h']]],
+  ['nswapchaincapacity',['nSwapchainCapacity',['../main_8h.html#a90485357d3af01d962f1befe5ec9199a',1,'main.h']]],
+  ['nswapchainindex',['nSwapchainIndex',['../main_8h.html#a4eb41db6c24b2e7190d293273d6e0230',1,'main.h']]]
 ];

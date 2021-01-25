@@ -67,7 +67,10 @@ int main()
 	//	   as appropriate (see XRGraphicsAPI class in XRGraphicsAwareTypes.h)
 
 	pXRVisibilityMask = new OpenXRProvider::XRExtVisibilityMask( pUtils->GetLogger() );
-	std::vector< void * > RequestExtensions{pXRVisibilityMask};
+
+	pXRHandTracking = new OpenXRProvider::XRExtHandTracking( pUtils->GetLogger() );
+
+	std::vector< void * > RequestExtensions{ pXRVisibilityMask, pXRHandTracking };
 
 	// (2) Create OpenXR Provider - this creates an OpenXR instance and session.
 	//     Provide application metadata here which will be used by the OpenXR Provider
@@ -78,7 +81,7 @@ int main()
 		APP_PROJECT_VER,
 		APP_ENGINE_NAME,
 		APP_ENGINE_VER,
-		OpenXRProvider::ROOMSCALE,
+		OpenXRProvider::TRACKING_ROOMSCALE,
 		RequestExtensions,						// optional: see step (1), otherwise an empty vector
 		false,									// optional: depth texture support if the active runtime supports it
 		pAppLogFile								// optional: log file logging for the library
@@ -99,6 +102,9 @@ int main()
 		pUtils->GetLogger()->info( "OpenXR Instance and Session can't be established with the active OpenXR runtime" );
 		return -1;
 	}
+	
+	// Test for activated instance extensions
+	bDrawHandJoints = pXRHandTracking->IsActive();
 
 	// (3) Create OpenXR Render manager - this handles all the OpenXR rendering calls.
 	//	   The OpenXR session created by the XRProvider class will be started and
@@ -132,7 +138,7 @@ int main()
 	}
 
 	// Get swapchain capacity
-	nSwapchainCapacity = pXRRenderManager->GetGraphicsAPI()->GetSwapchainImageCount( OpenXRProvider::LEFT );
+	nSwapchainCapacity = pXRRenderManager->GetGraphicsAPI()->GetSwapchainImageCount( OpenXRProvider::EYE_LEFT );
 
 	if ( nSwapchainCapacity < 1 )
 	{
@@ -142,10 +148,9 @@ int main()
 	}
 
 	// (4) Optional: Register for OpenXR events
-	OpenXRProvider::XRCallback xrCallback = {OpenXRProvider::ALL};
+	OpenXRProvider::XRCallback xrCallback = { XR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED };	// XR_TYPE_EVENT_DATA_BUFFER = Register for all events
 	OpenXRProvider::XRCallback *pXRCallback = &xrCallback;
-	pXRCallback->type = OpenXRProvider::EXREventType::SESSION_STATE_CHANGED;
-	pXRCallback->callback = Callback_XR_Session_Changed;
+	pXRCallback->callback = Callback_XR_Event;
 	pXRProvider->GetXREventHandler()->RegisterCallback( pXRCallback );
 
 	// (5) Optional: Use any pre-render loop extensions
@@ -154,8 +159,8 @@ int main()
 	OpenXRProvider::XRExtVisibilityMask *pXRVisibilityMask = pXRRenderManager->GetXRVisibilityMask();
 	if ( pXRVisibilityMask )
 	{
-		pXRVisibilityMask->GetVisibilityMask( OpenXRProvider::LEFT, OpenXRProvider::XRExtVisibilityMask::MASK_HIDDEN, vMaskVertices_L, vMaskIndices_L );
-		pXRVisibilityMask->GetVisibilityMask( OpenXRProvider::RIGHT, OpenXRProvider::XRExtVisibilityMask::MASK_HIDDEN, vMaskVertices_R, vMaskIndices_R );
+		pXRVisibilityMask->GetVisibilityMask( OpenXRProvider::EYE_LEFT, OpenXRProvider::XRExtVisibilityMask::MASK_HIDDEN, vMaskVertices_L, vMaskIndices_L );
+		pXRVisibilityMask->GetVisibilityMask( OpenXRProvider::EYE_RIGHT, OpenXRProvider::XRExtVisibilityMask::MASK_HIDDEN, vMaskVertices_R, vMaskIndices_R );
 	}
 
 	pUtils->GetLogger()->info(
@@ -186,38 +191,57 @@ int main()
 		pXRProvider->PollXREvents();
 
 		// Check if runtime wants to close the app
-		if ( xrCurrentSessionState == OpenXRProvider::EXREventData::SESSION_STATE_EXITING ||
-		     xrCurrentSessionState == OpenXRProvider::EXREventData::SESSION_STATE_LOSS_PENDING ||
-		     xrCurrentSessionState == OpenXRProvider::EXREventData::SESSION_STATE_STOPPING )
+		if ( xrCurrentSessionState == XR_SESSION_STATE_EXITING )
+			break;	
+
+		if ( xrCurrentSessionState == XR_SESSION_STATE_IDLE )
 		{
-			break;
-		}
-
-		// (2) Render pass
-		nSwapchainIndex = nSwapchainIndex > nSwapchainCapacity - 1 ? 0 : nSwapchainIndex;
-
-		DrawFrame( pXRRenderManager, OpenXRProvider::LEFT, nSwapchainIndex, FBO, nShaderVisMask );
-		DrawFrame( pXRRenderManager, OpenXRProvider::RIGHT, nSwapchainIndex, FBO, nShaderVisMask );
-
-		// [DEBUG] pUtils->GetLogger()->info("Processing frame {} swapchain index {} / {}", nFrameNumber, nSwapchainIndex, nSwapchainCapacity);
-
-		// (3) Render frame - call ProcessXRFrame from the render manager after rendering to the appropriate swapchain image
-		if ( pXRRenderManager && pXRRenderManager->ProcessXRFrame() )
-		{
-			// Blit (copy) texture to XR Mirror
+			// HMD is not ready or inactive, clear window with clear color
+			glClearColor( 0.5f, 0.9f, 1.0f, 1.0f );
+			glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT );
 			BlitToWindow();
+		}
+		else if ( xrCurrentSessionState == XR_SESSION_STATE_READY )
+		{
+			// Begin the session - e.g. coming back from stopping state
+			XrResult xrResult = pXRProvider->XRBeginSession();
+			bool bResult = pXRRenderManager->ProcessXRFrame();
 
-			// [DEBUG] pUtils->GetLogger()->info("HMD IPD is currently set to: {}", xrRenderManager->GetCurrentIPD());
+			pUtils->GetLogger()->info( "OpenXR Session started ({}) and initial frame processed ({})", OpenXRProvider::XrEnumToString( xrResult ), bResult );
+		}
+		else if (  xrCurrentSessionState == XR_SESSION_STATE_STOPPING )
+		{
+			// End session so runtime can safely transition back to idle
+			XrResult xrResult = pXRProvider->XREndSession();
+
+			pUtils->GetLogger()->info( "OpenXR Session ended ({})", OpenXRProvider::XrEnumToString( xrResult ) );
+		}
+		else if ( xrCurrentSessionState > XR_SESSION_STATE_IDLE )
+		{
+			// (2) Process frame - call ProcessXRFrame from the render manager 
+			if ( pXRRenderManager && pXRRenderManager->ProcessXRFrame() )
+			{
+				// (3) Render to swapchain image
+				nSwapchainIndex = nSwapchainIndex > nSwapchainCapacity - 1 ? 0 : nSwapchainIndex;
+
+				DrawFrame( OpenXRProvider::EYE_LEFT, nSwapchainIndex );
+				DrawFrame( OpenXRProvider::EYE_RIGHT, nSwapchainIndex );
+
+				// Blit (copy) texture to XR Mirror
+				BlitToWindow();
+		
+				// Update app frame state
+				++nFrameNumber;
+				++nSwapchainIndex;
+				
+				// [DEBUG] pUtils->GetLogger()->info("HMD IPD is currently set to: {}", xrRenderManager->GetCurrentIPD());
+			}
 		}
 
-		// (4) Update app frame state
-		++nFrameNumber;
-		++nSwapchainIndex;
-
-		// (5) glfw render and input events
+		// glfw render and input events
 		glfwSwapBuffers( pXRMirror->GetWindow() );
 		glfwPollEvents();
-	}
+	} 
 
 	#pragma endregion SANDBOX_FRAME_LOOP
 
@@ -230,12 +254,58 @@ int main()
 	return 0;
 }
 
-static void Callback_XR_Session_Changed( const OpenXRProvider::EXREventType xrEventType, const OpenXRProvider::EXREventData xrEventData )
+static void Callback_XR_Event( XrEventDataBuffer xrEvent )
 {
-	xrCurrentSessionState = xrEventData;
+	assert( pUtils && pUtils->GetLogger() );
 
-	// if (helperUtils && helperUtils->GetLogger())
-	//	pUtils->GetLogger()->info("OpenXR Event Session State Changed to {}", std::to_string(xrCurrentSessionState));
+	switch ( xrEvent.type )
+	{
+		case XR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED:
+			const XrEventDataSessionStateChanged &xrEventDataSessionStateChanged = *reinterpret_cast< XrEventDataSessionStateChanged * >( &xrEvent );
+			
+			pUtils->GetLogger()->info( "Session State changing from {} to {}", 
+				OpenXRProvider::XrEnumToString( xrCurrentSessionState ), OpenXRProvider::XrEnumToString( xrEventDataSessionStateChanged.state ) );
+			
+			xrCurrentSessionState = xrEventDataSessionStateChanged.state;
+			
+			break;
+	}
+}
+
+void Callback_GLFW_Input_Key( GLFWwindow *pWindow, int nKey, int nScancode, int nAction, int nModifier ) 
+{
+	// Only process presses
+	if ( nAction != GLFW_PRESS )
+		return;
+
+	// Process keys
+	if ( nKey == GLFW_KEY_1 )
+	{
+		bDrawHandJoints = pXRHandTracking->IsActive();
+		eCurrentScene = SANDBOX_SCENE_SEA_OF_CUBES;
+		pUtils->GetLogger()->info( "Switched to scene: Sea of Cubes" );
+	}
+	else if ( nKey == GLFW_KEY_2  )
+	{
+		bDrawHandJoints = pXRHandTracking->IsActive();
+		eCurrentScene = SANDBOX_SCENE_HAND_TRACKING;
+		pUtils->GetLogger()->info( "Switched to scene: Hand Tracking" );
+	}
+	else if ( nKey == GLFW_KEY_SPACE )
+	{
+		// See if hand tracking is enabled
+		if ( pXRHandTracking->IsActive() )
+			bDrawHandJoints = !bDrawHandJoints;
+		else
+			bDrawHandJoints = false;
+
+		pUtils->GetLogger()->info( "Hand joints will be rendered ({})", bDrawHandJoints );
+	}
+	else if ( nKey == GLFW_KEY_ESCAPE )
+	{
+		pUtils->GetLogger()->info( "Escape key pressed. Quitting Sandbox" );
+		glfwSetWindowShouldClose( pXRMirror->GetWindow(), GL_TRUE );
+	}
 }
 
 int AppSetup()
@@ -263,12 +333,19 @@ int AppSetup()
 	nScreenWidth = APP_MIRROR_WIDTH;
 	nScreenHeight = APP_MIRROR_HEIGHT;
 
-	pXRMirror = new XRMirror( nScreenWidth, nScreenHeight, APP_PROJECT_NAME, pAppLogFile );
+	// Create helpful title
+	std::string sWindowTitle = APP_PROJECT_NAME;
+	sWindowTitle += ". Press: [1] Sea of Cubes (default), [2] Hand Tracking, [SPACEBAR] Toggle hands [ESC] Quit";
+
+	pXRMirror = new XRMirror( nScreenWidth, nScreenHeight, sWindowTitle.c_str(), pAppLogFile );
 	glfwMakeContextCurrent( pXRMirror->GetWindow() );
 
 	// Enable vsync
 	glfwSwapInterval(0);
 	
+	// Set input callback
+	glfwSetKeyCallback( pXRMirror->GetWindow(), Callback_GLFW_Input_Key );
+
 	return 0;
 }
 
@@ -309,6 +386,35 @@ int GraphicsAPIObjectsSetup()
 	}
 	glBindVertexArray( 0 );
 
+
+	// Setup vertex buffer object (joint)
+	glGenBuffers( 1, &jointVBO );
+
+	glBindBuffer( GL_ARRAY_BUFFER, jointVBO );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( vJointMesh ), vJointMesh, GL_STATIC_DRAW );
+
+	// Setup vertex array object (joint)
+	glGenVertexArrays( 1, &jointVAO );
+	glBindVertexArray( jointVAO );
+
+	glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( float ), ( void * )0 );
+	glEnableVertexAttribArray( 0 );
+
+	glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( float ), ( void * )( 3 * sizeof( float ) ) );
+	glEnableVertexAttribArray( 1 );
+
+	// Setup instanced data for the hand joints
+	glGenBuffers( 1, &jointInstanceDataVBO );
+	glBindBuffer( GL_ARRAY_BUFFER, jointInstanceDataVBO );
+
+	for ( int i = 0; i < 4; ++i )
+	{
+		glEnableVertexAttribArray( 2 + i );
+		glVertexAttribPointer( 2 + i, 4, GL_FLOAT, GL_FALSE, sizeof( glm::mat4 ), ( const GLvoid * )( sizeof( GLfloat ) * i * 4 ) );
+		glVertexAttribDivisor( 2 + i, 1 );
+	}
+	glBindVertexArray( 0 );
+
 	// Setup frame buffer object
 	glGenFramebuffers( 1, &FBO );
 	glBindFramebuffer( GL_FRAMEBUFFER, FBO );
@@ -331,22 +437,17 @@ int GraphicsAPIObjectsSetup()
 	glUniform3f( glGetUniformLocation( nShaderUnlit, "surfaceColor" ), 1.0f, 1.0f, 1.0f );
 
 	// Load textures for sea of cubes
-	vSeaOfCubesTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_bellevue_valve.png" ).c_str(), nShaderTextured, "texSample" ) );
-	vSeaOfCubesTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_munich_mein_schatz.png" ).c_str(), nShaderTextured, "texSample" ) );
-	vSeaOfCubesTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_hobart_mein_heim.png" ).c_str(), nShaderTextured, "texSample" ) );
-	vSeaOfCubesTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_hobart_rose.png" ).c_str(), nShaderTextured, "texSample" ) );
-	vSeaOfCubesTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_hobart_mein_kochen.png" ).c_str(), nShaderTextured, "texSample" ) );
-	vSeaOfCubesTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_hobart_sunset.png" ).c_str(), nShaderTextured, "texSample" ) );
+	vCubeTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_bellevue_valve.png" ).c_str(), nShaderTextured, "texSample" ) );
+	vCubeTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_munich_mein_schatz.png" ).c_str(), nShaderTextured, "texSample" ) );
+	vCubeTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_hobart_mein_heim.png" ).c_str(), nShaderTextured, "texSample" ) );
+	vCubeTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_hobart_rose.png" ).c_str(), nShaderTextured, "texSample" ) );
+	vCubeTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_hobart_mein_kochen.png" ).c_str(), nShaderTextured, "texSample" ) );
+	vCubeTextures.push_back( pXRMirror->LoadTexture( ( sCurrentPath + L"\\img\\t_hobart_sunset.png" ).c_str(), nShaderTextured, "texSample" ) );
 
 	return 0;
 }
 
-void DrawFrame(
-	OpenXRProvider::XRRenderManager *pXRRenderManager,
-	OpenXRProvider::EXREye eEye,
-	uint32_t nSwapchainIndex,
-	unsigned int FBO,
-	GLuint nShaderVisMask )
+void DrawFrame(	OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex )
 {
 	glBindFramebuffer( GL_FRAMEBUFFER, FBO );
 	glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pXRRenderManager->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ), 0 );
@@ -359,27 +460,28 @@ void DrawFrame(
 		return;
 
 	// Draw vismask on XR Mirror
-	uint32_t nVertCount = ( eEye == OpenXRProvider::LEFT ) ? ( uint32_t )vMaskVertices_L.size() : ( uint32_t )vMaskVertices_L.size();
-	float *vMask = ( eEye == OpenXRProvider::LEFT ) ? vMaskVertices_L.data() : vMaskVertices_R.data();
+	uint32_t nVertCount = ( eEye == OpenXRProvider::EYE_LEFT ) ? ( uint32_t )vMaskVertices_L.size() : ( uint32_t )vMaskVertices_L.size();
+	float *vMask = ( eEye == OpenXRProvider::EYE_LEFT ) ? vMaskVertices_L.data() : vMaskVertices_R.data();
 
 	if ( nVertCount > 0 )
 	{
 		// TO DO: Apply vismask, set clip values
 	}
 
-	// Draw cube
-	glm::vec3 cubeScale = glm::vec3( 0.5f, 0.5f, 0.5f );
-	DrawSeaOfCubes(
-		pXRRenderManager,
-		eEye,
-		nSwapchainIndex,
-		nShaderTextured,
-		cubeInstanceDataVBO,
-		cubeVAO,
-		cubeScale,
-		vSeaOfCubesTextures,
-		1.5f,
-		1.5f );
+	// Draw current active scene
+	switch ( eCurrentScene )
+	{
+		case SANDBOX_SCENE_HAND_TRACKING:
+			DrawHandTrackingScene( eEye, nSwapchainIndex );
+			break;
+
+		case SANDBOX_SCENE_SEA_OF_CUBES:
+			glm::vec3 cubeScale = glm::vec3( 0.5f, 0.5f, 0.5f );
+			DrawSeaOfCubesScene( eEye, nSwapchainIndex, cubeScale, 1.5f, 1.5f );
+		default:
+			break;
+	}
+
 }
 
 void BlitToWindow()
@@ -402,77 +504,77 @@ void BlitToWindow()
 
 
 void DrawCube(
-	OpenXRProvider::XRRenderManager *pRenderManager,
 	OpenXRProvider::EXREye eEye,
 	uint32_t nSwapchainIndex,
-	GLuint nShader,
+	glm::mat4 eyeView,
 	unsigned int nTexture,
-	unsigned int VAO,
-	glm::vec3 cubePosition )
+	glm::vec3 cubePosition,
+	glm::vec3 cubeScale,
+	glm::vec3 cubeRotationOverTime )
 {
-	assert( pRenderManager );
+	assert( pXRRenderManager );
 
-	glUseProgram( nShader );
+	// Set cube texture
+	glUseProgram( nShaderTextured );
 	glActiveTexture( GL_TEXTURE0 );
 	glBindTexture( GL_TEXTURE_2D, nTexture );
 
+	// Calculate mvp
+	glm::mat4 *vEyeProjection = new glm::mat4[ 1 ]; // just one instance of this cube
+
 	glm::mat4 cubeModel = glm::mat4( 1.0f );
 	cubeModel = glm::translate( cubeModel, cubePosition );
-	//cubeModel = glm::rotate(cubeModel, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
-	cubeModel = glm::scale( cubeModel, glm::vec3( 0.8f, 0.8f, 0.8f ) );
+	cubeModel = glm::rotate( cubeModel, ( float )glfwGetTime(), cubeRotationOverTime );
+	cubeModel = glm::scale( cubeModel, cubeScale );
 
 	// Get eye pose
-	OpenXRProvider::XRPose eyePose = ( eEye == OpenXRProvider::LEFT ) ?
-		                                 pRenderManager->GetHMDState()->LeftEye.Pose :
-		                                 pRenderManager->GetHMDState()->RightEye.Pose;
+	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ?
+		                                 pXRRenderManager->GetHMDState()->LeftEye.Pose :
+		                                 pXRRenderManager->GetHMDState()->RightEye.Pose;
 
-	// Get the eye view and apply translation and rotation
-	glm::mat4 eyeView( 1.0f );
-	glm::quat eyeRotation( eyePose.Orientation.w, eyePose.Orientation.x, eyePose.Orientation.y, eyePose.Orientation.z );
-	eyeView = glm::translate( eyeView, glm::vec3( eyePose.Position.x, eyePose.Position.y, eyePose.Position.z ) );
-	eyeView = glm::rotate( eyeView, angle( eyeRotation ), axis( eyeRotation ) );
+	vEyeProjection[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * cubeModel );
 
-	glm::mat4 cubeMVP = ( ( eEye == OpenXRProvider::LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * InvertMatrix( eyeView ) * cubeModel;
-	glUniformMatrix4fv( glGetUniformLocation( nShader, "mvp" ), 1, GL_FALSE, &cubeMVP[ 0 ][ 0 ] );
+	// Draw cube
+	glBindBuffer( GL_ARRAY_BUFFER, cubeInstanceDataVBO );
+	glBindVertexArray( cubeVAO );
 
-	glBindVertexArray( VAO );
-	glDrawArrays( GL_TRIANGLES, 0, 36 );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( glm::mat4 ) * 1, vEyeProjection, GL_STATIC_DRAW );
+	glDrawArraysInstanced( GL_TRIANGLES, 0, 36, 1 );
+
+	// Clean up
+	delete[] vEyeProjection;
 }
 
-void DrawSeaOfCubes(
-	OpenXRProvider::XRRenderManager *pRenderManager,
+void DrawSeaOfCubesScene(
 	OpenXRProvider::EXREye eEye,
 	uint32_t nSwapchainIndex,
-	GLuint nShader,
-	unsigned int VBO,
-	unsigned VAO,
 	glm::vec3 cubeScale,
-	std::vector< unsigned > vTextures,
 	float fSpacingPlane,
 	float fSpacingHeight )
 {
+	assert( pXRRenderManager );
+	assert( vCubeTextures.size() > 0 );
+
 	// Set eye projections if we haven't already
 	if ( !m_bEyeProjectionsSet )
 	{
-		m_EyeProjectionLeft = GetEyeProjection( pRenderManager, pRenderManager->GetHMDState()->LeftEye.FoV, 0.1f, 100.f );
-		m_EyeProjectionRight = GetEyeProjection( pRenderManager, pRenderManager->GetHMDState()->RightEye.FoV, 0.1f, 100.f );
+		m_EyeProjectionLeft = GetEyeProjection( pXRRenderManager->GetHMDState()->LeftEye.FoV, 0.1f, 100.f );
+		m_EyeProjectionRight = GetEyeProjection( pXRRenderManager->GetHMDState()->RightEye.FoV, 0.1f, 100.f );
 		m_bEyeProjectionsSet = true;
 	}
 
 	// Get eye view for this frame
-	OpenXRProvider::XRPose eyePose = ( eEye == OpenXRProvider::LEFT ) ?
-		                                 pRenderManager->GetHMDState()->LeftEye.Pose :
-		                                 pRenderManager->GetHMDState()->RightEye.Pose;
+	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? pXRRenderManager->GetHMDState()->LeftEye.Pose : pXRRenderManager->GetHMDState()->RightEye.Pose;
 
-	glm::mat4 eyeView( 1.0f );
-	glm::quat eyeRotation( eyePose.Orientation.w, eyePose.Orientation.x, eyePose.Orientation.y, eyePose.Orientation.z );
-	eyeView = glm::translate( eyeView, glm::vec3( eyePose.Position.x, eyePose.Position.y, eyePose.Position.z ) );
-	eyeView = glm::rotate( eyeView, angle( eyeRotation ), axis( eyeRotation ) );
-
+	XrMatrix4x4f xrEyeView;
+	XrVector3f xrScale { 1.0, 1.0, 1.0f };
+	XrMatrix4x4f_CreateTranslationRotationScale( &xrEyeView, &eyePose.position, &eyePose.orientation, &xrScale );
+	
+	glm::mat4 eyeView = glm::make_mat4( xrEyeView.m );
 	glm::mat4 eyeViewInverted = InvertMatrix( eyeView );
 
 	// Generate sea of cubes
-	uint32_t nTextureCount = vTextures.size();
+	uint32_t nTextureCount = ( uint32_t ) vCubeTextures.size();
 	float nStartXZ = ( nTextureCount / 2 ) * fSpacingPlane;
 	glm::vec3 startPosition = glm::vec3( -nStartXZ, fSpacingHeight / 4, nStartXZ );
 
@@ -493,73 +595,206 @@ void DrawSeaOfCubes(
 			for ( int k = 0; k < nTextureCount; ++k )
 			{
 				x += fSpacingPlane;
-				//DrawCube(pRenderManager, eEye, nSwapchainIndex, nShader, vTextures[i], VAO, glm::vec3(x, startPosition.y, z));
+
 				FillEyeMVP(
-					pRenderManager,
 					vEyeProjections,
 					eyeViewInverted,
 					eEye,
 					nCubeIndex,
-					nShader,
-					vTextures[ i ],
 					glm::vec3( x, startPosition.y, z ),
 					cubeScale );
+
 				++nCubeIndex;
 			}
 		}
 
-		const uint32_t depthTexture = GetDepth( pRenderManager->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ) );
+		// Set depth texture
+		const uint32_t depthTexture = GetDepth( pXRRenderManager->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ) );
 		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0 );
 
+		// Set shader
+		glUseProgram( nShaderTextured );
+
+		glActiveTexture( GL_TEXTURE0 );
+		glBindTexture( GL_TEXTURE_2D, vCubeTextures[ i ] );
+
 		// Draw cube instance in a single plane at once
-		glBindBuffer( GL_ARRAY_BUFFER, VBO );
+		glBindBuffer( GL_ARRAY_BUFFER, cubeInstanceDataVBO );
 		glBufferData( GL_ARRAY_BUFFER, sizeof( glm::mat4 ) * 36, vEyeProjections, GL_STATIC_DRAW );
 
-		glBindVertexArray( VAO );
-		glDrawArraysInstanced( GL_TRIANGLES, 0, 36, 216 );
+		glBindVertexArray( cubeVAO );
+		glDrawArraysInstanced( GL_TRIANGLES, 0, 36, 36 );
 
 		// Go to the next cube plane up
 		startPosition.y += fSpacingHeight;
 		nCubeIndex = 0;
+
+		// Draw hand joints
+		DrawHandJoints( eEye, eyeViewInverted );
 	}
 
 	delete[] vEyeProjections;
 }
 
+
+void DrawHandJoints( OpenXRProvider::EXREye eEye, glm::mat4 eyeView )
+{
+	if ( !bDrawHandJoints )
+		return;
+
+	XrHandJointLocationsEXT *xrHandJoints_L = pXRHandTracking->GetHandJointLocations( XR_HAND_LEFT_EXT );
+	XrHandJointLocationsEXT *xrHandJoints_R = pXRHandTracking->GetHandJointLocations( XR_HAND_RIGHT_EXT );
+
+	uint32_t nMeshIndex = 0;
+	glm::mat4 *vEyeProjections_LeftHand = new glm::mat4[ 26 ];	// max number of joint meshes in a single hand
+	glm::mat4 *vEyeProjections_RightHand = new glm::mat4[ 26 ]; // max number of joint meshes in a single hand
+
+	for ( int i = 0; i < XR_HAND_JOINT_COUNT_EXT; ++i )
+	{
+		// Fill eye mvp for left hand joint meshes
+		XrMatrix4x4f xrModelView_L;
+		float fScale = xrHandJoints_L->jointLocations[ i ].radius * 1.5f;
+		XrVector3f xrScale_L { fScale, fScale, fScale };
+		XrMatrix4x4f_CreateTranslationRotationScale(
+			&xrModelView_L, &xrHandJoints_L->jointLocations[ i ].pose.position, &xrHandJoints_L->jointLocations[ i ].pose.orientation, &xrScale_L );
+
+		glm::mat4 jointModel_L = glm::make_mat4( xrModelView_L.m );
+
+		vEyeProjections_LeftHand[ nMeshIndex ] =
+			( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * jointModel_L );
+
+		// Fill eye mvp for right hand joint meshes
+		XrMatrix4x4f xrModelView_R;
+		fScale = xrHandJoints_R->jointLocations[ i ].radius * 1.5f;
+		XrVector3f xrScale_R { fScale, fScale, fScale };
+		XrMatrix4x4f_CreateTranslationRotationScale(
+			&xrModelView_R, &xrHandJoints_R->jointLocations[ i ].pose.position, &xrHandJoints_R->jointLocations[ i ].pose.orientation, &xrScale_R );
+
+		glm::mat4 jointModel_R = glm::make_mat4( xrModelView_R.m );
+
+		vEyeProjections_RightHand[ nMeshIndex ] =
+			( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * jointModel_R );
+
+		++nMeshIndex;
+	}
+
+	// Set shader
+	glUseProgram( nShaderUnlit );
+
+	// Draw joint mesh instances
+	glBindBuffer( GL_ARRAY_BUFFER, jointInstanceDataVBO );
+	glBindVertexArray( jointVAO );
+
+	glUniform3f( glGetUniformLocation( nShaderUnlit, "surfaceColor" ), 0.1f, 0.1f, 1.0f );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( glm::mat4 ) * 26, vEyeProjections_LeftHand, GL_STATIC_DRAW );
+	glDrawArraysInstanced( GL_TRIANGLES, 0, 24, 26 );
+
+	glUniform3f( glGetUniformLocation( nShaderUnlit, "surfaceColor" ), 1.0f, 0.1f, 0.1f );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( glm::mat4 ) * 26, vEyeProjections_RightHand, GL_STATIC_DRAW );
+	glDrawArraysInstanced( GL_TRIANGLES, 0, 24, 26 );
+
+	// Clean up
+	delete[] vEyeProjections_LeftHand;
+	delete[] vEyeProjections_RightHand;
+}
+
+void DrawHandTrackingScene( OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex )
+{
+	assert( pXRRenderManager );
+	assert( vCubeTextures.size() > 3 );	// We'll draw four large cubes in the scene
+
+	// Set eye projections if we haven't already
+	if ( !m_bEyeProjectionsSet )
+	{
+		m_EyeProjectionLeft = GetEyeProjection( pXRRenderManager->GetHMDState()->LeftEye.FoV, 0.1f, 100.f );
+		m_EyeProjectionRight = GetEyeProjection( pXRRenderManager->GetHMDState()->RightEye.FoV, 0.1f, 100.f );
+		m_bEyeProjectionsSet = true;
+	}
+
+	// Get eye view for this frame
+	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? pXRRenderManager->GetHMDState()->LeftEye.Pose : pXRRenderManager->GetHMDState()->RightEye.Pose;
+
+	glm::mat4 eyeView( 1.0f );
+	glm::quat eyeRotation( eyePose.orientation.w, eyePose.orientation.x, eyePose.orientation.y, eyePose.orientation.z );
+	eyeView = glm::translate( eyeView, glm::vec3( eyePose.position.x, eyePose.position.y, eyePose.position.z ) );
+	eyeView = glm::rotate( eyeView, angle( eyeRotation ), axis( eyeRotation ) );
+
+	glm::mat4 eyeViewInverted = InvertMatrix( eyeView );
+
+
+	// Generate four rotating cubes in scene
+	glm::vec3 vFourCubePositions[ 4 ] = {	// OpenXR Coords: +x Right, +y Up, +z Back 	
+		glm::vec3( 0.f, 1.5f, 3.0f ),		// North	(t_bellevue_valve.png)
+		glm::vec3( 0.f, 1.5f, -3.0f ),		// South	(t_munich_mein_schatz.png)
+		glm::vec3( 3.f, 1.5f, 0.f ),		// East		(t_hobart_mein_heim.png)
+		glm::vec3( -3.f, 1.5f, 0.f )		// West		(t_hobart_rose.png)
+	};
+
+	for ( int i = 0; i < 4; ++i )
+	{
+		DrawCube(
+			eEye,
+			nSwapchainIndex,
+			eyeViewInverted,
+			vCubeTextures[ i ], 
+			vFourCubePositions [ i ], 
+			glm::vec3( 1.0f ),
+			glm::vec3 ( 0.5f, 1.0f, 0.0f ) );
+	}
+
+
+	// Generate joint meshes for both hands
+	DrawHandJoints( eEye, eyeViewInverted );
+}
+
+
 void FillEyeMVP(
-	OpenXRProvider::XRRenderManager *pRenderManager,
 	glm::mat4 *vEyeProjections,
 	glm::mat4 eyeView,
 	OpenXRProvider::EXREye eEye,
 	uint32_t nCubeIndex,
-	GLuint nShader,
+	glm::vec3 cubePosition,
+	glm::vec3 cubeScale	)
+{
+	glm::mat4 cubeModel = glm::mat4( 1.0f );
+	cubeModel = glm::translate( cubeModel, cubePosition );
+	cubeModel = glm::scale( cubeModel, cubeScale );
+
+	vEyeProjections[ nCubeIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * cubeModel );
+}
+
+void FillEyeMVP_RotateOverTime(
+	glm::mat4 *vEyeProjections,
+	glm::mat4 eyeView,
+	OpenXRProvider::EXREye eEye,
+	uint32_t nCubeIndex,
 	unsigned nTexture,
 	glm::vec3 cubePosition,
+	glm::vec3 cubeRotation,
 	glm::vec3 cubeScale )
 {
-	assert( pRenderManager );
-
-	glUseProgram( nShader );
-	glActiveTexture( GL_TEXTURE0 );
-	glBindTexture( GL_TEXTURE_2D, nTexture );
+	if ( nTexture > 0 )
+	{
+		glUseProgram( nShaderTextured );
+		glActiveTexture( GL_TEXTURE0 );
+		glBindTexture( GL_TEXTURE_2D, nTexture );
+	}
 
 	glm::mat4 cubeModel = glm::mat4( 1.0f );
 	cubeModel = glm::translate( cubeModel, cubePosition );
-	//cubeModel = glm::rotate(cubeModel, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
+	cubeModel = glm::rotate( cubeModel, ( float )glfwGetTime(), cubeRotation );
 	cubeModel = glm::scale( cubeModel, cubeScale );
 
-	vEyeProjections[ nCubeIndex ] = ( ( ( eEye == OpenXRProvider::LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * cubeModel );
+	vEyeProjections[ nCubeIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * cubeModel );
 }
 
-glm::mat4 GetEyeProjection( OpenXRProvider::XRRenderManager *pRenderManager, OpenXRProvider::XRFoV eyeFoV, float fNear, float fFar )
+glm::mat4 GetEyeProjection( XrFovf eyeFoV, float fNear, float fFar )
 {
-	assert( pRenderManager );
-
 	// Convert angles and fovs
-	float fovLeft = std::tanf( eyeFoV.LeftAngle );
-	float fovRight = std::tanf( eyeFoV.RightAngle );
-	float fovUp = std::tanf( eyeFoV.UpAngle );
-	float fovDown = std::tanf( eyeFoV.DownAngle );
+	float fovLeft = std::tanf( eyeFoV.angleLeft );
+	float fovRight = std::tanf( eyeFoV.angleRight );
+	float fovUp = std::tanf( eyeFoV.angleUp );
+	float fovDown = std::tanf( eyeFoV.angleDown );
 
 	float fovWidth = fovRight - fovLeft;
 	float fovHeight = fovUp - fovDown;

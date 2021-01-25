@@ -15,77 +15,48 @@ struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_callback}{X\+R\+Callbac
 \item 
 class \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler}{X\+R\+Event\+Handler}}
 \item 
+class \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking}{X\+R\+Ext\+Hand\+Tracking}}
+\item 
 class \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask}{X\+R\+Ext\+Visibility\+Mask}}
 \item 
 struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_eye_state}{X\+R\+Eye\+State}}
 \begin{DoxyCompactList}\small\item\em Eye State -\/ contains pose, field of view info for an eye. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_fo_v}{X\+R\+FoV}}
-\begin{DoxyCompactList}\small\item\em Field of view in angles (float) \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_graphics_a_p_i}{X\+R\+Graphics\+A\+PI}}
 \begin{DoxyCompactList}\small\item\em Class that handles graphics api dependent state and transactions. This class is meant to be handled completely internally by the Open\+XR Provider. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_h_m_d_state}{X\+R\+H\+M\+D\+State}}
 \item 
-struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_pose}{X\+R\+Pose}}
-\begin{DoxyCompactList}\small\item\em Pose (orientation in 3d space and orientation in quaternion) \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_provider}{X\+R\+Provider}}
 \item 
-struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_quat}{X\+R\+Quat}}
-\begin{DoxyCompactList}\small\item\em Quaternion. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_render_info}{X\+R\+Render\+Info}}
 \begin{DoxyCompactList}\small\item\em Information needed to create swapchain textures that the app will render to. \end{DoxyCompactList}\item 
 class \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_render_manager}{X\+R\+Render\+Manager}}
-\item 
-struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_vector2}{X\+R\+Vector2}}
-\begin{DoxyCompactList}\small\item\em A vector2 float. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_vector3}{X\+R\+Vector3}}
-\begin{DoxyCompactList}\small\item\em A vector3 float. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef void($\ast$ \mbox{\hyperlink{namespace_open_x_r_provider_a658d364c78f8aa6deb33009e9c4ac0b8}{Callback\+\_\+\+X\+R\+Event}}) (const \mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3}{E\+X\+R\+Event\+Type}}, const \mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853d}{E\+X\+R\+Event\+Data}})
+typedef void($\ast$ \mbox{\hyperlink{namespace_open_x_r_provider_a23b2e01bea1c0c0d762560792d8dff0f}{Callback\+\_\+\+X\+R\+Event}}) (Xr\+Event\+Data\+Buffer)
 \begin{DoxyCompactList}\small\item\em Event callback function used for registering functions to the Event Handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}} \{ \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05a192dfa44253ba4815ec1a5335f52b578}{R\+O\+O\+M\+S\+C\+A\+LE}} = 0, 
-\mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05af05478b3d52c3a40a3f66aea7af03dfc}{S\+E\+A\+T\+ED}} = 1
+enum \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}} \{ \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05a5f2a13c525612f19c5c2a6db5f22f836}{T\+R\+A\+C\+K\+I\+N\+G\+\_\+\+R\+O\+O\+M\+S\+C\+A\+LE}} = 0, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05aba26293ac81cbb568b44ae10f4af4ec9}{T\+R\+A\+C\+K\+I\+N\+G\+\_\+\+S\+E\+A\+T\+ED}} = 1
  \}
 \begin{DoxyCompactList}\small\item\em Tracking space (e.\+g. roomscale, seated) \end{DoxyCompactList}\item 
-enum \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}} \{ \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a81ab813676876f34a0aa640d9b3da242}{L\+E\+FT}} = 0, 
-\mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a6306b44e379151146b66ee8100703cb0}{R\+I\+G\+HT}} = 1
+enum \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}{E\+X\+R\+Eye}} \{ \mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a1f7295c2ac801bf776369e51ad0f7e84}{E\+Y\+E\+\_\+\+L\+E\+FT}} = 0, 
+\mbox{\hyperlink{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155ae4e90da36b75bc313108f4ea7283da97}{E\+Y\+E\+\_\+\+R\+I\+G\+HT}} = 1
  \}
 \begin{DoxyCompactList}\small\item\em Eye. \end{DoxyCompactList}\item 
-enum \mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3}{E\+X\+R\+Event\+Type}} \{ \newline
-\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a6d77b7e96db929c6e81bd4cc00e90b57}{A\+LL}} = 0, 
-\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a846f256c013f1ddde4f2bfb88c19567d}{S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+C\+H\+A\+N\+G\+ED}} = 1, 
-\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a8c2148677b3be0b94db1aebff7342f3e}{R\+E\+F\+E\+R\+E\+N\+C\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+P\+E\+N\+D\+I\+NG}} = 2, 
-\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a389520016336a58552b602aacc89d602}{I\+N\+T\+E\+R\+A\+C\+T\+I\+O\+N\+\_\+\+P\+R\+O\+F\+I\+L\+E\+\_\+\+C\+H\+A\+N\+G\+ED}} = 3, 
-\newline
-\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3ad2a50c337955d71964454a17b5474740}{I\+N\+S\+T\+A\+N\+C\+E\+\_\+\+L\+O\+S\+S\+\_\+\+P\+E\+N\+D\+I\+NG}} = 4, 
-\mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3ac3a23aa5a60beea1c939e80d191229ca}{E\+V\+E\+N\+T\+S\+\_\+\+L\+O\+ST}} = 5
- \}
-\begin{DoxyCompactList}\small\item\em The type of Open\+XR event raised by the currently active Open\+XR runtime. \end{DoxyCompactList}\item 
-enum \mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853d}{E\+X\+R\+Event\+Data}} \{ \newline
-\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da997161bd7da303efa7ad15a7f8822785}{E\+V\+E\+N\+T\+\_\+\+D\+A\+T\+A\+\_\+\+I\+N\+V\+A\+L\+ID}} = 0, 
-\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853daa3b9036ff98c585c242f695e6c84ac73}{S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+D\+LE}} = 1, 
-\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da67151eda1481cf5be744e14ac547b5ad}{S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+E\+A\+DY}} = 2, 
-\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da622e21f2be0137b273203c4e25651ed7}{S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+I\+Z\+ED}} = 3, 
-\newline
-\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da58182d525d291667c7b0f4a884adc607}{S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+V\+I\+S\+I\+B\+LE}} = 4, 
-\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da0e5e5d205a9c8b0cd7631980c152c64c}{S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+F\+O\+C\+U\+S\+ED}} = 5, 
-\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da5291b6afca2465c8293baa5aa5a0c481}{S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+S\+T\+O\+P\+P\+I\+NG}} = 6, 
-\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853dae1118c60be3405cf3b09e49594d011f2}{S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+L\+O\+S\+S\+\_\+\+P\+E\+N\+D\+I\+NG}} = 7, 
-\newline
-\mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853dac36a3497630be208504c1c413843041c}{S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+E\+X\+I\+T\+I\+NG}} = 8
- \}
-\begin{DoxyCompactList}\small\item\em The data payload of an Open\+XR event. \end{DoxyCompactList}\item 
-enum \mbox{\hyperlink{namespace_open_x_r_provider_ab4e3f4c6f1f2b69f87608b992c505371}{E\+X\+R\+Extension}} \{ \mbox{\hyperlink{namespace_open_x_r_provider_ab4e3f4c6f1f2b69f87608b992c505371a18a9581473453414550c09bd6750b050}{E\+X\+T\+E\+N\+S\+I\+O\+N\+\_\+\+V\+I\+S\+I\+B\+I\+L\+I\+T\+Y\+\_\+\+M\+A\+SK}} = 0
+enum \mbox{\hyperlink{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3}{E\+X\+R\+Instance\+Extension}} \{ \mbox{\hyperlink{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3aafc2d84efc5f08ff5b64d1118fc40a6b}{E\+X\+T\+\_\+\+I\+N\+S\+T\+A\+N\+C\+E\+\_\+\+V\+I\+S\+I\+B\+I\+L\+I\+T\+Y\+\_\+\+M\+A\+SK}} = 0, 
+\mbox{\hyperlink{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3a07f521c2e1b127d26a5f2e57ebe00a65}{E\+X\+T\+\_\+\+I\+N\+S\+T\+A\+N\+C\+E\+\_\+\+H\+A\+N\+D\+\_\+\+T\+R\+A\+C\+K\+I\+NG}} = 1
  \}
 \begin{DoxyCompactList}\small\item\em Supported extensions by the Open\+XR Provider library (excluding Graphics A\+PI extensions) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-const char $\ast$ \mbox{\hyperlink{namespace_open_x_r_provider_a9d83a2b1a5d6649210b47ab49a592b47}{Enum\+To\+String}} (const char $\ast$enum\+Str)
+\mbox{\hyperlink{namespace_open_x_r_provider_ac8e3913afbac23d15ac8ade017abd1c2}{X\+R\+\_\+\+E\+N\+U\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+N\+G\+I\+FY}} (Xr\+Result)
+\item 
+\mbox{\hyperlink{namespace_open_x_r_provider_a6f1b32985dfebfddc5f58fd4d9f520fd}{X\+R\+\_\+\+E\+N\+U\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+N\+G\+I\+FY}} (Xr\+Session\+State)
 \item 
 Xr\+Result \mbox{\hyperlink{namespace_open_x_r_provider_a832e6cc66984ff274e355f5771a04f57}{Check\+Xr\+Result}} (Xr\+Result xr\+Result, std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ xr\+Logger, bool b\+Throw, const char $\ast$xr\+Call=nullptr, const char $\ast$src\+File=nullptr, int src\+Line\+Num=0)
 \item 
@@ -94,11 +65,11 @@ Xr\+Result \mbox{\hyperlink{namespace_open_x_r_provider_a9e6665bb283f00adb11c3c4
 
 
 \subsection{Typedef Documentation}
-\mbox{\Hypertarget{namespace_open_x_r_provider_a658d364c78f8aa6deb33009e9c4ac0b8}\label{namespace_open_x_r_provider_a658d364c78f8aa6deb33009e9c4ac0b8}} 
+\mbox{\Hypertarget{namespace_open_x_r_provider_a23b2e01bea1c0c0d762560792d8dff0f}\label{namespace_open_x_r_provider_a23b2e01bea1c0c0d762560792d8dff0f}} 
 \index{OpenXRProvider@{OpenXRProvider}!Callback\_XREvent@{Callback\_XREvent}}
 \index{Callback\_XREvent@{Callback\_XREvent}!OpenXRProvider@{OpenXRProvider}}
 \subsubsection{\texorpdfstring{Callback\_XREvent}{Callback\_XREvent}}
-{\footnotesize\ttfamily typedef void( $\ast$ Open\+X\+R\+Provider\+::\+Callback\+\_\+\+X\+R\+Event) (const \mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3}{E\+X\+R\+Event\+Type}}, const \mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853d}{E\+X\+R\+Event\+Data}})}
+{\footnotesize\ttfamily typedef void( $\ast$ Open\+X\+R\+Provider\+::\+Callback\+\_\+\+X\+R\+Event) (Xr\+Event\+Data\+Buffer)}
 
 
 
@@ -107,106 +78,6 @@ Event callback function used for registering functions to the Event Handler.
 
 
 \subsection{Enumeration Type Documentation}
-\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853d}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853d}} 
-\index{OpenXRProvider@{OpenXRProvider}!EXREventData@{EXREventData}}
-\index{EXREventData@{EXREventData}!OpenXRProvider@{OpenXRProvider}}
-\subsubsection{\texorpdfstring{EXREventData}{EXREventData}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853d}{Open\+X\+R\+Provider\+::\+E\+X\+R\+Event\+Data}}}
-
-
-
-The data payload of an Open\+XR event. 
-
-\begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_DATA\_INVALID@{EVENT\_DATA\_INVALID}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!EVENT\_DATA\_INVALID@{EVENT\_DATA\_INVALID}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da997161bd7da303efa7ad15a7f8822785}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da997161bd7da303efa7ad15a7f8822785}} 
-E\+V\+E\+N\+T\+\_\+\+D\+A\+T\+A\+\_\+\+I\+N\+V\+A\+L\+ID&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SESSION\_STATE\_IDLE@{SESSION\_STATE\_IDLE}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SESSION\_STATE\_IDLE@{SESSION\_STATE\_IDLE}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853daa3b9036ff98c585c242f695e6c84ac73}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853daa3b9036ff98c585c242f695e6c84ac73}} 
-S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+I\+D\+LE&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SESSION\_STATE\_READY@{SESSION\_STATE\_READY}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SESSION\_STATE\_READY@{SESSION\_STATE\_READY}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da67151eda1481cf5be744e14ac547b5ad}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da67151eda1481cf5be744e14ac547b5ad}} 
-S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+R\+E\+A\+DY&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SESSION\_STATE\_SYNCHRONIZED@{SESSION\_STATE\_SYNCHRONIZED}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SESSION\_STATE\_SYNCHRONIZED@{SESSION\_STATE\_SYNCHRONIZED}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da622e21f2be0137b273203c4e25651ed7}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da622e21f2be0137b273203c4e25651ed7}} 
-S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+S\+Y\+N\+C\+H\+R\+O\+N\+I\+Z\+ED&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SESSION\_STATE\_VISIBLE@{SESSION\_STATE\_VISIBLE}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SESSION\_STATE\_VISIBLE@{SESSION\_STATE\_VISIBLE}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da58182d525d291667c7b0f4a884adc607}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da58182d525d291667c7b0f4a884adc607}} 
-S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+V\+I\+S\+I\+B\+LE&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SESSION\_STATE\_FOCUSED@{SESSION\_STATE\_FOCUSED}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SESSION\_STATE\_FOCUSED@{SESSION\_STATE\_FOCUSED}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da0e5e5d205a9c8b0cd7631980c152c64c}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da0e5e5d205a9c8b0cd7631980c152c64c}} 
-S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+F\+O\+C\+U\+S\+ED&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SESSION\_STATE\_STOPPING@{SESSION\_STATE\_STOPPING}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SESSION\_STATE\_STOPPING@{SESSION\_STATE\_STOPPING}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da5291b6afca2465c8293baa5aa5a0c481}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853da5291b6afca2465c8293baa5aa5a0c481}} 
-S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+S\+T\+O\+P\+P\+I\+NG&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SESSION\_STATE\_LOSS\_PENDING@{SESSION\_STATE\_LOSS\_PENDING}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SESSION\_STATE\_LOSS\_PENDING@{SESSION\_STATE\_LOSS\_PENDING}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853dae1118c60be3405cf3b09e49594d011f2}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853dae1118c60be3405cf3b09e49594d011f2}} 
-S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+L\+O\+S\+S\+\_\+\+P\+E\+N\+D\+I\+NG&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SESSION\_STATE\_EXITING@{SESSION\_STATE\_EXITING}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SESSION\_STATE\_EXITING@{SESSION\_STATE\_EXITING}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853dac36a3497630be208504c1c413843041c}\label{namespace_open_x_r_provider_a45de367abcea927b192e21d1c8b9853dac36a3497630be208504c1c413843041c}} 
-S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+E\+X\+I\+T\+I\+NG&\\
-\hline
-
-\end{DoxyEnumFields}
-\mbox{\Hypertarget{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3}\label{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3}} 
-\index{OpenXRProvider@{OpenXRProvider}!EXREventType@{EXREventType}}
-\index{EXREventType@{EXREventType}!OpenXRProvider@{OpenXRProvider}}
-\subsubsection{\texorpdfstring{EXREventType}{EXREventType}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3}{Open\+X\+R\+Provider\+::\+E\+X\+R\+Event\+Type}}}
-
-
-
-The type of Open\+XR event raised by the currently active Open\+XR runtime. 
-
-\begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{ALL@{ALL}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!ALL@{ALL}}}\mbox{\Hypertarget{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a6d77b7e96db929c6e81bd4cc00e90b57}\label{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a6d77b7e96db929c6e81bd4cc00e90b57}} 
-A\+LL&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SESSION\_STATE\_CHANGED@{SESSION\_STATE\_CHANGED}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SESSION\_STATE\_CHANGED@{SESSION\_STATE\_CHANGED}}}\mbox{\Hypertarget{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a846f256c013f1ddde4f2bfb88c19567d}\label{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a846f256c013f1ddde4f2bfb88c19567d}} 
-S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+C\+H\+A\+N\+G\+ED&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{REFERENCE\_SPACE\_CHANGE\_PENDING@{REFERENCE\_SPACE\_CHANGE\_PENDING}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!REFERENCE\_SPACE\_CHANGE\_PENDING@{REFERENCE\_SPACE\_CHANGE\_PENDING}}}\mbox{\Hypertarget{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a8c2148677b3be0b94db1aebff7342f3e}\label{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a8c2148677b3be0b94db1aebff7342f3e}} 
-R\+E\+F\+E\+R\+E\+N\+C\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+P\+E\+N\+D\+I\+NG&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INTERACTION\_PROFILE\_CHANGED@{INTERACTION\_PROFILE\_CHANGED}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!INTERACTION\_PROFILE\_CHANGED@{INTERACTION\_PROFILE\_CHANGED}}}\mbox{\Hypertarget{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a389520016336a58552b602aacc89d602}\label{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3a389520016336a58552b602aacc89d602}} 
-I\+N\+T\+E\+R\+A\+C\+T\+I\+O\+N\+\_\+\+P\+R\+O\+F\+I\+L\+E\+\_\+\+C\+H\+A\+N\+G\+ED&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{INSTANCE\_LOSS\_PENDING@{INSTANCE\_LOSS\_PENDING}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!INSTANCE\_LOSS\_PENDING@{INSTANCE\_LOSS\_PENDING}}}\mbox{\Hypertarget{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3ad2a50c337955d71964454a17b5474740}\label{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3ad2a50c337955d71964454a17b5474740}} 
-I\+N\+S\+T\+A\+N\+C\+E\+\_\+\+L\+O\+S\+S\+\_\+\+P\+E\+N\+D\+I\+NG&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENTS\_LOST@{EVENTS\_LOST}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!EVENTS\_LOST@{EVENTS\_LOST}}}\mbox{\Hypertarget{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3ac3a23aa5a60beea1c939e80d191229ca}\label{namespace_open_x_r_provider_aa80d286c249d35071f2ff4d19d9dc4c3ac3a23aa5a60beea1c939e80d191229ca}} 
-E\+V\+E\+N\+T\+S\+\_\+\+L\+O\+ST&\\
-\hline
-
-\end{DoxyEnumFields}
-\mbox{\Hypertarget{namespace_open_x_r_provider_ab4e3f4c6f1f2b69f87608b992c505371}\label{namespace_open_x_r_provider_ab4e3f4c6f1f2b69f87608b992c505371}} 
-\index{OpenXRProvider@{OpenXRProvider}!EXRExtension@{EXRExtension}}
-\index{EXRExtension@{EXRExtension}!OpenXRProvider@{OpenXRProvider}}
-\subsubsection{\texorpdfstring{EXRExtension}{EXRExtension}}
-{\footnotesize\ttfamily enum \mbox{\hyperlink{namespace_open_x_r_provider_ab4e3f4c6f1f2b69f87608b992c505371}{Open\+X\+R\+Provider\+::\+E\+X\+R\+Extension}}}
-
-
-
-Supported extensions by the Open\+XR Provider library (excluding Graphics A\+PI extensions) 
-
-\begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTENSION\_VISIBILITY\_MASK@{EXTENSION\_VISIBILITY\_MASK}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!EXTENSION\_VISIBILITY\_MASK@{EXTENSION\_VISIBILITY\_MASK}}}\mbox{\Hypertarget{namespace_open_x_r_provider_ab4e3f4c6f1f2b69f87608b992c505371a18a9581473453414550c09bd6750b050}\label{namespace_open_x_r_provider_ab4e3f4c6f1f2b69f87608b992c505371a18a9581473453414550c09bd6750b050}} 
-E\+X\+T\+E\+N\+S\+I\+O\+N\+\_\+\+V\+I\+S\+I\+B\+I\+L\+I\+T\+Y\+\_\+\+M\+A\+SK&\\
-\hline
-
-\end{DoxyEnumFields}
 \mbox{\Hypertarget{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}\label{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155}} 
 \index{OpenXRProvider@{OpenXRProvider}!EXREye@{EXREye}}
 \index{EXREye@{EXREye}!OpenXRProvider@{OpenXRProvider}}
@@ -218,12 +89,32 @@ E\+X\+T\+E\+N\+S\+I\+O\+N\+\_\+\+V\+I\+S\+I\+B\+I\+L\+I\+T\+Y\+\_\+\+M\+A\+SK&\\
 Eye. 
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{LEFT@{LEFT}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!LEFT@{LEFT}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a81ab813676876f34a0aa640d9b3da242}\label{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a81ab813676876f34a0aa640d9b3da242}} 
-L\+E\+FT&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_LEFT@{EYE\_LEFT}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!EYE\_LEFT@{EYE\_LEFT}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a1f7295c2ac801bf776369e51ad0f7e84}\label{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a1f7295c2ac801bf776369e51ad0f7e84}} 
+E\+Y\+E\+\_\+\+L\+E\+FT&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{RIGHT@{RIGHT}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!RIGHT@{RIGHT}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a6306b44e379151146b66ee8100703cb0}\label{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155a6306b44e379151146b66ee8100703cb0}} 
-R\+I\+G\+HT&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EYE\_RIGHT@{EYE\_RIGHT}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!EYE\_RIGHT@{EYE\_RIGHT}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155ae4e90da36b75bc313108f4ea7283da97}\label{namespace_open_x_r_provider_a8aa379869e30772896e6c468eb54f155ae4e90da36b75bc313108f4ea7283da97}} 
+E\+Y\+E\+\_\+\+R\+I\+G\+HT&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3}\label{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3}} 
+\index{OpenXRProvider@{OpenXRProvider}!EXRInstanceExtension@{EXRInstanceExtension}}
+\index{EXRInstanceExtension@{EXRInstanceExtension}!OpenXRProvider@{OpenXRProvider}}
+\subsubsection{\texorpdfstring{EXRInstanceExtension}{EXRInstanceExtension}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3}{Open\+X\+R\+Provider\+::\+E\+X\+R\+Instance\+Extension}}}
+
+
+
+Supported extensions by the Open\+XR Provider library (excluding Graphics A\+PI extensions) 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXT\_INSTANCE\_VISIBILITY\_MASK@{EXT\_INSTANCE\_VISIBILITY\_MASK}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!EXT\_INSTANCE\_VISIBILITY\_MASK@{EXT\_INSTANCE\_VISIBILITY\_MASK}}}\mbox{\Hypertarget{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3aafc2d84efc5f08ff5b64d1118fc40a6b}\label{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3aafc2d84efc5f08ff5b64d1118fc40a6b}} 
+E\+X\+T\+\_\+\+I\+N\+S\+T\+A\+N\+C\+E\+\_\+\+V\+I\+S\+I\+B\+I\+L\+I\+T\+Y\+\_\+\+M\+A\+SK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXT\_INSTANCE\_HAND\_TRACKING@{EXT\_INSTANCE\_HAND\_TRACKING}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!EXT\_INSTANCE\_HAND\_TRACKING@{EXT\_INSTANCE\_HAND\_TRACKING}}}\mbox{\Hypertarget{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3a07f521c2e1b127d26a5f2e57ebe00a65}\label{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16cc3a07f521c2e1b127d26a5f2e57ebe00a65}} 
+E\+X\+T\+\_\+\+I\+N\+S\+T\+A\+N\+C\+E\+\_\+\+H\+A\+N\+D\+\_\+\+T\+R\+A\+C\+K\+I\+NG&\\
 \hline
 
 \end{DoxyEnumFields}
@@ -238,12 +129,12 @@ R\+I\+G\+HT&\\
 Tracking space (e.\+g. roomscale, seated) 
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{ROOMSCALE@{ROOMSCALE}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!ROOMSCALE@{ROOMSCALE}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05a192dfa44253ba4815ec1a5335f52b578}\label{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05a192dfa44253ba4815ec1a5335f52b578}} 
-R\+O\+O\+M\+S\+C\+A\+LE&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRACKING\_ROOMSCALE@{TRACKING\_ROOMSCALE}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!TRACKING\_ROOMSCALE@{TRACKING\_ROOMSCALE}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05a5f2a13c525612f19c5c2a6db5f22f836}\label{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05a5f2a13c525612f19c5c2a6db5f22f836}} 
+T\+R\+A\+C\+K\+I\+N\+G\+\_\+\+R\+O\+O\+M\+S\+C\+A\+LE&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SEATED@{SEATED}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!SEATED@{SEATED}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05af05478b3d52c3a40a3f66aea7af03dfc}\label{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05af05478b3d52c3a40a3f66aea7af03dfc}} 
-S\+E\+A\+T\+ED&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRACKING\_SEATED@{TRACKING\_SEATED}!OpenXRProvider@{OpenXRProvider}}\index{OpenXRProvider@{OpenXRProvider}!TRACKING\_SEATED@{TRACKING\_SEATED}}}\mbox{\Hypertarget{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05aba26293ac81cbb568b44ae10f4af4ec9}\label{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05aba26293ac81cbb568b44ae10f4af4ec9}} 
+T\+R\+A\+C\+K\+I\+N\+G\+\_\+\+S\+E\+A\+T\+ED&\\
 \hline
 
 \end{DoxyEnumFields}
@@ -262,9 +153,15 @@ S\+E\+A\+T\+ED&\\
 \subsubsection{\texorpdfstring{CheckXrResult()}{CheckXrResult()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+Check\+Xr\+Result (\begin{DoxyParamCaption}\item[{Xr\+Result}]{xr\+Result,  }\item[{std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$}]{xr\+Logger,  }\item[{const char $\ast$}]{xr\+Call = {\ttfamily nullptr},  }\item[{const char $\ast$}]{src\+File = {\ttfamily nullptr},  }\item[{int}]{src\+Line\+Num = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{namespace_open_x_r_provider_a9d83a2b1a5d6649210b47ab49a592b47}\label{namespace_open_x_r_provider_a9d83a2b1a5d6649210b47ab49a592b47}} 
-\index{OpenXRProvider@{OpenXRProvider}!EnumToString@{EnumToString}}
-\index{EnumToString@{EnumToString}!OpenXRProvider@{OpenXRProvider}}
-\subsubsection{\texorpdfstring{EnumToString()}{EnumToString()}}
-{\footnotesize\ttfamily const char$\ast$ Open\+X\+R\+Provider\+::\+Enum\+To\+String (\begin{DoxyParamCaption}\item[{const char $\ast$}]{enum\+Str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\Hypertarget{namespace_open_x_r_provider_ac8e3913afbac23d15ac8ade017abd1c2}\label{namespace_open_x_r_provider_ac8e3913afbac23d15ac8ade017abd1c2}} 
+\index{OpenXRProvider@{OpenXRProvider}!XR\_ENUM\_TYPE\_STRINGIFY@{XR\_ENUM\_TYPE\_STRINGIFY}}
+\index{XR\_ENUM\_TYPE\_STRINGIFY@{XR\_ENUM\_TYPE\_STRINGIFY}!OpenXRProvider@{OpenXRProvider}}
+\subsubsection{\texorpdfstring{XR\_ENUM\_TYPE\_STRINGIFY()}{XR\_ENUM\_TYPE\_STRINGIFY()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+\_\+\+E\+N\+U\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+N\+G\+I\+FY (\begin{DoxyParamCaption}\item[{Xr\+Result}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_open_x_r_provider_a6f1b32985dfebfddc5f58fd4d9f520fd}\label{namespace_open_x_r_provider_a6f1b32985dfebfddc5f58fd4d9f520fd}} 
+\index{OpenXRProvider@{OpenXRProvider}!XR\_ENUM\_TYPE\_STRINGIFY@{XR\_ENUM\_TYPE\_STRINGIFY}}
+\index{XR\_ENUM\_TYPE\_STRINGIFY@{XR\_ENUM\_TYPE\_STRINGIFY}!OpenXRProvider@{OpenXRProvider}}
+\subsubsection{\texorpdfstring{XR\_ENUM\_TYPE\_STRINGIFY()}{XR\_ENUM\_TYPE\_STRINGIFY()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+\_\+\+E\+N\+U\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+N\+G\+I\+FY (\begin{DoxyParamCaption}\item[{Xr\+Session\+State}]{ }\end{DoxyParamCaption})}
 

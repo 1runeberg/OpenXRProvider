@@ -67,7 +67,7 @@ namespace OpenXRProvider
 		pXRVisibilityMask.vertexCapacityInput = 0;
 
 		m_xrLastCallResult = XR_CALL_SILENT(
-			xrGetVisibilityMaskKHR( m_xrSession, XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO, eEye == LEFT ? 0 : 1, xrVisibilityMaskType, &pXRVisibilityMask ),
+			xrGetVisibilityMaskKHR( m_xrSession, XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO, eEye == EYE_LEFT ? 0 : 1, xrVisibilityMaskType, &pXRVisibilityMask ),
 			m_pXRLogger );
 
 		if ( m_xrLastCallResult != XR_SUCCESS )
@@ -102,7 +102,7 @@ namespace OpenXRProvider
 		pXRVisibilityMask.vertices = vXrVertices.data();
 
 		m_xrLastCallResult = XR_CALL_SILENT(
-			xrGetVisibilityMaskKHR( m_xrSession, XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO, eEye == LEFT ? 0 : 1, xrVisibilityMaskType, &pXRVisibilityMask ),
+			xrGetVisibilityMaskKHR( m_xrSession, XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO, eEye == EYE_LEFT ? 0 : 1, xrVisibilityMaskType, &pXRVisibilityMask ),
 			m_pXRLogger );
 
 		if ( m_xrLastCallResult != XR_SUCCESS )

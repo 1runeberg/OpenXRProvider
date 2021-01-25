@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['requestdepthformats',['RequestDepthFormats',['../struct_open_x_r_provider_1_1_x_r_render_info.html#aa4ba2f324a4ae14f1e51f2343dd1446b',1,'OpenXRProvider::XRRenderInfo']]],
-  ['requesttextureformats',['RequestTextureFormats',['../struct_open_x_r_provider_1_1_x_r_render_info.html#a84860b74dcb11fbc7494883b555f3029',1,'OpenXRProvider::XRRenderInfo']]],
-  ['rightangle',['RightAngle',['../struct_open_x_r_provider_1_1_x_r_fo_v.html#ab39e0b3bfc04f07935fac2124f876004',1,'OpenXRProvider::XRFoV']]],
-  ['righteye',['RightEye',['../struct_open_x_r_provider_1_1_x_r_h_m_d_state.html#a72e6afc6875efdf77079f615b0e833d3',1,'OpenXRProvider::XRHMDState']]]
+  ['texturearraysize',['TextureArraySize',['../struct_open_x_r_provider_1_1_x_r_render_info.html#a9bf5bd224350b3fcc79a1643b8cc85f6',1,'OpenXRProvider::XRRenderInfo']]],
+  ['texturemipcount',['TextureMipCount',['../struct_open_x_r_provider_1_1_x_r_render_info.html#ad86a33b90d0f38aa11a3cd4e0dc521b4',1,'OpenXRProvider::XRRenderInfo']]],
+  ['trackingspace',['TrackingSpace',['../struct_open_x_r_provider_1_1_x_r_app_info.html#adc373e7d26617bc10d2d46d6152a6a17',1,'OpenXRProvider::XRAppInfo']]],
+  ['type',['type',['../struct_open_x_r_provider_1_1_x_r_callback.html#a40536357562a259c3a1bc91f99cc088e',1,'OpenXRProvider::XRCallback']]]
 ];

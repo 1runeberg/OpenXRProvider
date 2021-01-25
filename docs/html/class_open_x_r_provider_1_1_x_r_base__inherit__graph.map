@@ -1,6 +1,7 @@
 <map id="OpenXRProvider::XRBase" name="OpenXRProvider::XRBase">
-<area shape="rect" id="node1" title=" " alt="" coords="154,5,323,32"/>
-<area shape="rect" id="node2" href="$class_open_x_r_provider_1_1_x_r_base_ext.html" title=" " alt="" coords="31,80,220,107"/>
-<area shape="rect" id="node4" href="$class_open_x_r_provider_1_1_x_r_event_handler.html" title=" " alt="" coords="245,80,459,107"/>
-<area shape="rect" id="node3" href="$class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html" title=" " alt="" coords="5,155,245,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="247,5,417,32"/>
+<area shape="rect" id="node2" href="$class_open_x_r_provider_1_1_x_r_base_ext.html" title=" " alt="" coords="124,80,313,107"/>
+<area shape="rect" id="node5" href="$class_open_x_r_provider_1_1_x_r_event_handler.html" title=" " alt="" coords="338,80,553,107"/>
+<area shape="rect" id="node3" href="$class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html" title=" " alt="" coords="5,155,195,196"/>
+<area shape="rect" id="node4" href="$class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html" title=" " alt="" coords="219,162,459,189"/>
 </map>

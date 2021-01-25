@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['invertmatrix',['InvertMatrix',['../main_8h.html#ad1e725be8811bd85f2fb82ae2ff665e5',1,'InvertMatrix(const glm::mat4 pProjectionMatrix):&#160;main.cpp'],['../main_8cpp.html#a9e4a2accecb47c58ed592c9a2010ab15',1,'InvertMatrix(const glm::mat4 mMatrix):&#160;main.cpp']]]
+  ['getdepth',['GetDepth',['../main_8h.html#a05f778f08b7c62edb5bc1b36df42ab83',1,'GetDepth(uint32_t nTexture, GLint nMinFilter=GL_LINEAR, GLint nMagnitudeFilter=GL_NEAREST, GLint nWrapS=GL_REPEAT, GLint nWrapT=GL_REPEAT, GLint nDepthFormat=GL_DEPTH_COMPONENT24):&#160;main.cpp'],['../main_8cpp.html#aafdebc28cb0db5e42ec24a88bcfa566f',1,'GetDepth(uint32_t nTexture, GLint nMinFilter, GLint nMagnitudeFilter, GLint nWrapS, GLint nWrapT, GLint nDepthFormat):&#160;main.cpp']]],
+  ['geteyeprojection',['GetEyeProjection',['../main_8h.html#a4dcc74f564e1148c5f29cf9312c34207',1,'GetEyeProjection(XrFovf eyeFoV, float fNear=0.1, float fFar=1000.f):&#160;main.cpp'],['../main_8cpp.html#a7ccb68e575ebbafb4208fe880ccc755f',1,'GetEyeProjection(XrFovf eyeFoV, float fNear, float fFar):&#160;main.cpp']]],
+  ['geteyeprojectionleft',['GetEyeProjectionLeft',['../main_8h.html#a2eed4c018b23237176352534826b9338',1,'main.h']]],
+  ['geteyeprojectionright',['GetEyeProjectionRight',['../main_8h.html#a70e21f5375a54d2247643e90cfdc41f2',1,'main.h']]],
+  ['getlogger',['GetLogger',['../class_utils.html#a8a9dbd079fb703e15db6bab8c15c46d6',1,'Utils']]],
+  ['getwindow',['GetWindow',['../class_x_r_mirror.html#a966faccfee88f1f4ca2b8cfc881658c0',1,'XRMirror']]],
+  ['graphicsapiobjectssetup',['GraphicsAPIObjectsSetup',['../main_8h.html#ab5a763045c08ee555125d07e990fbc60',1,'GraphicsAPIObjectsSetup():&#160;main.cpp'],['../main_8cpp.html#ab5a763045c08ee555125d07e990fbc60',1,'GraphicsAPIObjectsSetup():&#160;main.cpp']]]
 ];

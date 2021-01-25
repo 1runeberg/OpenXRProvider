@@ -29,6 +29,17 @@
 // OpenXR Provider includes
 #include <OpenXRProvider.h>
 
+
+// ** CUSTOM TYPES (GLOBAL) **//
+
+/// Sandbox scenes
+enum ESandboxScene
+{
+	SANDBOX_SCENE_SEA_OF_CUBES = 0,
+	SANDBOX_SCENE_HAND_TRACKING = 1
+};
+
+
 // ** FUNCTIONS (GLOBAL) **//
 
 /// Setup the sandbox application - windowing and opengl support
@@ -37,40 +48,57 @@ int AppSetup();
 /// Setup the OpenGL objects (VAO, VBO, FBO) needed for rendering to textures from the OpenXR runtime
 int GraphicsAPIObjectsSetup();
 
-
 /// Blit (copy) swapchain image that's rendered to the HMD to the desktop screem (XR Mirror)
 void BlitToWindow();
 
 /// Render to the swapchain image (texture) that'll be rendered to the user's HMD and blitted (copied) to
 /// the Sandbox's window (XR Mirror)
-/// @param[in] pXRRenderManager		Pointer to the XR Render Manager object
 /// @param[in] eEye					The eye (left/right) texture that will be rendered on
 /// @param[in] nSwapchainIndex		The index of the swapchain image (texture)
-/// @param[in] FBO					The OpenGL Frame Buffer Object needed to draw to a Texture2D
-/// @param[in] nShaderVisMask		The OpenGL shader program that will be used for the Visibility Mask
 void DrawFrame(
-	OpenXRProvider::XRRenderManager *pXRRenderManager,
 	OpenXRProvider::EXREye eEye,
-	uint32_t nSwapchainIndex,
-	unsigned int FBO,
-	GLuint nShaderVisMask
+	uint32_t nSwapchainIndex
 	);
 
-/// Submit a texture to the compositor
+/// Callback for session state changes TODO: Use native OpenXR type
 /// @param[in] xrEventType	The type of event that triggered the callback (e.g. Session state change, reference space changed, etc)
 /// @param[in] xrEventData	The data payload of the event (e.g. The new session state, etc)
-static void Callback_XR_Session_Changed( const OpenXRProvider::EXREventType xrEventType, const OpenXRProvider::EXREventData xrEventData );
+static void Callback_XR_Event( XrEventDataBuffer xrEvent );
+
+// Set callback for key input
+/// @param[in] pWindow		Pointer to the GLFW window
+/// @param[in] nKey			The key that was pressed that triggers this callback (e.g. GLFW_KEY_1)
+/// @param[in] nScancode	Platform specific scancode for the key that was pressed
+/// @param[in] nAction		Action that triggered the key event (e.g. GLFW_PRESS)
+/// @param[in] nModifier	Modifier bits (e.g. GLFW_MOD_NUM_LOCK)
+static void Callback_GLFW_Input_Key( GLFWwindow *pWindow, int nKey, int nScancode, int nAction, int nModifier );
 
 
 // ** MEMBER VARIABLES (GLOBAL) **//
 
-unsigned int cubeInstanceDataVBO;
+/// If hand joints should be rendered (hand tracking extension required)
+bool bDrawHandJoints = false;
+
+/// Current active scene
+ESandboxScene eCurrentScene = SANDBOX_SCENE_SEA_OF_CUBES;
 
 /// The OpenGL Vertex Buffer Object (cube) used in rendering processes
 unsigned int cubeVBO;
 
+/// The OpenGL Vertex Buffer Object (joint) used in rendering processes
+unsigned int jointVBO;
+
+/// Instanced cube data for its projection matrices
+unsigned int cubeInstanceDataVBO;
+
+/// Instanced joint mesh data for its projection matrices
+unsigned int jointInstanceDataVBO;
+
 /// The OpenGL Vertex Array Object (cube) used in rendering processes
 unsigned int cubeVAO;
+
+/// The OpenGL Vertex Array Object (joint) used in rendering processes
+unsigned int jointVAO;
 
 /// The OpenGL Vertex Array Object (light source) used in rendering processes
 unsigned int lightVAO;
@@ -115,7 +143,7 @@ std::wstring sCurrentPath;
 char pAppLogFile[ MAX_PATH ] = "";
 
 /// Sea of Cubes textures
-std::vector< unsigned int > vSeaOfCubesTextures;
+std::vector< unsigned int > vCubeTextures;
 
 /// Indices for the left eye visibility mask (hmd specific occlusion mesh reported by the active OpenXR runtime)
 std::vector< uint32_t > vMaskIndices_L;
@@ -136,7 +164,7 @@ Utils *pUtils = nullptr;
 XRMirror *pXRMirror = nullptr;
 
 /// Stores the current OpenXR session state
-OpenXRProvider::EXREventData xrCurrentSessionState;
+XrSessionState xrCurrentSessionState = XR_SESSION_STATE_UNKNOWN;
 
 /// Pointer to the XRProvider class of the OpenXR Provider library which handles all state, system and generic calls to the OpenXR runtime
 OpenXRProvider::XRProvider *pXRProvider = nullptr;
@@ -146,6 +174,9 @@ OpenXRProvider::XRRenderManager *pXRRenderManager = nullptr;
 
 /// Pointer to the XRExtVisibilityMask class of the OpenXR Provider library which handles the OpenXR visibility mask extension for runtimes that support it
 OpenXRProvider::XRExtVisibilityMask *pXRVisibilityMask = nullptr;
+
+/// Pointer to the XRExtVisibilityMask class of the OpenXR Provider library which handles the OpenXR visibility mask extension for runtimes that support it
+OpenXRProvider::XRExtHandTracking* pXRHandTracking = nullptr;
 
 
 /// -------------------------------
@@ -211,25 +242,16 @@ glm::mat4 m_EyeProjectionRight;
 /// A OpenGL map of color texture id to depth texture id
 std::map< uint32_t, uint32_t > m_mapColorDepth;
 
-/// Draw a sea of instanced textured cubes in the scene based on the number of textures provided
-/// @param[in]	pRenderManager		Pointer to OpenXR Provider library's Render manager
+/// Draw a scene with a sea of instanced textured cubes in the scene based on the number of textures provided
 /// @param[in]	eEye				Current eye to render to
 /// @param[in]	nSwapchainIndex		Texture in the swapchain to render to
-/// @param[in]	VBO					Vertex buffer object that contains instanced data for the projection matrices
-/// @param[in]	VAO					Vertex Array Object containing the cube vertices
 /// @param[in]	cubeScale			Scale to apply to the cubes
-/// @param[in]	vTextures			Array of textures that will be applied on the cubes
 /// @param[in]	fSpacingPlane		The amount of spacing in between cubes in the x,z axis
 /// @param[in]	fSpacingHeight		The amount of spacing in between cubes in the y axis
-void DrawSeaOfCubes(
-	OpenXRProvider::XRRenderManager *pRenderManager,
+void DrawSeaOfCubesScene(
 	OpenXRProvider::EXREye eEye,
 	uint32_t nSwapchainIndex,
-	GLuint nShader,
-	unsigned int VBO,
-	unsigned int VAO,
 	glm::vec3 cubeScale,
-	std::vector< unsigned int > vTextures,
 	float fSpacingPlane,
 	float fSpacingHeight );
 
@@ -244,31 +266,34 @@ void DrawSeaOfCubes(
 /// @param[in]	cubePosition		The position of the cube
 /// @param[in]	cubeScale			The scale of the cube
 void FillEyeMVP(
-	OpenXRProvider::XRRenderManager *pRenderManager,
 	glm::mat4 *vEyeProjections,
 	glm::mat4 eyeView,
 	OpenXRProvider::EXREye eEye,
 	uint32_t nCubeIndex,
-	GLuint nShader,
-	unsigned int nTexture,
 	glm::vec3 cubePosition,
-	glm::vec3 cubeScale );
+	glm::vec3 cubeScale = glm::vec3( 0.f ) );
 
-/// Draw a single cube (when not using instancing, will require a different shader)
+
+/// Fill the array of model-view-projection matrices that will be applied on a  rotating cube in a single frame and eye.
+/// This is filled in as instanced variables to the shader
 /// @param[in]	pRenderManager		Pointer to OpenXR Provider library's Render manager
-/// @param[in]	eEye				Current eye to render to
-/// @param[in]  nSwapchainIndex		Texture in the swapchain to render to
+/// @param[out] vEyeProjections		Array of eye view projection matrices that will be applied to each cube model vertex
+/// @param[in]	eyeView				The current eye view (camera) projection matrix
+/// @param[in]	nCubeIndex			Index of the current cube being rendered (within the "sea")
 /// @param[in]	nShader				Shader program id to use for the cube
 /// @param[in]	nTexture			The texture id to use for the cube
-/// @param[in]	VAO					Vertex Array Object containing the cube vertices
-void DrawCube(
-	OpenXRProvider::XRRenderManager* pRenderManager,
+/// @param[in]	cubePosition		The position of the cube
+/// @param[in]	cubeRotation		The amount of rotation applied to the cube over time
+/// @param[in]	cubeScale			The scale of the cube
+void FillEyeMVP_RotateOverTime(
+	glm::mat4 *vEyeProjections,
+	glm::mat4 eyeView,
 	OpenXRProvider::EXREye eEye,
-	uint32_t nSwapchainIndex,
-	GLuint nShader,
-	unsigned int nTexture,
-	unsigned int VAO,
-	glm::vec3 cubePosition);
+	uint32_t nCubeIndex,
+	unsigned nTexture,
+	glm::vec3 cubePosition,
+	glm::vec3 cubeRotation,
+	glm::vec3 cubeScale );
 
 /// Calculate the eye projection matrix for this OpenXR session.
 /// This can be calculated only once per application run
@@ -276,11 +301,7 @@ void DrawCube(
 /// @param[in]	eyeFoV				The eye's field of view angles in radians 
 /// @param[in]  fNear				Near plane distance (must be greater than 0 to use depth testing in OpenGL)
 /// @param[in]	fFar				Far plane distance
-glm::mat4 GetEyeProjection( 
-	OpenXRProvider::XRRenderManager *pRenderManager, 
-	OpenXRProvider::XRFoV eyeFoV, 
-	float fNear = 0.1, 
-	float fFar = 1000.f );
+glm::mat4 GetEyeProjection( XrFovf eyeFoV,	float fNear = 0.1, float fFar = 1000.f );
 
 /// Getter for the left eye projection (for use in future refactoring)
 /// @return		glm::mat4		The left eye view (camera) projection matrix for this frame
@@ -314,3 +335,67 @@ uint32_t GetDepth(
 /// @param[in]	pProjectionMatrix	The matrix to invert
 /// @param[out]	glm::mat4			The inverted matrix
 glm::mat4 InvertMatrix( const glm::mat4 pProjectionMatrix );
+
+
+/// -------------------------------
+/// HAND TRACKING
+/// -------------------------------
+
+/// joint mesh vertices and colors (x, y, z, r, g, b)
+float vJointMesh[ ] =
+{
+	0.0f, 0.0f, -0.4f,		0.0f, 1.0f, 0.0f,
+	0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f,
+	0.0f, 0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	0.0f,  0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	-0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, -0.4f,		0.0f, 1.0f, 0.0f,
+
+	0.0f, 0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, 0.2f,		0.0f, 1.0f, 0.0f,
+	0.0f,  0.0f, 0.2f,		0.0f, 1.0f, 0.0f,
+	-0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f, 
+	0.0f, 0.2f,	0.0f,		1.0f, 1.0f, 1.0f,
+
+	0.0f, 0.0f, -0.4f,		1.0f, 1.0f, 1.0f,
+	0.2f, 0.0f, 0.1f,		1.0f, 1.0f, 1.0f,
+	0.0f, -0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	0.0f, -0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	-0.2f, 0.0f, 0.1f,		1.0f, 1.0f, 1.0f,
+	0.0f, 0.0f, -0.4f,		1.0f, 1.0f, 1.0f,
+
+	0.0f, -0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, 0.2f,		0.0f, 1.0f, 0.0f,
+	0.0f,  0.0f, 0.2f,		0.0f, 1.0f, 0.0f,
+	-0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f, 
+	0.0f, -0.2f, 0.0f,		1.0f, 1.0f, 1.0f
+};
+
+/// Draw the hand joints (hand tracking runtime support required)
+/// @param[in]	eEye				Current eye to render to
+/// @param[in]	nSwapchainIndex		Texture in the swapchain to render to
+void DrawHandJoints( OpenXRProvider::EXREye eEye, glm::mat4 eyeView );
+
+/// Draw a scene with hand tracked joints and four large rotating cubes around the center of the playspace
+/// @param[in]	eEye				Current eye to render to
+/// @param[in]	nSwapchainIndex		Texture in the swapchain to render to
+void DrawHandTrackingScene( OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex );
+
+/// Draw a single cube
+/// @param[in]	eEye					Current eye to render to
+/// @param[in]  nSwapchainIndex			Texture in the swapchain to render to
+/// @param[in]  eyeView					The eye view matrix
+/// @param[in]	nTexture				The texture id to use for the cube
+/// @param[in]	cubePosition			The position of the cube in world space
+/// @param[in]	cubeScale				The scale of the cube in world space
+/// @param[in]	cubeRotationOverTime	Amount of rotation of the cube over time
+void DrawCube(
+	OpenXRProvider::EXREye eEye,
+	uint32_t nSwapchainIndex,
+	glm::mat4 eyeView,
+	unsigned int nTexture,
+	glm::vec3 cubePosition,
+	glm::vec3 cubeScale,
+	glm::vec3 cubeRotationOverTime );

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['orientation',['Orientation',['../struct_open_x_r_provider_1_1_x_r_pose.html#ab121b9646f6c7afc5530a42e275b040f',1,'OpenXRProvider::XRPose']]]
+  ['pose',['Pose',['../struct_open_x_r_provider_1_1_x_r_eye_state.html#a67d63a2e3f4ea9c04f80bed7747f9e3d',1,'OpenXRProvider::XREyeState']]]
 ];

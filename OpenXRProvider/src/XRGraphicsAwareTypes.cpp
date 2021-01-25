@@ -129,13 +129,13 @@ namespace OpenXRProvider
 	{
 		switch ( eEye )
 		{
-			case OpenXRProvider::LEFT:
+			case OpenXRProvider::EYE_LEFT:
 				if ( bIsDepth )
 					return ( uint32_t )m_xrSwapchainImages_Depth_L.size();
 				return ( uint32_t )m_xrSwapchainImages_Color_L.size();
 				break;
 
-			case OpenXRProvider::RIGHT:
+			case OpenXRProvider::EYE_RIGHT:
 				if ( bIsDepth )
 					return ( uint32_t )m_xrSwapchainImages_Depth_R.size();
 				return ( uint32_t )m_xrSwapchainImages_Color_R.size();
@@ -155,13 +155,13 @@ namespace OpenXRProvider
 	{
 		switch ( eEye )
 		{
-			case OpenXRProvider::LEFT:
+			case OpenXRProvider::EYE_LEFT:
 				if ( bGetDepth )
 					return m_xrSwapchainImages_Depth_L;
 				return m_xrSwapchainImages_Color_L;
 				break;
 
-			case OpenXRProvider::RIGHT:
+			case OpenXRProvider::EYE_RIGHT:
 				if ( bGetDepth )
 					return m_xrSwapchainImages_Depth_R;
 				return m_xrSwapchainImages_Color_R;

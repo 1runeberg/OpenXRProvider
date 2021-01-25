@@ -26,6 +26,8 @@
 #include <XREventHandler.h>
 #include <XRGraphicsAwareTypes.h>
 
+#include <XRExtHandTracking.h>
+
 #define LOG_TITLE	"OpenXR"
 
 namespace OpenXRProvider
@@ -110,6 +112,10 @@ namespace OpenXRProvider
 		/// Getter for the array of extensions names that are active in the current OpenXR session
 		/// @return		Array of extensions names that are active in the current OpenXR session
 		std::vector< const char * > GetEnabledExtensionNames() const { return m_vAppEnabledExtensions; }
+
+		/// Getter for hand tracking extension object
+		/// @return		Pointer to the hand tracking extension object
+		XRExtHandTracking* GetExtHandTracking() const { return m_pXRHandTracking; }
 		
 		/// Getter for the graphics api object that handles graphics api (e.g. OpenGL, Vulkan, etc) specific rendering state and functions
 		/// @return		Pointer to graphics api object that handles graphics api (e.g. OpenGL, Vulkan, etc) specific rendering state and functions	
@@ -118,11 +124,11 @@ namespace OpenXRProvider
 		/// Getter if depth textures are supported and enabled
 		/// @return		If  depth textures are supported and runtime supports it
 		bool GetIsDepthSupported() const { return m_bIsDepthSupported; }
-		
+
 		/// Getter for the logger object
 		/// @return		Pointer to the logger object
 		std::shared_ptr< spdlog::logger > GetLogger() const { return m_pLogger; }
-		
+
 		/// Getter for the Event Handler object that broadcasts events to listeners via their registered callback functions
 		/// @return		Pointer to the event handler object
 		XREventHandler *GetXREventHandler() const { return m_pXREventHandler; }
@@ -159,6 +165,13 @@ namespace OpenXRProvider
 		/// @param[in]	xrSession	Set the active OpenXR session
 		void SetXRSession( XrSession xrSession ) { m_xrSession = xrSession; }
 
+		/// Call OpenXR xrBeginSession to start app frame synchronization
+		/// @return	XrResult	The result of the xrEndSession call
+		XrResult XRBeginSession();
+
+		/// Call OpenXR xrEndSession to allow runtime to safely transition back to idle
+		/// @return	XrResult	The result of the xrEndSession call
+		XrResult XREndSession();
 
 	  private:
 		// ** FUNCTIONS (PRIVATE) **/
@@ -172,20 +185,16 @@ namespace OpenXRProvider
 
 		/// Enable provided extensions if supported by the currently active OpenXR runtime
 		/// @param[in]	pXRExtensions	List of extensions names to enable if the active OpenXR runtime supports it
-		void EnableExtensions( std::vector< const char * > &pXRExtensions, bool bEnableDepthTextureSupport );
+		void EnableInstanceExtensions( std::vector< const char * > &pXRExtensions, bool bEnableDepthTextureSupport );
 
 		/// Execute all registered callback functions. Used after an OpenXR poll and an event state has been triggered by the runtime
 		/// @param[in]	xrEventType	The type of OpenXR event that triggered the callback
 		/// @param[in]	eXREventData
-		void ExecuteCallbacks( const EXREventType eXREventType, const EXREventData eXREventData );
+		void ExecuteCallbacks( XrEventDataBuffer xrEvent );
 
 		/// Load the current OpenXR runtime and retrieve its system properties
 		/// @return		Result of the OpenXR calls to retrieve the xr system properties from the active OpenXR runtime
 		XrResult LoadXRSystem();
-
-		/// Actions the library needs to do during a session state change
-		/// @param[in]	xrSessionState	The new session state
-		void ProcessEvent_SessionStateChanged( const XrSessionState xrSessionState );
 
 		/// Initialize the world - setup the space and time the app will live in
 		/// (1) Create a session (app communication instance to render frames or send/receive input to/from the runtime) and
@@ -261,5 +270,10 @@ namespace OpenXRProvider
 
 		/// The current predicted display time
 		XrTime m_xrPredictedDisplayTime = { 0 }; // The current display time, use this as a single point of truth for current frame time
+
+		
+		// ** EXTENSIONS **/
+		XRExtHandTracking* m_pXRHandTracking = nullptr;
+		
 	};
 }

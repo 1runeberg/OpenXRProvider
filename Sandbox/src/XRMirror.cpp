@@ -71,6 +71,7 @@ XRMirror::XRMirror( int nWidth, int nHeight, const char *pTitle, const char* sLo
 XRMirror::~XRMirror()
 {
 	delete m_pUtils;
+	glfwDestroyWindow( GetWindow() );
 	glfwTerminate();
 }
 

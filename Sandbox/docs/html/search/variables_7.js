@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['vcube',['vCube',['../main_8h.html#a930e294af25433106ebe08293277f70d',1,'main.h']]],
-  ['vmaskindices_5fl',['vMaskIndices_L',['../main_8h.html#ae1dfd6e5fadf1da2664c1617e189a06c',1,'main.h']]],
-  ['vmaskindices_5fr',['vMaskIndices_R',['../main_8h.html#ad421570592914cc66daade1c4941f168',1,'main.h']]],
-  ['vmaskvertices_5fl',['vMaskVertices_L',['../main_8h.html#acdb99f9355147649df3b24765f066db3',1,'main.h']]],
-  ['vmaskvertices_5fr',['vMaskVertices_R',['../main_8h.html#a7f2a98fc8e67834e753ae8f7330ecd25',1,'main.h']]],
-  ['vseaofcubestextures',['vSeaOfCubesTextures',['../main_8h.html#a36a525d0179ef4cb545c78242cdf29dd',1,'main.h']]]
+  ['nframenumber',['nFrameNumber',['../main_8h.html#a717bd1588444dddd960d9889f5f092d7',1,'main.h']]],
+  ['nscreenheight',['nScreenHeight',['../main_8h.html#a106276f6621f348fd220319a0c5ca275',1,'main.h']]],
+  ['nscreenwidth',['nScreenWidth',['../main_8h.html#ad3af6abc3694a26372dc97344127702e',1,'main.h']]],
+  ['nshaderlit',['nShaderLit',['../main_8h.html#ac9a863c8ce6916659a046f416a32faf8',1,'main.h']]],
+  ['nshadertextured',['nShaderTextured',['../main_8h.html#a40ae0a91a7ebb0009db938414ae02e28',1,'main.h']]],
+  ['nshaderunlit',['nShaderUnlit',['../main_8h.html#a762351bcd57a83c9f7aba43e994eeef5',1,'main.h']]],
+  ['nshadervismask',['nShaderVisMask',['../main_8h.html#a8f6bf5aa2103d3f51c013733389dd4bd',1,'main.h']]],
+  ['nswapchaincapacity',['nSwapchainCapacity',['../main_8h.html#a90485357d3af01d962f1befe5ec9199a',1,'main.h']]],
+  ['nswapchainindex',['nSwapchainIndex',['../main_8h.html#a4eb41db6c24b2e7190d293273d6e0230',1,'main.h']]]
 ];

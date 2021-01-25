@@ -1,10 +1,11 @@
 <map id="src/XRRenderManager.cpp" name="src/XRRenderManager.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="888,5,1064,32"/>
-<area shape="rect" id="node2" href="$_x_r_render_manager_8h.html" title=" " alt="" coords="906,80,1046,107"/>
-<area shape="rect" id="node3" href="$_open_x_r_provider_8h.html" title=" " alt="" coords="831,155,958,181"/>
-<area shape="rect" id="node24" href="$_x_r_ext_visibility_mask_8h.html" title=" " alt="" coords="982,155,1133,181"/>
-<area shape="rect" id="node4" href="$_x_r_event_handler_8h.html" title=" " alt="" coords="697,229,823,256"/>
-<area shape="rect" id="node23" href="$_x_r_graphics_aware_types_8h.html" title=" " alt="" coords="847,229,1019,256"/>
+<area shape="rect" id="node1" title=" " alt="" coords="901,5,1077,32"/>
+<area shape="rect" id="node2" href="$_x_r_render_manager_8h.html" title=" " alt="" coords="919,80,1059,107"/>
+<area shape="rect" id="node3" href="$_open_x_r_provider_8h.html" title=" " alt="" coords="845,155,971,181"/>
+<area shape="rect" id="node25" href="$_x_r_ext_visibility_mask_8h.html" title=" " alt="" coords="1029,155,1179,181"/>
+<area shape="rect" id="node4" href="$_x_r_event_handler_8h.html" title=" " alt="" coords="605,229,731,256"/>
+<area shape="rect" id="node23" href="$_x_r_graphics_aware_types_8h.html" title=" " alt="" coords="755,229,927,256"/>
+<area shape="rect" id="node24" href="$_x_r_ext_hand_tracking_8h.html" title=" " alt="" coords="951,229,1099,256"/>
 <area shape="rect" id="node5" href="$_x_r_common_8h.html" title=" " alt="" coords="883,304,984,331"/>
 <area shape="rect" id="node6" title=" " alt="" coords="5,386,80,413"/>
 <area shape="rect" id="node7" title=" " alt="" coords="104,386,163,413"/>

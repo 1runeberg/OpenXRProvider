@@ -143,25 +143,33 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e88bef0c0f8d7b2f955614ec0617452"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a3e88bef0c0f8d7b2f955614ec0617452">Callback_GLFW_Input_Key</a> (GLFWwindow *pWindow, int nKey, int nScancode, int nAction, int nModifier)</td></tr>
+<tr class="separator:a3e88bef0c0f8d7b2f955614ec0617452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a695892b1d53467aeed888e3789aef34c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a695892b1d53467aeed888e3789aef34c">AppSetup</a> ()</td></tr>
 <tr class="memdesc:a695892b1d53467aeed888e3789aef34c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the sandbox application - windowing and opengl support.  <a href="#a695892b1d53467aeed888e3789aef34c">More...</a><br /></td></tr>
 <tr class="separator:a695892b1d53467aeed888e3789aef34c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5a763045c08ee555125d07e990fbc60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab5a763045c08ee555125d07e990fbc60">GraphicsAPIObjectsSetup</a> ()</td></tr>
 <tr class="memdesc:ab5a763045c08ee555125d07e990fbc60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the OpenGL objects (VAO, VBO, FBO) needed for rendering to textures from the OpenXR runtime.  <a href="#ab5a763045c08ee555125d07e990fbc60">More...</a><br /></td></tr>
 <tr class="separator:ab5a763045c08ee555125d07e990fbc60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb87c742093b790e17359ec17647b0f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#adb87c742093b790e17359ec17647b0f5">DrawFrame</a> (OpenXRProvider::XRRenderManager *<a class="el" href="main_8h.html#a343faf29ffd3d2e18b872155c7f2fcda">pXRRenderManager</a>, OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>, unsigned int <a class="el" href="main_8h.html#a3891930b135f1ac6e2f307639219024e">FBO</a>, GLuint <a class="el" href="main_8h.html#a8f6bf5aa2103d3f51c013733389dd4bd">nShaderVisMask</a>)</td></tr>
-<tr class="separator:adb87c742093b790e17359ec17647b0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ef1cd28afca32ba05253077cea17663"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a1ef1cd28afca32ba05253077cea17663">DrawFrame</a> (OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>)</td></tr>
+<tr class="separator:a1ef1cd28afca32ba05253077cea17663"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92218fb47e6a8d9497a22b2d2f826d44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a92218fb47e6a8d9497a22b2d2f826d44">BlitToWindow</a> ()</td></tr>
 <tr class="memdesc:a92218fb47e6a8d9497a22b2d2f826d44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blit (copy) swapchain image that's rendered to the HMD to the desktop screem (XR Mirror)  <a href="#a92218fb47e6a8d9497a22b2d2f826d44">More...</a><br /></td></tr>
 <tr class="separator:a92218fb47e6a8d9497a22b2d2f826d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a577f462ef25b1ec015549427c81f4715"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a577f462ef25b1ec015549427c81f4715">DrawCube</a> (OpenXRProvider::XRRenderManager *pRenderManager, OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>, GLuint nShader, unsigned int nTexture, unsigned int VAO, glm::vec3 cubePosition)</td></tr>
-<tr class="separator:a577f462ef25b1ec015549427c81f4715"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0d92156fea00ea02d3f12b43eb6f509"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab0d92156fea00ea02d3f12b43eb6f509">DrawSeaOfCubes</a> (OpenXRProvider::XRRenderManager *pRenderManager, OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>, GLuint nShader, unsigned int VBO, unsigned VAO, glm::vec3 cubeScale, std::vector&lt; unsigned &gt; vTextures, float fSpacingPlane, float fSpacingHeight)</td></tr>
-<tr class="separator:ab0d92156fea00ea02d3f12b43eb6f509"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d76cd1a3bb155b629c7ff2ed98adc16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a6d76cd1a3bb155b629c7ff2ed98adc16">FillEyeMVP</a> (OpenXRProvider::XRRenderManager *pRenderManager, glm::mat4 *vEyeProjections, glm::mat4 eyeView, OpenXRProvider::EXREye eEye, uint32_t nCubeIndex, GLuint nShader, unsigned nTexture, glm::vec3 cubePosition, glm::vec3 cubeScale)</td></tr>
-<tr class="separator:a6d76cd1a3bb155b629c7ff2ed98adc16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81e9dc653f8019bdd50b23bf3cc9ef3f"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a81e9dc653f8019bdd50b23bf3cc9ef3f">GetEyeProjection</a> (OpenXRProvider::XRRenderManager *pRenderManager, OpenXRProvider::XRFoV eyeFoV, float fNear, float fFar)</td></tr>
-<tr class="separator:a81e9dc653f8019bdd50b23bf3cc9ef3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a008988a16144bf83417d87d7facb2b61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a008988a16144bf83417d87d7facb2b61">DrawCube</a> (OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>, glm::mat4 eyeView, unsigned int nTexture, glm::vec3 cubePosition, glm::vec3 cubeScale, glm::vec3 cubeRotationOverTime)</td></tr>
+<tr class="separator:a008988a16144bf83417d87d7facb2b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af202977a4e5649f9f0e9af3b96bb815e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#af202977a4e5649f9f0e9af3b96bb815e">DrawSeaOfCubesScene</a> (OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>, glm::vec3 cubeScale, float fSpacingPlane, float fSpacingHeight)</td></tr>
+<tr class="separator:af202977a4e5649f9f0e9af3b96bb815e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf942dec42fef6c37d86da7db6e2be79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#abf942dec42fef6c37d86da7db6e2be79">DrawHandJoints</a> (OpenXRProvider::EXREye eEye, glm::mat4 eyeView)</td></tr>
+<tr class="separator:abf942dec42fef6c37d86da7db6e2be79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa707ebfc3b304b4c8a1810709f9f1af6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aa707ebfc3b304b4c8a1810709f9f1af6">DrawHandTrackingScene</a> (OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>)</td></tr>
+<tr class="separator:aa707ebfc3b304b4c8a1810709f9f1af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4d011a3942eb4a62f14b031d6ad221b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae4d011a3942eb4a62f14b031d6ad221b">FillEyeMVP</a> (glm::mat4 *vEyeProjections, glm::mat4 eyeView, OpenXRProvider::EXREye eEye, uint32_t nCubeIndex, glm::vec3 cubePosition, glm::vec3 cubeScale)</td></tr>
+<tr class="separator:ae4d011a3942eb4a62f14b031d6ad221b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdf5f092d3d490f1b5808042611eea1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#acdf5f092d3d490f1b5808042611eea1a">FillEyeMVP_RotateOverTime</a> (glm::mat4 *vEyeProjections, glm::mat4 eyeView, OpenXRProvider::EXREye eEye, uint32_t nCubeIndex, unsigned nTexture, glm::vec3 cubePosition, glm::vec3 cubeRotation, glm::vec3 cubeScale)</td></tr>
+<tr class="separator:acdf5f092d3d490f1b5808042611eea1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ccb68e575ebbafb4208fe880ccc755f"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a7ccb68e575ebbafb4208fe880ccc755f">GetEyeProjection</a> (XrFovf eyeFoV, float fNear, float fFar)</td></tr>
+<tr class="separator:a7ccb68e575ebbafb4208fe880ccc755f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e4a2accecb47c58ed592c9a2010ab15"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a9e4a2accecb47c58ed592c9a2010ab15">InvertMatrix</a> (const glm::mat4 mMatrix)</td></tr>
 <tr class="separator:a9e4a2accecb47c58ed592c9a2010ab15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafdebc28cb0db5e42ec24a88bcfa566f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aafdebc28cb0db5e42ec24a88bcfa566f">GetDepth</a> (uint32_t nTexture, GLint nMinFilter, GLint nMagnitudeFilter, GLint nWrapS, GLint nWrapT, GLint nDepthFormat)</td></tr>
@@ -431,8 +439,64 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a577f462ef25b1ec015549427c81f4715"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a577f462ef25b1ec015549427c81f4715">&#9670;&nbsp;</a></span>DrawCube()</h2>
+<a id="a3e88bef0c0f8d7b2f955614ec0617452"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e88bef0c0f8d7b2f955614ec0617452">&#9670;&nbsp;</a></span>Callback_GLFW_Input_Key()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Callback_GLFW_Input_Key </td>
+          <td>(</td>
+          <td class="paramtype">GLFWwindow *&#160;</td>
+          <td class="paramname"><em>pWindow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nKey</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nScancode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nAction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nModifier</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pWindow</td><td>Pointer to the GLFW window </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nKey</td><td>The key that was pressed that triggers this callback (e.g. GLFW_KEY_1) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nScancode</td><td>Platform specific scancode for the key that was pressed </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nAction</td><td>Action that triggered the key event (e.g. GLFW_PRESS) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nModifier</td><td>Modifier bits (e.g. GLFW_MOD_NUM_LOCK) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a008988a16144bf83417d87d7facb2b61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a008988a16144bf83417d87d7facb2b61">&#9670;&nbsp;</a></span>DrawCube()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -440,12 +504,6 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void DrawCube </td>
           <td>(</td>
-          <td class="paramtype">OpenXRProvider::XRRenderManager *&#160;</td>
-          <td class="paramname"><em>pRenderManager</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
           <td class="paramname"><em>eEye</em>, </td>
         </tr>
@@ -458,8 +516,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GLuint&#160;</td>
-          <td class="paramname"><em>nShader</em>, </td>
+          <td class="paramtype">glm::mat4&#160;</td>
+          <td class="paramname"><em>eyeView</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -470,133 +528,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>VAO</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">glm::vec3&#160;</td>
-          <td class="paramname"><em>cubePosition</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Draw a single cube (when not using instancing, will require a different shader) </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pRenderManager</td><td>Pointer to OpenXR Provider library's Render manager </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>Current eye to render to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>Texture in the swapchain to render to </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nShader</td><td>Shader program id to use for the cube </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nTexture</td><td>The texture id to use for the cube </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">VAO</td><td>Vertex Array Object containing the cube vertices </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="adb87c742093b790e17359ec17647b0f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb87c742093b790e17359ec17647b0f5">&#9670;&nbsp;</a></span>DrawFrame()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DrawFrame </td>
-          <td>(</td>
-          <td class="paramtype">OpenXRProvider::XRRenderManager *&#160;</td>
-          <td class="paramname"><em>pXRRenderManager</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
-          <td class="paramname"><em>eEye</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>nSwapchainIndex</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>FBO</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GLuint&#160;</td>
-          <td class="paramname"><em>nShaderVisMask</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Render to the swapchain image (texture) that'll be rendered to the user's HMD and blitted (copied) to the Sandbox's window (XR Mirror) </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pXRRenderManager</td><td>Pointer to the XR Render Manager object </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>The eye (left/right) texture that will be rendered on </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>The index of the swapchain image (texture) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">FBO</td><td>The OpenGL Frame Buffer Object needed to draw to a Texture2D </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nShaderVisMask</td><td>The OpenGL shader program that will be used for the Visibility Mask </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="ab0d92156fea00ea02d3f12b43eb6f509"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0d92156fea00ea02d3f12b43eb6f509">&#9670;&nbsp;</a></span>DrawSeaOfCubes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DrawSeaOfCubes </td>
-          <td>(</td>
-          <td class="paramtype">OpenXRProvider::XRRenderManager *&#160;</td>
-          <td class="paramname"><em>pRenderManager</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
-          <td class="paramname"><em>eEye</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>nSwapchainIndex</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GLuint&#160;</td>
-          <td class="paramname"><em>nShader</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>VBO</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned&#160;</td>
-          <td class="paramname"><em>VAO</em>, </td>
+          <td class="paramname"><em>cubePosition</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -607,8 +540,159 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; unsigned &gt;&#160;</td>
-          <td class="paramname"><em>vTextures</em>, </td>
+          <td class="paramtype">glm::vec3&#160;</td>
+          <td class="paramname"><em>cubeRotationOverTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Draw a single cube </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>Current eye to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>Texture in the swapchain to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eyeView</td><td>The eye view matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nTexture</td><td>The texture id to use for the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubePosition</td><td>The position of the cube in world space </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubeScale</td><td>The scale of the cube in world space </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubeRotationOverTime</td><td>Amount of rotation of the cube over time </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1ef1cd28afca32ba05253077cea17663"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ef1cd28afca32ba05253077cea17663">&#9670;&nbsp;</a></span>DrawFrame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DrawFrame </td>
+          <td>(</td>
+          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nSwapchainIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Render to the swapchain image (texture) that'll be rendered to the user's HMD and blitted (copied) to the Sandbox's window (XR Mirror) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>The eye (left/right) texture that will be rendered on </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>The index of the swapchain image (texture) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abf942dec42fef6c37d86da7db6e2be79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf942dec42fef6c37d86da7db6e2be79">&#9670;&nbsp;</a></span>DrawHandJoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DrawHandJoints </td>
+          <td>(</td>
+          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::mat4&#160;</td>
+          <td class="paramname"><em>eyeView</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Draw the hand joints (hand tracking runtime support required) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>Current eye to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>Texture in the swapchain to render to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa707ebfc3b304b4c8a1810709f9f1af6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa707ebfc3b304b4c8a1810709f9f1af6">&#9670;&nbsp;</a></span>DrawHandTrackingScene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DrawHandTrackingScene </td>
+          <td>(</td>
+          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nSwapchainIndex</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Draw a scene with hand tracked joints and four large rotating cubes around the center of the playspace </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>Current eye to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>Texture in the swapchain to render to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af202977a4e5649f9f0e9af3b96bb815e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af202977a4e5649f9f0e9af3b96bb815e">&#9670;&nbsp;</a></span>DrawSeaOfCubesScene()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DrawSeaOfCubesScene </td>
+          <td>(</td>
+          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nSwapchainIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3&#160;</td>
+          <td class="paramname"><em>cubeScale</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -629,11 +713,21 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Draw a scene with a sea of instanced textured cubes in the scene based on the number of textures provided </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>Current eye to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>Texture in the swapchain to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubeScale</td><td>Scale to apply to the cubes </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fSpacingPlane</td><td>The amount of spacing in between cubes in the x,z axis </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fSpacingHeight</td><td>The amount of spacing in between cubes in the y axis </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a6d76cd1a3bb155b629c7ff2ed98adc16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d76cd1a3bb155b629c7ff2ed98adc16">&#9670;&nbsp;</a></span>FillEyeMVP()</h2>
+<a id="ae4d011a3942eb4a62f14b031d6ad221b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4d011a3942eb4a62f14b031d6ad221b">&#9670;&nbsp;</a></span>FillEyeMVP()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -641,12 +735,6 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void FillEyeMVP </td>
           <td>(</td>
-          <td class="paramtype">OpenXRProvider::XRRenderManager *&#160;</td>
-          <td class="paramname"><em>pRenderManager</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">glm::mat4 *&#160;</td>
           <td class="paramname"><em>vEyeProjections</em>, </td>
         </tr>
@@ -671,8 +759,67 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">GLuint&#160;</td>
-          <td class="paramname"><em>nShader</em>, </td>
+          <td class="paramtype">glm::vec3&#160;</td>
+          <td class="paramname"><em>cubePosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3&#160;</td>
+          <td class="paramname"><em>cubeScale</em> = <code>glm::vec3(0.f)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Fill the array of model-view-projection matrices that will be applied on a cube in a single frame and eye. This is filled in as instanced variables to the shader </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pRenderManager</td><td>Pointer to OpenXR Provider library's Render manager </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">vEyeProjections</td><td>Array of eye view projection matrices that will be applied to each cube model vertex </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eyeView</td><td>The current eye view (camera) projection matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nCubeIndex</td><td>Index of the current cube being rendered (within the "sea") </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nShader</td><td>Shader program id to use for the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nTexture</td><td>The texture id to use for the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubePosition</td><td>The position of the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubeScale</td><td>The scale of the cube </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acdf5f092d3d490f1b5808042611eea1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdf5f092d3d490f1b5808042611eea1a">&#9670;&nbsp;</a></span>FillEyeMVP_RotateOverTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FillEyeMVP_RotateOverTime </td>
+          <td>(</td>
+          <td class="paramtype">glm::mat4 *&#160;</td>
+          <td class="paramname"><em>vEyeProjections</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::mat4&#160;</td>
+          <td class="paramname"><em>eyeView</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nCubeIndex</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -690,6 +837,12 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">glm::vec3&#160;</td>
+          <td class="paramname"><em>cubeRotation</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3&#160;</td>
           <td class="paramname"><em>cubeScale</em>&#160;</td>
         </tr>
         <tr>
@@ -699,6 +852,20 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Fill the array of model-view-projection matrices that will be applied on a rotating cube in a single frame and eye. This is filled in as instanced variables to the shader </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pRenderManager</td><td>Pointer to OpenXR Provider library's Render manager </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">vEyeProjections</td><td>Array of eye view projection matrices that will be applied to each cube model vertex </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">eyeView</td><td>The current eye view (camera) projection matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nCubeIndex</td><td>Index of the current cube being rendered (within the "sea") </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nShader</td><td>Shader program id to use for the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nTexture</td><td>The texture id to use for the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubePosition</td><td>The position of the cube </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubeRotation</td><td>The amount of rotation applied to the cube over time </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cubeScale</td><td>The scale of the cube </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -766,8 +933,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a81e9dc653f8019bdd50b23bf3cc9ef3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81e9dc653f8019bdd50b23bf3cc9ef3f">&#9670;&nbsp;</a></span>GetEyeProjection()</h2>
+<a id="a7ccb68e575ebbafb4208fe880ccc755f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ccb68e575ebbafb4208fe880ccc755f">&#9670;&nbsp;</a></span>GetEyeProjection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -775,13 +942,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">glm::mat4 GetEyeProjection </td>
           <td>(</td>
-          <td class="paramtype">OpenXRProvider::XRRenderManager *&#160;</td>
-          <td class="paramname"><em>pRenderManager</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">OpenXRProvider::XRFoV&#160;</td>
+          <td class="paramtype">XrFovf&#160;</td>
           <td class="paramname"><em>eyeFoV</em>, </td>
         </tr>
         <tr>

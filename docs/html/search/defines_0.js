@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['enum_5fstr',['ENUM_STR',['../_x_r_common_8h.html#a1ddd77b0b38be0e02faf3215b64c7725',1,'XRCommon.h']]]
+  ['log_5ftitle',['LOG_TITLE',['../_open_x_r_provider_8h.html#a00a4f2bfc573eb626b3e9435c433bbe3',1,'OpenXRProvider.h']]]
 ];

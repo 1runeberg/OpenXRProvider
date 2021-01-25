@@ -10,7 +10,7 @@ Inheritance diagram for Open\+X\+R\+Provider\+::X\+R\+Base\+Ext\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=260pt]{class_open_x_r_provider_1_1_x_r_base_ext__inherit__graph}
+\includegraphics[width=350pt]{class_open_x_r_provider_1_1_x_r_base_ext__inherit__graph}
 \end{center}
 \end{figure}
 
@@ -28,7 +28,16 @@ Collaboration diagram for Open\+X\+R\+Provider\+::X\+R\+Base\+Ext\+:\nopagebreak
 \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext_a8f59e68df5f1773152a3dfbe9ddc17fc}{X\+R\+Base\+Ext\+::\+X\+R\+Base\+Ext}} (std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ p\+Logger)
 \item 
 virtual const char $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext_af23385b0dc226b0c4533a796ddc37352}{Get\+Extension\+Name}} () const =0
-\begin{DoxyCompactList}\small\item\em Virtual function to get the official Open\+XR extension name that the implementing class represents. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Virtual function to get the official Open\+XR extension name that the implementing class represents. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext_a40bce34f078349e639139ea85b630ac3}{Is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Getter for activation status of this extension. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext_a19dd6d3922ebeb2f64402f2dcc23245b}{Is\+Active}} (bool val)
+\begin{DoxyCompactList}\small\item\em Setter for activation status of this extension. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext_a7be8f3a5c24c3396c29cf37c4848b1b2}{b\+Is\+Active}} = false
+\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
@@ -45,7 +54,27 @@ Virtual function to get the official Open\+XR extension name that the implementi
 
 
 
-Implemented in \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a7560c4d28687a01f8b7ef80107d09b20}{Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask}}.
+Implemented in \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_visibility_mask_a7560c4d28687a01f8b7ef80107d09b20}{Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask}}, and \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_ext_hand_tracking_a8706a0fc581e47e3b15fd6b58c9d5266}{Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking}}.
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_ext_a40bce34f078349e639139ea85b630ac3}\label{class_open_x_r_provider_1_1_x_r_base_ext_a40bce34f078349e639139ea85b630ac3}} 
+\index{OpenXRProvider::XRBaseExt@{OpenXRProvider::XRBaseExt}!IsActive@{IsActive}}
+\index{IsActive@{IsActive}!OpenXRProvider::XRBaseExt@{OpenXRProvider::XRBaseExt}}
+\subsubsection{\texorpdfstring{IsActive()}{IsActive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Base\+Ext\+::\+Is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Getter for activation status of this extension. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_ext_a19dd6d3922ebeb2f64402f2dcc23245b}\label{class_open_x_r_provider_1_1_x_r_base_ext_a19dd6d3922ebeb2f64402f2dcc23245b}} 
+\index{OpenXRProvider::XRBaseExt@{OpenXRProvider::XRBaseExt}!IsActive@{IsActive}}
+\index{IsActive@{IsActive}!OpenXRProvider::XRBaseExt@{OpenXRProvider::XRBaseExt}}
+\subsubsection{\texorpdfstring{IsActive()}{IsActive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Base\+Ext\+::\+Is\+Active (\begin{DoxyParamCaption}\item[{bool}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Setter for activation status of this extension. 
 
 \mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_ext_a8f59e68df5f1773152a3dfbe9ddc17fc}\label{class_open_x_r_provider_1_1_x_r_base_ext_a8f59e68df5f1773152a3dfbe9ddc17fc}} 
 \index{OpenXRProvider::XRBaseExt@{OpenXRProvider::XRBaseExt}!XRBaseExt::XRBaseExt@{XRBaseExt::XRBaseExt}}
@@ -58,6 +87,15 @@ Class Constructor
 \mbox{\texttt{ in}}  & {\em p\+Logger} & The logger object to use \\
 \hline
 \end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_ext_a7be8f3a5c24c3396c29cf37c4848b1b2}\label{class_open_x_r_provider_1_1_x_r_base_ext_a7be8f3a5c24c3396c29cf37c4848b1b2}} 
+\index{OpenXRProvider::XRBaseExt@{OpenXRProvider::XRBaseExt}!bIsActive@{bIsActive}}
+\index{bIsActive@{bIsActive}!OpenXRProvider::XRBaseExt@{OpenXRProvider::XRBaseExt}}
+\subsubsection{\texorpdfstring{bIsActive}{bIsActive}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Base\+Ext\+::b\+Is\+Active = false\hspace{0.3cm}{\ttfamily [private]}}
+
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

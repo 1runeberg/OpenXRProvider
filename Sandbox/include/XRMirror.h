@@ -42,7 +42,7 @@ class XRMirror
 	/// Class Constructor
 	/// @param[in] nWidth		The width of the desktop window (XR Mirror)
 	/// @param[in] nHeight		The height of the desktop window (XR Mirror)
-	/// @param[in] pTitle		The title text that will be displayed on the logs and console window
+	/// @param[in] pTitle		The title text that will be displayed on the console window
 	/// @param[in] sLogFile		The absolute path and filename of the log file
 	XRMirror( int nWidth, int nHeight, const char *pTitle, const char* sLogFile );
 

@@ -170,7 +170,7 @@ namespace OpenXRProvider
 
 			if ( m_xrLastCallResult != XR_SUCCESS )
 			{
-				const char *xrEnumStr = ENUM_STR( m_xrLastCallResult );
+				const char *xrEnumStr = XrEnumToString( m_xrLastCallResult );
 				std::string eMessage = "Failed to generate swapchain color buffers with error ";
 				eMessage.append( xrEnumStr );
 
@@ -179,7 +179,7 @@ namespace OpenXRProvider
 			}
 
 			m_pXRLogger->info(
-				"{} Swapchain color buffers generated for eye ({})", pXRProvider->GetGraphicsAPI()->GetSwapchainImageCount( i == 0 ? LEFT : RIGHT, false ), i );
+				"{} Swapchain color buffers generated for eye ({})", pXRProvider->GetGraphicsAPI()->GetSwapchainImageCount( i == 0 ? EYE_LEFT : EYE_RIGHT, false ), i );
 		}
 
 		// Generate Swapchain images (depth)
@@ -191,7 +191,7 @@ namespace OpenXRProvider
 
 				if ( m_xrLastCallResult != XR_SUCCESS )
 				{
-					const char *xrEnumStr = ENUM_STR( m_xrLastCallResult );
+					const char *xrEnumStr = XrEnumToString( m_xrLastCallResult );
 					std::string eMessage = "Failed to generate swapchain depth buffers with error ";
 					eMessage.append( xrEnumStr );
 
@@ -200,7 +200,7 @@ namespace OpenXRProvider
 				}
 
 				m_pXRLogger->info(
-					"{} Swapchain depth buffers generated for eye ({})", pXRProvider->GetGraphicsAPI()->GetSwapchainImageCount( i == 0 ? LEFT : RIGHT, true ), i );
+					"{} Swapchain depth buffers generated for eye ({})", pXRProvider->GetGraphicsAPI()->GetSwapchainImageCount( i == 0 ? EYE_LEFT : EYE_RIGHT, true ), i );
 			}
 		}
 		else
@@ -247,7 +247,7 @@ namespace OpenXRProvider
 				m_xrLastCallResult = XR_CALL_SILENT( xrDestroySwapchain( vXRSwapchains[ i ] ), m_pXRLogger );
 				if ( m_xrLastCallResult != XR_SUCCESS )
 				{
-					const char *xrEnumStr = ENUM_STR( m_xrLastCallResult );
+					const char *xrEnumStr = XrEnumToString( m_xrLastCallResult );
 					std::string eMessage = "Unable to destroy swapchain with error ";
 					eMessage.append( xrEnumStr );
 
@@ -264,8 +264,8 @@ namespace OpenXRProvider
 
 	void XRRenderManager::ResetHMDState()
 	{
-		m_pXRHMDState->LeftEye.Pose = { { 0.f, 0.f, 0.f }, { 0.f, 0.f, 0.f, 1.f } };
-		m_pXRHMDState->RightEye.Pose = { { 0.f, 0.f, 0.f }, { 0.f, 0.f, 0.f, 1.f } };
+		m_pXRHMDState->LeftEye.Pose = { { 0.f, 0.f, 0.f, 1.f }, { 0.f, 0.f, 0.f } };
+		m_pXRHMDState->RightEye.Pose = { { 0.f, 0.f, 0.f, 1.f }, { 0.f, 0.f, 0.f } };
 
 		m_pXRHMDState->LeftEye.FoV = { -k_fTau, k_fTau, k_fTau, -k_fTau };
 		m_pXRHMDState->RightEye.FoV = { -k_fTau, k_fTau, k_fTau, -k_fTau };
@@ -321,6 +321,13 @@ namespace OpenXRProvider
 			if ( m_xrLastCallResult != XR_SUCCESS )
 				return false;
 
+			// Handle extension calls that rely on frame state
+			if ( m_xrProvider->GetExtHandTracking() )
+			{
+				m_xrProvider->GetExtHandTracking()->LocateHandJoints(XR_HAND_LEFT_EXT, m_xrProvider->GetXRSpace(), xrFrameState.predictedDisplayTime);
+				m_xrProvider->GetExtHandTracking()->LocateHandJoints(XR_HAND_RIGHT_EXT, m_xrProvider->GetXRSpace(), xrFrameState.predictedDisplayTime);				
+			}
+
 			// ========================================================================
 			// (4) Grab image from swapchain and render
 			// ========================================================================
@@ -332,8 +339,8 @@ namespace OpenXRProvider
 			if ( xrFrameViewState.viewStateFlags & XR_VIEW_STATE_POSITION_VALID_BIT && xrFrameViewState.viewStateFlags & XR_VIEW_STATE_ORIENTATION_VALID_BIT )
 			{
 				// Update hmd state
-				SetHMDState( EXREye::LEFT, &( m_pXRHMDState->LeftEye ) );
-				SetHMDState( EXREye::RIGHT, &( m_pXRHMDState->RightEye ) );
+				SetHMDState( EXREye::EYE_LEFT, &( m_pXRHMDState->LeftEye ) );
+				SetHMDState( EXREye::EYE_RIGHT, &( m_pXRHMDState->RightEye ) );
 
 				// Grab the corresponding swapchain for each view location
 				uint32_t nViewCount = ( uint32_t )m_vXRViewConfigs.size();
@@ -436,37 +443,29 @@ namespace OpenXRProvider
 	{
 		assert( pEyeState );
 
-		uint32_t nEye = ( eEye == EXREye::LEFT ) ? 0 : 1;
+		uint32_t nEye = ( eEye == EXREye::EYE_LEFT ) ? 0 : 1;
 
 		// Update Position
-		pEyeState->Pose.Position.x = m_vXRViews[ nEye ].pose.position.x;
-		pEyeState->Pose.Position.y = m_vXRViews[ nEye ].pose.position.y;
-		pEyeState->Pose.Position.z = m_vXRViews[ nEye ].pose.position.z;
+		pEyeState->Pose = m_vXRViews[ nEye ].pose;
 
 		// Update Orientation
-		pEyeState->Pose.Orientation.x = m_vXRViews[ nEye ].pose.orientation.x;
-		pEyeState->Pose.Orientation.y = m_vXRViews[ nEye ].pose.orientation.y;
-		pEyeState->Pose.Orientation.z = m_vXRViews[ nEye ].pose.orientation.z;
-		pEyeState->Pose.Orientation.w = m_vXRViews[ nEye ].pose.orientation.w;
+		pEyeState->Pose.orientation = m_vXRViews[ nEye ].pose.orientation;
 
 		// Update field of view
-		pEyeState->FoV.LeftAngle = m_vXRViews[ nEye ].fov.angleLeft;
-		pEyeState->FoV.RightAngle = m_vXRViews[ nEye ].fov.angleRight;
-		pEyeState->FoV.UpAngle = m_vXRViews[ nEye ].fov.angleUp;
-		pEyeState->FoV.DownAngle = m_vXRViews[ nEye ].fov.angleDown;
+		pEyeState->FoV = m_vXRViews[ nEye ].fov;
 	}
 
 	float XRRenderManager::GetCurrentIPD()
 	{
 		// Get mid-point of eye positions (disregard Z)
-		XRVector2 midEyePosition;
-		midEyePosition.x = ( m_pXRHMDState->LeftEye.Pose.Position.x + m_pXRHMDState->RightEye.Pose.Position.x ) / 2.0f;
-		midEyePosition.y = ( m_pXRHMDState->LeftEye.Pose.Position.y + m_pXRHMDState->RightEye.Pose.Position.y ) / 2.0f;
+		XrVector2f midEyePosition;
+		midEyePosition.x = ( m_pXRHMDState->LeftEye.Pose.position.x + m_pXRHMDState->RightEye.Pose.position.x ) / 2.0f;
+		midEyePosition.y = ( m_pXRHMDState->LeftEye.Pose.position.y + m_pXRHMDState->RightEye.Pose.position.y ) / 2.0f;
 
 		float IPD = ( std::sqrtf(
-						std::powf( ( midEyePosition.x - m_pXRHMDState->LeftEye.Pose.Position.x ), 2 ) +
-						std::powf( ( midEyePosition.y - m_pXRHMDState->LeftEye.Pose.Position.y ), 2 ) +
-						std::powf( ( midEyePosition.y - m_pXRHMDState->LeftEye.Pose.Position.y ), 2 ) ) ) *
+						std::powf( ( midEyePosition.x - m_pXRHMDState->LeftEye.Pose.position.x ), 2 ) +
+						std::powf( ( midEyePosition.y - m_pXRHMDState->LeftEye.Pose.position.y ), 2 ) +
+						std::powf( ( midEyePosition.y - m_pXRHMDState->LeftEye.Pose.position.y ), 2 ) ) ) *
 					2.0f;
 
 		if ( IPD < k_fMinIPD )
@@ -475,15 +474,15 @@ namespace OpenXRProvider
 		return IPD;
 	}
 
-	XRPose XRRenderManager::GetHMDPose()
+	XrPosef XRRenderManager::GetHMDPose()
 	{
 		// Get mid-point of eye positions
-		XRVector3 midEyePosition = { 0 };
-		midEyePosition.x = ( m_pXRHMDState->LeftEye.Pose.Position.x + m_pXRHMDState->RightEye.Pose.Position.x ) / 2.0f;
-		midEyePosition.y = ( m_pXRHMDState->LeftEye.Pose.Position.y + m_pXRHMDState->RightEye.Pose.Position.y ) / 2.0f;
-		midEyePosition.z = ( m_pXRHMDState->LeftEye.Pose.Position.z + m_pXRHMDState->RightEye.Pose.Position.z ) / 2.0f;
+		XrVector3f midEyePosition = { 0 };
+		midEyePosition.x = ( m_pXRHMDState->LeftEye.Pose.position.x + m_pXRHMDState->RightEye.Pose.position.x ) / 2.0f;
+		midEyePosition.y = ( m_pXRHMDState->LeftEye.Pose.position.y + m_pXRHMDState->RightEye.Pose.position.y ) / 2.0f;
+		midEyePosition.z = ( m_pXRHMDState->LeftEye.Pose.position.z + m_pXRHMDState->RightEye.Pose.position.z ) / 2.0f;
 
-		return XRPose { midEyePosition, m_pXRHMDState->LeftEye.Pose.Orientation };
+		return XrPosef { m_pXRHMDState->LeftEye.Pose.orientation, midEyePosition };
 	}
 
 	void XRRenderManager::SetSwapchainFormat( XRProvider *pXRProvider, std::vector< int64_t > vAppTextureFormats, std::vector< int64_t > vAppDepthFormats )

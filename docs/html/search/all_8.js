@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['k_5ffmedianipd',['k_fMedianIPD',['../class_open_x_r_provider_1_1_x_r_render_manager.html#af3050f786bada6f0b3e2416bed3b873f',1,'OpenXRProvider::XRRenderManager']]],
-  ['k_5ffminipd',['k_fMinIPD',['../class_open_x_r_provider_1_1_x_r_render_manager.html#a1c86c1472f94b8979d3d63291d2fdd19',1,'OpenXRProvider::XRRenderManager']]],
-  ['k_5fftau',['k_fTau',['../class_open_x_r_provider_1_1_x_r_render_manager.html#a9e8ffc6b08bd67c784bc45b572d1fb16',1,'OpenXRProvider::XRRenderManager']]],
-  ['k_5fnvrviewcount',['k_nVRViewCount',['../class_open_x_r_provider_1_1_x_r_render_manager.html#ac45e255445709b7418be38ee9adee932',1,'OpenXRProvider::XRRenderManager']]]
+  ['init',['Init',['../class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a6e48f57912a57ed5280dc3e939cc78c4',1,'OpenXRProvider::XRExtHandTracking']]],
+  ['isactive',['IsActive',['../class_open_x_r_provider_1_1_x_r_base_ext.html#a40bce34f078349e639139ea85b630ac3',1,'OpenXRProvider::XRBaseExt::IsActive() const'],['../class_open_x_r_provider_1_1_x_r_base_ext.html#a19dd6d3922ebeb2f64402f2dcc23245b',1,'OpenXRProvider::XRBaseExt::IsActive(bool val)']]],
+  ['isdepth',['IsDepth',['../class_open_x_r_provider_1_1_x_r_graphics_a_p_i.html#aaf7cedacd99180d7ef1c3d4da85aba3b',1,'OpenXRProvider::XRGraphicsAPI']]],
+  ['isorientationtracked',['IsOrientationTracked',['../struct_open_x_r_provider_1_1_x_r_h_m_d_state.html#ac03cf1cf415a74e7918aad821440040e',1,'OpenXRProvider::XRHMDState']]],
+  ['ispositiontracked',['IsPositionTracked',['../struct_open_x_r_provider_1_1_x_r_h_m_d_state.html#a46d3bdea018d488ffb535553d58594dc',1,'OpenXRProvider::XRHMDState']]]
 ];

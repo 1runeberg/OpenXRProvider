@@ -1,12 +1,8 @@
 var searchData=
 [
-  ['nframenumber',['nFrameNumber',['../main_8h.html#a717bd1588444dddd960d9889f5f092d7',1,'main.h']]],
-  ['nscreenheight',['nScreenHeight',['../main_8h.html#a106276f6621f348fd220319a0c5ca275',1,'main.h']]],
-  ['nscreenwidth',['nScreenWidth',['../main_8h.html#ad3af6abc3694a26372dc97344127702e',1,'main.h']]],
-  ['nshaderlit',['nShaderLit',['../main_8h.html#ac9a863c8ce6916659a046f416a32faf8',1,'main.h']]],
-  ['nshadertextured',['nShaderTextured',['../main_8h.html#a40ae0a91a7ebb0009db938414ae02e28',1,'main.h']]],
-  ['nshaderunlit',['nShaderUnlit',['../main_8h.html#a762351bcd57a83c9f7aba43e994eeef5',1,'main.h']]],
-  ['nshadervismask',['nShaderVisMask',['../main_8h.html#a8f6bf5aa2103d3f51c013733389dd4bd',1,'main.h']]],
-  ['nswapchaincapacity',['nSwapchainCapacity',['../main_8h.html#a90485357d3af01d962f1befe5ec9199a',1,'main.h']]],
-  ['nswapchainindex',['nSwapchainIndex',['../main_8h.html#a4eb41db6c24b2e7190d293273d6e0230',1,'main.h']]]
+  ['lightvao',['lightVAO',['../main_8h.html#a5c518da7ccac992646ba4d74225c6d17',1,'main.h']]],
+  ['lit_5ffragment_5fshader',['LIT_FRAGMENT_SHADER',['../main_8cpp.html#ac55f0adec52d6796486a317b8ee235ac',1,'main.cpp']]],
+  ['lit_5fvertex_5fshader',['LIT_VERTEX_SHADER',['../main_8cpp.html#a0036fe3d2ef31361f3ed2f54b862874d',1,'main.cpp']]],
+  ['loadshaderfromdisk',['LoadShaderFromDisk',['../class_utils.html#a74d078eb4722f5ac705b1ffb010e10d4',1,'Utils']]],
+  ['loadtexture',['LoadTexture',['../class_x_r_mirror.html#aee8cb008c3732293fb45ef056a4f1fc6',1,'XRMirror']]]
 ];

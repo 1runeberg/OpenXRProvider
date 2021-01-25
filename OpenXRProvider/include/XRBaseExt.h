@@ -29,7 +29,7 @@ namespace OpenXRProvider
 {
 	class XRBaseExt : public XRBase
 	{
-	  public:
+     public:
 
 		/// Class Constructor
 		/// @param[in] pLogger	The logger object to use
@@ -37,5 +37,14 @@ namespace OpenXRProvider
 
 		/// Virtual function to get the official OpenXR extension name that the implementing class represents
 		virtual const char *GetExtensionName() const = 0;
+
+		/// Getter for activation status of this extension
+		bool IsActive() const { return bIsActive; }
+		
+		/// Setter for activation status of this extension
+		void IsActive( bool val ) { bIsActive = val; }
+
+	  private:
+		bool bIsActive = false;
 	};
 } // namespace OpenXRProvider

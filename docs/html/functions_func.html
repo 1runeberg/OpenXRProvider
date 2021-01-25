@@ -74,11 +74,11 @@ $(function() {
 
 
 <h3><a id="index_e"></a>- e -</h3><ul>
-<li>EnableExtensions()
-: <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a58c1f88d3c9f28e99ac784767089357c">OpenXRProvider::XRProvider</a>
+<li>EnableInstanceExtensions()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#acd79e785e586d9abcb47977e340a2739">OpenXRProvider::XRProvider</a>
 </li>
 <li>ExecuteCallbacks()
-: <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a12702a0d244674e54443ccf5053a3efb">OpenXRProvider::XRProvider</a>
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a3d9a3ea0c9f8830d17f87fa10424690c">OpenXRProvider::XRProvider</a>
 </li>
 </ul>
 
@@ -107,7 +107,11 @@ $(function() {
 </li>
 <li>GetExtensionName()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_base_ext.html#af23385b0dc226b0c4533a796ddc37352">OpenXRProvider::XRBaseExt</a>
+, <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a8706a0fc581e47e3b15fd6b58c9d5266">OpenXRProvider::XRExtHandTracking</a>
 , <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#a7560c4d28687a01f8b7ef80107d09b20">OpenXRProvider::XRExtVisibilityMask</a>
+</li>
+<li>GetExtHandTracking()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a3ed1b75d970694318105a44699768457">OpenXRProvider::XRProvider</a>
 </li>
 <li>GetEyeProjection()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#ac0960870b34b29fe479feb4ae389abdf">OpenXRProvider::XRRenderManager</a>
@@ -119,8 +123,11 @@ $(function() {
 <li>GetGraphicsBinding()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_graphics_a_p_i.html#a2c474282e17bf45b87bae7e0c95efa57">OpenXRProvider::XRGraphicsAPI</a>
 </li>
+<li>GetHandJointLocations()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#aaa8a634f50dd27d3ef1b3c85b558a6c1">OpenXRProvider::XRExtHandTracking</a>
+</li>
 <li>GetHMDPose()
-: <a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#a02a943efc18f105316b86a669d20ef2e">OpenXRProvider::XRRenderManager</a>
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#a2084c0ea8252e8b601b1bfcdd776f97d">OpenXRProvider::XRRenderManager</a>
 </li>
 <li>GetHMDState()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#af6289267e9bf20f6e4d65e4051dd9944">OpenXRProvider::XRRenderManager</a>
@@ -201,6 +208,12 @@ $(function() {
 
 
 <h3><a id="index_i"></a>- i -</h3><ul>
+<li>Init()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a6e48f57912a57ed5280dc3e939cc78c4">OpenXRProvider::XRExtHandTracking</a>
+</li>
+<li>IsActive()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_base_ext.html#a40bce34f078349e639139ea85b630ac3">OpenXRProvider::XRBaseExt</a>
+</li>
 <li>IsDepth()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_graphics_a_p_i.html#aaf7cedacd99180d7ef1c3d4da85aba3b">OpenXRProvider::XRGraphicsAPI</a>
 </li>
@@ -210,6 +223,9 @@ $(function() {
 <h3><a id="index_l"></a>- l -</h3><ul>
 <li>LoadXRSystem()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a1bd2735b39ea943cd9e436bb0650bc43">OpenXRProvider::XRProvider</a>
+</li>
+<li>LocateHandJoints()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a1bc1b8d8b5dc0d10003c5f93a9f0c041">OpenXRProvider::XRExtHandTracking</a>
 </li>
 </ul>
 
@@ -224,9 +240,6 @@ $(function() {
 <h3><a id="index_p"></a>- p -</h3><ul>
 <li>PollXREvents()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a1eb2fce148d5ab2d3399235c23131808">OpenXRProvider::XRProvider</a>
-</li>
-<li>ProcessEvent_SessionStateChanged()
-: <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#ad8bb9f4fcd7a16440f89d3ad0b54b17b">OpenXRProvider::XRProvider</a>
 </li>
 <li>ProcessXRFrame()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_render_manager.html#aebe4bca3de5bdec26ea4dfbc641273b5">OpenXRProvider::XRRenderManager</a>
@@ -277,8 +290,17 @@ $(function() {
 <li>XRBaseExt::XRBaseExt()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_base_ext.html#a8f59e68df5f1773152a3dfbe9ddc17fc">OpenXRProvider::XRBaseExt</a>
 </li>
+<li>XRBeginSession()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a5599fa1da5f74f40e02fdf2a8d3f7a55">OpenXRProvider::XRProvider</a>
+</li>
+<li>XREndSession()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_provider.html#a972be4b6da3dbc7c2db5e5d98c815401">OpenXRProvider::XRProvider</a>
+</li>
 <li>XREventHandler()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_event_handler.html#a9ffef59d9ec597ceecad19c3fc935ae0">OpenXRProvider::XREventHandler</a>
+</li>
+<li>XRExtHandTracking()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#ae93fec1405449c8a6f6027f82d869d44">OpenXRProvider::XRExtHandTracking</a>
 </li>
 <li>XRExtVisibilityMask()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#abd25bf0e035d9322df864ca3a87996ca">OpenXRProvider::XRExtVisibilityMask</a>
@@ -301,6 +323,9 @@ $(function() {
 <h3><a id="index__7E"></a>- ~ -</h3><ul>
 <li>~XREventHandler()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_event_handler.html#a4cc2395d94544372270850eac7eba0ff">OpenXRProvider::XREventHandler</a>
+</li>
+<li>~XRExtHandTracking()
+: <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a3a23c2516160d65a98d3323d4bdb9959">OpenXRProvider::XRExtHandTracking</a>
 </li>
 <li>~XRExtVisibilityMask()
 : <a class="el" href="class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#a868e9fcab3dd68d76fd94d14fcedada2">OpenXRProvider::XRExtVisibilityMask</a>

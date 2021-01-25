@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['event_5fdata_5finvalid',['EVENT_DATA_INVALID',['../namespace_open_x_r_provider.html#a45de367abcea927b192e21d1c8b9853da997161bd7da303efa7ad15a7f8822785',1,'OpenXRProvider']]],
-  ['events_5flost',['EVENTS_LOST',['../namespace_open_x_r_provider.html#aa80d286c249d35071f2ff4d19d9dc4c3ac3a23aa5a60beea1c939e80d191229ca',1,'OpenXRProvider']]],
-  ['extension_5fvisibility_5fmask',['EXTENSION_VISIBILITY_MASK',['../namespace_open_x_r_provider.html#ab4e3f4c6f1f2b69f87608b992c505371a18a9581473453414550c09bd6750b050',1,'OpenXRProvider']]]
+  ['mask_5fhidden',['MASK_HIDDEN',['../class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#a80c9de64fb067663f183e0b36a819b41a062fb7c54994a14383b061d451ecff35',1,'OpenXRProvider::XRExtVisibilityMask']]],
+  ['mask_5fline_5floop',['MASK_LINE_LOOP',['../class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#a80c9de64fb067663f183e0b36a819b41a07b15a3130a6be88c659bfdcd9065ff0',1,'OpenXRProvider::XRExtVisibilityMask']]],
+  ['mask_5fvisible',['MASK_VISIBLE',['../class_open_x_r_provider_1_1_x_r_ext_visibility_mask.html#a80c9de64fb067663f183e0b36a819b41a629db3f30b899c37ebf19918d30613cb',1,'OpenXRProvider::XRExtVisibilityMask']]]
 ];
