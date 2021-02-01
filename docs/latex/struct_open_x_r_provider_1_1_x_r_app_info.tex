@@ -7,12 +7,12 @@ Open\+XR application info used to initialize an Open\+XR Instance and create a S
 
 
 
-{\ttfamily \#include \char`\"{}Open\+X\+R\+Provider.\+h\char`\"{}}
+{\ttfamily \#include \char`\"{}X\+R\+Common.\+h\char`\"{}}
 
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a54ff47ab67f3c32aa6e2a8e48c8a982a}{X\+R\+App\+Info}} (std\+::string app\+Name, uint32\+\_\+t app\+Version, std\+::string engine\+Name, uint32\+\_\+t engine\+Version, \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}} tracking\+Space, std\+::vector$<$ void $\ast$ $>$ xr\+Extensions, bool b\+Enable\+Depth\+Texture\+Support=false, const char $\ast$p\+Log\+File=nullptr)
+\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_ac9fbe9b0ce705d53bd0907fa997efdce}{X\+R\+App\+Info}} (std\+::string app\+Name, uint32\+\_\+t app\+Version, std\+::string engine\+Name, uint32\+\_\+t engine\+Version, \mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}} tracking\+Space, std\+::vector$<$ void $\ast$ $>$ xr\+Extensions, const char $\ast$p\+Log\+File=nullptr)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -29,8 +29,6 @@ uint32\+\_\+t \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a941d70
 \begin{DoxyCompactList}\small\item\em The application\textquotesingle{}s tracking space -\/ e.\+g. room scale, seated, etc. \end{DoxyCompactList}\item 
 std\+::vector$<$ void $\ast$ $>$ \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a8b51fa00d11c4b3711440bf4b20b57fe}{X\+R\+Extensions}}
 \begin{DoxyCompactList}\small\item\em List of extension objects representing each extension that the app wants to activate depending on runtime support. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a82ebc04bd67f8708e3925b282aeb71a2}{Enable\+Depth\+Texture\+Support}}
-\begin{DoxyCompactList}\small\item\em If the application plans to send depth textures along with the color textures. \end{DoxyCompactList}\item 
 const char $\ast$ \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a134d71f0d127123dc1b4b1682102b0ee}{Log\+File}}
 \begin{DoxyCompactList}\small\item\em The absolute path and filename of the log file the Open\+XR Provider library will write in to (optional) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -39,11 +37,11 @@ const char $\ast$ \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info_a13
 Open\+XR application info used to initialize an Open\+XR Instance and create a Session with the active Open\+XR runtime. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_a54ff47ab67f3c32aa6e2a8e48c8a982a}\label{struct_open_x_r_provider_1_1_x_r_app_info_a54ff47ab67f3c32aa6e2a8e48c8a982a}} 
+\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_ac9fbe9b0ce705d53bd0907fa997efdce}\label{struct_open_x_r_provider_1_1_x_r_app_info_ac9fbe9b0ce705d53bd0907fa997efdce}} 
 \index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!XRAppInfo@{XRAppInfo}}
 \index{XRAppInfo@{XRAppInfo}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
 \subsubsection{\texorpdfstring{XRAppInfo()}{XRAppInfo()}}
-{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+X\+R\+App\+Info (\begin{DoxyParamCaption}\item[{std\+::string}]{app\+Name,  }\item[{uint32\+\_\+t}]{app\+Version,  }\item[{std\+::string}]{engine\+Name,  }\item[{uint32\+\_\+t}]{engine\+Version,  }\item[{\mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}}}]{tracking\+Space,  }\item[{std\+::vector$<$ void $\ast$ $>$}]{xr\+Extensions,  }\item[{bool}]{b\+Enable\+Depth\+Texture\+Support = {\ttfamily false},  }\item[{const char $\ast$}]{p\+Log\+File = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+X\+R\+App\+Info (\begin{DoxyParamCaption}\item[{std\+::string}]{app\+Name,  }\item[{uint32\+\_\+t}]{app\+Version,  }\item[{std\+::string}]{engine\+Name,  }\item[{uint32\+\_\+t}]{engine\+Version,  }\item[{\mbox{\hyperlink{namespace_open_x_r_provider_a005dd91723b05b123b8fccbc41798b05}{E\+X\+R\+Tracking\+Space}}}]{tracking\+Space,  }\item[{std\+::vector$<$ void $\ast$ $>$}]{xr\+Extensions,  }\item[{const char $\ast$}]{p\+Log\+File = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 Struct Constructor 
 \begin{DoxyParams}[1]{Parameters}
@@ -58,8 +56,6 @@ Struct Constructor
 \mbox{\texttt{ in}}  & {\em tracking\+Space} & Application\textquotesingle{}s tracking space -\/ e.\+g. room scale, seated, etc \\
 \hline
 \mbox{\texttt{ in}}  & {\em xr\+Extensions} & Array of supported extensions (objects) that app wants enabled if the runtime supports it \\
-\hline
-\mbox{\texttt{ in}}  & {\em b\+Enable\+Depth\+Texture\+Support} & (optional\+: false) If depth composition (X\+R\+\_\+\+K\+H\+R\+\_\+composition\+\_\+layer\+\_\+depth) should be enabled if runtime supports it \\
 \hline
 \mbox{\texttt{ in}}  & {\em p\+Log\+File} & (optional\+: null) Absolute path and filename for the logfile \\
 \hline
@@ -86,16 +82,6 @@ The name of the application using the Open\+XR Provider library.
 
 
 The version of the application using the Open\+XR Provider library. 
-
-\mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_a82ebc04bd67f8708e3925b282aeb71a2}\label{struct_open_x_r_provider_1_1_x_r_app_info_a82ebc04bd67f8708e3925b282aeb71a2}} 
-\index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!EnableDepthTextureSupport@{EnableDepthTextureSupport}}
-\index{EnableDepthTextureSupport@{EnableDepthTextureSupport}!OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}}
-\subsubsection{\texorpdfstring{EnableDepthTextureSupport}{EnableDepthTextureSupport}}
-{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+App\+Info\+::\+Enable\+Depth\+Texture\+Support}
-
-
-
-If the application plans to send depth textures along with the color textures. 
 
 \mbox{\Hypertarget{struct_open_x_r_provider_1_1_x_r_app_info_af7200994789e0e1edd4acb80bd8742f1}\label{struct_open_x_r_provider_1_1_x_r_app_info_af7200994789e0e1edd4acb80bd8742f1}} 
 \index{OpenXRProvider::XRAppInfo@{OpenXRProvider::XRAppInfo}!EngineName@{EngineName}}
@@ -151,4 +137,4 @@ List of extension objects representing each extension that the app wants to acti
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/\mbox{\hyperlink{_open_x_r_provider_8h}{Open\+X\+R\+Provider.\+h}}\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_x_r_common_8h}{X\+R\+Common.\+h}}\end{DoxyCompactItemize}

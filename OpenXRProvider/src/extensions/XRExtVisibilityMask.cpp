@@ -23,7 +23,7 @@
 
 #pragma once
 
-#include <XRExtVisibilityMask.h>
+#include <extensions/XRExtVisibilityMask.h>
 
 namespace OpenXRProvider
 {

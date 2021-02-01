@@ -1,6 +1,30 @@
 var searchData=
 [
-  ['sethmdstate',['SetHMDState',['../class_open_x_r_provider_1_1_x_r_render_manager.html#ab9e9d2271f8c7e2740dad5e99c92343c',1,'OpenXRProvider::XRRenderManager']]],
-  ['setswapchainformat',['SetSwapchainFormat',['../class_open_x_r_provider_1_1_x_r_render_manager.html#aece52449fd883fbdefa6de5cb79d2474',1,'OpenXRProvider::XRRenderManager']]],
-  ['setxrsession',['SetXRSession',['../class_open_x_r_provider_1_1_x_r_provider.html#a96ffa9e4f37cc4967cf41fce027e5234',1,'OpenXRProvider::XRProvider']]]
+  ['xr_5fcall',['XR_CALL',['../_x_r_common_8h.html#a7602015fbcf35ef47d4127544130fdd3',1,'XRCommon.h']]],
+  ['xr_5fcall_5fsilent',['XR_CALL_SILENT',['../_x_r_common_8h.html#a9891a59e383c82e70dd213a48325989a',1,'XRCommon.h']]],
+  ['xr_5fenum_5fstringify',['XR_ENUM_STRINGIFY',['../_x_r_common_8h.html#affdfd91e6c8705a5d9d42f6267e133e3',1,'XRCommon.h']]],
+  ['xr_5fenum_5ftype_5fstringify',['XR_ENUM_TYPE_STRINGIFY',['../_x_r_common_8h.html#ac7cadaac19be197afc67dd225fe67e0e',1,'XR_ENUM_TYPE_STRINGIFY():&#160;XRCommon.h'],['../namespace_open_x_r_provider.html#ac8e3913afbac23d15ac8ade017abd1c2',1,'OpenXRProvider::XR_ENUM_TYPE_STRINGIFY(XrResult)'],['../namespace_open_x_r_provider.html#a6f1b32985dfebfddc5f58fd4d9f520fd',1,'OpenXRProvider::XR_ENUM_TYPE_STRINGIFY(XrSessionState)'],['../namespace_open_x_r_provider.html#a0605c743043a3b939637dc328150c659',1,'OpenXRProvider::XR_ENUM_TYPE_STRINGIFY(XrReferenceSpaceType)']]],
+  ['xrappinfo',['XRAppInfo',['../struct_open_x_r_provider_1_1_x_r_app_info.html',1,'OpenXRProvider::XRAppInfo'],['../struct_open_x_r_provider_1_1_x_r_app_info.html#ac9fbe9b0ce705d53bd0907fa997efdce',1,'OpenXRProvider::XRAppInfo::XRAppInfo()']]],
+  ['xrbase',['XRBase',['../class_open_x_r_provider_1_1_x_r_base.html',1,'OpenXRProvider::XRBase'],['../class_open_x_r_provider_1_1_x_r_base.html#a10b7af39f9c344f6c932d1d0f6364af9',1,'OpenXRProvider::XRBase::XRBase()']]],
+  ['xrbase_2eh',['XRBase.h',['../_x_r_base_8h.html',1,'']]],
+  ['xrbaseext',['XRBaseExt',['../class_open_x_r_provider_1_1_x_r_base_ext.html',1,'OpenXRProvider::XRBaseExt'],['../class_open_x_r_provider_1_1_x_r_base_ext.html#a8f59e68df5f1773152a3dfbe9ddc17fc',1,'OpenXRProvider::XRBaseExt::XRBaseExt()']]],
+  ['xrbaseext_2eh',['XRBaseExt.h',['../_x_r_base_ext_8h.html',1,'']]],
+  ['xrbaseinput',['XRBaseInput',['../class_open_x_r_provider_1_1_x_r_base_input.html',1,'OpenXRProvider::XRBaseInput'],['../class_open_x_r_provider_1_1_x_r_base_input.html#aefe33721d76a923f485480f9df30c694',1,'OpenXRProvider::XRBaseInput::XRBaseInput()']]],
+  ['xrbaseinput_2eh',['XRBaseInput.h',['../_x_r_base_input_8h.html',1,'']]],
+  ['xrbeginsession',['XRBeginSession',['../class_open_x_r_provider_1_1_x_r_core.html#a9fd6ddde34eb71f3b41966db79b54b22',1,'OpenXRProvider::XRCore']]],
+  ['xrcallback',['XRCallback',['../struct_open_x_r_provider_1_1_x_r_callback.html',1,'OpenXRProvider']]],
+  ['xrcommon_2eh',['XRCommon.h',['../_x_r_common_8h.html',1,'']]],
+  ['xrcore',['XRCore',['../class_open_x_r_provider_1_1_x_r_core.html',1,'OpenXRProvider::XRCore'],['../class_open_x_r_provider_1_1_x_r_core.html#ab74557f890dd3923a516bf6e34f45f5a',1,'OpenXRProvider::XRCore::XRCore()']]],
+  ['xrcore_2ecpp',['XRCore.cpp',['../_x_r_core_8cpp.html',1,'']]],
+  ['xrcore_2eh',['XRCore.h',['../_x_r_core_8h.html',1,'']]],
+  ['xrendsession',['XREndSession',['../class_open_x_r_provider_1_1_x_r_core.html#a361a44f9b5cbda73bdede6c45dd6078b',1,'OpenXRProvider::XRCore']]],
+  ['xreventhandler',['XREventHandler',['../class_open_x_r_provider_1_1_x_r_event_handler.html',1,'OpenXRProvider::XREventHandler'],['../class_open_x_r_provider_1_1_x_r_event_handler.html#a9ffef59d9ec597ceecad19c3fc935ae0',1,'OpenXRProvider::XREventHandler::XREventHandler()']]],
+  ['xreventhandler_2ecpp',['XREventHandler.cpp',['../_x_r_event_handler_8cpp.html',1,'']]],
+  ['xreventhandler_2eh',['XREventHandler.h',['../_x_r_event_handler_8h.html',1,'']]],
+  ['xrextensions',['XRExtensions',['../struct_open_x_r_provider_1_1_x_r_app_info.html#a8b51fa00d11c4b3711440bf4b20b57fe',1,'OpenXRProvider::XRAppInfo']]],
+  ['xreyestate',['XREyeState',['../struct_open_x_r_provider_1_1_x_r_eye_state.html',1,'OpenXRProvider']]],
+  ['xrhmdstate',['XRHMDState',['../struct_open_x_r_provider_1_1_x_r_h_m_d_state.html',1,'OpenXRProvider']]],
+  ['xrplatformdefines_2eh',['XRPlatformDefines.h',['../_x_r_platform_defines_8h.html',1,'']]],
+  ['xrprovider',['XRProvider',['../class_open_x_r_provider_1_1_x_r_provider.html',1,'OpenXRProvider::XRProvider'],['../class_open_x_r_provider_1_1_x_r_provider.html#afa61fccc9d633ac2c4b8e1a8f07871bb',1,'OpenXRProvider::XRProvider::XRProvider()']]],
+  ['xrrenderinfo',['XRRenderInfo',['../struct_open_x_r_provider_1_1_x_r_render_info.html',1,'OpenXRProvider::XRRenderInfo'],['../struct_open_x_r_provider_1_1_x_r_render_info.html#a5ece658891cf75177b282d3db14b8f77',1,'OpenXRProvider::XRRenderInfo::XRRenderInfo()']]]
 ];

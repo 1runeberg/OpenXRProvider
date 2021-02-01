@@ -81,12 +81,13 @@ $(function() {
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
 <code>#include &lt;spdlog/sinks/basic_file_sink.h&gt;</code><br />
 <code>#include &lt;spdlog/sinks/stdout_color_sinks.h&gt;</code><br />
 <code>#include &lt;spdlog/spdlog.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="_x_r_base_8h_source.html">XRBase.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_x_r_base_ext_8h_source.html">XRBaseExt.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_x_r_graphics_a_p_i_defines_8h_source.html">XRGraphicsAPIDefines.h</a>&gt;</code><br />
+<code>#include &lt;rendering/XRGraphicsAPIDefines.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="_x_r_platform_defines_8h_source.html">XRPlatformDefines.h</a>&gt;</code><br />
 <code>#include &lt;openxr/openxr.h&gt;</code><br />
 <code>#include &lt;openxr/openxr_platform.h&gt;</code><br />
@@ -97,24 +98,24 @@ Include dependency graph for XRCommon.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="_x_r_common_8h__incl.png" border="0" usemap="#include_2_x_r_common_8h" alt=""/></div>
 <map name="include_2_x_r_common_8h" id="include_2_x_r_common_8h">
-<area shape="rect"  title=" " alt="" coords="860,5,1007,32"/>
+<area shape="rect"  title=" " alt="" coords="932,5,1079,32"/>
 <area shape="rect"  title=" " alt="" coords="5,87,80,114"/>
 <area shape="rect"  title=" " alt="" coords="104,87,163,114"/>
 <area shape="rect"  title=" " alt="" coords="187,87,259,114"/>
 <area shape="rect"  title=" " alt="" coords="283,87,338,114"/>
 <area shape="rect"  title=" " alt="" coords="363,87,419,114"/>
-<area shape="rect"  title=" " alt="" coords="443,80,573,121"/>
-<area shape="rect"  title=" " alt="" coords="598,80,733,121"/>
-<area shape="rect"  title=" " alt="" coords="757,87,870,114"/>
-<area shape="rect"  href="_x_r_base_8h.html" title=" " alt="" coords="894,87,973,114"/>
-<area shape="rect"  href="_x_r_base_ext_8h.html" title=" " alt="" coords="997,87,1096,114"/>
-<area shape="rect"  href="_x_r_graphics_a_p_i_defines_8h.html" title=" " alt="" coords="1120,87,1285,114"/>
-<area shape="rect"  href="_x_r_platform_defines_8h.html" title=" " alt="" coords="1310,87,1450,114"/>
-<area shape="rect"  title=" " alt="" coords="1475,87,1589,114"/>
-<area shape="rect"  title=" " alt="" coords="1613,87,1781,114"/>
-<area shape="rect"  title=" " alt="" coords="1806,87,1981,114"/>
-<area shape="rect"  title=" " alt="" coords="2005,87,2131,114"/>
-<area shape="rect"  title=" " alt="" coords="1171,169,1235,196"/>
+<area shape="rect"  title=" " alt="" coords="443,87,490,114"/>
+<area shape="rect"  title=" " alt="" coords="515,80,645,121"/>
+<area shape="rect"  title=" " alt="" coords="670,80,805,121"/>
+<area shape="rect"  title=" " alt="" coords="829,87,942,114"/>
+<area shape="rect"  href="_x_r_base_8h.html" title=" " alt="" coords="966,87,1045,114"/>
+<area shape="rect"  href="_x_r_base_ext_8h.html" title=" " alt="" coords="1069,87,1168,114"/>
+<area shape="rect"  title=" " alt="" coords="1193,87,1415,114"/>
+<area shape="rect"  href="_x_r_platform_defines_8h.html" title=" " alt="" coords="1439,87,1579,114"/>
+<area shape="rect"  title=" " alt="" coords="1604,87,1719,114"/>
+<area shape="rect"  title=" " alt="" coords="1743,87,1911,114"/>
+<area shape="rect"  title=" " alt="" coords="1935,87,2110,114"/>
+<area shape="rect"  title=" " alt="" coords="2135,87,2260,114"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -122,21 +123,16 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="_x_r_common_8h__dep__incl.png" border="0" usemap="#include_2_x_r_common_8hdep" alt=""/></div>
 <map name="include_2_x_r_common_8hdep" id="include_2_x_r_common_8hdep">
-<area shape="rect"  title=" " alt="" coords="249,5,395,32"/>
+<area shape="rect"  title=" " alt="" coords="153,5,299,32"/>
 <area shape="rect"  href="_x_r_base_8h.html" title=" " alt="" coords="5,80,129,107"/>
 <area shape="rect"  href="_x_r_base_ext_8h.html" title=" " alt="" coords="154,80,298,107"/>
-<area shape="rect"  href="_x_r_event_handler_8h.html" title=" " alt="" coords="782,80,953,107"/>
-<area shape="rect"  href="_x_r_ext_hand_tracking_8h.html" title=" " alt="" coords="323,80,516,107"/>
-<area shape="rect"  href="_x_r_ext_visibility_mask_8h.html" title=" " alt="" coords="977,80,1171,107"/>
-<area shape="rect"  href="_x_r_graphics_aware_types_8h.html" title=" " alt="" coords="540,80,757,107"/>
-<area shape="rect"  href="_open_x_r_provider_8h.html" title=" " alt="" coords="403,155,574,181"/>
-<area shape="rect"  href="_x_r_event_handler_8cpp.html" title=" " alt="" coords="831,155,992,181"/>
-<area shape="rect"  href="_x_r_render_manager_8h.html" title=" " alt="" coords="765,229,951,256"/>
-<area shape="rect"  href="_open_x_r_provider_8cpp.html" title=" " alt="" coords="407,229,570,256"/>
-<area shape="rect"  href="_x_r_render_manager_8cpp.html" title=" " alt="" coords="770,304,946,331"/>
-<area shape="rect"  href="_x_r_ext_hand_tracking_8cpp.html" title=" " alt="" coords="195,155,379,181"/>
-<area shape="rect"  href="_x_r_ext_visibility_mask_8cpp.html" title=" " alt="" coords="1067,155,1254,181"/>
-<area shape="rect"  href="_x_r_graphics_aware_types_8cpp.html" title=" " alt="" coords="598,155,806,181"/>
+<area shape="rect"  href="_x_r_base_input_8h.html" title=" " alt="" coords="322,80,474,107"/>
+<area shape="rect"  href="_x_r_core_8h.html" title=" " alt="" coords="451,155,572,181"/>
+<area shape="rect"  href="_x_r_event_handler_8h.html" title=" " alt="" coords="549,80,719,107"/>
+<area shape="rect"  href="_open_x_r_provider_8h.html" title=" " alt="" coords="426,229,597,256"/>
+<area shape="rect"  href="_open_x_r_provider_8cpp.html" title=" " alt="" coords="350,304,513,331"/>
+<area shape="rect"  href="_x_r_core_8cpp.html" title=" " alt="" coords="537,304,649,331"/>
+<area shape="rect"  href="_x_r_event_handler_8cpp.html" title=" " alt="" coords="596,155,757,181"/>
 </map>
 </div>
 </div>
@@ -144,6 +140,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_open_x_r_provider_1_1_x_r_app_info.html">OpenXRProvider::XRAppInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenXR application info used to initialize an OpenXR Instance and create a Session with the active OpenXR runtime.  <a href="struct_open_x_r_provider_1_1_x_r_app_info.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_open_x_r_provider_1_1_x_r_render_info.html">OpenXRProvider::XRRenderInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information needed to create swapchain textures that the app will render to.  <a href="struct_open_x_r_provider_1_1_x_r_render_info.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_open_x_r_provider_1_1_x_r_eye_state.html">OpenXRProvider::XREyeState</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eye State - contains pose, field of view info for an eye.  <a href="struct_open_x_r_provider_1_1_x_r_eye_state.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,6 +203,8 @@ Functions</h2></td></tr>
 <tr class="separator:ac8e3913afbac23d15ac8ade017abd1c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f1b32985dfebfddc5f58fd4d9f520fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_open_x_r_provider.html#a6f1b32985dfebfddc5f58fd4d9f520fd">OpenXRProvider::XR_ENUM_TYPE_STRINGIFY</a> (XrSessionState)</td></tr>
 <tr class="separator:a6f1b32985dfebfddc5f58fd4d9f520fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0605c743043a3b939637dc328150c659"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_open_x_r_provider.html#a0605c743043a3b939637dc328150c659">OpenXRProvider::XR_ENUM_TYPE_STRINGIFY</a> (XrReferenceSpaceType)</td></tr>
+<tr class="separator:a0605c743043a3b939637dc328150c659"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a832e6cc66984ff274e355f5771a04f57"><td class="memItemLeft" align="right" valign="top">XrResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_open_x_r_provider.html#a832e6cc66984ff274e355f5771a04f57">OpenXRProvider::CheckXrResult</a> (XrResult xrResult, std::shared_ptr&lt; spdlog::logger &gt; xrLogger, bool bThrow, const char *xrCall=nullptr, const char *srcFile=nullptr, int srcLineNum=0)</td></tr>
 <tr class="separator:a832e6cc66984ff274e355f5771a04f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e6665bb283f00adb11c3c4ee57c05dd"><td class="memItemLeft" align="right" valign="top">XrResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_open_x_r_provider.html#a9e6665bb283f00adb11c3c4ee57c05dd">OpenXRProvider::CheckXrResult</a> (XrResult xrResult, std::shared_ptr&lt; spdlog::logger &gt; xrLogger, const char *xrCall=nullptr, const char *srcFile=nullptr, int srcLineNum=0)</td></tr>
@@ -318,7 +322,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">constexpr <span class="keyword">const</span> <span class="keywordtype">char</span>* XrEnumToString( xrEnumType eNum ) \</div><div class="line">    {                                                                                                    \</div><div class="line">        switch ( eNum ) { XR_LIST_ENUM_##xrEnumType( <a class="code" href="_x_r_common_8h.html#affdfd91e6c8705a5d9d42f6267e133e3">XR_ENUM_STRINGIFY</a> )                                 \</div><div class="line">        default : <span class="keywordflow">return</span> <span class="stringliteral">&quot;Unknown Enum. Define in openxr_reflection.h&quot;</span>; }                                \</div><div class="line">    }</div><div class="ttc" id="_x_r_common_8h_html_affdfd91e6c8705a5d9d42f6267e133e3"><div class="ttname"><a href="_x_r_common_8h.html#affdfd91e6c8705a5d9d42f6267e133e3">XR_ENUM_STRINGIFY</a></div><div class="ttdeci">#define XR_ENUM_STRINGIFY(sEnum, val)</div><div class="ttdoc">Gets the string value of an enum (as per sample code in openxr_reflection.h)</div><div class="ttdef"><b>Definition:</b> XRCommon.h:57</div></div>
+<b>Value:</b><div class="fragment"><div class="line">constexpr <span class="keyword">const</span> <span class="keywordtype">char</span>* XrEnumToString( xrEnumType eNum ) \</div><div class="line">    {                                                                                                    \</div><div class="line">        switch ( eNum ) { XR_LIST_ENUM_##xrEnumType( <a class="code" href="_x_r_common_8h.html#affdfd91e6c8705a5d9d42f6267e133e3">XR_ENUM_STRINGIFY</a> )                                 \</div><div class="line">        default : <span class="keywordflow">return</span> <span class="stringliteral">&quot;Unknown Enum. Define in openxr_reflection.h&quot;</span>; }                                \</div><div class="line">    }</div><div class="ttc" id="_x_r_common_8h_html_affdfd91e6c8705a5d9d42f6267e133e3"><div class="ttname"><a href="_x_r_common_8h.html#affdfd91e6c8705a5d9d42f6267e133e3">XR_ENUM_STRINGIFY</a></div><div class="ttdeci">#define XR_ENUM_STRINGIFY(sEnum, val)</div><div class="ttdoc">Gets the string value of an enum (as per sample code in openxr_reflection.h)</div><div class="ttdef"><b>Definition:</b> XRCommon.h:58</div></div>
 </div><!-- fragment -->
 </div>
 </div>

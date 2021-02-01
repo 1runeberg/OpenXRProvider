@@ -1,0 +1,141 @@
+\hypertarget{class_open_x_r_provider_1_1_x_r_base_input}{}\section{Open\+X\+R\+Provider\+::X\+R\+Base\+Input Class Reference}
+\label{class_open_x_r_provider_1_1_x_r_base_input}\index{OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}}
+
+
+{\ttfamily \#include \char`\"{}X\+R\+Base\+Input.\+h\char`\"{}}
+
+
+
+Inheritance diagram for Open\+X\+R\+Provider\+::X\+R\+Base\+Input\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{class_open_x_r_provider_1_1_x_r_base_input__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Open\+X\+R\+Provider\+::X\+R\+Base\+Input\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{class_open_x_r_provider_1_1_x_r_base_input__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_input_aefe33721d76a923f485480f9df30c694}{X\+R\+Base\+Input\+::\+X\+R\+Base\+Input}} (std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ p\+Logger)
+\item 
+const char $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_input_a139c33cb927e7b85970d66d35f76e154}{Get\+Extension\+Name}} () const override
+\begin{DoxyCompactList}\small\item\em Identify this class as an implementation of an openxr input profile. \end{DoxyCompactList}\item 
+virtual const char $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_input_ad12f6bf197b668bce45a6993de4728b5}{Get\+Input\+Profile}} () const =0
+\begin{DoxyCompactList}\small\item\em Return the input profile path for this controller. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_input_a1b727a927d0d5a32628e6b8749fa24d5}{Is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Getter for activation status of this extension. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_input_a0b6bf061caadb5b5199869ab8904e513}{Is\+Active}} (bool val)
+\begin{DoxyCompactList}\small\item\em Setter for activation status of this extension. \end{DoxyCompactList}\item 
+std\+::vector$<$ Xr\+Action\+Suggested\+Binding $>$ $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_input_a34ca74de38cbd5ebd6cfc6372518a104}{Action\+Bindings}} ()
+\begin{DoxyCompactList}\small\item\em Getter for the list of action bindings related to this controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_input_ac4e9180e8d2f782656c8e129f7555f17}{m\+\_\+b\+Is\+Active}} = false
+\item 
+std\+::vector$<$ Xr\+Action\+Suggested\+Binding $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_input_a52671a8bf80fb2c176d1bebde57ccc21}{m\+\_\+v\+Action\+Bindings}}
+\begin{DoxyCompactList}\small\item\em Action bindings for this controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_input_a34ca74de38cbd5ebd6cfc6372518a104}\label{class_open_x_r_provider_1_1_x_r_base_input_a34ca74de38cbd5ebd6cfc6372518a104}} 
+\index{OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}!ActionBindings@{ActionBindings}}
+\index{ActionBindings@{ActionBindings}!OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}}
+\subsubsection{\texorpdfstring{ActionBindings()}{ActionBindings()}}
+{\footnotesize\ttfamily std\+::vector$<$ Xr\+Action\+Suggested\+Binding $>$$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Base\+Input\+::\+Action\+Bindings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Getter for the list of action bindings related to this controller. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_input_a139c33cb927e7b85970d66d35f76e154}\label{class_open_x_r_provider_1_1_x_r_base_input_a139c33cb927e7b85970d66d35f76e154}} 
+\index{OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}!GetExtensionName@{GetExtensionName}}
+\index{GetExtensionName@{GetExtensionName}!OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}}
+\subsubsection{\texorpdfstring{GetExtensionName()}{GetExtensionName()}}
+{\footnotesize\ttfamily const char$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Base\+Input\+::\+Get\+Extension\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Identify this class as an implementation of an openxr input profile. 
+
+
+
+Implements \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_base_ext_af23385b0dc226b0c4533a796ddc37352}{Open\+X\+R\+Provider\+::\+X\+R\+Base\+Ext}}.
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_input_ad12f6bf197b668bce45a6993de4728b5}\label{class_open_x_r_provider_1_1_x_r_base_input_ad12f6bf197b668bce45a6993de4728b5}} 
+\index{OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}!GetInputProfile@{GetInputProfile}}
+\index{GetInputProfile@{GetInputProfile}!OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}}
+\subsubsection{\texorpdfstring{GetInputProfile()}{GetInputProfile()}}
+{\footnotesize\ttfamily virtual const char$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Base\+Input\+::\+Get\+Input\+Profile (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Return the input profile path for this controller. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_input_a1b727a927d0d5a32628e6b8749fa24d5}\label{class_open_x_r_provider_1_1_x_r_base_input_a1b727a927d0d5a32628e6b8749fa24d5}} 
+\index{OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}!IsActive@{IsActive}}
+\index{IsActive@{IsActive}!OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}}
+\subsubsection{\texorpdfstring{IsActive()}{IsActive()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Base\+Input\+::\+Is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Getter for activation status of this extension. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_input_a0b6bf061caadb5b5199869ab8904e513}\label{class_open_x_r_provider_1_1_x_r_base_input_a0b6bf061caadb5b5199869ab8904e513}} 
+\index{OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}!IsActive@{IsActive}}
+\index{IsActive@{IsActive}!OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}}
+\subsubsection{\texorpdfstring{IsActive()}{IsActive()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Base\+Input\+::\+Is\+Active (\begin{DoxyParamCaption}\item[{bool}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Setter for activation status of this extension. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_input_aefe33721d76a923f485480f9df30c694}\label{class_open_x_r_provider_1_1_x_r_base_input_aefe33721d76a923f485480f9df30c694}} 
+\index{OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}!XRBaseInput::XRBaseInput@{XRBaseInput::XRBaseInput}}
+\index{XRBaseInput::XRBaseInput@{XRBaseInput::XRBaseInput}!OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}}
+\subsubsection{\texorpdfstring{XRBaseInput::XRBaseInput()}{XRBaseInput::XRBaseInput()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Base\+Input\+::\+X\+R\+Base\+Input\+::\+X\+R\+Base\+Input (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$}]{p\+Logger }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Class Constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Logger} & The logger object to use \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_input_ac4e9180e8d2f782656c8e129f7555f17}\label{class_open_x_r_provider_1_1_x_r_base_input_ac4e9180e8d2f782656c8e129f7555f17}} 
+\index{OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}!m\_bIsActive@{m\_bIsActive}}
+\index{m\_bIsActive@{m\_bIsActive}!OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}}
+\subsubsection{\texorpdfstring{m\_bIsActive}{m\_bIsActive}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Base\+Input\+::m\+\_\+b\+Is\+Active = false\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_base_input_a52671a8bf80fb2c176d1bebde57ccc21}\label{class_open_x_r_provider_1_1_x_r_base_input_a52671a8bf80fb2c176d1bebde57ccc21}} 
+\index{OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}!m\_vActionBindings@{m\_vActionBindings}}
+\index{m\_vActionBindings@{m\_vActionBindings}!OpenXRProvider::XRBaseInput@{OpenXRProvider::XRBaseInput}}
+\subsubsection{\texorpdfstring{m\_vActionBindings}{m\_vActionBindings}}
+{\footnotesize\ttfamily std\+::vector$<$ Xr\+Action\+Suggested\+Binding $>$ Open\+X\+R\+Provider\+::\+X\+R\+Base\+Input\+::m\+\_\+v\+Action\+Bindings\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Action bindings for this controller. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_x_r_base_input_8h}{X\+R\+Base\+Input.\+h}}\end{DoxyCompactItemize}

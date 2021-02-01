@@ -1,0 +1,568 @@
+\hypertarget{class_open_x_r_provider_1_1_x_r_core}{}\section{Open\+X\+R\+Provider\+::X\+R\+Core Class Reference}
+\label{class_open_x_r_provider_1_1_x_r_core}\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+
+
+{\ttfamily \#include \char`\"{}X\+R\+Core.\+h\char`\"{}}
+
+
+
+Collaboration diagram for Open\+X\+R\+Provider\+::X\+R\+Core\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{class_open_x_r_provider_1_1_x_r_core__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ab74557f890dd3923a516bf6e34f45f5a}{X\+R\+Core}} (\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info}{X\+R\+App\+Info}} xr\+App\+Info, X\+R\+App\+Graphics\+Info xr\+App\+Graphics\+Info, bool b\+Enable\+Depth)
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a97834512f231ae35db5754d58e21a586}{$\sim$\+X\+R\+Core}} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_af9c576e48d1b1d5eec465b8643900560}{Poll\+X\+R\+Events}} ()
+\begin{DoxyCompactList}\small\item\em Poll for Open\+XR events so app can act on it (e.\+g. Session state changes, visibility mask changes, etc) \end{DoxyCompactList}\item 
+std\+::vector$<$ const char $\ast$ $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ab3b4c28e69003bc40ee491d6fd1dc708}{Get\+Enabled\+Extension\+Names}} () const
+\item 
+X\+R\+Ext\+Hand\+Tracking $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a087507fd11303714034a29d87b995eec}{Get\+Ext\+Hand\+Tracking}} () const
+\item 
+X\+R\+Graphics\+A\+PI $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a879f310d9e2c44bb6618df996e56a7a1}{Get\+Graphics\+A\+PI}} () const
+\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ab7899cb6ffb6237f7add041023ca5fc6}{Get\+Is\+Depth\+Supported}} () const
+\item 
+std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a7e1827a985837520af9f406633abbe69}{Get\+Logger}} () const
+\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler}{X\+R\+Event\+Handler}} $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a6562155859246e94fdf753b31b7dee33}{Get\+X\+R\+Event\+Handler}} () const
+\item 
+std\+::vector$<$ void $\ast$ $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a19d3b284191aaa25e10093e365376e5d}{Get\+X\+R\+Enabled\+Extensions}} () const
+\item 
+Xr\+Instance \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a0c0e4697dbacf9ec226d64de4b734efd}{Get\+X\+R\+Instance}} () const
+\item 
+Xr\+Session \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a6ceb9dd6bab3b254a0890546056068ea}{Get\+X\+R\+Session}} () const
+\item 
+Xr\+Space \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ae09a68b60383bf9bd5866d2e7b689828}{Get\+X\+R\+Space}} () const
+\item 
+Xr\+System\+Id \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a2ebafdf7a4329f33f5cfb7c9d3c9b2d9}{Get\+X\+R\+System\+Id}} () const
+\item 
+Xr\+System\+Properties \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ac7f545d98dfecc2417008d2ab28e3890}{Get\+X\+R\+System\+Properties}} () const
+\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a8a8ff9cd05d8343cc67bdc646063f7e8}{Set\+X\+R\+Session}} (Xr\+Session xr\+Session)
+\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a9fd6ddde34eb71f3b41966db79b54b22}{X\+R\+Begin\+Session}} ()
+\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a361a44f9b5cbda73bdede6c45dd6078b}{X\+R\+End\+Session}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a3ef0ea6626d9e949dd9997618058a877}{Open\+X\+R\+Init}} (bool b\+Enable\+Depth\+Texture\+Support=false)
+\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a8bd1bf97cb72c44c3a4dcc2e34a1fd7e}{Enable\+Instance\+Extensions}} (std\+::vector$<$ const char $\ast$ $>$ \&p\+X\+R\+Extensions, bool b\+Enable\+Depth\+Texture\+Support)
+\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ab994d8927fc80a9091d6c9eb26260dfa}{Execute\+Callbacks}} (Xr\+Event\+Data\+Buffer xr\+Event)
+\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_af49a490e66fc60337ad41bbb107e82c8}{Load\+X\+R\+System}} ()
+\item 
+void \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ad6d93e9d26622e99807338346f68c0de}{World\+Init}} (X\+R\+App\+Graphics\+Info $\ast$p\+X\+R\+App\+Graphics\+Info)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a68aaefb616672a47a05370fc9bed91f0}{m\+\_\+b\+Is\+Depth\+Supported}} = false
+\begin{DoxyCompactList}\small\item\em If depth textures are supported. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_abcfb5ecc22e4375056c60d1a5e9f48d4}{m\+\_\+n\+App\+Version}}
+\begin{DoxyCompactList}\small\item\em Version of the application using this library. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ae14f037986973f0fbc0fa86c2806ea2b}{m\+\_\+n\+Engine\+Version}}
+\begin{DoxyCompactList}\small\item\em Version of the engine using this library. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a486c80ff8007108fb6d37c43377f965d}{m\+\_\+s\+App\+Name}}
+\begin{DoxyCompactList}\small\item\em Name of the application using this library. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a9c9e4cbacab3f30b732f159576fc130d}{m\+\_\+s\+Engine\+Name}}
+\begin{DoxyCompactList}\small\item\em Name of the engine using this library. \end{DoxyCompactList}\item 
+std\+::vector$<$ const char $\ast$ $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a527e151ea9a2a90db55d61e4358c9f78}{m\+\_\+v\+App\+Enabled\+Extensions}}
+\begin{DoxyCompactList}\small\item\em List of Open\+XR extension names that are activated and supported by the currently active Open\+XR runtime. \end{DoxyCompactList}\item 
+std\+::vector$<$ void $\ast$ $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ad5f0fc798b07a6b0aac7c94084ac0c6d}{m\+\_\+v\+App\+Requested\+Extensions}}
+\begin{DoxyCompactList}\small\item\em Array of Open\+XR extension object that the app requested to be activated -\/ may or may not be activated depending on active Open\+XR support. \end{DoxyCompactList}\item 
+std\+::vector$<$ void $\ast$ $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_aa07e03d01cdf71c4ce8a9dede09919a6}{m\+\_\+v\+X\+R\+App\+Enabled\+Extensions}}
+\begin{DoxyCompactList}\small\item\em Array of Open\+XR enabled extension objects that are activated and supported by the currently active Open\+XR runtime. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a507f6635cdef638f7cf6fc4588b44d84}{m\+\_\+p\+Logger}}
+\begin{DoxyCompactList}\small\item\em Pointer to the logger. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler}{X\+R\+Event\+Handler}} $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a71287a3895f32191616d9e9baec5052b}{m\+\_\+p\+X\+R\+Event\+Handler}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the active Event Handler that broadcasts events to listeners via their registered callback functions. \end{DoxyCompactList}\item 
+X\+R\+Graphics\+A\+PI $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a93b6c87c04372c24bd7d2cf1b1e72f41}{m\+\_\+p\+X\+R\+Graphics\+A\+PI}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointer to the graphics api object that handles graphics api (e.\+g. Open\+GL, Vulkan, etc) specific rendering state and functions. \end{DoxyCompactList}\item 
+Xr\+Instance \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a93ef906b53a23959df73da18d205c737}{m\+\_\+xr\+Instance}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\begin{DoxyCompactList}\small\item\em The current Open\+XR instance. \end{DoxyCompactList}\item 
+Xr\+Result \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ada4b0003152567bb71e2ce73641c0e52}{m\+\_\+xr\+Last\+Call\+Result}} = X\+R\+\_\+\+S\+U\+C\+C\+E\+SS
+\begin{DoxyCompactList}\small\item\em Results of the last call to the Open\+XR api. \end{DoxyCompactList}\item 
+Xr\+Reference\+Space\+Type \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a6e40635971d1f885b2efe0b7783bc11a}{m\+\_\+xr\+Reference\+Space\+Type}} = \{ X\+R\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+A\+GE \}
+\begin{DoxyCompactList}\small\item\em Type of reference space currently is use (roomscale, seated) \end{DoxyCompactList}\item 
+Xr\+Session \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a326233c65ca796a6c42c0c827db542f8}{m\+\_\+xr\+Session}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\begin{DoxyCompactList}\small\item\em The active Open\+XR Session. \end{DoxyCompactList}\item 
+Xr\+Session\+State \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a5de1028a411debf383f83ef7ca44e50b}{m\+\_\+xr\+Session\+State}} = \{ X\+R\+\_\+\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+U\+N\+K\+N\+O\+WN \}
+\begin{DoxyCompactList}\small\item\em Current session state. \end{DoxyCompactList}\item 
+Xr\+Space \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_ab7d13107684d6e229d9d2036b18e0db6}{m\+\_\+xr\+Space}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\begin{DoxyCompactList}\small\item\em The application space which represents the user\textquotesingle{}s play space. \end{DoxyCompactList}\item 
+Xr\+System\+Id \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a06f937c343b02b36a3fb33ad6f38ffe4}{m\+\_\+xr\+System\+Id}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+ID
+\begin{DoxyCompactList}\small\item\em The active Open\+XR runtime\textquotesingle{}s system id. \end{DoxyCompactList}\item 
+Xr\+System\+Properties \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a7ce6c6f65d10afea312cb016b92754b6}{m\+\_\+xr\+System\+Properties}} = \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+P\+R\+O\+P\+E\+R\+T\+I\+ES \}
+\begin{DoxyCompactList}\small\item\em The active Open\+XR runtime\textquotesingle{}s system properties. \end{DoxyCompactList}\item 
+Xr\+Space \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_aedd9482e56c69a607c0c6aa8b0b2ab0b}{m\+\_\+xr\+View\+Space}} = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE
+\begin{DoxyCompactList}\small\item\em The headset (H\+MD) view space. \end{DoxyCompactList}\item 
+Xr\+Time \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_a566f650b5a09b9dbf55b18b7995b1577}{m\+\_\+xr\+Predicted\+Display\+Time}} = \{ 0 \}
+\begin{DoxyCompactList}\small\item\em The current predicted display time. \end{DoxyCompactList}\item 
+X\+R\+Ext\+Hand\+Tracking $\ast$ \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_core_af446de6c1cdd7c4bffa074b8ded9cae4}{m\+\_\+p\+X\+R\+Hand\+Tracking}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ab74557f890dd3923a516bf6e34f45f5a}\label{class_open_x_r_provider_1_1_x_r_core_ab74557f890dd3923a516bf6e34f45f5a}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!XRCore@{XRCore}}
+\index{XRCore@{XRCore}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{XRCore()}{XRCore()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+X\+R\+Core (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info}{X\+R\+App\+Info}}}]{xr\+App\+Info,  }\item[{X\+R\+App\+Graphics\+Info}]{xr\+App\+Graphics\+Info,  }\item[{bool}]{b\+Enable\+Depth }\end{DoxyParamCaption})}
+
+Class Constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em xr\+App\+Info} & App metadata used to create an instance and session to the active Open\+XR runtime \\
+\hline
+\mbox{\texttt{ in}}  & {\em xr\+App\+Graphics\+Info} & App graphics metadata based on current active api \\
+\hline
+\mbox{\texttt{ in}}  & {\em b\+Enable\+Depth} & Whether depth texture support should be enabled if the runtime supports it \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a97834512f231ae35db5754d58e21a586}\label{class_open_x_r_provider_1_1_x_r_core_a97834512f231ae35db5754d58e21a586}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!````~XRCore@{$\sim$XRCore}}
+\index{````~XRCore@{$\sim$XRCore}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{$\sim$XRCore()}{~XRCore()}}
+{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Core\+::$\sim$\+X\+R\+Core (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Class Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a8bd1bf97cb72c44c3a4dcc2e34a1fd7e}\label{class_open_x_r_provider_1_1_x_r_core_a8bd1bf97cb72c44c3a4dcc2e34a1fd7e}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!EnableInstanceExtensions@{EnableInstanceExtensions}}
+\index{EnableInstanceExtensions@{EnableInstanceExtensions}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{EnableInstanceExtensions()}{EnableInstanceExtensions()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Enable\+Instance\+Extensions (\begin{DoxyParamCaption}\item[{std\+::vector$<$ const char $\ast$ $>$ \&}]{p\+X\+R\+Extensions,  }\item[{bool}]{b\+Enable\+Depth\+Texture\+Support }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Enable provided extensions if supported by the currently active Open\+XR runtime 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+X\+R\+Extensions} & List of extensions names to enable if the active Open\+XR runtime supports it \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ab994d8927fc80a9091d6c9eb26260dfa}\label{class_open_x_r_provider_1_1_x_r_core_ab994d8927fc80a9091d6c9eb26260dfa}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!ExecuteCallbacks@{ExecuteCallbacks}}
+\index{ExecuteCallbacks@{ExecuteCallbacks}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{ExecuteCallbacks()}{ExecuteCallbacks()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Execute\+Callbacks (\begin{DoxyParamCaption}\item[{Xr\+Event\+Data\+Buffer}]{xr\+Event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Execute all registered callback functions. Used after an Open\+XR poll and an event state has been triggered by the runtime 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em xr\+Event\+Type} & The type of Open\+XR event that triggered the callback \\
+\hline
+\mbox{\texttt{ in}}  & {\em e\+X\+R\+Event\+Data} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ab3b4c28e69003bc40ee491d6fd1dc708}\label{class_open_x_r_provider_1_1_x_r_core_ab3b4c28e69003bc40ee491d6fd1dc708}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetEnabledExtensionNames@{GetEnabledExtensionNames}}
+\index{GetEnabledExtensionNames@{GetEnabledExtensionNames}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetEnabledExtensionNames()}{GetEnabledExtensionNames()}}
+{\footnotesize\ttfamily std\+::vector$<$ const char $\ast$ $>$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+Enabled\+Extension\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the array of extensions names that are active in the current Open\+XR session \begin{DoxyReturn}{Returns}
+Array of extensions names that are active in the current Open\+XR session 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a087507fd11303714034a29d87b995eec}\label{class_open_x_r_provider_1_1_x_r_core_a087507fd11303714034a29d87b995eec}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetExtHandTracking@{GetExtHandTracking}}
+\index{GetExtHandTracking@{GetExtHandTracking}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetExtHandTracking()}{GetExtHandTracking()}}
+{\footnotesize\ttfamily X\+R\+Ext\+Hand\+Tracking$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+Ext\+Hand\+Tracking (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for hand tracking extension object \begin{DoxyReturn}{Returns}
+Pointer to the hand tracking extension object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a879f310d9e2c44bb6618df996e56a7a1}\label{class_open_x_r_provider_1_1_x_r_core_a879f310d9e2c44bb6618df996e56a7a1}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetGraphicsAPI@{GetGraphicsAPI}}
+\index{GetGraphicsAPI@{GetGraphicsAPI}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetGraphicsAPI()}{GetGraphicsAPI()}}
+{\footnotesize\ttfamily X\+R\+Graphics\+A\+PI$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+Graphics\+A\+PI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the graphics api object that handles graphics api (e.\+g. Open\+GL, Vulkan, etc) specific rendering state and functions \begin{DoxyReturn}{Returns}
+Pointer to graphics api object that handles graphics api (e.\+g. Open\+GL, Vulkan, etc) specific rendering state and functions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ab7899cb6ffb6237f7add041023ca5fc6}\label{class_open_x_r_provider_1_1_x_r_core_ab7899cb6ffb6237f7add041023ca5fc6}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetIsDepthSupported@{GetIsDepthSupported}}
+\index{GetIsDepthSupported@{GetIsDepthSupported}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetIsDepthSupported()}{GetIsDepthSupported()}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+Is\+Depth\+Supported (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter if depth textures are supported and enabled \begin{DoxyReturn}{Returns}
+If depth textures are supported and runtime supports it 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a7e1827a985837520af9f406633abbe69}\label{class_open_x_r_provider_1_1_x_r_core_a7e1827a985837520af9f406633abbe69}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetLogger@{GetLogger}}
+\index{GetLogger@{GetLogger}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetLogger()}{GetLogger()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+Logger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the logger object \begin{DoxyReturn}{Returns}
+Pointer to the logger object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a19d3b284191aaa25e10093e365376e5d}\label{class_open_x_r_provider_1_1_x_r_core_a19d3b284191aaa25e10093e365376e5d}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetXREnabledExtensions@{GetXREnabledExtensions}}
+\index{GetXREnabledExtensions@{GetXREnabledExtensions}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetXREnabledExtensions()}{GetXREnabledExtensions()}}
+{\footnotesize\ttfamily std\+::vector$<$ void $\ast$ $>$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+X\+R\+Enabled\+Extensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the enabled Open\+XR extension objects \begin{DoxyReturn}{Returns}
+Array of enabled Open\+XR extensions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a6562155859246e94fdf753b31b7dee33}\label{class_open_x_r_provider_1_1_x_r_core_a6562155859246e94fdf753b31b7dee33}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetXREventHandler@{GetXREventHandler}}
+\index{GetXREventHandler@{GetXREventHandler}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetXREventHandler()}{GetXREventHandler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler}{X\+R\+Event\+Handler}}$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+X\+R\+Event\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the Event Handler object that broadcasts events to listeners via their registered callback functions \begin{DoxyReturn}{Returns}
+Pointer to the event handler object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a0c0e4697dbacf9ec226d64de4b734efd}\label{class_open_x_r_provider_1_1_x_r_core_a0c0e4697dbacf9ec226d64de4b734efd}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetXRInstance@{GetXRInstance}}
+\index{GetXRInstance@{GetXRInstance}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetXRInstance()}{GetXRInstance()}}
+{\footnotesize\ttfamily Xr\+Instance Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+X\+R\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the active Open\+XR instance \begin{DoxyReturn}{Returns}
+Active Open\+XR instance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a6ceb9dd6bab3b254a0890546056068ea}\label{class_open_x_r_provider_1_1_x_r_core_a6ceb9dd6bab3b254a0890546056068ea}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetXRSession@{GetXRSession}}
+\index{GetXRSession@{GetXRSession}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetXRSession()}{GetXRSession()}}
+{\footnotesize\ttfamily Xr\+Session Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+X\+R\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the active Open\+XR session \begin{DoxyReturn}{Returns}
+The active Open\+XR session 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ae09a68b60383bf9bd5866d2e7b689828}\label{class_open_x_r_provider_1_1_x_r_core_ae09a68b60383bf9bd5866d2e7b689828}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetXRSpace@{GetXRSpace}}
+\index{GetXRSpace@{GetXRSpace}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetXRSpace()}{GetXRSpace()}}
+{\footnotesize\ttfamily Xr\+Space Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+X\+R\+Space (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the current app reference space \begin{DoxyReturn}{Returns}
+The current app reference space 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a2ebafdf7a4329f33f5cfb7c9d3c9b2d9}\label{class_open_x_r_provider_1_1_x_r_core_a2ebafdf7a4329f33f5cfb7c9d3c9b2d9}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetXRSystemId@{GetXRSystemId}}
+\index{GetXRSystemId@{GetXRSystemId}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetXRSystemId()}{GetXRSystemId()}}
+{\footnotesize\ttfamily Xr\+System\+Id Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+X\+R\+System\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the current Open\+XR System Id \begin{DoxyReturn}{Returns}
+The current Open\+XR System Id of the active Open\+XR runtime 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ac7f545d98dfecc2417008d2ab28e3890}\label{class_open_x_r_provider_1_1_x_r_core_ac7f545d98dfecc2417008d2ab28e3890}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!GetXRSystemProperties@{GetXRSystemProperties}}
+\index{GetXRSystemProperties@{GetXRSystemProperties}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{GetXRSystemProperties()}{GetXRSystemProperties()}}
+{\footnotesize\ttfamily Xr\+System\+Properties Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Get\+X\+R\+System\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the current Open\+XR system properties \begin{DoxyReturn}{Returns}
+The current Open\+XR System Properties of the active Open\+XR runtime 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_af49a490e66fc60337ad41bbb107e82c8}\label{class_open_x_r_provider_1_1_x_r_core_af49a490e66fc60337ad41bbb107e82c8}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!LoadXRSystem@{LoadXRSystem}}
+\index{LoadXRSystem@{LoadXRSystem}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{LoadXRSystem()}{LoadXRSystem()}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Load\+X\+R\+System (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Load the current Open\+XR runtime and retrieve its system properties \begin{DoxyReturn}{Returns}
+Result of the Open\+XR calls to retrieve the xr system properties from the active Open\+XR runtime 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a3ef0ea6626d9e949dd9997618058a877}\label{class_open_x_r_provider_1_1_x_r_core_a3ef0ea6626d9e949dd9997618058a877}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!OpenXRInit@{OpenXRInit}}
+\index{OpenXRInit@{OpenXRInit}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{OpenXRInit()}{OpenXRInit()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Open\+X\+R\+Init (\begin{DoxyParamCaption}\item[{bool}]{b\+Enable\+Depth\+Texture\+Support = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Initialize Open\+XR -\/ establish a connection to an active runtime. (1) Set application general info (e.\+g. App name, version, engine name, etc) (2) Check runtime\textquotesingle{}s supported extensions and tag ones selected by the app to enable (e.\+g. Graphics type, Visibility Mask, Handtracking, etc), (3) Create an instance (object that allows communication to the runtime) and (4) Get xr system (representing a collection of physical xr devices) from active Open\+XR runtime \mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_af9c576e48d1b1d5eec465b8643900560}\label{class_open_x_r_provider_1_1_x_r_core_af9c576e48d1b1d5eec465b8643900560}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!PollXREvents@{PollXREvents}}
+\index{PollXREvents@{PollXREvents}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{PollXREvents()}{PollXREvents()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Poll\+X\+R\+Events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Poll for Open\+XR events so app can act on it (e.\+g. Session state changes, visibility mask changes, etc) 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a8a8ff9cd05d8343cc67bdc646063f7e8}\label{class_open_x_r_provider_1_1_x_r_core_a8a8ff9cd05d8343cc67bdc646063f7e8}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!SetXRSession@{SetXRSession}}
+\index{SetXRSession@{SetXRSession}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{SetXRSession()}{SetXRSession()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+Set\+X\+R\+Session (\begin{DoxyParamCaption}\item[{Xr\+Session}]{xr\+Session }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Setter for the currently active Open\+XR session 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em xr\+Session} & Set the active Open\+XR session \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ad6d93e9d26622e99807338346f68c0de}\label{class_open_x_r_provider_1_1_x_r_core_ad6d93e9d26622e99807338346f68c0de}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!WorldInit@{WorldInit}}
+\index{WorldInit@{WorldInit}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{WorldInit()}{WorldInit()}}
+{\footnotesize\ttfamily void Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+World\+Init (\begin{DoxyParamCaption}\item[{X\+R\+App\+Graphics\+Info $\ast$}]{p\+X\+R\+App\+Graphics\+Info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Initialize the world -\/ setup the space and time the app will live in (1) Create a session (app communication instance to render frames or send/receive input to/from the runtime) and (2) Create a reference space (room-\/scale vs seated) 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+X\+R\+App\+Graphics\+Info} & Pointer to the application\textquotesingle{}s graphics api (e.\+g. Open\+GL, DirectX, Vulkan) dependent graphics info \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a9fd6ddde34eb71f3b41966db79b54b22}\label{class_open_x_r_provider_1_1_x_r_core_a9fd6ddde34eb71f3b41966db79b54b22}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!XRBeginSession@{XRBeginSession}}
+\index{XRBeginSession@{XRBeginSession}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{XRBeginSession()}{XRBeginSession()}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+X\+R\+Begin\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Call Open\+XR xr\+Begin\+Session to start app frame synchronization \begin{DoxyReturn}{Returns}
+Xr\+Result The result of the xr\+End\+Session call 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a361a44f9b5cbda73bdede6c45dd6078b}\label{class_open_x_r_provider_1_1_x_r_core_a361a44f9b5cbda73bdede6c45dd6078b}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!XREndSession@{XREndSession}}
+\index{XREndSession@{XREndSession}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{XREndSession()}{XREndSession()}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Core\+::\+X\+R\+End\+Session (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Call Open\+XR xr\+End\+Session to allow runtime to safely transition back to idle \begin{DoxyReturn}{Returns}
+Xr\+Result The result of the xr\+End\+Session call 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a68aaefb616672a47a05370fc9bed91f0}\label{class_open_x_r_provider_1_1_x_r_core_a68aaefb616672a47a05370fc9bed91f0}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_bIsDepthSupported@{m\_bIsDepthSupported}}
+\index{m\_bIsDepthSupported@{m\_bIsDepthSupported}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_bIsDepthSupported}{m\_bIsDepthSupported}}
+{\footnotesize\ttfamily bool Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+b\+Is\+Depth\+Supported = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+If depth textures are supported. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_abcfb5ecc22e4375056c60d1a5e9f48d4}\label{class_open_x_r_provider_1_1_x_r_core_abcfb5ecc22e4375056c60d1a5e9f48d4}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_nAppVersion@{m\_nAppVersion}}
+\index{m\_nAppVersion@{m\_nAppVersion}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_nAppVersion}{m\_nAppVersion}}
+{\footnotesize\ttfamily uint32\+\_\+t Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+n\+App\+Version\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Version of the application using this library. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ae14f037986973f0fbc0fa86c2806ea2b}\label{class_open_x_r_provider_1_1_x_r_core_ae14f037986973f0fbc0fa86c2806ea2b}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_nEngineVersion@{m\_nEngineVersion}}
+\index{m\_nEngineVersion@{m\_nEngineVersion}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_nEngineVersion}{m\_nEngineVersion}}
+{\footnotesize\ttfamily uint32\+\_\+t Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+n\+Engine\+Version\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Version of the engine using this library. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a507f6635cdef638f7cf6fc4588b44d84}\label{class_open_x_r_provider_1_1_x_r_core_a507f6635cdef638f7cf6fc4588b44d84}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_pLogger@{m\_pLogger}}
+\index{m\_pLogger@{m\_pLogger}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_pLogger}{m\_pLogger}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+p\+Logger\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the logger. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a71287a3895f32191616d9e9baec5052b}\label{class_open_x_r_provider_1_1_x_r_core_a71287a3895f32191616d9e9baec5052b}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_pXREventHandler@{m\_pXREventHandler}}
+\index{m\_pXREventHandler@{m\_pXREventHandler}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_pXREventHandler}{m\_pXREventHandler}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_open_x_r_provider_1_1_x_r_event_handler}{X\+R\+Event\+Handler}}$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+p\+X\+R\+Event\+Handler = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the active Event Handler that broadcasts events to listeners via their registered callback functions. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a93b6c87c04372c24bd7d2cf1b1e72f41}\label{class_open_x_r_provider_1_1_x_r_core_a93b6c87c04372c24bd7d2cf1b1e72f41}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_pXRGraphicsAPI@{m\_pXRGraphicsAPI}}
+\index{m\_pXRGraphicsAPI@{m\_pXRGraphicsAPI}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_pXRGraphicsAPI}{m\_pXRGraphicsAPI}}
+{\footnotesize\ttfamily X\+R\+Graphics\+A\+PI$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+p\+X\+R\+Graphics\+A\+PI = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the graphics api object that handles graphics api (e.\+g. Open\+GL, Vulkan, etc) specific rendering state and functions. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_af446de6c1cdd7c4bffa074b8ded9cae4}\label{class_open_x_r_provider_1_1_x_r_core_af446de6c1cdd7c4bffa074b8ded9cae4}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_pXRHandTracking@{m\_pXRHandTracking}}
+\index{m\_pXRHandTracking@{m\_pXRHandTracking}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_pXRHandTracking}{m\_pXRHandTracking}}
+{\footnotesize\ttfamily X\+R\+Ext\+Hand\+Tracking$\ast$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+p\+X\+R\+Hand\+Tracking = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a486c80ff8007108fb6d37c43377f965d}\label{class_open_x_r_provider_1_1_x_r_core_a486c80ff8007108fb6d37c43377f965d}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_sAppName@{m\_sAppName}}
+\index{m\_sAppName@{m\_sAppName}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_sAppName}{m\_sAppName}}
+{\footnotesize\ttfamily std\+::string Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+s\+App\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Name of the application using this library. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a9c9e4cbacab3f30b732f159576fc130d}\label{class_open_x_r_provider_1_1_x_r_core_a9c9e4cbacab3f30b732f159576fc130d}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_sEngineName@{m\_sEngineName}}
+\index{m\_sEngineName@{m\_sEngineName}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_sEngineName}{m\_sEngineName}}
+{\footnotesize\ttfamily std\+::string Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+s\+Engine\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Name of the engine using this library. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a527e151ea9a2a90db55d61e4358c9f78}\label{class_open_x_r_provider_1_1_x_r_core_a527e151ea9a2a90db55d61e4358c9f78}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_vAppEnabledExtensions@{m\_vAppEnabledExtensions}}
+\index{m\_vAppEnabledExtensions@{m\_vAppEnabledExtensions}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_vAppEnabledExtensions}{m\_vAppEnabledExtensions}}
+{\footnotesize\ttfamily std\+::vector$<$ const char $\ast$ $>$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+v\+App\+Enabled\+Extensions\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+List of Open\+XR extension names that are activated and supported by the currently active Open\+XR runtime. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ad5f0fc798b07a6b0aac7c94084ac0c6d}\label{class_open_x_r_provider_1_1_x_r_core_ad5f0fc798b07a6b0aac7c94084ac0c6d}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_vAppRequestedExtensions@{m\_vAppRequestedExtensions}}
+\index{m\_vAppRequestedExtensions@{m\_vAppRequestedExtensions}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_vAppRequestedExtensions}{m\_vAppRequestedExtensions}}
+{\footnotesize\ttfamily std\+::vector$<$ void $\ast$ $>$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+v\+App\+Requested\+Extensions\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Array of Open\+XR extension object that the app requested to be activated -\/ may or may not be activated depending on active Open\+XR support. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_aa07e03d01cdf71c4ce8a9dede09919a6}\label{class_open_x_r_provider_1_1_x_r_core_aa07e03d01cdf71c4ce8a9dede09919a6}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_vXRAppEnabledExtensions@{m\_vXRAppEnabledExtensions}}
+\index{m\_vXRAppEnabledExtensions@{m\_vXRAppEnabledExtensions}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_vXRAppEnabledExtensions}{m\_vXRAppEnabledExtensions}}
+{\footnotesize\ttfamily std\+::vector$<$ void $\ast$ $>$ Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+v\+X\+R\+App\+Enabled\+Extensions\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Array of Open\+XR enabled extension objects that are activated and supported by the currently active Open\+XR runtime. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a93ef906b53a23959df73da18d205c737}\label{class_open_x_r_provider_1_1_x_r_core_a93ef906b53a23959df73da18d205c737}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrInstance@{m\_xrInstance}}
+\index{m\_xrInstance@{m\_xrInstance}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrInstance}{m\_xrInstance}}
+{\footnotesize\ttfamily Xr\+Instance Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+Instance = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current Open\+XR instance. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ada4b0003152567bb71e2ce73641c0e52}\label{class_open_x_r_provider_1_1_x_r_core_ada4b0003152567bb71e2ce73641c0e52}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrLastCallResult@{m\_xrLastCallResult}}
+\index{m\_xrLastCallResult@{m\_xrLastCallResult}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrLastCallResult}{m\_xrLastCallResult}}
+{\footnotesize\ttfamily Xr\+Result Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+Last\+Call\+Result = X\+R\+\_\+\+S\+U\+C\+C\+E\+SS\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Results of the last call to the Open\+XR api. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a566f650b5a09b9dbf55b18b7995b1577}\label{class_open_x_r_provider_1_1_x_r_core_a566f650b5a09b9dbf55b18b7995b1577}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrPredictedDisplayTime@{m\_xrPredictedDisplayTime}}
+\index{m\_xrPredictedDisplayTime@{m\_xrPredictedDisplayTime}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrPredictedDisplayTime}{m\_xrPredictedDisplayTime}}
+{\footnotesize\ttfamily Xr\+Time Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+Predicted\+Display\+Time = \{ 0 \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current predicted display time. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a6e40635971d1f885b2efe0b7783bc11a}\label{class_open_x_r_provider_1_1_x_r_core_a6e40635971d1f885b2efe0b7783bc11a}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrReferenceSpaceType@{m\_xrReferenceSpaceType}}
+\index{m\_xrReferenceSpaceType@{m\_xrReferenceSpaceType}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrReferenceSpaceType}{m\_xrReferenceSpaceType}}
+{\footnotesize\ttfamily Xr\+Reference\+Space\+Type Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+Reference\+Space\+Type = \{ X\+R\+\_\+\+R\+E\+F\+E\+R\+E\+N\+C\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+A\+GE \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Type of reference space currently is use (roomscale, seated) 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a326233c65ca796a6c42c0c827db542f8}\label{class_open_x_r_provider_1_1_x_r_core_a326233c65ca796a6c42c0c827db542f8}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrSession@{m\_xrSession}}
+\index{m\_xrSession@{m\_xrSession}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrSession}{m\_xrSession}}
+{\footnotesize\ttfamily Xr\+Session Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+Session = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The active Open\+XR Session. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a5de1028a411debf383f83ef7ca44e50b}\label{class_open_x_r_provider_1_1_x_r_core_a5de1028a411debf383f83ef7ca44e50b}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrSessionState@{m\_xrSessionState}}
+\index{m\_xrSessionState@{m\_xrSessionState}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrSessionState}{m\_xrSessionState}}
+{\footnotesize\ttfamily Xr\+Session\+State Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+Session\+State = \{ X\+R\+\_\+\+S\+E\+S\+S\+I\+O\+N\+\_\+\+S\+T\+A\+T\+E\+\_\+\+U\+N\+K\+N\+O\+WN \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current session state. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_ab7d13107684d6e229d9d2036b18e0db6}\label{class_open_x_r_provider_1_1_x_r_core_ab7d13107684d6e229d9d2036b18e0db6}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrSpace@{m\_xrSpace}}
+\index{m\_xrSpace@{m\_xrSpace}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrSpace}{m\_xrSpace}}
+{\footnotesize\ttfamily Xr\+Space Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+Space = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The application space which represents the user\textquotesingle{}s play space. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a06f937c343b02b36a3fb33ad6f38ffe4}\label{class_open_x_r_provider_1_1_x_r_core_a06f937c343b02b36a3fb33ad6f38ffe4}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrSystemId@{m\_xrSystemId}}
+\index{m\_xrSystemId@{m\_xrSystemId}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrSystemId}{m\_xrSystemId}}
+{\footnotesize\ttfamily Xr\+System\+Id Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+System\+Id = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+ID\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The active Open\+XR runtime\textquotesingle{}s system id. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_a7ce6c6f65d10afea312cb016b92754b6}\label{class_open_x_r_provider_1_1_x_r_core_a7ce6c6f65d10afea312cb016b92754b6}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrSystemProperties@{m\_xrSystemProperties}}
+\index{m\_xrSystemProperties@{m\_xrSystemProperties}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrSystemProperties}{m\_xrSystemProperties}}
+{\footnotesize\ttfamily Xr\+System\+Properties Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+System\+Properties = \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+Y\+S\+T\+E\+M\+\_\+\+P\+R\+O\+P\+E\+R\+T\+I\+ES \}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The active Open\+XR runtime\textquotesingle{}s system properties. 
+
+\mbox{\Hypertarget{class_open_x_r_provider_1_1_x_r_core_aedd9482e56c69a607c0c6aa8b0b2ab0b}\label{class_open_x_r_provider_1_1_x_r_core_aedd9482e56c69a607c0c6aa8b0b2ab0b}} 
+\index{OpenXRProvider::XRCore@{OpenXRProvider::XRCore}!m\_xrViewSpace@{m\_xrViewSpace}}
+\index{m\_xrViewSpace@{m\_xrViewSpace}!OpenXRProvider::XRCore@{OpenXRProvider::XRCore}}
+\subsubsection{\texorpdfstring{m\_xrViewSpace}{m\_xrViewSpace}}
+{\footnotesize\ttfamily Xr\+Space Open\+X\+R\+Provider\+::\+X\+R\+Core\+::m\+\_\+xr\+View\+Space = X\+R\+\_\+\+N\+U\+L\+L\+\_\+\+H\+A\+N\+D\+LE\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The headset (H\+MD) view space. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_x_r_core_8h}{X\+R\+Core.\+h}}\item 
+src/\mbox{\hyperlink{_x_r_core_8cpp}{X\+R\+Core.\+cpp}}\end{DoxyCompactItemize}

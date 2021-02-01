@@ -2,7 +2,8 @@
 \label{main_8h}\index{include/main.h@{include/main.h}}
 {\ttfamily \#include $<$X\+R\+Mirror.\+h$>$}\newline
 {\ttfamily \#include $<$Open\+X\+R\+Provider.\+h$>$}\newline
-Include dependency graph for main.\+h\+:\nopagebreak
+Include dependency graph for main.\+h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -34,6 +35,12 @@ void \mbox{\hyperlink{main_8h_a92218fb47e6a8d9497a22b2d2f826d44}{Blit\+To\+Windo
 \begin{DoxyCompactList}\small\item\em Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{main_8h_a1ef1cd28afca32ba05253077cea17663}{Draw\+Frame}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}})
 \item 
+void \mbox{\hyperlink{main_8h_a9e10fb858d51cc8823b993c045a1ff59}{Draw\+Controllers}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, glm\+::mat4 eye\+View)
+\item 
+void \mbox{\hyperlink{main_8h_a7a493c5a9704d8b6b0eee9b5c5e1b12a}{Create\+Input\+Action\+Bindings}} ()
+\begin{DoxyCompactList}\small\item\em Generate all input action bindings to multiple controllers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_a3945ef45abcc2e7d9cfe09f2eda3433a}{Process\+Input\+States}} ()
+\begin{DoxyCompactList}\small\item\em Process all the input states after syncing with runtime. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{main_8h_af202977a4e5649f9f0e9af3b96bb815e}{Draw\+Sea\+Of\+Cubes\+Scene}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, glm\+::vec3 cube\+Scale, float f\+Spacing\+Plane, float f\+Spacing\+Height)
 \item 
 void \mbox{\hyperlink{main_8h_a6fc7081040d18dfb999a54ab2012c87f}{Fill\+Eye\+M\+VP}} (glm\+::mat4 $\ast$v\+Eye\+Projections, glm\+::mat4 eye\+View, Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t n\+Cube\+Index, glm\+::vec3 cube\+Position, glm\+::vec3 cube\+Scale=glm\+::vec3(0.f))
@@ -65,14 +72,20 @@ bool \mbox{\hyperlink{main_8h_a456b7b35c4e8c2a5fdd0ec0cb0276bb2}{b\+Draw\+Hand\+
 \begin{DoxyCompactList}\small\item\em Current active scene. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{main_8h_ab9e28ee15d5917508a418320699852af}{cube\+V\+BO}}
 \begin{DoxyCompactList}\small\item\em The Open\+GL Vertex Buffer Object (cube) used in rendering processes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{main_8h_aafa68ed0bcabcbb4294811220a628e99}{controller\+V\+BO}}
+\begin{DoxyCompactList}\small\item\em The Open\+GL Vertex Buffer Object (controller) used in rendering processes. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{main_8h_a7af3232c84187712b862bf0fcb528e77}{joint\+V\+BO}}
 \begin{DoxyCompactList}\small\item\em The Open\+GL Vertex Buffer Object (joint) used in rendering processes. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{main_8h_ab894ef2bd7686d1b45dc527ec30babe7}{cube\+Instance\+Data\+V\+BO}}
 \begin{DoxyCompactList}\small\item\em Instanced cube data for its projection matrices. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{main_8h_a670e48aff6ff9d02768813da86dd2eb4}{controller\+Instance\+Data\+V\+BO}}
+\begin{DoxyCompactList}\small\item\em Instanced controller mesh data for its projection matrices. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{main_8h_a2ce40a9d8eb2b4b2189f171f6a602621}{joint\+Instance\+Data\+V\+BO}}
 \begin{DoxyCompactList}\small\item\em Instanced joint mesh data for its projection matrices. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{main_8h_a7f2b9380dce6ab7cac897fd8979647fd}{cube\+V\+AO}}
 \begin{DoxyCompactList}\small\item\em The Open\+GL Vertex Array Object (cube) used in rendering processes. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{main_8h_a63de8fe3879679cba37825c7e5ea4180}{controller\+V\+AO}}
+\begin{DoxyCompactList}\small\item\em The Open\+GL Vertex Array Object (controller) used in rendering processes. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{main_8h_ac771814ee10ba8064c10cfe18b6b1400}{joint\+V\+AO}}
 \begin{DoxyCompactList}\small\item\em The Open\+GL Vertex Array Object (joint) used in rendering processes. \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{main_8h_a5c518da7ccac992646ba4d74225c6d17}{light\+V\+AO}}
@@ -121,12 +134,36 @@ Xr\+Session\+State \mbox{\hyperlink{main_8h_ac08d7f8a90ada64a8bb5793db9d6f53d}{x
 \begin{DoxyCompactList}\small\item\em Stores the current Open\+XR session state. \end{DoxyCompactList}\item 
 Open\+X\+R\+Provider\+::\+X\+R\+Provider $\ast$ \mbox{\hyperlink{main_8h_a444f316e5ddad52f3f37f1e34a2e290b}{p\+X\+R\+Provider}} = nullptr
 \begin{DoxyCompactList}\small\item\em Pointer to the X\+R\+Provider class of the Open\+XR Provider library which handles all state, system and generic calls to the Open\+XR runtime. \end{DoxyCompactList}\item 
-Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager $\ast$ \mbox{\hyperlink{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}{p\+X\+R\+Render\+Manager}} = nullptr
-\begin{DoxyCompactList}\small\item\em Pointer to the X\+R\+Render\+Manager class of the Open\+XR Provider library which handles all Open\+XR rendering. \end{DoxyCompactList}\item 
 Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Visibility\+Mask $\ast$ \mbox{\hyperlink{main_8h_aa258e1cafc71c21ca80015a29c4454f4}{p\+X\+R\+Visibility\+Mask}} = nullptr
 \begin{DoxyCompactList}\small\item\em Pointer to the X\+R\+Ext\+Visibility\+Mask class of the Open\+XR Provider library which handles the Open\+XR visibility mask extension for runtimes that support it. \end{DoxyCompactList}\item 
 Open\+X\+R\+Provider\+::\+X\+R\+Ext\+Hand\+Tracking $\ast$ \mbox{\hyperlink{main_8h_aa45990d8b887347f4032a4ec5ef9a59c}{p\+X\+R\+Hand\+Tracking}} = nullptr
 \begin{DoxyCompactList}\small\item\em Pointer to the X\+R\+Ext\+Visibility\+Mask class of the Open\+XR Provider library which handles the Open\+XR visibility mask extension for runtimes that support it. \end{DoxyCompactList}\item 
+Xr\+Action\+Set \mbox{\hyperlink{main_8h_a6da5c36d3c4f42248577619bbfcd7e3f}{xr\+Action\+Set\+\_\+\+Main}}
+\begin{DoxyCompactList}\small\item\em Action set to use for this sandbox. \end{DoxyCompactList}\item 
+Xr\+Action\+State\+Boolean \mbox{\hyperlink{main_8h_a556615872eb6484c936f746e96952594}{xr\+Action\+State\+\_\+\+Switch\+Scene}}
+\item 
+Xr\+Action\+State\+Pose \mbox{\hyperlink{main_8h_ab3803dbbc77ea8fe36c9a76d1de64ae3}{xr\+Action\+State\+\_\+\+Pose\+Left}}
+\item 
+Xr\+Action\+State\+Pose \mbox{\hyperlink{main_8h_ae94b88c8643a65579b0c684871770c8a}{xr\+Action\+State\+\_\+\+Pose\+Right}}
+\item 
+Xr\+Action \mbox{\hyperlink{main_8h_a032a43e732498d7c1640182a2d54923d}{xr\+Action\+\_\+\+Switch\+Scene}}
+\item 
+Xr\+Action \mbox{\hyperlink{main_8h_a2ddb589cabd1941e52ac7bda6f6d582d}{xr\+Action\+\_\+\+Haptic}}
+\item 
+Xr\+Action \mbox{\hyperlink{main_8h_a1db3573f62bc02c96f2e141042764dc2}{xr\+Action\+\_\+\+Pose\+Left}}
+\item 
+Xr\+Action \mbox{\hyperlink{main_8h_a03d66cb7495077592d6565ec761e475b}{xr\+Action\+\_\+\+Pose\+Right}}
+\item 
+Xr\+Space\+Location \mbox{\hyperlink{main_8h_a5a5678ce3958588a38766f1ed800d217}{xr\+Location\+\_\+\+Left}} \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+L\+O\+C\+A\+T\+I\+ON \}
+\item 
+Xr\+Space\+Location \mbox{\hyperlink{main_8h_abab965a0d4af75c045fb8f759a973105}{xr\+Location\+\_\+\+Right}} \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+L\+O\+C\+A\+T\+I\+ON \}
+\item 
+Xr\+Space\+Velocity \mbox{\hyperlink{main_8h_a218a45eab9ded8e0c8ce7907c5c520de}{xr\+Velocity\+\_\+\+Left}} \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+V\+E\+L\+O\+C\+I\+TY \}
+\item 
+Xr\+Space\+Velocity \mbox{\hyperlink{main_8h_ade45a8e23e18beb041640d39c3e70193}{xr\+Velocity\+\_\+\+Right}} \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+V\+E\+L\+O\+C\+I\+TY \}
+\item 
+float \mbox{\hyperlink{main_8h_a5d440a6ce4fc03d238a7e899b98733bb}{v\+Controller\+Mesh}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Controller mesh vertices and colors (x, y, z, r, g, b) \end{DoxyCompactList}\item 
 float \mbox{\hyperlink{main_8h_a930e294af25433106ebe08293277f70d}{v\+Cube}} \mbox{[}$\,$\mbox{]}
 \begin{DoxyCompactList}\small\item\em Cube vertices and texture coordinates (x, y, z, s ,t) \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{main_8h_a5c125e8e376c9f4517e2c62c5d71a30f}{m\+\_\+b\+Eye\+Projections\+Set}} = false
@@ -185,6 +222,29 @@ Setup the sandbox application -\/ windowing and opengl support.
 
 Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) 
 
+\mbox{\Hypertarget{main_8h_a7a493c5a9704d8b6b0eee9b5c5e1b12a}\label{main_8h_a7a493c5a9704d8b6b0eee9b5c5e1b12a}} 
+\index{main.h@{main.h}!CreateInputActionBindings@{CreateInputActionBindings}}
+\index{CreateInputActionBindings@{CreateInputActionBindings}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{CreateInputActionBindings()}{CreateInputActionBindings()}}
+{\footnotesize\ttfamily void Create\+Input\+Action\+Bindings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generate all input action bindings to multiple controllers. 
+
+\mbox{\Hypertarget{main_8h_a9e10fb858d51cc8823b993c045a1ff59}\label{main_8h_a9e10fb858d51cc8823b993c045a1ff59}} 
+\index{main.h@{main.h}!DrawControllers@{DrawControllers}}
+\index{DrawControllers@{DrawControllers}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{DrawControllers()}{DrawControllers()}}
+{\footnotesize\ttfamily void Draw\+Controllers (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{glm\+::mat4}]{eye\+View }\end{DoxyParamCaption})}
+
+Draw the controller meshes for each hand 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Current eye to render to \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & Texture in the swapchain to render to \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{main_8h_a008988a16144bf83417d87d7facb2b61}\label{main_8h_a008988a16144bf83417d87d7facb2b61}} 
 \index{main.h@{main.h}!DrawCube@{DrawCube}}
 \index{DrawCube@{DrawCube}!main.h@{main.h}}
@@ -400,6 +460,16 @@ Get the inverse of a given projection matrix
 \mbox{\texttt{ out}}  & {\em glm\+::mat4} & The inverted matrix \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{main_8h_a3945ef45abcc2e7d9cfe09f2eda3433a}\label{main_8h_a3945ef45abcc2e7d9cfe09f2eda3433a}} 
+\index{main.h@{main.h}!ProcessInputStates@{ProcessInputStates}}
+\index{ProcessInputStates@{ProcessInputStates}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{ProcessInputStates()}{ProcessInputStates()}}
+{\footnotesize\ttfamily void Process\+Input\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Process all the input states after syncing with runtime. 
+
 
 
 \subsection{Variable Documentation}
@@ -412,6 +482,36 @@ Get the inverse of a given projection matrix
 
 
 If hand joints should be rendered (hand tracking extension required) 
+
+\mbox{\Hypertarget{main_8h_a670e48aff6ff9d02768813da86dd2eb4}\label{main_8h_a670e48aff6ff9d02768813da86dd2eb4}} 
+\index{main.h@{main.h}!controllerInstanceDataVBO@{controllerInstanceDataVBO}}
+\index{controllerInstanceDataVBO@{controllerInstanceDataVBO}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{controllerInstanceDataVBO}{controllerInstanceDataVBO}}
+{\footnotesize\ttfamily unsigned int controller\+Instance\+Data\+V\+BO}
+
+
+
+Instanced controller mesh data for its projection matrices. 
+
+\mbox{\Hypertarget{main_8h_a63de8fe3879679cba37825c7e5ea4180}\label{main_8h_a63de8fe3879679cba37825c7e5ea4180}} 
+\index{main.h@{main.h}!controllerVAO@{controllerVAO}}
+\index{controllerVAO@{controllerVAO}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{controllerVAO}{controllerVAO}}
+{\footnotesize\ttfamily unsigned int controller\+V\+AO}
+
+
+
+The Open\+GL Vertex Array Object (controller) used in rendering processes. 
+
+\mbox{\Hypertarget{main_8h_aafa68ed0bcabcbb4294811220a628e99}\label{main_8h_aafa68ed0bcabcbb4294811220a628e99}} 
+\index{main.h@{main.h}!controllerVBO@{controllerVBO}}
+\index{controllerVBO@{controllerVBO}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{controllerVBO}{controllerVBO}}
+{\footnotesize\ttfamily unsigned int controller\+V\+BO}
+
+
+
+The Open\+GL Vertex Buffer Object (controller) used in rendering processes. 
 
 \mbox{\Hypertarget{main_8h_ac5f4ab0a7dd2028e911fe4b37cb8cd22}\label{main_8h_ac5f4ab0a7dd2028e911fe4b37cb8cd22}} 
 \index{main.h@{main.h}!cubeEBO@{cubeEBO}}
@@ -689,16 +789,6 @@ Pointer to the \mbox{\hyperlink{class_x_r_mirror}{X\+R\+Mirror}} class that hand
 
 Pointer to the X\+R\+Provider class of the Open\+XR Provider library which handles all state, system and generic calls to the Open\+XR runtime. 
 
-\mbox{\Hypertarget{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}\label{main_8h_a343faf29ffd3d2e18b872155c7f2fcda}} 
-\index{main.h@{main.h}!pXRRenderManager@{pXRRenderManager}}
-\index{pXRRenderManager@{pXRRenderManager}!main.h@{main.h}}
-\subsubsection{\texorpdfstring{pXRRenderManager}{pXRRenderManager}}
-{\footnotesize\ttfamily Open\+X\+R\+Provider\+::\+X\+R\+Render\+Manager$\ast$ p\+X\+R\+Render\+Manager = nullptr}
-
-
-
-Pointer to the X\+R\+Render\+Manager class of the Open\+XR Provider library which handles all Open\+XR rendering. 
-
 \mbox{\Hypertarget{main_8h_aa258e1cafc71c21ca80015a29c4454f4}\label{main_8h_aa258e1cafc71c21ca80015a29c4454f4}} 
 \index{main.h@{main.h}!pXRVisibilityMask@{pXRVisibilityMask}}
 \index{pXRVisibilityMask@{pXRVisibilityMask}!main.h@{main.h}}
@@ -718,6 +808,50 @@ Pointer to the X\+R\+Ext\+Visibility\+Mask class of the Open\+XR Provider librar
 
 
 The absolute path to the built Sandbox executable. 
+
+\mbox{\Hypertarget{main_8h_a5d440a6ce4fc03d238a7e899b98733bb}\label{main_8h_a5d440a6ce4fc03d238a7e899b98733bb}} 
+\index{main.h@{main.h}!vControllerMesh@{vControllerMesh}}
+\index{vControllerMesh@{vControllerMesh}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{vControllerMesh}{vControllerMesh}}
+{\footnotesize\ttfamily float v\+Controller\+Mesh\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    0.0f, 0.0f, -0.4f,      0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{    0.2f, 0.0f, 0.1f,       0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{    0.0f, 0.2f, 0.0f,       1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{    0.0f,  0.2f, 0.0f,      1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{    -0.2f, 0.0f, 0.1f,      0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{    0.0f, 0.0f, -0.4f,      0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    0.0f, 0.2f, 0.0f,       1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{    0.2f, 0.0f, 0.1f,       0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{    0.0f, 0.0f, 0.4f,       0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{    0.0f,  0.0f, 0.4f,      0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{    -0.2f, 0.0f, 0.1f,      0.0f, 1.0f, 0.0f, }
+\DoxyCodeLine{    0.0f, 0.2f, 0.0f,       1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    0.0f, 0.0f, -0.4f,      1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{    0.2f, 0.0f, 0.1f,       1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{    0.0f, -0.2f, 0.0f,      1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{    0.0f, -0.2f, 0.0f,      1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{    -0.2f, 0.0f, 0.1f,      1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{    0.0f, 0.0f, -0.4f,      1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{}
+\DoxyCodeLine{    0.0f, -0.2f, 0.0f,      1.0f, 1.0f, 1.0f,}
+\DoxyCodeLine{    0.2f, 0.0f, 0.1f,       0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{    0.0f, 0.0f, 0.4f,       0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{    0.0f,  0.0f, 0.4f,      0.0f, 1.0f, 0.0f,}
+\DoxyCodeLine{    -0.2f, 0.0f, 0.1f,      0.0f, 1.0f, 0.0f, }
+\DoxyCodeLine{    0.0f, -0.2f, 0.0f,      1.0f, 1.0f, 1.0f}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Controller mesh vertices and colors (x, y, z, r, g, b) 
 
 \mbox{\Hypertarget{main_8h_a930e294af25433106ebe08293277f70d}\label{main_8h_a930e294af25433106ebe08293277f70d}} 
 \index{main.h@{main.h}!vCube@{vCube}}
@@ -827,6 +961,60 @@ Vertices for the left eye visibility mask (hmd specific occlusion mesh reported 
 
 Indices for the right eye visibility mask (hmd specific occlusion mesh reported by the active Open\+XR runtime) 
 
+\mbox{\Hypertarget{main_8h_a2ddb589cabd1941e52ac7bda6f6d582d}\label{main_8h_a2ddb589cabd1941e52ac7bda6f6d582d}} 
+\index{main.h@{main.h}!xrAction\_Haptic@{xrAction\_Haptic}}
+\index{xrAction\_Haptic@{xrAction\_Haptic}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrAction\_Haptic}{xrAction\_Haptic}}
+{\footnotesize\ttfamily Xr\+Action xr\+Action\+\_\+\+Haptic}
+
+\mbox{\Hypertarget{main_8h_a1db3573f62bc02c96f2e141042764dc2}\label{main_8h_a1db3573f62bc02c96f2e141042764dc2}} 
+\index{main.h@{main.h}!xrAction\_PoseLeft@{xrAction\_PoseLeft}}
+\index{xrAction\_PoseLeft@{xrAction\_PoseLeft}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrAction\_PoseLeft}{xrAction\_PoseLeft}}
+{\footnotesize\ttfamily Xr\+Action xr\+Action\+\_\+\+Pose\+Left}
+
+\mbox{\Hypertarget{main_8h_a03d66cb7495077592d6565ec761e475b}\label{main_8h_a03d66cb7495077592d6565ec761e475b}} 
+\index{main.h@{main.h}!xrAction\_PoseRight@{xrAction\_PoseRight}}
+\index{xrAction\_PoseRight@{xrAction\_PoseRight}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrAction\_PoseRight}{xrAction\_PoseRight}}
+{\footnotesize\ttfamily Xr\+Action xr\+Action\+\_\+\+Pose\+Right}
+
+\mbox{\Hypertarget{main_8h_a032a43e732498d7c1640182a2d54923d}\label{main_8h_a032a43e732498d7c1640182a2d54923d}} 
+\index{main.h@{main.h}!xrAction\_SwitchScene@{xrAction\_SwitchScene}}
+\index{xrAction\_SwitchScene@{xrAction\_SwitchScene}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrAction\_SwitchScene}{xrAction\_SwitchScene}}
+{\footnotesize\ttfamily Xr\+Action xr\+Action\+\_\+\+Switch\+Scene}
+
+\mbox{\Hypertarget{main_8h_a6da5c36d3c4f42248577619bbfcd7e3f}\label{main_8h_a6da5c36d3c4f42248577619bbfcd7e3f}} 
+\index{main.h@{main.h}!xrActionSet\_Main@{xrActionSet\_Main}}
+\index{xrActionSet\_Main@{xrActionSet\_Main}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrActionSet\_Main}{xrActionSet\_Main}}
+{\footnotesize\ttfamily Xr\+Action\+Set xr\+Action\+Set\+\_\+\+Main}
+
+
+
+Action set to use for this sandbox. 
+
+
+
+ \mbox{\Hypertarget{main_8h_ab3803dbbc77ea8fe36c9a76d1de64ae3}\label{main_8h_ab3803dbbc77ea8fe36c9a76d1de64ae3}} 
+\index{main.h@{main.h}!xrActionState\_PoseLeft@{xrActionState\_PoseLeft}}
+\index{xrActionState\_PoseLeft@{xrActionState\_PoseLeft}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrActionState\_PoseLeft}{xrActionState\_PoseLeft}}
+{\footnotesize\ttfamily Xr\+Action\+State\+Pose xr\+Action\+State\+\_\+\+Pose\+Left}
+
+\mbox{\Hypertarget{main_8h_ae94b88c8643a65579b0c684871770c8a}\label{main_8h_ae94b88c8643a65579b0c684871770c8a}} 
+\index{main.h@{main.h}!xrActionState\_PoseRight@{xrActionState\_PoseRight}}
+\index{xrActionState\_PoseRight@{xrActionState\_PoseRight}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrActionState\_PoseRight}{xrActionState\_PoseRight}}
+{\footnotesize\ttfamily Xr\+Action\+State\+Pose xr\+Action\+State\+\_\+\+Pose\+Right}
+
+\mbox{\Hypertarget{main_8h_a556615872eb6484c936f746e96952594}\label{main_8h_a556615872eb6484c936f746e96952594}} 
+\index{main.h@{main.h}!xrActionState\_SwitchScene@{xrActionState\_SwitchScene}}
+\index{xrActionState\_SwitchScene@{xrActionState\_SwitchScene}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrActionState\_SwitchScene}{xrActionState\_SwitchScene}}
+{\footnotesize\ttfamily Xr\+Action\+State\+Boolean xr\+Action\+State\+\_\+\+Switch\+Scene}
+
 \mbox{\Hypertarget{main_8h_ac08d7f8a90ada64a8bb5793db9d6f53d}\label{main_8h_ac08d7f8a90ada64a8bb5793db9d6f53d}} 
 \index{main.h@{main.h}!xrCurrentSessionState@{xrCurrentSessionState}}
 \index{xrCurrentSessionState@{xrCurrentSessionState}!main.h@{main.h}}
@@ -836,4 +1024,28 @@ Indices for the right eye visibility mask (hmd specific occlusion mesh reported 
 
 
 Stores the current Open\+XR session state. 
+
+\mbox{\Hypertarget{main_8h_a5a5678ce3958588a38766f1ed800d217}\label{main_8h_a5a5678ce3958588a38766f1ed800d217}} 
+\index{main.h@{main.h}!xrLocation\_Left@{xrLocation\_Left}}
+\index{xrLocation\_Left@{xrLocation\_Left}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrLocation\_Left}{xrLocation\_Left}}
+{\footnotesize\ttfamily Xr\+Space\+Location xr\+Location\+\_\+\+Left \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+L\+O\+C\+A\+T\+I\+ON \}}
+
+\mbox{\Hypertarget{main_8h_abab965a0d4af75c045fb8f759a973105}\label{main_8h_abab965a0d4af75c045fb8f759a973105}} 
+\index{main.h@{main.h}!xrLocation\_Right@{xrLocation\_Right}}
+\index{xrLocation\_Right@{xrLocation\_Right}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrLocation\_Right}{xrLocation\_Right}}
+{\footnotesize\ttfamily Xr\+Space\+Location xr\+Location\+\_\+\+Right \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+L\+O\+C\+A\+T\+I\+ON \}}
+
+\mbox{\Hypertarget{main_8h_a218a45eab9ded8e0c8ce7907c5c520de}\label{main_8h_a218a45eab9ded8e0c8ce7907c5c520de}} 
+\index{main.h@{main.h}!xrVelocity\_Left@{xrVelocity\_Left}}
+\index{xrVelocity\_Left@{xrVelocity\_Left}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrVelocity\_Left}{xrVelocity\_Left}}
+{\footnotesize\ttfamily Xr\+Space\+Velocity xr\+Velocity\+\_\+\+Left \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+V\+E\+L\+O\+C\+I\+TY \}}
+
+\mbox{\Hypertarget{main_8h_ade45a8e23e18beb041640d39c3e70193}\label{main_8h_ade45a8e23e18beb041640d39c3e70193}} 
+\index{main.h@{main.h}!xrVelocity\_Right@{xrVelocity\_Right}}
+\index{xrVelocity\_Right@{xrVelocity\_Right}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{xrVelocity\_Right}{xrVelocity\_Right}}
+{\footnotesize\ttfamily Xr\+Space\+Velocity xr\+Velocity\+\_\+\+Right \{ X\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+P\+A\+C\+E\+\_\+\+V\+E\+L\+O\+C\+I\+TY \}}
 

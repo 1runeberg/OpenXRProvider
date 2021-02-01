@@ -23,7 +23,7 @@
 
 #pragma once
 
-#include <XRExtHandTracking.h>
+#include <extensions/XRExtHandTracking.h>
 
 namespace OpenXRProvider
 {

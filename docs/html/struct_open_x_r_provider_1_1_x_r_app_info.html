@@ -77,12 +77,12 @@ $(function() {
 <p>OpenXR application info used to initialize an OpenXR Instance and create a Session with the active OpenXR runtime.  
  <a href="struct_open_x_r_provider_1_1_x_r_app_info.html#details">More...</a></p>
 
-<p><code>#include &quot;<a class="el" href="_open_x_r_provider_8h_source.html">OpenXRProvider.h</a>&quot;</code></p>
+<p><code>#include &quot;<a class="el" href="_x_r_common_8h_source.html">XRCommon.h</a>&quot;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a54ff47ab67f3c32aa6e2a8e48c8a982a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_open_x_r_provider_1_1_x_r_app_info.html#a54ff47ab67f3c32aa6e2a8e48c8a982a">XRAppInfo</a> (std::string appName, uint32_t appVersion, std::string engineName, uint32_t engineVersion, <a class="el" href="namespace_open_x_r_provider.html#a005dd91723b05b123b8fccbc41798b05">EXRTrackingSpace</a> trackingSpace, std::vector&lt; void * &gt; xrExtensions, bool bEnableDepthTextureSupport=false, const char *pLogFile=nullptr)</td></tr>
-<tr class="separator:a54ff47ab67f3c32aa6e2a8e48c8a982a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9fbe9b0ce705d53bd0907fa997efdce"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_open_x_r_provider_1_1_x_r_app_info.html#ac9fbe9b0ce705d53bd0907fa997efdce">XRAppInfo</a> (std::string appName, uint32_t appVersion, std::string engineName, uint32_t engineVersion, <a class="el" href="namespace_open_x_r_provider.html#a005dd91723b05b123b8fccbc41798b05">EXRTrackingSpace</a> trackingSpace, std::vector&lt; void * &gt; xrExtensions, const char *pLogFile=nullptr)</td></tr>
+<tr class="separator:ac9fbe9b0ce705d53bd0907fa997efdce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -104,9 +104,6 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a8b51fa00d11c4b3711440bf4b20b57fe"><td class="memItemLeft" align="right" valign="top">std::vector&lt; void * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_open_x_r_provider_1_1_x_r_app_info.html#a8b51fa00d11c4b3711440bf4b20b57fe">XRExtensions</a></td></tr>
 <tr class="memdesc:a8b51fa00d11c4b3711440bf4b20b57fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of extension objects representing each extension that the app wants to activate depending on runtime support.  <a href="#a8b51fa00d11c4b3711440bf4b20b57fe">More...</a><br /></td></tr>
 <tr class="separator:a8b51fa00d11c4b3711440bf4b20b57fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82ebc04bd67f8708e3925b282aeb71a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_open_x_r_provider_1_1_x_r_app_info.html#a82ebc04bd67f8708e3925b282aeb71a2">EnableDepthTextureSupport</a></td></tr>
-<tr class="memdesc:a82ebc04bd67f8708e3925b282aeb71a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the application plans to send depth textures along with the color textures.  <a href="#a82ebc04bd67f8708e3925b282aeb71a2">More...</a><br /></td></tr>
-<tr class="separator:a82ebc04bd67f8708e3925b282aeb71a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a134d71f0d127123dc1b4b1682102b0ee"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_open_x_r_provider_1_1_x_r_app_info.html#a134d71f0d127123dc1b4b1682102b0ee">LogFile</a></td></tr>
 <tr class="memdesc:a134d71f0d127123dc1b4b1682102b0ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">The absolute path and filename of the log file the OpenXR Provider library will write in to (optional)  <a href="#a134d71f0d127123dc1b4b1682102b0ee">More...</a><br /></td></tr>
 <tr class="separator:a134d71f0d127123dc1b4b1682102b0ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,8 +111,8 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>OpenXR application info used to initialize an OpenXR Instance and create a Session with the active OpenXR runtime. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a54ff47ab67f3c32aa6e2a8e48c8a982a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54ff47ab67f3c32aa6e2a8e48c8a982a">&#9670;&nbsp;</a></span>XRAppInfo()</h2>
+<a id="ac9fbe9b0ce705d53bd0907fa997efdce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9fbe9b0ce705d53bd0907fa997efdce">&#9670;&nbsp;</a></span>XRAppInfo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,12 +159,6 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>bEnableDepthTextureSupport</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>pLogFile</em> = <code>nullptr</code>&#160;</td>
         </tr>
@@ -191,7 +182,6 @@ Public Attributes</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">engineVersion</td><td>Version of the engine using the OpenXR Provider library </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">trackingSpace</td><td>Application's tracking space - e.g. room scale, seated, etc </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">xrExtensions</td><td>Array of supported extensions (objects) that app wants enabled if the runtime supports it </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">bEnableDepthTextureSupport</td><td>(optional: false) If depth composition (XR_KHR_composition_layer_depth) should be enabled if runtime supports it </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pLogFile</td><td>(optional: null) Absolute path and filename for the logfile </td></tr>
   </table>
   </dd>
@@ -229,22 +219,6 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The version of the application using the OpenXR Provider library. </p>
-
-</div>
-</div>
-<a id="a82ebc04bd67f8708e3925b282aeb71a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82ebc04bd67f8708e3925b282aeb71a2">&#9670;&nbsp;</a></span>EnableDepthTextureSupport</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool OpenXRProvider::XRAppInfo::EnableDepthTextureSupport</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>If the application plans to send depth textures along with the color textures. </p>
 
 </div>
 </div>
@@ -329,7 +303,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/<a class="el" href="_open_x_r_provider_8h_source.html">OpenXRProvider.h</a></li>
+<li>include/<a class="el" href="_x_r_common_8h_source.html">XRCommon.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

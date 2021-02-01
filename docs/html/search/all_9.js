@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['k_5ffmedianipd',['k_fMedianIPD',['../class_open_x_r_provider_1_1_x_r_render_manager.html#af3050f786bada6f0b3e2416bed3b873f',1,'OpenXRProvider::XRRenderManager']]],
-  ['k_5ffminipd',['k_fMinIPD',['../class_open_x_r_provider_1_1_x_r_render_manager.html#a1c86c1472f94b8979d3d63291d2fdd19',1,'OpenXRProvider::XRRenderManager']]],
-  ['k_5fftau',['k_fTau',['../class_open_x_r_provider_1_1_x_r_render_manager.html#a9e8ffc6b08bd67c784bc45b572d1fb16',1,'OpenXRProvider::XRRenderManager']]],
-  ['k_5fnvrviewcount',['k_nVRViewCount',['../class_open_x_r_provider_1_1_x_r_render_manager.html#ac45e255445709b7418be38ee9adee932',1,'OpenXRProvider::XRRenderManager']]]
+  ['openxr_20provider_20library',['OpenXR Provider Library',['../index.html',1,'']]],
+  ['openxrinit',['OpenXRInit',['../class_open_x_r_provider_1_1_x_r_core.html#a3ef0ea6626d9e949dd9997618058a877',1,'OpenXRProvider::XRCore']]],
+  ['openxrprovider',['OpenXRProvider',['../namespace_open_x_r_provider.html',1,'']]],
+  ['openxrprovider_2ecpp',['OpenXRProvider.cpp',['../_open_x_r_provider_8cpp.html',1,'']]],
+  ['openxrprovider_2eh',['OpenXRProvider.h',['../_open_x_r_provider_8h.html',1,'']]]
 ];

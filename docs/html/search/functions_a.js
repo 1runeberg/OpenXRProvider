@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['worldinit',['WorldInit',['../class_open_x_r_provider_1_1_x_r_provider.html#a381bae7b1021638036878cad1c0ea3c2',1,'OpenXRProvider::XRProvider']]]
+  ['setxrsession',['SetXRSession',['../class_open_x_r_provider_1_1_x_r_core.html#a8a8ff9cd05d8343cc67bdc646063f7e8',1,'OpenXRProvider::XRCore']]]
 ];

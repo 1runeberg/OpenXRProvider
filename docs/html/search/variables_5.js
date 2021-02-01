@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hdc',['hdc',['../struct_open_x_r_provider_1_1_x_r_app_graphics_info.html#a722bda7b4902806d4f1c0de5719e8b34',1,'OpenXRProvider::XRAppGraphicsInfo']]],
-  ['hglrc',['hglrc',['../struct_open_x_r_provider_1_1_x_r_app_graphics_info.html#a657906fd43aa11d059d2f59f8a940749',1,'OpenXRProvider::XRAppGraphicsInfo']]]
+  ['lefteye',['LeftEye',['../struct_open_x_r_provider_1_1_x_r_h_m_d_state.html#a601339a681e20dd9047e6d63da3a22fa',1,'OpenXRProvider::XRHMDState']]],
+  ['logfile',['LogFile',['../struct_open_x_r_provider_1_1_x_r_app_info.html#a134d71f0d127123dc1b4b1682102b0ee',1,'OpenXRProvider::XRAppInfo']]]
 ];

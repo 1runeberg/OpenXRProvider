@@ -11,7 +11,7 @@ BinPackParameters: 'false'
 BreakBeforeBraces: Allman
 BreakBeforeTernaryOperators: 'false'
 BreakConstructorInitializers: BeforeComma
-ColumnLimit: '160'
+ColumnLimit: '200'
 ExperimentalAutoDetectBinPacking: 'false'
 IndentCaseLabels: 'true'
 IndentPPDirectives: BeforeHash

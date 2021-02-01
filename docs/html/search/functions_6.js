@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['openxrinit',['OpenXRInit',['../class_open_x_r_provider_1_1_x_r_provider.html#a0d19487d4508a89e3554a9fa328b4a05',1,'OpenXRProvider::XRProvider']]]
+  ['loadxrsystem',['LoadXRSystem',['../class_open_x_r_provider_1_1_x_r_core.html#af49a490e66fc60337ad41bbb107e82c8',1,'OpenXRProvider::XRCore']]]
 ];

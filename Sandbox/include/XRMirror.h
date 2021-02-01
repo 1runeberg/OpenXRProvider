@@ -32,7 +32,7 @@
 // Windowing includes
 #include <glfw3.h>
 
-#include <XRRenderManager.h>
+#include <rendering/XRRender.h>
 
 class XRMirror
 {

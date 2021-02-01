@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['bgethandjointvelocities_5fleft',['bGetHandJointVelocities_Left',['../class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#ab3b404042d122b61a979e3aa7be9b35a',1,'OpenXRProvider::XRExtHandTracking']]],
-  ['bgethandjointvelocities_5fright',['bGetHandJointVelocities_Right',['../class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a60050ac72944124945273dd031f9c1b8',1,'OpenXRProvider::XRExtHandTracking']]],
-  ['bisactive',['bIsActive',['../class_open_x_r_provider_1_1_x_r_base_ext.html#a7be8f3a5c24c3396c29cf37c4848b1b2',1,'OpenXRProvider::XRBaseExt']]],
-  ['bishandtrackingactive_5fleft',['bIsHandTrackingActive_Left',['../class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a3d5df4010b7cb00f02d99a5a5c6d942b',1,'OpenXRProvider::XRExtHandTracking']]],
-  ['bishandtrackingactive_5fright',['bIsHandTrackingActive_Right',['../class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#ab55735a17be5e1105ecd2469db6c98f4',1,'OpenXRProvider::XRExtHandTracking']]],
-  ['bprecise',['bPrecise',['../class_open_x_r_provider_1_1_x_r_ext_hand_tracking.html#a9df35717b70f43e434b1ea5260cacf9d',1,'OpenXRProvider::XRExtHandTracking']]]
+  ['callback',['callback',['../struct_open_x_r_provider_1_1_x_r_callback.html#abf3c3676fca347f666e8c97906bec53d',1,'OpenXRProvider::XRCallback']]],
+  ['callback_5fxrevent',['Callback_XREvent',['../namespace_open_x_r_provider.html#a23b2e01bea1c0c0d762560792d8dff0f',1,'OpenXRProvider']]],
+  ['checkxrresult',['CheckXrResult',['../namespace_open_x_r_provider.html#a832e6cc66984ff274e355f5771a04f57',1,'OpenXRProvider::CheckXrResult(XrResult xrResult, std::shared_ptr&lt; spdlog::logger &gt; xrLogger, bool bThrow, const char *xrCall=nullptr, const char *srcFile=nullptr, int srcLineNum=0)'],['../namespace_open_x_r_provider.html#a9e6665bb283f00adb11c3c4ee57c05dd',1,'OpenXRProvider::CheckXrResult(XrResult xrResult, std::shared_ptr&lt; spdlog::logger &gt; xrLogger, const char *xrCall=nullptr, const char *srcFile=nullptr, int srcLineNum=0)']]],
+  ['core',['Core',['../class_open_x_r_provider_1_1_x_r_provider.html#a46b4b3129ad359a0ffc50634f94d6e5a',1,'OpenXRProvider::XRProvider']]]
 ];

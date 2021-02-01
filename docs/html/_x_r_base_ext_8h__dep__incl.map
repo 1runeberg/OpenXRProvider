@@ -1,17 +1,12 @@
 <map id="include/XRBaseExt.h" name="include/XRBaseExt.h">
-<area shape="rect" id="node1" title=" " alt="" coords="293,5,437,32"/>
-<area shape="rect" id="node2" href="$_x_r_common_8h.html" title=" " alt="" coords="291,80,438,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="158,5,302,32"/>
+<area shape="rect" id="node2" href="$_x_r_common_8h.html" title=" " alt="" coords="157,80,303,107"/>
 <area shape="rect" id="node3" href="$_x_r_base_8h.html" title=" " alt="" coords="5,155,129,181"/>
-<area shape="rect" id="node4" href="$_x_r_event_handler_8h.html" title=" " alt="" coords="613,155,783,181"/>
-<area shape="rect" id="node10" href="$_x_r_ext_hand_tracking_8h.html" title=" " alt="" coords="153,155,347,181"/>
-<area shape="rect" id="node12" href="$_x_r_ext_visibility_mask_8h.html" title=" " alt="" coords="807,155,1002,181"/>
-<area shape="rect" id="node14" href="$_x_r_graphics_aware_types_8h.html" title=" " alt="" coords="371,155,588,181"/>
-<area shape="rect" id="node5" href="$_open_x_r_provider_8h.html" title=" " alt="" coords="234,229,405,256"/>
-<area shape="rect" id="node9" href="$_x_r_event_handler_8cpp.html" title=" " alt="" coords="661,229,823,256"/>
-<area shape="rect" id="node6" href="$_x_r_render_manager_8h.html" title=" " alt="" coords="596,304,781,331"/>
-<area shape="rect" id="node8" href="$_open_x_r_provider_8cpp.html" title=" " alt="" coords="238,304,401,331"/>
-<area shape="rect" id="node7" href="$_x_r_render_manager_8cpp.html" title=" " alt="" coords="601,379,777,405"/>
-<area shape="rect" id="node11" href="$_x_r_ext_hand_tracking_8cpp.html" title=" " alt="" coords="26,229,210,256"/>
-<area shape="rect" id="node13" href="$_x_r_ext_visibility_mask_8cpp.html" title=" " alt="" coords="898,229,1085,256"/>
-<area shape="rect" id="node15" href="$_x_r_graphics_aware_types_8cpp.html" title=" " alt="" coords="429,229,637,256"/>
+<area shape="rect" id="node4" href="$_x_r_base_input_8h.html" title=" " alt="" coords="154,155,306,181"/>
+<area shape="rect" id="node5" href="$_x_r_core_8h.html" title=" " alt="" coords="283,229,404,256"/>
+<area shape="rect" id="node9" href="$_x_r_event_handler_8h.html" title=" " alt="" coords="381,155,551,181"/>
+<area shape="rect" id="node6" href="$_open_x_r_provider_8h.html" title=" " alt="" coords="258,304,429,331"/>
+<area shape="rect" id="node7" href="$_open_x_r_provider_8cpp.html" title=" " alt="" coords="182,379,345,405"/>
+<area shape="rect" id="node8" href="$_x_r_core_8cpp.html" title=" " alt="" coords="369,379,481,405"/>
+<area shape="rect" id="node10" href="$_x_r_event_handler_8cpp.html" title=" " alt="" coords="428,229,589,256"/>
 </map>

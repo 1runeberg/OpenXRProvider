@@ -1,7 +1,8 @@
 \hypertarget{main_8cpp}{}\section{src/main.cpp File Reference}
 \label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
 {\ttfamily \#include $<$main.\+h$>$}\newline
-Include dependency graph for main.\+cpp\+:\nopagebreak
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -54,10 +55,16 @@ int \mbox{\hyperlink{main_8cpp_a695892b1d53467aeed888e3789aef34c}{App\+Setup}} (
 \begin{DoxyCompactList}\small\item\em Setup the sandbox application -\/ windowing and opengl support. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{main_8cpp_ab5a763045c08ee555125d07e990fbc60}{Graphics\+A\+P\+I\+Objects\+Setup}} ()
 \begin{DoxyCompactList}\small\item\em Setup the Open\+GL objects (V\+AO, V\+BO, F\+BO) needed for rendering to textures from the Open\+XR runtime. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a7a493c5a9704d8b6b0eee9b5c5e1b12a}{Create\+Input\+Action\+Bindings}} ()
+\begin{DoxyCompactList}\small\item\em Generate all input action bindings to multiple controllers. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{main_8cpp_a1ef1cd28afca32ba05253077cea17663}{Draw\+Frame}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}})
 \item 
 void \mbox{\hyperlink{main_8cpp_a92218fb47e6a8d9497a22b2d2f826d44}{Blit\+To\+Window}} ()
 \begin{DoxyCompactList}\small\item\em Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the desktop screem (XR Mirror) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a9e10fb858d51cc8823b993c045a1ff59}{Draw\+Controllers}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, glm\+::mat4 eye\+View)
+\item 
+void \mbox{\hyperlink{main_8cpp_a3945ef45abcc2e7d9cfe09f2eda3433a}{Process\+Input\+States}} ()
+\begin{DoxyCompactList}\small\item\em Process all the input states after syncing with runtime. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{main_8cpp_a008988a16144bf83417d87d7facb2b61}{Draw\+Cube}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, glm\+::mat4 eye\+View, unsigned int n\+Texture, glm\+::vec3 cube\+Position, glm\+::vec3 cube\+Scale, glm\+::vec3 cube\+Rotation\+Over\+Time)
 \item 
 void \mbox{\hyperlink{main_8cpp_af202977a4e5649f9f0e9af3b96bb815e}{Draw\+Sea\+Of\+Cubes\+Scene}} (Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye e\+Eye, uint32\+\_\+t \mbox{\hyperlink{main_8h_a4eb41db6c24b2e7190d293273d6e0230}{n\+Swapchain\+Index}}, glm\+::vec3 cube\+Scale, float f\+Spacing\+Plane, float f\+Spacing\+Height)
@@ -215,6 +222,29 @@ Blit (copy) swapchain image that\textquotesingle{}s rendered to the H\+MD to the
 \mbox{\texttt{ in}}  & {\em n\+Action} & Action that triggered the key event (e.\+g. G\+L\+F\+W\+\_\+\+P\+R\+E\+SS) \\
 \hline
 \mbox{\texttt{ in}}  & {\em n\+Modifier} & Modifier bits (e.\+g. G\+L\+F\+W\+\_\+\+M\+O\+D\+\_\+\+N\+U\+M\+\_\+\+L\+O\+CK) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8cpp_a7a493c5a9704d8b6b0eee9b5c5e1b12a}\label{main_8cpp_a7a493c5a9704d8b6b0eee9b5c5e1b12a}} 
+\index{main.cpp@{main.cpp}!CreateInputActionBindings@{CreateInputActionBindings}}
+\index{CreateInputActionBindings@{CreateInputActionBindings}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{CreateInputActionBindings()}{CreateInputActionBindings()}}
+{\footnotesize\ttfamily void Create\+Input\+Action\+Bindings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Generate all input action bindings to multiple controllers. 
+
+\mbox{\Hypertarget{main_8cpp_a9e10fb858d51cc8823b993c045a1ff59}\label{main_8cpp_a9e10fb858d51cc8823b993c045a1ff59}} 
+\index{main.cpp@{main.cpp}!DrawControllers@{DrawControllers}}
+\index{DrawControllers@{DrawControllers}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{DrawControllers()}{DrawControllers()}}
+{\footnotesize\ttfamily void Draw\+Controllers (\begin{DoxyParamCaption}\item[{Open\+X\+R\+Provider\+::\+E\+X\+R\+Eye}]{e\+Eye,  }\item[{glm\+::mat4}]{eye\+View }\end{DoxyParamCaption})}
+
+Draw the controller meshes for each hand 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e\+Eye} & Current eye to render to \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Swapchain\+Index} & Texture in the swapchain to render to \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{main_8cpp_a008988a16144bf83417d87d7facb2b61}\label{main_8cpp_a008988a16144bf83417d87d7facb2b61}} 
@@ -419,4 +449,14 @@ Get the inverse of a given projection matrix
 \index{main@{main}!main.cpp@{main.cpp}}
 \subsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a3945ef45abcc2e7d9cfe09f2eda3433a}\label{main_8cpp_a3945ef45abcc2e7d9cfe09f2eda3433a}} 
+\index{main.cpp@{main.cpp}!ProcessInputStates@{ProcessInputStates}}
+\index{ProcessInputStates@{ProcessInputStates}!main.cpp@{main.cpp}}
+\subsubsection{\texorpdfstring{ProcessInputStates()}{ProcessInputStates()}}
+{\footnotesize\ttfamily void Process\+Input\+States (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Process all the input states after syncing with runtime. 
 

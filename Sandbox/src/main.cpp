@@ -47,6 +47,7 @@
 #define TEXTURED_VERTEX_SHADER		L"\\shaders\\vert-textured.glsl"
 #define TEXTURED_FRAGMENT_SHADER	L"\\shaders\\frag-textured.glsl"
 
+
 int main()
 {
 	// Setup our sandbox application, which will be used for testing
@@ -63,38 +64,56 @@ int main()
 	// of the necessary OpenXR calls and their strict call sequence
 
 	// (1) Optional: Create Extension class(es) for the OpenXR extensions the app wants to activate.
-	//     The graphics api which is also an extension in OpenXR, will be activated for the app
-	//	   as appropriate (see XRGraphicsAPI class in XRGraphicsAwareTypes.h)
+	//     There is no need to specify the graphics api extension as it will be automatically activated
 
 	pXRVisibilityMask = new OpenXRProvider::XRExtVisibilityMask( pUtils->GetLogger() );
-
 	pXRHandTracking = new OpenXRProvider::XRExtHandTracking( pUtils->GetLogger() );
 
 	std::vector< void * > RequestExtensions{ pXRVisibilityMask, pXRHandTracking };
 
-	// (2) Create OpenXR Provider - this creates an OpenXR instance and session.
-	//     Provide application metadata here which will be used by the OpenXR Provider
+	// (2) Setup the application metadata which will be used by the OpenXR Provider
 	//     library to setup an instance and session with the OpenXR loader
 
-	OpenXRProvider::XRAppInfo xrAppInfo(
+	OpenXRProvider::XRAppInfo xrAppInfo
+	(
 		APP_PROJECT_NAME,
 		APP_PROJECT_VER,
 		APP_ENGINE_NAME,
 		APP_ENGINE_VER,
 		OpenXRProvider::TRACKING_ROOMSCALE,
 		RequestExtensions,						// optional: see step (1), otherwise an empty vector
-		false,									// optional: depth texture support if the active runtime supports it
 		pAppLogFile								// optional: log file logging for the library
-		);
+	);
 
-	// App graphics info is a struct that holds graphics-api dependent values that'll be used
-	// to access the user's hardware and app context
-	OpenXRProvider::XRAppGraphicsInfo xrAppGraphicsInfo( wglGetCurrentDC(), wglGetCurrentContext() );
+	// (3) Setup currently active graphics api info that'll be used to access the user's hardware 
+	//     and app context
+	#ifdef XR_USE_GRAPHICS_API_OPENGL
+		OpenXRProvider::XRAppGraphicsInfo xrAppGraphicsInfo( wglGetCurrentDC(), wglGetCurrentContext() );
+	#endif
 
-	// Finally, create an XRProvider class
+	// (4) Setup required render info. Texture/images in the swapchain will be generated using the 
+	//     information provided here
+	OpenXRProvider::XRRenderInfo xrRenderInfo
+	(
+		{ GL_SRGB8_ALPHA8 }, // Request texture formats here in order of preference.
+							 // These are uint64_t nums that's defined by the graphics API
+							 // (e.g. GL_RGBA16, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, etc)
+							 // Otherwise, put 0 in the array to let the runtime decide the format
+
+		{ 0 },				// Request depth texture formats here in order of preference.
+							// These are uint64_t nums that's defined by the graphics API
+							// (e.g. GL_DEPTH_COMPONENT, DXGI_FORMAT_D16_UNORM, etc)
+							// Otherwise, put 0 in the array to get a default depth format
+
+		1,					// Texture array size. 1 if not an array.
+		1,					// Mip count
+		false				// optional: depth texture support if the active runtime supports it
+	);
+
+	// (5) Finally, create an XRProvider class
 	try
 	{
-		pXRProvider = new OpenXRProvider::XRProvider( xrAppInfo, xrAppGraphicsInfo );
+		pXRProvider = new OpenXRProvider::XRProvider( xrAppInfo, xrAppGraphicsInfo, xrRenderInfo );
 	}
 	catch ( const std::exception &e )
 	{
@@ -103,42 +122,46 @@ int main()
 		return -1;
 	}
 	
-	// Test for activated instance extensions
+	// (6) Create input bindings (if any)
+
+	// 6.1 Setup space locations that will hold the controller poses per frame. Optionally add velocity in the queries
+	xrLocation_Left.next = &xrVelocity_Left;
+	xrLocation_Right.next = &xrVelocity_Right;
+
+	// 6.2 Create action set(s)
+	xrActionSet_Main = pXRProvider->Input()->CreateActionSet( "main", "main", 0 );
+
+	// 6.3 Create actions mapped to specific action set(s)
+	xrActionState_PoseLeft.type = XR_TYPE_ACTION_STATE_POSE;
+	xrAction_PoseLeft = pXRProvider->Input()->CreateAction( xrActionSet_Main, "pose_left", "Pose (Left)", XR_ACTION_TYPE_POSE_INPUT, 0, NULL );
+
+	xrActionState_PoseRight.type = XR_TYPE_ACTION_STATE_POSE;
+	xrAction_PoseRight = pXRProvider->Input()->CreateAction( xrActionSet_Main, "pose_right", "Pose (Right)", XR_ACTION_TYPE_POSE_INPUT, 0, NULL );
+
+	xrActionState_SwitchScene.type = XR_TYPE_ACTION_STATE_BOOLEAN;
+	xrAction_SwitchScene = pXRProvider->Input()->CreateAction( xrActionSet_Main, "switch_scene", "Switch Scenes", XR_ACTION_TYPE_BOOLEAN_INPUT, 0, NULL );
+	
+	xrAction_Haptic = pXRProvider->Input()->CreateAction( xrActionSet_Main, "haptic", "Haptic Feedback", XR_ACTION_TYPE_VIBRATION_OUTPUT, 0, NULL );
+
+	// 6.4 Create action bindings for every controller this app supports
+	CreateInputActionBindings();
+
+	// 6.5 Suggest controller-specific action bindings to the runtime (one call for each controller this app supports)
+	pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->ValveIndex()->ActionBindings(), pXRProvider->Input()->ValveIndex()->GetInputProfile() );
+	pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->HTCVive()->ActionBindings(), pXRProvider->Input()->HTCVive()->GetInputProfile() );
+	pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->OculusTouch()->ActionBindings(), pXRProvider->Input()->OculusTouch()->GetInputProfile() );
+
+	// 6.6 Activate all action sets that we want to update per frame (this can also be changed per frame or anytime app wants to sync a different action set data)
+	pXRProvider->Input()->ActivateActionSet( xrActionSet_Main );
+
+
+	// (7) Optional: Cache anything your app needs in the frame loop
+
+	// 7.1 Test for activated instance extensions
 	bDrawHandJoints = pXRHandTracking->IsActive();
 
-	// (3) Create OpenXR Render manager - this handles all the OpenXR rendering calls.
-	//	   The OpenXR session created by the XRProvider class will be started and
-	//     textures to render to will be created in an accessible image swapchain
-	//     using the render information provided here
-
-	OpenXRProvider::XRRenderInfo xrRenderInfo(
-		{ GL_SRGB8_ALPHA8 },	// Request texture formats here in order of preference.
-								// These are uint64_t nums that's defined by the graphics API
-								// (e.g. GL_RGBA16, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, etc)
-								// Otherwise, put 0 in the array to let the runtime decide the format
-
-		{0},			// Request depth texture formats here in order of preference.
-						// These are uint64_t nums that's defined by the graphics API
-						// (e.g. GL_DEPTH_COMPONENT, DXGI_FORMAT_D16_UNORM, etc)
-						// Otherwise, put 0 in the array to get a default depth format
-
-		1,				// Texture array size. 1 if not an array.
-		1				// Mip count
-		);
-
-	try
-	{
-		pXRRenderManager = new OpenXRProvider::XRRenderManager( pXRProvider, xrRenderInfo );
-	}
-	catch ( const std::exception &e )
-	{
-		pUtils->GetLogger()->info( "Unable to create the XR Render Manager. {}", e.what() );
-		pUtils->GetLogger()->info( "OpenXR Session can't be started. Tracking or rendering operations can't begin" );
-		return -1;
-	}
-
-	// Get swapchain capacity
-	nSwapchainCapacity = pXRRenderManager->GetGraphicsAPI()->GetSwapchainImageCount( OpenXRProvider::EYE_LEFT );
+	// 7.2 Get swapchain capacity
+	nSwapchainCapacity = pXRProvider->Render()->GetGraphicsAPI()->GetSwapchainImageCount( OpenXRProvider::EYE_LEFT );
 
 	if ( nSwapchainCapacity < 1 )
 	{
@@ -147,16 +170,16 @@ int main()
 		return -1;
 	}
 
-	// (4) Optional: Register for OpenXR events
+	// (8) Optional: Register for OpenXR events
 	OpenXRProvider::XRCallback xrCallback = { XR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED };	// XR_TYPE_EVENT_DATA_BUFFER = Register for all events
 	OpenXRProvider::XRCallback *pXRCallback = &xrCallback;
 	pXRCallback->callback = Callback_XR_Event;
-	pXRProvider->GetXREventHandler()->RegisterCallback( pXRCallback );
+	pXRProvider->Core()->GetXREventHandler()->RegisterCallback( pXRCallback );
 
-	// (5) Optional: Use any pre-render loop extensions
+	// (9) Optional: Use any pre-render loop extensions
 
 	// Retrieve visibility mask from runtime if available
-	OpenXRProvider::XRExtVisibilityMask *pXRVisibilityMask = pXRRenderManager->GetXRVisibilityMask();
+	OpenXRProvider::XRExtVisibilityMask *pXRVisibilityMask = pXRProvider->Render()->GetXRVisibilityMask();
 	if ( pXRVisibilityMask )
 	{
 		pXRVisibilityMask->GetVisibilityMask( OpenXRProvider::EYE_LEFT, OpenXRProvider::XRExtVisibilityMask::MASK_HIDDEN, vMaskVertices_L, vMaskIndices_L );
@@ -188,7 +211,7 @@ int main()
 		// (1) Check for openxr events
 		//     a chance for us to run any of our registered callbacks
 		//     and track the openxr session state so we can act accordingly
-		pXRProvider->PollXREvents();
+		pXRProvider->Core()->PollXREvents();
 
 		// Check if runtime wants to close the app
 		if ( xrCurrentSessionState == XR_SESSION_STATE_EXITING )
@@ -204,24 +227,24 @@ int main()
 		else if ( xrCurrentSessionState == XR_SESSION_STATE_READY )
 		{
 			// Begin the session - e.g. coming back from stopping state
-			XrResult xrResult = pXRProvider->XRBeginSession();
-			bool bResult = pXRRenderManager->ProcessXRFrame();
+			XrResult xrResult = pXRProvider->Core()->XRBeginSession();
+			bool bResult = pXRProvider->Render()->ProcessXRFrame();
 
 			pUtils->GetLogger()->info( "OpenXR Session started ({}) and initial frame processed ({})", OpenXRProvider::XrEnumToString( xrResult ), bResult );
 		}
 		else if (  xrCurrentSessionState == XR_SESSION_STATE_STOPPING )
 		{
 			// End session so runtime can safely transition back to idle
-			XrResult xrResult = pXRProvider->XREndSession();
+			XrResult xrResult = pXRProvider->Core()->XREndSession();
 
 			pUtils->GetLogger()->info( "OpenXR Session ended ({})", OpenXRProvider::XrEnumToString( xrResult ) );
 		}
 		else if ( xrCurrentSessionState > XR_SESSION_STATE_IDLE )
 		{
 			// (2) Process frame - call ProcessXRFrame from the render manager 
-			if ( pXRRenderManager && pXRRenderManager->ProcessXRFrame() )
+			if ( pXRProvider->Render() && pXRProvider->Render()->ProcessXRFrame() )
 			{
-				// (3) Render to swapchain image
+				// 2.1 Render to swapchain image
 				nSwapchainIndex = nSwapchainIndex > nSwapchainCapacity - 1 ? 0 : nSwapchainIndex;
 
 				DrawFrame( OpenXRProvider::EYE_LEFT, nSwapchainIndex );
@@ -236,6 +259,30 @@ int main()
 				
 				// [DEBUG] pUtils->GetLogger()->info("HMD IPD is currently set to: {}", xrRenderManager->GetCurrentIPD());
 			}
+
+			// (3) Process input
+			if ( xrCurrentSessionState == XR_SESSION_STATE_FOCUSED && pXRProvider->Input() )
+			{
+				// 3.1 Sync data with runtime for all active action sets
+				pXRProvider->Input()->SyncActiveActionSetsData();
+
+				// 3.2 Process all received input states from previous sync call
+				ProcessInputStates();
+
+				// 3.3 Update controller and/or other action poses
+				//     as we are not a pipelined app (single threaded), we're using one time period ahead of the current frame pose
+				uint64_t nPredictedTime = pXRProvider->Render()->GetPredictedDisplayTime() + pXRProvider->Render()->GetPredictedDisplayPeriod();
+
+				pXRProvider->Input()->GetActionPose( xrAction_PoseLeft, nPredictedTime, &xrLocation_Left );
+				pXRProvider->Input()->GetActionPose( xrAction_PoseRight, nPredictedTime, &xrLocation_Right );
+
+				// 3.4 Update any other input dependent poses (e.g. handtracking extension)
+				if ( bDrawHandJoints )
+				{
+					pXRProvider->Core()->GetExtHandTracking()->LocateHandJoints( XR_HAND_LEFT_EXT, pXRProvider->Core()->GetXRSpace(), nPredictedTime );
+					pXRProvider->Core()->GetExtHandTracking()->LocateHandJoints( XR_HAND_RIGHT_EXT, pXRProvider->Core()->GetXRSpace(), nPredictedTime );
+				}
+			}
 		}
 
 		// glfw render and input events
@@ -246,9 +293,8 @@ int main()
 	#pragma endregion SANDBOX_FRAME_LOOP
 
 	// CLEANUP
-	delete pXRRenderManager;
-	delete pXRProvider;
 	delete pXRMirror;
+	delete pXRProvider;
 	delete pUtils;
 
 	return 0;
@@ -386,6 +432,35 @@ int GraphicsAPIObjectsSetup()
 	}
 	glBindVertexArray( 0 );
 
+	// Setup vertex buffer object (controller)
+	glGenBuffers( 1, &controllerVBO );
+
+	glBindBuffer( GL_ARRAY_BUFFER, controllerVBO );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( vControllerMesh ), vControllerMesh, GL_STATIC_DRAW );
+
+	// Setup vertex array object (controller)
+	glGenVertexArrays( 1, &controllerVAO );
+	glBindVertexArray( controllerVAO );
+
+	glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( float ), ( void * )0 );
+	glEnableVertexAttribArray( 0 );
+
+	glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( float ), ( void * )( 3 * sizeof( float ) ) );
+	glEnableVertexAttribArray( 1 );
+
+
+	// Setup instanced data for the controller meshes
+	glGenBuffers( 1, &controllerInstanceDataVBO );
+	glBindBuffer( GL_ARRAY_BUFFER, controllerInstanceDataVBO );
+
+	for ( int i = 0; i < 4; ++i )
+	{
+		glEnableVertexAttribArray( 2 + i );
+		glVertexAttribPointer( 2 + i, 4, GL_FLOAT, GL_FALSE, sizeof( glm::mat4 ), ( const GLvoid * )( sizeof( GLfloat ) * i * 4 ) );
+		glVertexAttribDivisor( 2 + i, 1 );
+	}
+	glBindVertexArray( 0 );
+
 
 	// Setup vertex buffer object (joint)
 	glGenBuffers( 1, &jointVBO );
@@ -447,16 +522,53 @@ int GraphicsAPIObjectsSetup()
 	return 0;
 }
 
+void CreateInputActionBindings()
+{
+	// Valve Index
+	OpenXRProvider::XRInputProfile_ValveIndex *pValveIndex = pXRProvider->Input()->ValveIndex();
+	pXRProvider->Input()->CreateActionBinding( xrAction_PoseLeft, pValveIndex->Hand_Left, pValveIndex->Pose_Grip, pValveIndex->ActionBindings() );
+	pXRProvider->Input()->CreateActionBinding( xrAction_PoseRight, pValveIndex->Hand_Right, pValveIndex->Pose_Grip, pValveIndex->ActionBindings() );
+
+	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pValveIndex->Hand_Left, pValveIndex->Button_Trigger_Click, pValveIndex->ActionBindings() );
+	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pValveIndex->Hand_Right, pValveIndex->Button_Trigger_Click, pValveIndex->ActionBindings() );
+
+	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pValveIndex->Hand_Left, pValveIndex->Output_Haptic, pValveIndex->ActionBindings() );
+	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pValveIndex->Hand_Right, pValveIndex->Output_Haptic, pValveIndex->ActionBindings() );
+
+	// Vive
+	OpenXRProvider::XRInputProfile_HTCVive *pHTCVive = pXRProvider->Input()->HTCVive();
+	pXRProvider->Input()->CreateActionBinding( xrAction_PoseLeft, pHTCVive->Hand_Left, pHTCVive->Pose_Grip, pHTCVive->ActionBindings() );
+	pXRProvider->Input()->CreateActionBinding( xrAction_PoseRight, pHTCVive->Hand_Right, pHTCVive->Pose_Grip, pHTCVive->ActionBindings() );
+
+	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pHTCVive->Hand_Left, pHTCVive->Button_Trigger_Click, pHTCVive->ActionBindings() );
+	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pHTCVive->Hand_Right, pHTCVive->Button_Trigger_Click, pHTCVive->ActionBindings() );
+
+	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pHTCVive->Hand_Left, pHTCVive->Output_Haptic, pHTCVive->ActionBindings() );
+	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pHTCVive->Hand_Right, pHTCVive->Output_Haptic, pHTCVive->ActionBindings() );
+
+	// Oculus Touch
+	OpenXRProvider::XRInputProfile_OculusTouch *pOculus = pXRProvider->Input()->OculusTouch();
+	pXRProvider->Input()->CreateActionBinding( xrAction_PoseLeft, pOculus->Hand_Left, pOculus->Pose_Grip, pOculus->ActionBindings() );
+	pXRProvider->Input()->CreateActionBinding( xrAction_PoseRight, pOculus->Hand_Right, pOculus->Pose_Grip, pOculus->ActionBindings() );
+
+	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Left, pOculus->Button_Trigger_Value, pOculus->ActionBindings() );
+	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Right, pOculus->Button_Trigger_Value, pOculus->ActionBindings() );
+
+	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pOculus->Hand_Left, pOculus->Output_Haptic, pOculus->ActionBindings() );
+	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pOculus->Hand_Right, pOculus->Output_Haptic, pOculus->ActionBindings() );
+}
+
+
 void DrawFrame(	OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex )
 {
 	glBindFramebuffer( GL_FRAMEBUFFER, FBO );
-	glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pXRRenderManager->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ), 0 );
+	glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pXRProvider->Render()->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ), 0 );
 
 	glClearColor( 0.5f, 0.9f, 1.0f, 1.0f );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT );
 
 	// Check if hmd is tracking
-	if ( !pXRRenderManager->GetHMDState()->IsPositionTracked || !pXRRenderManager->GetHMDState()->IsPositionTracked )
+	if ( !pXRProvider->Render()->GetHMDState()->IsPositionTracked || !pXRProvider->Render()->GetHMDState()->IsPositionTracked )
 		return;
 
 	// Draw vismask on XR Mirror
@@ -481,19 +593,18 @@ void DrawFrame(	OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex )
 		default:
 			break;
 	}
-
 }
 
 void BlitToWindow()
 {
 	glfwGetWindowSize( pXRMirror->GetWindow(), &nScreenWidth, &nScreenHeight );
 	glBindFramebuffer( GL_DRAW_FRAMEBUFFER, 0 );
-	glViewport( 0, 0, pXRRenderManager->GetTextureWidth(), pXRRenderManager->GetTextureHeight() );
+	glViewport( 0, 0, pXRProvider->Render()->GetTextureWidth(), pXRProvider->Render()->GetTextureHeight() );
 	glBlitFramebuffer(
 		0,
 		0,
-		pXRRenderManager->GetTextureWidth(),
-		pXRRenderManager->GetTextureHeight(),
+		pXRProvider->Render()->GetTextureWidth(),
+		pXRProvider->Render()->GetTextureHeight(),
 		0,
 		0,
 		nScreenWidth,
@@ -502,6 +613,64 @@ void BlitToWindow()
 		GL_LINEAR );
 }
 
+void DrawControllers( OpenXRProvider::EXREye eEye, glm::mat4 eyeView ) 
+{
+	assert( pXRProvider->Render() );
+
+	// Setup model views
+	XrVector3f xrScale { 0.15f, 0.15f, 0.15f };
+
+	XrMatrix4x4f xrModelView_L;
+	XrMatrix4x4f_CreateTranslationRotationScale( &xrModelView_L, &xrLocation_Left.pose.position, &xrLocation_Left.pose.orientation, &xrScale );
+
+	XrMatrix4x4f xrModelView_R;
+	XrMatrix4x4f_CreateTranslationRotationScale( &xrModelView_R, &xrLocation_Right.pose.position, &xrLocation_Right.pose.orientation, &xrScale );
+
+	glm::mat4 controllerModel_L = glm::make_mat4( xrModelView_L.m );
+	glm::mat4 controllerModel_R = glm::make_mat4( xrModelView_R.m );
+
+	// Setup eye projections
+	glm::mat4 *vEyeProjections_LeftHand = new glm::mat4[ 1 ];	// max number of meshes in a single hand
+	glm::mat4 *vEyeProjections_RightHand = new glm::mat4[ 1 ]; // max number of meshes in a single hand
+
+	vEyeProjections_LeftHand[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * controllerModel_L );
+	vEyeProjections_RightHand[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * controllerModel_R );
+
+	// Set shader
+	glUseProgram( nShaderUnlit );
+
+	// Draw controller mesh
+	glBindBuffer( GL_ARRAY_BUFFER, controllerInstanceDataVBO );
+	glBindVertexArray( controllerVAO );
+
+	glUniform3f( glGetUniformLocation( nShaderUnlit, "surfaceColor" ), 0.1f, 0.1f, 1.0f );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( glm::mat4 ), vEyeProjections_LeftHand, GL_STATIC_DRAW );
+	glDrawArraysInstanced( GL_TRIANGLES, 0, 24, 1 );
+
+	glUniform3f( glGetUniformLocation( nShaderUnlit, "surfaceColor" ), 1.0f, 0.1f, 0.1f );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( glm::mat4 ), vEyeProjections_RightHand, GL_STATIC_DRAW );
+	glDrawArraysInstanced( GL_TRIANGLES, 0, 24, 1 );
+
+	// Clean up
+	delete[] vEyeProjections_LeftHand;
+	delete[] vEyeProjections_RightHand;
+}
+
+void ProcessInputStates() 
+{
+	// Check if we need to respond to an action
+	XrResult xrResult = pXRProvider->Input()->GetActionStateBoolean( xrAction_SwitchScene, &xrActionState_SwitchScene );
+	if ( xrResult == XR_SUCCESS && xrActionState_SwitchScene.changedSinceLastSync && xrActionState_SwitchScene.currentState )
+	{
+		// Switch active scene
+		eCurrentScene = eCurrentScene == SANDBOX_SCENE_HAND_TRACKING ? SANDBOX_SCENE_SEA_OF_CUBES : SANDBOX_SCENE_HAND_TRACKING;
+
+		// Apply haptic
+		pXRProvider->Input()->GenerateHaptic( xrAction_Haptic, XR_MIN_HAPTIC_DURATION, 0.5f, XR_FREQUENCY_UNSPECIFIED );
+		pUtils->GetLogger()->info( "Input Detected: Action Switch Scene ({}) last changed on ({}) nanoseconds", 
+			( bool )xrActionState_SwitchScene.currentState, ( uint64_t )xrActionState_SwitchScene.lastChangeTime );
+	}
+}
 
 void DrawCube(
 	OpenXRProvider::EXREye eEye,
@@ -512,7 +681,7 @@ void DrawCube(
 	glm::vec3 cubeScale,
 	glm::vec3 cubeRotationOverTime )
 {
-	assert( pXRRenderManager );
+	assert( pXRProvider->Render() );
 
 	// Set cube texture
 	glUseProgram( nShaderTextured );
@@ -529,8 +698,8 @@ void DrawCube(
 
 	// Get eye pose
 	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ?
-		                                 pXRRenderManager->GetHMDState()->LeftEye.Pose :
-		                                 pXRRenderManager->GetHMDState()->RightEye.Pose;
+		                                 pXRProvider->Render()->GetHMDState()->LeftEye.Pose :
+		                                 pXRProvider->Render()->GetHMDState()->RightEye.Pose;
 
 	vEyeProjection[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * cubeModel );
 
@@ -552,19 +721,19 @@ void DrawSeaOfCubesScene(
 	float fSpacingPlane,
 	float fSpacingHeight )
 {
-	assert( pXRRenderManager );
+	assert( pXRProvider->Render() );
 	assert( vCubeTextures.size() > 0 );
 
 	// Set eye projections if we haven't already
 	if ( !m_bEyeProjectionsSet )
 	{
-		m_EyeProjectionLeft = GetEyeProjection( pXRRenderManager->GetHMDState()->LeftEye.FoV, 0.1f, 100.f );
-		m_EyeProjectionRight = GetEyeProjection( pXRRenderManager->GetHMDState()->RightEye.FoV, 0.1f, 100.f );
+		m_EyeProjectionLeft = GetEyeProjection( pXRProvider->Render()->GetHMDState()->LeftEye.FoV, 0.1f, 100.f );
+		m_EyeProjectionRight = GetEyeProjection( pXRProvider->Render()->GetHMDState()->RightEye.FoV, 0.1f, 100.f );
 		m_bEyeProjectionsSet = true;
 	}
 
 	// Get eye view for this frame
-	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? pXRRenderManager->GetHMDState()->LeftEye.Pose : pXRRenderManager->GetHMDState()->RightEye.Pose;
+	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? pXRProvider->Render()->GetHMDState()->LeftEye.Pose : pXRProvider->Render()->GetHMDState()->RightEye.Pose;
 
 	XrMatrix4x4f xrEyeView;
 	XrVector3f xrScale { 1.0, 1.0, 1.0f };
@@ -609,7 +778,7 @@ void DrawSeaOfCubesScene(
 		}
 
 		// Set depth texture
-		const uint32_t depthTexture = GetDepth( pXRRenderManager->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ) );
+		const uint32_t depthTexture = GetDepth( pXRProvider->Render()->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ) );
 		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0 );
 
 		// Set shader
@@ -628,6 +797,9 @@ void DrawSeaOfCubesScene(
 		// Go to the next cube plane up
 		startPosition.y += fSpacingHeight;
 		nCubeIndex = 0;
+
+		// Draw Controllers
+		DrawControllers( eEye, eyeViewInverted );
 
 		// Draw hand joints
 		DrawHandJoints( eEye, eyeViewInverted );
@@ -700,19 +872,19 @@ void DrawHandJoints( OpenXRProvider::EXREye eEye, glm::mat4 eyeView )
 
 void DrawHandTrackingScene( OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex )
 {
-	assert( pXRRenderManager );
+	assert( pXRProvider->Render() );
 	assert( vCubeTextures.size() > 3 );	// We'll draw four large cubes in the scene
 
 	// Set eye projections if we haven't already
 	if ( !m_bEyeProjectionsSet )
 	{
-		m_EyeProjectionLeft = GetEyeProjection( pXRRenderManager->GetHMDState()->LeftEye.FoV, 0.1f, 100.f );
-		m_EyeProjectionRight = GetEyeProjection( pXRRenderManager->GetHMDState()->RightEye.FoV, 0.1f, 100.f );
+		m_EyeProjectionLeft = GetEyeProjection( pXRProvider->Render()->GetHMDState()->LeftEye.FoV, 0.1f, 100.f );
+		m_EyeProjectionRight = GetEyeProjection( pXRProvider->Render()->GetHMDState()->RightEye.FoV, 0.1f, 100.f );
 		m_bEyeProjectionsSet = true;
 	}
 
 	// Get eye view for this frame
-	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? pXRRenderManager->GetHMDState()->LeftEye.Pose : pXRRenderManager->GetHMDState()->RightEye.Pose;
+	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? pXRProvider->Render()->GetHMDState()->LeftEye.Pose : pXRProvider->Render()->GetHMDState()->RightEye.Pose;
 
 	glm::mat4 eyeView( 1.0f );
 	glm::quat eyeRotation( eyePose.orientation.w, eyePose.orientation.x, eyePose.orientation.y, eyePose.orientation.z );
@@ -742,6 +914,9 @@ void DrawHandTrackingScene( OpenXRProvider::EXREye eEye, uint32_t nSwapchainInde
 			glm::vec3 ( 0.5f, 1.0f, 0.0f ) );
 	}
 
+
+	// Draw controller meshes
+	DrawControllers( eEye, eyeViewInverted );
 
 	// Generate joint meshes for both hands
 	DrawHandJoints( eEye, eyeViewInverted );

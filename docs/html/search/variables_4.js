@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['fov',['FoV',['../struct_open_x_r_provider_1_1_x_r_eye_state.html#a4fd9c348f86def5a6e597e5cba63a10a',1,'OpenXRProvider::XREyeState']]]
+  ['isorientationtracked',['IsOrientationTracked',['../struct_open_x_r_provider_1_1_x_r_h_m_d_state.html#ac03cf1cf415a74e7918aad821440040e',1,'OpenXRProvider::XRHMDState']]],
+  ['ispositiontracked',['IsPositionTracked',['../struct_open_x_r_provider_1_1_x_r_h_m_d_state.html#a46d3bdea018d488ffb535553d58594dc',1,'OpenXRProvider::XRHMDState']]]
 ];

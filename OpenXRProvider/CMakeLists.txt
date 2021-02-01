@@ -40,12 +40,18 @@ set (BIN_OPENXR "${OPENXR_DIR}/x64/bin/${BIN_OPENXR_FILE}")
 file(GLOB OPENXR_PROVIDER_INCLUDE
 	"${CMAKE_SOURCE_DIR}/OpenXRProvider/*.h"
     "${CMAKE_SOURCE_DIR}/OpenXRProvider/include/*.h"
+    "${CMAKE_SOURCE_DIR}/OpenXRProvider/include/extensions/*.h"
+    "${CMAKE_SOURCE_DIR}/OpenXRProvider/include/rendering/*.h"
+    "${CMAKE_SOURCE_DIR}/OpenXRProvider/include/input/*.h"
     "${CMAKE_SOURCE_DIR}/OpenXRProvider/src/*.h"
 	)
 
 file(GLOB OPENXR_PROVIDER_SOURCE
 	"${CMAKE_SOURCE_DIR}/OpenXRProvider/*.cpp"
     "${CMAKE_SOURCE_DIR}/OpenXRProvider/src/*.cpp"
+    "${CMAKE_SOURCE_DIR}/OpenXRProvider/src/extensions/*.cpp"
+    "${CMAKE_SOURCE_DIR}/OpenXRProvider/src/rendering/*.cpp"
+    "${CMAKE_SOURCE_DIR}/OpenXRProvider/src/input/*.cpp"
 	)
 
 add_library(OpenXRProvider SHARED ${OPENXR_PROVIDER_INCLUDE} ${OPENXR_PROVIDER_SOURCE})

@@ -39,12 +39,12 @@ namespace OpenXRProvider
 		virtual const char *GetExtensionName() const = 0;
 
 		/// Getter for activation status of this extension
-		bool IsActive() const { return bIsActive; }
+		bool IsActive() const { return m_bIsActive; }
 		
 		/// Setter for activation status of this extension
-		void IsActive( bool val ) { bIsActive = val; }
+		void IsActive( bool val ) { m_bIsActive = val; }
 
 	  private:
-		bool bIsActive = false;
+		bool m_bIsActive = false;
 	};
 } // namespace OpenXRProvider

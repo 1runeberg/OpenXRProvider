@@ -88,7 +88,7 @@ Include dependency graph for main.h:</div>
 <area shape="rect"  href="_utils_8h.html" title=" " alt="" coords="786,155,845,181"/>
 <area shape="rect"  title=" " alt="" coords="1713,237,1798,263"/>
 <area shape="rect"  title=" " alt="" coords="920,155,983,181"/>
-<area shape="rect"  title=" " alt="" coords="1007,155,1147,181"/>
+<area shape="rect"  title=" " alt="" coords="1007,155,1154,181"/>
 <area shape="rect"  title=" " alt="" coords="5,237,71,263"/>
 <area shape="rect"  title=" " alt="" coords="95,237,167,263"/>
 <area shape="rect"  title=" " alt="" coords="191,237,261,263"/>
@@ -137,6 +137,14 @@ Functions</h2></td></tr>
 <tr class="separator:a92218fb47e6a8d9497a22b2d2f826d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ef1cd28afca32ba05253077cea17663"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a1ef1cd28afca32ba05253077cea17663">DrawFrame</a> (OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>)</td></tr>
 <tr class="separator:a1ef1cd28afca32ba05253077cea17663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e10fb858d51cc8823b993c045a1ff59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a9e10fb858d51cc8823b993c045a1ff59">DrawControllers</a> (OpenXRProvider::EXREye eEye, glm::mat4 eyeView)</td></tr>
+<tr class="separator:a9e10fb858d51cc8823b993c045a1ff59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a493c5a9704d8b6b0eee9b5c5e1b12a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a7a493c5a9704d8b6b0eee9b5c5e1b12a">CreateInputActionBindings</a> ()</td></tr>
+<tr class="memdesc:a7a493c5a9704d8b6b0eee9b5c5e1b12a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate all input action bindings to multiple controllers.  <a href="#a7a493c5a9704d8b6b0eee9b5c5e1b12a">More...</a><br /></td></tr>
+<tr class="separator:a7a493c5a9704d8b6b0eee9b5c5e1b12a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3945ef45abcc2e7d9cfe09f2eda3433a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a3945ef45abcc2e7d9cfe09f2eda3433a">ProcessInputStates</a> ()</td></tr>
+<tr class="memdesc:a3945ef45abcc2e7d9cfe09f2eda3433a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process all the input states after syncing with runtime.  <a href="#a3945ef45abcc2e7d9cfe09f2eda3433a">More...</a><br /></td></tr>
+<tr class="separator:a3945ef45abcc2e7d9cfe09f2eda3433a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af202977a4e5649f9f0e9af3b96bb815e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#af202977a4e5649f9f0e9af3b96bb815e">DrawSeaOfCubesScene</a> (OpenXRProvider::EXREye eEye, uint32_t <a class="el" href="main_8h.html#a4eb41db6c24b2e7190d293273d6e0230">nSwapchainIndex</a>, glm::vec3 cubeScale, float fSpacingPlane, float fSpacingHeight)</td></tr>
 <tr class="separator:af202977a4e5649f9f0e9af3b96bb815e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fc7081040d18dfb999a54ab2012c87f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a6fc7081040d18dfb999a54ab2012c87f">FillEyeMVP</a> (glm::mat4 *vEyeProjections, glm::mat4 eyeView, OpenXRProvider::EXREye eEye, uint32_t nCubeIndex, glm::vec3 cubePosition, glm::vec3 cubeScale=glm::vec3(0.f))</td></tr>
@@ -171,18 +179,27 @@ Variables</h2></td></tr>
 <tr class="memitem:ab9e28ee15d5917508a418320699852af"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ab9e28ee15d5917508a418320699852af">cubeVBO</a></td></tr>
 <tr class="memdesc:ab9e28ee15d5917508a418320699852af"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Buffer Object (cube) used in rendering processes.  <a href="#ab9e28ee15d5917508a418320699852af">More...</a><br /></td></tr>
 <tr class="separator:ab9e28ee15d5917508a418320699852af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafa68ed0bcabcbb4294811220a628e99"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#aafa68ed0bcabcbb4294811220a628e99">controllerVBO</a></td></tr>
+<tr class="memdesc:aafa68ed0bcabcbb4294811220a628e99"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Buffer Object (controller) used in rendering processes.  <a href="#aafa68ed0bcabcbb4294811220a628e99">More...</a><br /></td></tr>
+<tr class="separator:aafa68ed0bcabcbb4294811220a628e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7af3232c84187712b862bf0fcb528e77"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a7af3232c84187712b862bf0fcb528e77">jointVBO</a></td></tr>
 <tr class="memdesc:a7af3232c84187712b862bf0fcb528e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Buffer Object (joint) used in rendering processes.  <a href="#a7af3232c84187712b862bf0fcb528e77">More...</a><br /></td></tr>
 <tr class="separator:a7af3232c84187712b862bf0fcb528e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab894ef2bd7686d1b45dc527ec30babe7"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ab894ef2bd7686d1b45dc527ec30babe7">cubeInstanceDataVBO</a></td></tr>
 <tr class="memdesc:ab894ef2bd7686d1b45dc527ec30babe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instanced cube data for its projection matrices.  <a href="#ab894ef2bd7686d1b45dc527ec30babe7">More...</a><br /></td></tr>
 <tr class="separator:ab894ef2bd7686d1b45dc527ec30babe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a670e48aff6ff9d02768813da86dd2eb4"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a670e48aff6ff9d02768813da86dd2eb4">controllerInstanceDataVBO</a></td></tr>
+<tr class="memdesc:a670e48aff6ff9d02768813da86dd2eb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instanced controller mesh data for its projection matrices.  <a href="#a670e48aff6ff9d02768813da86dd2eb4">More...</a><br /></td></tr>
+<tr class="separator:a670e48aff6ff9d02768813da86dd2eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ce40a9d8eb2b4b2189f171f6a602621"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a2ce40a9d8eb2b4b2189f171f6a602621">jointInstanceDataVBO</a></td></tr>
 <tr class="memdesc:a2ce40a9d8eb2b4b2189f171f6a602621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instanced joint mesh data for its projection matrices.  <a href="#a2ce40a9d8eb2b4b2189f171f6a602621">More...</a><br /></td></tr>
 <tr class="separator:a2ce40a9d8eb2b4b2189f171f6a602621"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f2b9380dce6ab7cac897fd8979647fd"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a7f2b9380dce6ab7cac897fd8979647fd">cubeVAO</a></td></tr>
 <tr class="memdesc:a7f2b9380dce6ab7cac897fd8979647fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Array Object (cube) used in rendering processes.  <a href="#a7f2b9380dce6ab7cac897fd8979647fd">More...</a><br /></td></tr>
 <tr class="separator:a7f2b9380dce6ab7cac897fd8979647fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63de8fe3879679cba37825c7e5ea4180"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a63de8fe3879679cba37825c7e5ea4180">controllerVAO</a></td></tr>
+<tr class="memdesc:a63de8fe3879679cba37825c7e5ea4180"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Array Object (controller) used in rendering processes.  <a href="#a63de8fe3879679cba37825c7e5ea4180">More...</a><br /></td></tr>
+<tr class="separator:a63de8fe3879679cba37825c7e5ea4180"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac771814ee10ba8064c10cfe18b6b1400"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ac771814ee10ba8064c10cfe18b6b1400">jointVAO</a></td></tr>
 <tr class="memdesc:ac771814ee10ba8064c10cfe18b6b1400"><td class="mdescLeft">&#160;</td><td class="mdescRight">The OpenGL Vertex Array Object (joint) used in rendering processes.  <a href="#ac771814ee10ba8064c10cfe18b6b1400">More...</a><br /></td></tr>
 <tr class="separator:ac771814ee10ba8064c10cfe18b6b1400"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -255,15 +272,40 @@ Variables</h2></td></tr>
 <tr class="memitem:a444f316e5ddad52f3f37f1e34a2e290b"><td class="memItemLeft" align="right" valign="top">OpenXRProvider::XRProvider *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a444f316e5ddad52f3f37f1e34a2e290b">pXRProvider</a> = nullptr</td></tr>
 <tr class="memdesc:a444f316e5ddad52f3f37f1e34a2e290b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the XRProvider class of the OpenXR Provider library which handles all state, system and generic calls to the OpenXR runtime.  <a href="#a444f316e5ddad52f3f37f1e34a2e290b">More...</a><br /></td></tr>
 <tr class="separator:a444f316e5ddad52f3f37f1e34a2e290b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a343faf29ffd3d2e18b872155c7f2fcda"><td class="memItemLeft" align="right" valign="top">OpenXRProvider::XRRenderManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a343faf29ffd3d2e18b872155c7f2fcda">pXRRenderManager</a> = nullptr</td></tr>
-<tr class="memdesc:a343faf29ffd3d2e18b872155c7f2fcda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the XRRenderManager class of the OpenXR Provider library which handles all OpenXR rendering.  <a href="#a343faf29ffd3d2e18b872155c7f2fcda">More...</a><br /></td></tr>
-<tr class="separator:a343faf29ffd3d2e18b872155c7f2fcda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa258e1cafc71c21ca80015a29c4454f4"><td class="memItemLeft" align="right" valign="top">OpenXRProvider::XRExtVisibilityMask *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#aa258e1cafc71c21ca80015a29c4454f4">pXRVisibilityMask</a> = nullptr</td></tr>
 <tr class="memdesc:aa258e1cafc71c21ca80015a29c4454f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the XRExtVisibilityMask class of the OpenXR Provider library which handles the OpenXR visibility mask extension for runtimes that support it.  <a href="#aa258e1cafc71c21ca80015a29c4454f4">More...</a><br /></td></tr>
 <tr class="separator:aa258e1cafc71c21ca80015a29c4454f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa45990d8b887347f4032a4ec5ef9a59c"><td class="memItemLeft" align="right" valign="top">OpenXRProvider::XRExtHandTracking *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#aa45990d8b887347f4032a4ec5ef9a59c">pXRHandTracking</a> = nullptr</td></tr>
 <tr class="memdesc:aa45990d8b887347f4032a4ec5ef9a59c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the XRExtVisibilityMask class of the OpenXR Provider library which handles the OpenXR visibility mask extension for runtimes that support it.  <a href="#aa45990d8b887347f4032a4ec5ef9a59c">More...</a><br /></td></tr>
 <tr class="separator:aa45990d8b887347f4032a4ec5ef9a59c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6da5c36d3c4f42248577619bbfcd7e3f"><td class="memItemLeft" align="right" valign="top">XrActionSet&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a6da5c36d3c4f42248577619bbfcd7e3f">xrActionSet_Main</a></td></tr>
+<tr class="memdesc:a6da5c36d3c4f42248577619bbfcd7e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Action set to use for this sandbox.  <a href="#a6da5c36d3c4f42248577619bbfcd7e3f">More...</a><br /></td></tr>
+<tr class="separator:a6da5c36d3c4f42248577619bbfcd7e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a556615872eb6484c936f746e96952594"><td class="memItemLeft" align="right" valign="top">XrActionStateBoolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a556615872eb6484c936f746e96952594">xrActionState_SwitchScene</a></td></tr>
+<tr class="separator:a556615872eb6484c936f746e96952594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3803dbbc77ea8fe36c9a76d1de64ae3"><td class="memItemLeft" align="right" valign="top">XrActionStatePose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ab3803dbbc77ea8fe36c9a76d1de64ae3">xrActionState_PoseLeft</a></td></tr>
+<tr class="separator:ab3803dbbc77ea8fe36c9a76d1de64ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae94b88c8643a65579b0c684871770c8a"><td class="memItemLeft" align="right" valign="top">XrActionStatePose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ae94b88c8643a65579b0c684871770c8a">xrActionState_PoseRight</a></td></tr>
+<tr class="separator:ae94b88c8643a65579b0c684871770c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a032a43e732498d7c1640182a2d54923d"><td class="memItemLeft" align="right" valign="top">XrAction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a032a43e732498d7c1640182a2d54923d">xrAction_SwitchScene</a></td></tr>
+<tr class="separator:a032a43e732498d7c1640182a2d54923d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ddb589cabd1941e52ac7bda6f6d582d"><td class="memItemLeft" align="right" valign="top">XrAction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a2ddb589cabd1941e52ac7bda6f6d582d">xrAction_Haptic</a></td></tr>
+<tr class="separator:a2ddb589cabd1941e52ac7bda6f6d582d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1db3573f62bc02c96f2e141042764dc2"><td class="memItemLeft" align="right" valign="top">XrAction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a1db3573f62bc02c96f2e141042764dc2">xrAction_PoseLeft</a></td></tr>
+<tr class="separator:a1db3573f62bc02c96f2e141042764dc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03d66cb7495077592d6565ec761e475b"><td class="memItemLeft" align="right" valign="top">XrAction&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a03d66cb7495077592d6565ec761e475b">xrAction_PoseRight</a></td></tr>
+<tr class="separator:a03d66cb7495077592d6565ec761e475b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a5678ce3958588a38766f1ed800d217"><td class="memItemLeft" align="right" valign="top">XrSpaceLocation&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a5a5678ce3958588a38766f1ed800d217">xrLocation_Left</a> { XR_TYPE_SPACE_LOCATION }</td></tr>
+<tr class="separator:a5a5678ce3958588a38766f1ed800d217"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abab965a0d4af75c045fb8f759a973105"><td class="memItemLeft" align="right" valign="top">XrSpaceLocation&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#abab965a0d4af75c045fb8f759a973105">xrLocation_Right</a> { XR_TYPE_SPACE_LOCATION }</td></tr>
+<tr class="separator:abab965a0d4af75c045fb8f759a973105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a218a45eab9ded8e0c8ce7907c5c520de"><td class="memItemLeft" align="right" valign="top">XrSpaceVelocity&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a218a45eab9ded8e0c8ce7907c5c520de">xrVelocity_Left</a> { XR_TYPE_SPACE_VELOCITY }</td></tr>
+<tr class="separator:a218a45eab9ded8e0c8ce7907c5c520de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade45a8e23e18beb041640d39c3e70193"><td class="memItemLeft" align="right" valign="top">XrSpaceVelocity&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#ade45a8e23e18beb041640d39c3e70193">xrVelocity_Right</a> { XR_TYPE_SPACE_VELOCITY }</td></tr>
+<tr class="separator:ade45a8e23e18beb041640d39c3e70193"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d440a6ce4fc03d238a7e899b98733bb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a5d440a6ce4fc03d238a7e899b98733bb">vControllerMesh</a> []</td></tr>
+<tr class="memdesc:a5d440a6ce4fc03d238a7e899b98733bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controller mesh vertices and colors (x, y, z, r, g, b)  <a href="#a5d440a6ce4fc03d238a7e899b98733bb">More...</a><br /></td></tr>
+<tr class="separator:a5d440a6ce4fc03d238a7e899b98733bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a930e294af25433106ebe08293277f70d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a930e294af25433106ebe08293277f70d">vCube</a> []</td></tr>
 <tr class="memdesc:a930e294af25433106ebe08293277f70d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cube vertices and texture coordinates (x, y, z, s ,t)  <a href="#a930e294af25433106ebe08293277f70d">More...</a><br /></td></tr>
 <tr class="separator:a930e294af25433106ebe08293277f70d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -339,6 +381,60 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Blit (copy) swapchain image that's rendered to the HMD to the desktop screem (XR Mirror) </p>
+
+</div>
+</div>
+<a id="a7a493c5a9704d8b6b0eee9b5c5e1b12a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a493c5a9704d8b6b0eee9b5c5e1b12a">&#9670;&nbsp;</a></span>CreateInputActionBindings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CreateInputActionBindings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate all input action bindings to multiple controllers. </p>
+
+</div>
+</div>
+<a id="a9e10fb858d51cc8823b993c045a1ff59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e10fb858d51cc8823b993c045a1ff59">&#9670;&nbsp;</a></span>DrawControllers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DrawControllers </td>
+          <td>(</td>
+          <td class="paramtype">OpenXRProvider::EXREye&#160;</td>
+          <td class="paramname"><em>eEye</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::mat4&#160;</td>
+          <td class="paramname"><em>eyeView</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Draw the controller meshes for each hand </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eEye</td><td>Current eye to render to </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nSwapchainIndex</td><td>Texture in the swapchain to render to </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -903,6 +999,25 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a3945ef45abcc2e7d9cfe09f2eda3433a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3945ef45abcc2e7d9cfe09f2eda3433a">&#9670;&nbsp;</a></span>ProcessInputStates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ProcessInputStates </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Process all the input states after syncing with runtime. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="a456b7b35c4e8c2a5fdd0ec0cb0276bb2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a456b7b35c4e8c2a5fdd0ec0cb0276bb2">&#9670;&nbsp;</a></span>bDrawHandJoints</h2>
@@ -917,6 +1032,54 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>If hand joints should be rendered (hand tracking extension required) </p>
+
+</div>
+</div>
+<a id="a670e48aff6ff9d02768813da86dd2eb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a670e48aff6ff9d02768813da86dd2eb4">&#9670;&nbsp;</a></span>controllerInstanceDataVBO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int controllerInstanceDataVBO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instanced controller mesh data for its projection matrices. </p>
+
+</div>
+</div>
+<a id="a63de8fe3879679cba37825c7e5ea4180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63de8fe3879679cba37825c7e5ea4180">&#9670;&nbsp;</a></span>controllerVAO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int controllerVAO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OpenGL Vertex Array Object (controller) used in rendering processes. </p>
+
+</div>
+</div>
+<a id="aafa68ed0bcabcbb4294811220a628e99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafa68ed0bcabcbb4294811220a628e99">&#9670;&nbsp;</a></span>controllerVBO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int controllerVBO</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The OpenGL Vertex Buffer Object (controller) used in rendering processes. </p>
 
 </div>
 </div>
@@ -1367,22 +1530,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a343faf29ffd3d2e18b872155c7f2fcda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a343faf29ffd3d2e18b872155c7f2fcda">&#9670;&nbsp;</a></span>pXRRenderManager</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">OpenXRProvider::XRRenderManager* pXRRenderManager = nullptr</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Pointer to the XRRenderManager class of the OpenXR Provider library which handles all OpenXR rendering. </p>
-
-</div>
-</div>
 <a id="aa258e1cafc71c21ca80015a29c4454f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa258e1cafc71c21ca80015a29c4454f4">&#9670;&nbsp;</a></span>pXRVisibilityMask</h2>
 
@@ -1412,6 +1559,22 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The absolute path to the built Sandbox executable. </p>
+
+</div>
+</div>
+<a id="a5d440a6ce4fc03d238a7e899b98733bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d440a6ce4fc03d238a7e899b98733bb">&#9670;&nbsp;</a></span>vControllerMesh</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float vControllerMesh[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div><div class="line">{</div><div class="line">    0.0f, 0.0f, -0.4f,      0.0f, 1.0f, 0.0f,</div><div class="line">    0.2f, 0.0f, 0.1f,       0.0f, 1.0f, 0.0f,</div><div class="line">    0.0f, 0.2f, 0.0f,       1.0f, 1.0f, 1.0f,</div><div class="line">    0.0f,  0.2f, 0.0f,      1.0f, 1.0f, 1.0f,</div><div class="line">    -0.2f, 0.0f, 0.1f,      0.0f, 1.0f, 0.0f,</div><div class="line">    0.0f, 0.0f, -0.4f,      0.0f, 1.0f, 0.0f,</div><div class="line"></div><div class="line">    0.0f, 0.2f, 0.0f,       1.0f, 1.0f, 1.0f,</div><div class="line">    0.2f, 0.0f, 0.1f,       0.0f, 1.0f, 0.0f,</div><div class="line">    0.0f, 0.0f, 0.4f,       0.0f, 1.0f, 0.0f,</div><div class="line">    0.0f,  0.0f, 0.4f,      0.0f, 1.0f, 0.0f,</div><div class="line">    -0.2f, 0.0f, 0.1f,      0.0f, 1.0f, 0.0f, </div><div class="line">    0.0f, 0.2f, 0.0f,       1.0f, 1.0f, 1.0f,</div><div class="line"></div><div class="line">    0.0f, 0.0f, -0.4f,      1.0f, 1.0f, 1.0f,</div><div class="line">    0.2f, 0.0f, 0.1f,       1.0f, 1.0f, 1.0f,</div><div class="line">    0.0f, -0.2f, 0.0f,      1.0f, 1.0f, 1.0f,</div><div class="line">    0.0f, -0.2f, 0.0f,      1.0f, 1.0f, 1.0f,</div><div class="line">    -0.2f, 0.0f, 0.1f,      1.0f, 1.0f, 1.0f,</div><div class="line">    0.0f, 0.0f, -0.4f,      1.0f, 1.0f, 1.0f,</div><div class="line"></div><div class="line">    0.0f, -0.2f, 0.0f,      1.0f, 1.0f, 1.0f,</div><div class="line">    0.2f, 0.0f, 0.1f,       0.0f, 1.0f, 0.0f,</div><div class="line">    0.0f, 0.0f, 0.4f,       0.0f, 1.0f, 0.0f,</div><div class="line">    0.0f,  0.0f, 0.4f,      0.0f, 1.0f, 0.0f,</div><div class="line">    -0.2f, 0.0f, 0.1f,      0.0f, 1.0f, 0.0f, </div><div class="line">    0.0f, -0.2f, 0.0f,      1.0f, 1.0f, 1.0f</div><div class="line">}</div></div><!-- fragment -->
+<p>Controller mesh vertices and colors (x, y, z, r, g, b) </p>
 
 </div>
 </div>
@@ -1529,6 +1692,121 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a2ddb589cabd1941e52ac7bda6f6d582d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ddb589cabd1941e52ac7bda6f6d582d">&#9670;&nbsp;</a></span>xrAction_Haptic</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrAction xrAction_Haptic</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1db3573f62bc02c96f2e141042764dc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1db3573f62bc02c96f2e141042764dc2">&#9670;&nbsp;</a></span>xrAction_PoseLeft</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrAction xrAction_PoseLeft</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a03d66cb7495077592d6565ec761e475b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03d66cb7495077592d6565ec761e475b">&#9670;&nbsp;</a></span>xrAction_PoseRight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrAction xrAction_PoseRight</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a032a43e732498d7c1640182a2d54923d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a032a43e732498d7c1640182a2d54923d">&#9670;&nbsp;</a></span>xrAction_SwitchScene</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrAction xrAction_SwitchScene</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6da5c36d3c4f42248577619bbfcd7e3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6da5c36d3c4f42248577619bbfcd7e3f">&#9670;&nbsp;</a></span>xrActionSet_Main</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrActionSet xrActionSet_Main</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Action set to use for this sandbox. </p>
+<hr/>
+ 
+</div>
+</div>
+<a id="ab3803dbbc77ea8fe36c9a76d1de64ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3803dbbc77ea8fe36c9a76d1de64ae3">&#9670;&nbsp;</a></span>xrActionState_PoseLeft</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrActionStatePose xrActionState_PoseLeft</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae94b88c8643a65579b0c684871770c8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae94b88c8643a65579b0c684871770c8a">&#9670;&nbsp;</a></span>xrActionState_PoseRight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrActionStatePose xrActionState_PoseRight</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a556615872eb6484c936f746e96952594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a556615872eb6484c936f746e96952594">&#9670;&nbsp;</a></span>xrActionState_SwitchScene</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrActionStateBoolean xrActionState_SwitchScene</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ac08d7f8a90ada64a8bb5793db9d6f53d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac08d7f8a90ada64a8bb5793db9d6f53d">&#9670;&nbsp;</a></span>xrCurrentSessionState</h2>
 
@@ -1542,6 +1820,62 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stores the current OpenXR session state. </p>
+
+</div>
+</div>
+<a id="a5a5678ce3958588a38766f1ed800d217"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a5678ce3958588a38766f1ed800d217">&#9670;&nbsp;</a></span>xrLocation_Left</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrSpaceLocation xrLocation_Left { XR_TYPE_SPACE_LOCATION }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abab965a0d4af75c045fb8f759a973105"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abab965a0d4af75c045fb8f759a973105">&#9670;&nbsp;</a></span>xrLocation_Right</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrSpaceLocation xrLocation_Right { XR_TYPE_SPACE_LOCATION }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a218a45eab9ded8e0c8ce7907c5c520de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a218a45eab9ded8e0c8ce7907c5c520de">&#9670;&nbsp;</a></span>xrVelocity_Left</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrSpaceVelocity xrVelocity_Left { XR_TYPE_SPACE_VELOCITY }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade45a8e23e18beb041640d39c3e70193"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade45a8e23e18beb041640d39c3e70193">&#9670;&nbsp;</a></span>xrVelocity_Right</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">XrSpaceVelocity xrVelocity_Right { XR_TYPE_SPACE_VELOCITY }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

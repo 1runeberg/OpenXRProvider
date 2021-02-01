@@ -5,25 +5,28 @@
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
 {\ttfamily \#include $<$spdlog/sinks/basic\+\_\+file\+\_\+sink.\+h$>$}\newline
 {\ttfamily \#include $<$spdlog/sinks/stdout\+\_\+color\+\_\+sinks.\+h$>$}\newline
 {\ttfamily \#include $<$spdlog/spdlog.\+h$>$}\newline
 {\ttfamily \#include $<$X\+R\+Base.\+h$>$}\newline
 {\ttfamily \#include $<$X\+R\+Base\+Ext.\+h$>$}\newline
-{\ttfamily \#include $<$X\+R\+Graphics\+A\+P\+I\+Defines.\+h$>$}\newline
+{\ttfamily \#include $<$rendering/\+X\+R\+Graphics\+A\+P\+I\+Defines.\+h$>$}\newline
 {\ttfamily \#include $<$X\+R\+Platform\+Defines.\+h$>$}\newline
 {\ttfamily \#include $<$openxr/openxr.\+h$>$}\newline
 {\ttfamily \#include $<$openxr/openxr\+\_\+platform.\+h$>$}\newline
 {\ttfamily \#include $<$openxr/openxr\+\_\+reflection.\+h$>$}\newline
 {\ttfamily \#include $<$openxr/xr\+\_\+linear.\+h$>$}\newline
-Include dependency graph for X\+R\+Common.\+h\+:\nopagebreak
+Include dependency graph for X\+R\+Common.\+h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{_x_r_common_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -33,6 +36,10 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_app_info}{Open\+X\+R\+Provider\+::\+X\+R\+App\+Info}}
+\begin{DoxyCompactList}\small\item\em Open\+XR application info used to initialize an Open\+XR Instance and create a Session with the active Open\+XR runtime. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_render_info}{Open\+X\+R\+Provider\+::\+X\+R\+Render\+Info}}
+\begin{DoxyCompactList}\small\item\em Information needed to create swapchain textures that the app will render to. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_eye_state}{Open\+X\+R\+Provider\+::\+X\+R\+Eye\+State}}
 \begin{DoxyCompactList}\small\item\em Eye State -\/ contains pose, field of view info for an eye. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{struct_open_x_r_provider_1_1_x_r_h_m_d_state}{Open\+X\+R\+Provider\+::\+X\+R\+H\+M\+D\+State}}
@@ -81,6 +88,8 @@ enum \mbox{\hyperlink{namespace_open_x_r_provider_ac7a3555ea86a858a7d56afa5dfb16
 \mbox{\hyperlink{namespace_open_x_r_provider_ac8e3913afbac23d15ac8ade017abd1c2}{Open\+X\+R\+Provider\+::\+X\+R\+\_\+\+E\+N\+U\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+N\+G\+I\+FY}} (Xr\+Result)
 \item 
 \mbox{\hyperlink{namespace_open_x_r_provider_a6f1b32985dfebfddc5f58fd4d9f520fd}{Open\+X\+R\+Provider\+::\+X\+R\+\_\+\+E\+N\+U\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+N\+G\+I\+FY}} (Xr\+Session\+State)
+\item 
+\mbox{\hyperlink{namespace_open_x_r_provider_a0605c743043a3b939637dc328150c659}{Open\+X\+R\+Provider\+::\+X\+R\+\_\+\+E\+N\+U\+M\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+T\+R\+I\+N\+G\+I\+FY}} (Xr\+Reference\+Space\+Type)
 \item 
 Xr\+Result \mbox{\hyperlink{namespace_open_x_r_provider_a832e6cc66984ff274e355f5771a04f57}{Open\+X\+R\+Provider\+::\+Check\+Xr\+Result}} (Xr\+Result xr\+Result, std\+::shared\+\_\+ptr$<$ spdlog\+::logger $>$ xr\+Logger, bool b\+Throw, const char $\ast$xr\+Call=nullptr, const char $\ast$src\+File=nullptr, int src\+Line\+Num=0)
 \item 

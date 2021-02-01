@@ -25,7 +25,7 @@
 
 #include "../../Sandbox/third_party/glad/include/glad/glad.h"
 
-#include <XRGraphicsAwareTypes.h>
+#include <rendering/XRGraphicsAwareTypes.h>
 
 namespace OpenXRProvider
 {

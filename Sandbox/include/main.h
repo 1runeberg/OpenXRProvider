@@ -29,7 +29,6 @@
 // OpenXR Provider includes
 #include <OpenXRProvider.h>
 
-
 // ** CUSTOM TYPES (GLOBAL) **//
 
 /// Sandbox scenes
@@ -85,17 +84,26 @@ ESandboxScene eCurrentScene = SANDBOX_SCENE_SEA_OF_CUBES;
 /// The OpenGL Vertex Buffer Object (cube) used in rendering processes
 unsigned int cubeVBO;
 
+/// The OpenGL Vertex Buffer Object (controller) used in rendering processes
+unsigned int controllerVBO;
+
 /// The OpenGL Vertex Buffer Object (joint) used in rendering processes
 unsigned int jointVBO;
 
 /// Instanced cube data for its projection matrices
 unsigned int cubeInstanceDataVBO;
 
+/// Instanced controller mesh data for its projection matrices
+unsigned int controllerInstanceDataVBO;
+
 /// Instanced joint mesh data for its projection matrices
 unsigned int jointInstanceDataVBO;
 
 /// The OpenGL Vertex Array Object (cube) used in rendering processes
 unsigned int cubeVAO;
+
+/// The OpenGL Vertex Array Object (controller) used in rendering processes
+unsigned int controllerVAO;
 
 /// The OpenGL Vertex Array Object (joint) used in rendering processes
 unsigned int jointVAO;
@@ -169,14 +177,78 @@ XrSessionState xrCurrentSessionState = XR_SESSION_STATE_UNKNOWN;
 /// Pointer to the XRProvider class of the OpenXR Provider library which handles all state, system and generic calls to the OpenXR runtime
 OpenXRProvider::XRProvider *pXRProvider = nullptr;
 
-/// Pointer to the XRRenderManager class of the OpenXR Provider library which handles all OpenXR rendering
-OpenXRProvider::XRRenderManager *pXRRenderManager = nullptr;
-
 /// Pointer to the XRExtVisibilityMask class of the OpenXR Provider library which handles the OpenXR visibility mask extension for runtimes that support it
 OpenXRProvider::XRExtVisibilityMask *pXRVisibilityMask = nullptr;
 
 /// Pointer to the XRExtVisibilityMask class of the OpenXR Provider library which handles the OpenXR visibility mask extension for runtimes that support it
 OpenXRProvider::XRExtHandTracking* pXRHandTracking = nullptr;
+
+
+/// -------------------------------
+/// INPUTS
+/// -------------------------------
+
+/// Action set to use for this sandbox
+XrActionSet xrActionSet_Main;
+
+// Action states
+XrActionStateBoolean xrActionState_SwitchScene;
+XrActionStatePose xrActionState_PoseLeft, xrActionState_PoseRight;
+
+// Actions
+XrAction xrAction_SwitchScene, xrAction_Haptic;
+XrAction xrAction_PoseLeft, xrAction_PoseRight;
+
+// Location and velocities for the controllers
+XrSpaceLocation xrLocation_Left { XR_TYPE_SPACE_LOCATION };
+XrSpaceLocation xrLocation_Right { XR_TYPE_SPACE_LOCATION };
+
+XrSpaceVelocity xrVelocity_Left { XR_TYPE_SPACE_VELOCITY };
+XrSpaceVelocity xrVelocity_Right { XR_TYPE_SPACE_VELOCITY };
+
+/// Draw the controller meshes for each hand
+/// @param[in]	eEye				Current eye to render to
+/// @param[in]	nSwapchainIndex		Texture in the swapchain to render to
+void DrawControllers( OpenXRProvider::EXREye eEye, glm::mat4 eyeView );
+
+/// Generate all input action bindings to multiple controllers
+void CreateInputActionBindings();
+
+/// Controller mesh vertices and colors (x, y, z, r, g, b)
+float vControllerMesh[ ] =
+{
+	0.0f, 0.0f, -0.4f,		0.0f, 1.0f, 0.0f,
+	0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f,
+	0.0f, 0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	0.0f,  0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	-0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, -0.4f,		0.0f, 1.0f, 0.0f,
+
+	0.0f, 0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, 0.4f,		0.0f, 1.0f, 0.0f,
+	0.0f,  0.0f, 0.4f,		0.0f, 1.0f, 0.0f,
+	-0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f, 
+	0.0f, 0.2f,	0.0f,		1.0f, 1.0f, 1.0f,
+
+	0.0f, 0.0f, -0.4f,		1.0f, 1.0f, 1.0f,
+	0.2f, 0.0f, 0.1f,		1.0f, 1.0f, 1.0f,
+	0.0f, -0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	0.0f, -0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	-0.2f, 0.0f, 0.1f,		1.0f, 1.0f, 1.0f,
+	0.0f, 0.0f, -0.4f,		1.0f, 1.0f, 1.0f,
+
+	0.0f, -0.2f, 0.0f,		1.0f, 1.0f, 1.0f,
+	0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, 0.4f,		0.0f, 1.0f, 0.0f,
+	0.0f,  0.0f, 0.4f,		0.0f, 1.0f, 0.0f,
+	-0.2f, 0.0f, 0.1f,		0.0f, 1.0f, 0.0f, 
+	0.0f, -0.2f, 0.0f,		1.0f, 1.0f, 1.0f
+};
+
+
+/// Process all the input states after syncing with runtime
+void ProcessInputStates();
 
 
 /// -------------------------------
