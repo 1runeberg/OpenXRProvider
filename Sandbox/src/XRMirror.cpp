@@ -28,51 +28,69 @@
 XRMirror::XRMirror( int nWidth, int nHeight, const char *pTitle, const char* sLogFile )
 {
 	// Setup helper utilities class
-	m_pUtils = new Utils( "XRMirror", sLogFile );
+	m_pUtils = new Utils( "XRMirror - OpenGL", sLogFile );
 
-	// Initialize glfw
-	glfwInit();
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 3 );
-	glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 3 );
-	glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
-	// glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+	// Initialize sdl
+	SDL_Init( SDL_INIT_VIDEO );
+	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
+	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
+	SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
 
-	// Create glfw window
-	m_pXRMirror = glfwCreateWindow( nWidth, nHeight, pTitle, NULL, NULL );
-
-	if ( m_pXRMirror == NULL )
+	// Create sdl window
+	m_pXRMirror = SDL_CreateWindow( pTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, nWidth, nHeight, SDL_WINDOW_OPENGL );
+	if ( !m_pXRMirror )
 	{
-		std::string eMessage = "Failed to create GLFW window";
+		std::string eMessage = "Failed to create SDL window";
 		m_pUtils->GetLogger()->error( "{}", eMessage );
-		glfwTerminate();
+
 		throw eMessage;
 	}
 
-	glfwMakeContextCurrent( m_pXRMirror );
+	// Create context
+	m_pXRMirrorContext = SDL_GL_CreateContext( m_pXRMirror );
+	if ( !m_pXRMirrorContext )
+	{
+		std::string eMessage = "Failed to create SDL window context";
+		m_pUtils->GetLogger()->error( "{}", eMessage );
+
+		throw eMessage;
+	}
+
+	// Make context current
+	SDL_GL_MakeCurrent( m_pXRMirror, m_pXRMirrorContext );
 	m_pUtils->GetLogger()->info( "Window for OpenXR Mirror context created" );
 
+	// Disable vsync
+	SDL_GL_SetSwapInterval( 0 );
+
 	// Check glad can be loaded before we use any OpenGL calls
-	if ( !gladLoadGLLoader( ( GLADloadproc )glfwGetProcAddress ) )
+	if ( !gladLoadGLLoader( ( GLADloadproc )SDL_GL_GetProcAddress ) )
 	{
 		std::string eMessage = "Failed to initialize GLAD";
 		m_pUtils->GetLogger()->error( "{}", eMessage );
-		glfwTerminate();
 		throw eMessage;
 	}
 
 	// Create mirror
 	glViewport( 0, 0, nWidth, nHeight );
 	m_pUtils->GetLogger()->info( "Mirror created {}x{}", nWidth, nHeight );
-
-	// Set callback for window resizing
-	glfwSetFramebufferSizeCallback( m_pXRMirror, []( GLFWwindow *mirror, int width, int height ) { glViewport( 0, 0, width, height ); } );
+	m_pUtils->GetLogger()->info( "OpenGL ver {}.{} with shading language ver {} ", GLVersion.major, GLVersion.minor, ( char * )glGetString( GL_SHADING_LANGUAGE_VERSION ) );
+	m_pUtils->GetLogger()->info( "OpenGL vendor: {}, renderer {}", ( char * )glGetString( GL_VENDOR ), ( char * )glGetString( GL_RENDERER ) );
 }
 
 XRMirror::~XRMirror()
 {
 	delete m_pUtils;
-	glfwDestroyWindow( GetWindow() );
-	glfwTerminate();
+	
+	// Delete context
+	if ( m_pXRMirrorContext )
+		SDL_GL_DeleteContext( m_pXRMirrorContext );
+
+	// Destroy window
+	if ( m_pXRMirror )
+		SDL_DestroyWindow( m_pXRMirror );
+
+	SDL_Quit();
 }
 
 

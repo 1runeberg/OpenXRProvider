@@ -30,7 +30,7 @@
 #include <glad/glad.h>
 
 // Windowing includes
-#include <glfw3.h>
+#include <third_party/sdl/include/SDL.h>
 
 #include <rendering/XRRender.h>
 
@@ -49,9 +49,9 @@ class XRMirror
 	/// Class Destructor
 	~XRMirror();
 
-	/// Getter for the GLFW window
+	/// Getter for the SDL window
 	/// @return				The current GLFW desktop window (XR Mirror)
-	GLFWwindow* GetWindow() { return m_pXRMirror; }
+	SDL_Window* GetWindow() { return m_pXRMirror; }
 
 	/// Load a texture file from disk
 	/// @param[in]	pTextureFile		The absolute file to the texture on disk
@@ -77,7 +77,9 @@ private:
 	/// Pointer to the helper utilities log (logger lives here)
 	Utils *m_pUtils;
 
-	/// Pointer to the GLFW desktop window (XR Mirror)
-	GLFWwindow *m_pXRMirror;
+	/// Pointer to the SDL desktop window (XR Mirror)
+	SDL_Window *m_pXRMirror;
 
+	/// Pointer to the SDL context
+	SDL_GLContext m_pXRMirrorContext;
 };

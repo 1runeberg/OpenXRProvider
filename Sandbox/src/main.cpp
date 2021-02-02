@@ -48,7 +48,7 @@
 #define TEXTURED_FRAGMENT_SHADER	L"\\shaders\\frag-textured.glsl"
 
 
-int main()
+int main( int argc, char *argv[] )
 {
 	// Setup our sandbox application, which will be used for testing
 	if ( AppSetup() != 0 )
@@ -206,7 +206,7 @@ int main()
 	#pragma region SANDBOX_FRAME_LOOP
 
 	// FRAME LOOP
-	while ( !glfwWindowShouldClose( pXRMirror->GetWindow() ) )
+	while ( !bExitApp )
 	{
 		// (1) Check for openxr events
 		//     a chance for us to run any of our registered callbacks
@@ -285,9 +285,11 @@ int main()
 			}
 		}
 
-		// glfw render and input events
-		glfwSwapBuffers( pXRMirror->GetWindow() );
-		glfwPollEvents();
+		// SDL: present the back buffer
+		SDL_GL_SwapWindow( pXRMirror->GetWindow() );
+
+		// SDL: Poll events
+		PollSDLEvents();
 	} 
 
 	#pragma endregion SANDBOX_FRAME_LOOP
@@ -318,39 +320,49 @@ static void Callback_XR_Event( XrEventDataBuffer xrEvent )
 	}
 }
 
-void Callback_GLFW_Input_Key( GLFWwindow *pWindow, int nKey, int nScancode, int nAction, int nModifier ) 
+void PollSDLEvents() 
 {
-	// Only process presses
-	if ( nAction != GLFW_PRESS )
-		return;
+	while ( SDL_PollEvent( &sdlEvent ) )
+	{
+		switch ( sdlEvent.type )
+		{
+			case SDL_QUIT:
+				bExitApp = true;
+				break;
+			case SDL_KEYDOWN:
+				switch ( sdlEvent.key.keysym.sym )
+				{
+					case SDLK_1:
+						bDrawHandJoints = pXRHandTracking->IsActive();
+						eCurrentScene = SANDBOX_SCENE_SEA_OF_CUBES;
 
-	// Process keys
-	if ( nKey == GLFW_KEY_1 )
-	{
-		bDrawHandJoints = pXRHandTracking->IsActive();
-		eCurrentScene = SANDBOX_SCENE_SEA_OF_CUBES;
-		pUtils->GetLogger()->info( "Switched to scene: Sea of Cubes" );
-	}
-	else if ( nKey == GLFW_KEY_2  )
-	{
-		bDrawHandJoints = pXRHandTracking->IsActive();
-		eCurrentScene = SANDBOX_SCENE_HAND_TRACKING;
-		pUtils->GetLogger()->info( "Switched to scene: Hand Tracking" );
-	}
-	else if ( nKey == GLFW_KEY_SPACE )
-	{
-		// See if hand tracking is enabled
-		if ( pXRHandTracking->IsActive() )
-			bDrawHandJoints = !bDrawHandJoints;
-		else
-			bDrawHandJoints = false;
+						pUtils->GetLogger()->info( "Switched to scene: Sea of Cubes" );
+						break;
 
-		pUtils->GetLogger()->info( "Hand joints will be rendered ({})", bDrawHandJoints );
-	}
-	else if ( nKey == GLFW_KEY_ESCAPE )
-	{
-		pUtils->GetLogger()->info( "Escape key pressed. Quitting Sandbox" );
-		glfwSetWindowShouldClose( pXRMirror->GetWindow(), GL_TRUE );
+					case SDLK_2:
+						bDrawHandJoints = pXRHandTracking->IsActive();
+						eCurrentScene = SANDBOX_SCENE_HAND_TRACKING;
+
+						pUtils->GetLogger()->info( "Switched to scene: Hand Tracking" );
+						break;
+
+					case SDLK_SPACE:
+						// See if hand tracking is enabled
+						if ( pXRHandTracking->IsActive() )
+							bDrawHandJoints = !bDrawHandJoints;
+						else
+							bDrawHandJoints = false;
+
+						pUtils->GetLogger()->info( "Hand joints will be rendered ({})", bDrawHandJoints );
+						break;
+
+					case SDLK_ESCAPE:
+						pUtils->GetLogger()->info( "Escape key pressed. Quitting Sandbox" );
+						bExitApp = true;
+						break;
+				}
+				break;
+		}
 	}
 }
 
@@ -384,13 +396,6 @@ int AppSetup()
 	sWindowTitle += ". Press: [1] Sea of Cubes (default), [2] Hand Tracking, [SPACEBAR] Toggle hands [ESC] Quit";
 
 	pXRMirror = new XRMirror( nScreenWidth, nScreenHeight, sWindowTitle.c_str(), pAppLogFile );
-	glfwMakeContextCurrent( pXRMirror->GetWindow() );
-
-	// Enable vsync
-	glfwSwapInterval(0);
-	
-	// Set input callback
-	glfwSetKeyCallback( pXRMirror->GetWindow(), Callback_GLFW_Input_Key );
 
 	return 0;
 }
@@ -597,7 +602,6 @@ void DrawFrame(	OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex )
 
 void BlitToWindow()
 {
-	glfwGetWindowSize( pXRMirror->GetWindow(), &nScreenWidth, &nScreenHeight );
 	glBindFramebuffer( GL_DRAW_FRAMEBUFFER, 0 );
 	glViewport( 0, 0, pXRProvider->Render()->GetTextureWidth(), pXRProvider->Render()->GetTextureHeight() );
 	glBlitFramebuffer(
@@ -693,7 +697,7 @@ void DrawCube(
 
 	glm::mat4 cubeModel = glm::mat4( 1.0f );
 	cubeModel = glm::translate( cubeModel, cubePosition );
-	cubeModel = glm::rotate( cubeModel, ( float )glfwGetTime(), cubeRotationOverTime );
+	cubeModel = glm::rotate( cubeModel, ( float )SDL_GetTicks()/1000, cubeRotationOverTime );
 	cubeModel = glm::scale( cubeModel, cubeScale );
 
 	// Get eye pose
@@ -957,7 +961,7 @@ void FillEyeMVP_RotateOverTime(
 
 	glm::mat4 cubeModel = glm::mat4( 1.0f );
 	cubeModel = glm::translate( cubeModel, cubePosition );
-	cubeModel = glm::rotate( cubeModel, ( float )glfwGetTime(), cubeRotation );
+	cubeModel = glm::rotate( cubeModel, ( float )SDL_GetTicks()/1000, cubeRotation );
 	cubeModel = glm::scale( cubeModel, cubeScale );
 
 	vEyeProjections[ nCubeIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? GetEyeProjectionLeft() : GetEyeProjectionRight() ) * eyeView * cubeModel );

@@ -64,16 +64,14 @@ void DrawFrame(
 /// @param[in] xrEventData	The data payload of the event (e.g. The new session state, etc)
 static void Callback_XR_Event( XrEventDataBuffer xrEvent );
 
-// Set callback for key input
-/// @param[in] pWindow		Pointer to the GLFW window
-/// @param[in] nKey			The key that was pressed that triggers this callback (e.g. GLFW_KEY_1)
-/// @param[in] nScancode	Platform specific scancode for the key that was pressed
-/// @param[in] nAction		Action that triggered the key event (e.g. GLFW_PRESS)
-/// @param[in] nModifier	Modifier bits (e.g. GLFW_MOD_NUM_LOCK)
-static void Callback_GLFW_Input_Key( GLFWwindow *pWindow, int nKey, int nScancode, int nAction, int nModifier );
+// Poll for SDL events
+static void PollSDLEvents();
 
 
 // ** MEMBER VARIABLES (GLOBAL) **//
+
+/// If app should exit gracefully
+bool bExitApp = false;
 
 /// If hand joints should be rendered (hand tracking extension required)
 bool bDrawHandJoints = false;
@@ -143,6 +141,9 @@ GLuint nShaderUnlit;
 
 /// The shader program ID for textured
 GLuint nShaderTextured;
+
+/// Sdl event returned by polling sdl
+SDL_Event sdlEvent;
 
 /// The absolute path to the built Sandbox executable
 std::wstring sCurrentPath;

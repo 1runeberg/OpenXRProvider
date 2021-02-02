@@ -29,7 +29,6 @@ set (LIBS_INCLUDE
     ${CMAKE_SOURCE_DIR}/OpenXRProvider/spdlog
     ${CMAKE_SOURCE_DIR}/Sandbox/third_party
     ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glad/include
-    ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glfw/include
     )
 
 set (LIBS_SOURCES
@@ -38,7 +37,7 @@ set (LIBS_SOURCES
 # Add project public include directories
 set (OPENXR_SANDBOX_INCLUDE
         ${CMAKE_SOURCE_DIR}/Sandbox
-		${CMAKE_SOURCE_DIR}/Sandbox/include
+	${CMAKE_SOURCE_DIR}/Sandbox/include
         ${LIBS_INCLUDE}
 	)
 message(STATUS "Added OpenXR Sandbox public include directories: 
@@ -47,7 +46,7 @@ message(STATUS "Added OpenXR Sandbox public include directories:
 # Find all project header files
 file(GLOB OPENXR_SANDBOX_HEADERS
         "${CMAKE_SOURCE_DIR}/Sandbox/*.h" 
-	    "${CMAKE_SOURCE_DIR}/Sandbox/include/*.h" 
+	"${CMAKE_SOURCE_DIR}/Sandbox/include/*.h" 
         "${CMAKE_SOURCE_DIR}/Sandbox/src/*.h"
 	)
 message(STATUS "Found OpenXR Sandbox headers
@@ -57,7 +56,7 @@ message(STATUS "Found OpenXR Sandbox headers
 # Find all project source files
 file(GLOB OPENXR_SANDBOX_SOURCE
         "${CMAKE_SOURCE_DIR}/Sandbox/*.cpp"
-	    "${CMAKE_SOURCE_DIR}/Sandbox/src/*.cpp"
+	"${CMAKE_SOURCE_DIR}/Sandbox/src/*.cpp"
         "${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/*.glsl"
         "${CMAKE_SOURCE_DIR}/Sandbox/third_party/stb/*.cpp"
 	)
@@ -85,22 +84,33 @@ set_target_properties(Sandbox PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_SOURCE_DIR}/bin"
 )
 
-# GLFW
-set(LIB_GLFW "${CMAKE_SOURCE_DIR}/Sandbox/third_party/glfw/lib/glfw3.lib")
+# SDL2
+set(LIB_SDL2 
+	"${CMAKE_SOURCE_DIR}/Sandbox/third_party/sdl/lib/x64/SDL2.lib"
+	"${CMAKE_SOURCE_DIR}/Sandbox/third_party/sdl/lib/x64/SDL2main.lib"
+	)
 
 # OpenGL
 set(LIB_OPENGL "opengl32.lib")
 
 # Add libraries
 target_link_libraries(Sandbox PUBLIC 
-    ${LIB_GLFW}
+    ${LIB_SDL2}
     opengl32.lib
     OpenXRProvider)
 
 # Post-Build
 add_custom_command(TARGET Sandbox POST_BUILD
 
-		COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/bin/logs
+	COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_SOURCE_DIR}/bin/logs
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/third_party/sdl/lib/x64/SDL2.lib
+            ${CMAKE_SOURCE_DIR}/bin/SDL2.lib
+
+        COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/Sandbox/third_party/sdl/lib/x64/SDL2.dll
+            ${CMAKE_SOURCE_DIR}/bin/SDL2.dll
 
         COMMAND ${CMAKE_COMMAND} -E copy
             ${CMAKE_SOURCE_DIR}/OpenXRProvider/third_party/openxr_loader_windows/x64/lib/openxr_loader.lib
