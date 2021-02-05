@@ -24,7 +24,7 @@
 #pragma once
 
 // Sandbox includes
-#include <XRMirror.h>
+#include <XRMirror_GL.h>
 
 // OpenXR Provider includes
 #include <OpenXRProvider.h>
@@ -169,8 +169,8 @@ std::vector< float > vMaskVertices_R;
 /// Pointer to the Utilities (Utils) class instantiated and used by the sandbox app (logging utility lives here)
 Utils *pUtils = nullptr;
 
-/// Pointer to the XRMirror class that handles the desktop window where textures sent to the HMD are blitted (copied) to
-XRMirror *pXRMirror = nullptr;
+/// Pointer to the XRMirror_GL class that handles the desktop window where textures sent to the HMD are blitted (copied) to
+XRMirror_GL *pXRMirror = nullptr;
 
 /// Stores the current OpenXR session state
 XrSessionState xrCurrentSessionState = XR_SESSION_STATE_UNKNOWN;

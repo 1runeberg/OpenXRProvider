@@ -34,7 +34,7 @@
 
 #include <rendering/XRRender.h>
 
-class XRMirror
+class XRMirror_GL
 {
   public:
 	// ** FUNCTIONS (PUBLIC) **/
@@ -44,10 +44,10 @@ class XRMirror
 	/// @param[in] nHeight		The height of the desktop window (XR Mirror)
 	/// @param[in] pTitle		The title text that will be displayed on the console window
 	/// @param[in] sLogFile		The absolute path and filename of the log file
-	XRMirror( int nWidth, int nHeight, const char *pTitle, const char* sLogFile );
+	XRMirror_GL( int nWidth, int nHeight, const char *pTitle, const char* sLogFile );
 
 	/// Class Destructor
-	~XRMirror();
+	~XRMirror_GL();
 
 	/// Getter for the SDL window
 	/// @return				The current GLFW desktop window (XR Mirror)

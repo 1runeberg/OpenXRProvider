@@ -23,9 +23,9 @@
 
 #pragma once
 
-#include <XRMirror.h>
+#include <XRMirror_GL.h>
 
-XRMirror::XRMirror( int nWidth, int nHeight, const char *pTitle, const char* sLogFile )
+XRMirror_GL::XRMirror_GL( int nWidth, int nHeight, const char *pTitle, const char* sLogFile )
 {
 	// Setup helper utilities class
 	m_pUtils = new Utils( "XRMirror - OpenGL", sLogFile );
@@ -78,7 +78,7 @@ XRMirror::XRMirror( int nWidth, int nHeight, const char *pTitle, const char* sLo
 	m_pUtils->GetLogger()->info( "OpenGL vendor: {}, renderer {}", ( char * )glGetString( GL_VENDOR ), ( char * )glGetString( GL_RENDERER ) );
 }
 
-XRMirror::~XRMirror()
+XRMirror_GL::~XRMirror_GL()
 {
 	delete m_pUtils;
 	
@@ -94,7 +94,7 @@ XRMirror::~XRMirror()
 }
 
 
-unsigned int XRMirror::LoadTexture( const wchar_t* pTextureFile, GLuint nShader, const char *pSamplerParam, GLint nMinFilter, GLint nMagnitudeFilter, GLint nWrapS, GLint nWrapT )
+unsigned int XRMirror_GL::LoadTexture( const wchar_t* pTextureFile, GLuint nShader, const char *pSamplerParam, GLint nMinFilter, GLint nMagnitudeFilter, GLint nWrapS, GLint nWrapT )
 {
 	unsigned int nTexture = 0;
 

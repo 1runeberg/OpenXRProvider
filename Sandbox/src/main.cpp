@@ -395,7 +395,7 @@ int AppSetup()
 	std::string sWindowTitle = APP_PROJECT_NAME;
 	sWindowTitle += ". Press: [1] Sea of Cubes (default), [2] Hand Tracking, [SPACEBAR] Toggle hands [ESC] Quit";
 
-	pXRMirror = new XRMirror( nScreenWidth, nScreenHeight, sWindowTitle.c_str(), pAppLogFile );
+	pXRMirror = new XRMirror_GL( nScreenWidth, nScreenHeight, sWindowTitle.c_str(), pAppLogFile );
 
 	return 0;
 }
