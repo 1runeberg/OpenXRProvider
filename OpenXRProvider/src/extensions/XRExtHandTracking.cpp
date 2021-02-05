@@ -76,7 +76,10 @@ namespace OpenXRProvider
 
 		// Setup hand joint velocities
 		m_xrVelocities_Left.jointCount = XR_HAND_JOINT_COUNT_EXT;
-		m_xrVelocities_Right.jointVelocities = &m_XRHandJointVelocities_Left[ 0 ];
+		m_xrVelocities_Left.jointVelocities = &m_XRHandJointVelocities_Left[ 0 ];
+
+		m_xrVelocities_Right.jointCount = XR_HAND_JOINT_COUNT_EXT;
+		m_xrVelocities_Right.jointVelocities = &m_XRHandJointVelocities_Right[ 0 ];
 
 		// Setup hand joint locations
 		m_xrLocations_Left.jointCount = XR_HAND_JOINT_COUNT_EXT;
@@ -99,16 +102,16 @@ namespace OpenXRProvider
 		bool bIsLeftHand = eHand == XR_HAND_LEFT_EXT;
 
 		// Check if app actually wants to grab hand joints data for this hand
-		if ( bIsLeftHand && !bIsHandTrackingActive_Left )
+		if ( bIsLeftHand && !IsHandTrackingActive_Left() )
 			return;
-		else if ( !bIsLeftHand && !bIsHandTrackingActive_Right )
+		else if ( !bIsLeftHand && !IsHandTrackingActive_Right() )
 			return;
 
 		// Check if app wants velocity data
 		if ( bIsLeftHand )
-			m_xrLocations_Left.next = bGetHandJointVelocities_Left ? m_XRHandJointVelocities_Left : nullptr;
+			m_xrLocations_Left.next = GetHandJointVelocities_Left() ? &m_xrVelocities_Left : nullptr;
 		else
-			m_xrLocations_Right.next = bGetHandJointVelocities_Right ? m_XRHandJointVelocities_Right : nullptr;
+			m_xrLocations_Right.next = GetHandJointVelocities_Right() ? &m_xrVelocities_Right : nullptr;
 
 		// Finally, get the hand joints data
 		XrHandJointsLocateInfoEXT xrHandJointsLocateInfo { XR_TYPE_HAND_JOINTS_LOCATE_INFO_EXT };

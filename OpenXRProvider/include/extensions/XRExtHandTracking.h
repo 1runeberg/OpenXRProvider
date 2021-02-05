@@ -42,18 +42,6 @@ namespace OpenXRProvider
 		/// Override from XRBaseExt returning the official OpenXR extension name that this object represents
 		const char *GetExtensionName() const override { return XR_EXT_HAND_TRACKING_EXTENSION_NAME; }
 
-		/// The active OpenXR Session
-		XrSession m_xrSession = XR_NULL_HANDLE;
-
-		/// The active OpenXR Instance
-		XrInstance m_xrInstance = XR_NULL_HANDLE;
-
-		bool bIsHandTrackingActive_Left = true;
-		bool bIsHandTrackingActive_Right = true;
-
-		bool bGetHandJointVelocities_Left = false;
-		bool bGetHandJointVelocities_Right = false;
-
 		XrHandJointLocationsEXT *GetHandJointLocations( XrHandEXT eHand )
 		{
 			if ( eHand == XR_HAND_LEFT_EXT )
@@ -62,11 +50,41 @@ namespace OpenXRProvider
 			return &m_xrLocations_Right;
 		}
 
+		XrHandJointVelocitiesEXT *GetHandJointVelocities( XrHandEXT eHand )
+		{
+			if ( eHand == XR_HAND_LEFT_EXT )
+				return &m_xrVelocities_Left;
+
+			return &m_xrVelocities_Right;
+		}
+
 		void Init( const XrInstance xrInstance, XrSession xrSession );
 
 		void LocateHandJoints( XrHandEXT eHand, XrSpace xrSpace, XrTime xrTime );
 
+		bool IsActive_Left() const { return bIsHandTrackingActive_Left; }
+		void IsActive_Left( bool val ) { bIsHandTrackingActive_Left = val; }
+
+		bool IsActive_Right() const { return bIsHandTrackingActive_Right; }
+		void IsActive_Right( bool val ) { bIsHandTrackingActive_Right = val; }
+
+		bool IncludeVelocities_Left() const { return bGetHandJointVelocities_Left; }
+		void IncludeVelocities_Left( bool val ) { bGetHandJointVelocities_Left = val; }
+
+		bool IncludeVelocities_Right() const { return bGetHandJointVelocities_Right; }
+		void IncludeVelocities_Right( bool val ) { bGetHandJointVelocities_Right = val; }
+
 	  private:
+
+
+		bool bIsHandTrackingActive_Left = true;
+
+		bool bIsHandTrackingActive_Right = true;
+
+		bool bGetHandJointVelocities_Left = false;
+
+		bool bGetHandJointVelocities_Right = false;
+
 		XrResult m_xrLastCallResult = XR_SUCCESS;
 
 		XrHandJointLocationEXT m_XRHandJointsData_Left[ XR_HAND_JOINT_COUNT_EXT ];
@@ -85,6 +103,12 @@ namespace OpenXRProvider
 
 		XrHandTrackerEXT m_HandTracker_Left = XR_NULL_HANDLE;
 		XrHandTrackerEXT m_HandTracker_Right = XR_NULL_HANDLE;
+
+		/// The active OpenXR Session
+		XrSession m_xrSession = XR_NULL_HANDLE;
+
+		/// The active OpenXR Instance
+		XrInstance m_xrInstance = XR_NULL_HANDLE;
 
 		PFN_xrLocateHandJointsEXT xrLocateHandJointsEXT = nullptr;
 	};
