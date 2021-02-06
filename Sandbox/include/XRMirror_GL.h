@@ -23,12 +23,7 @@
 
 #pragma once
 
-#include <map>
-#include <SandboxCommon.h>
-
-// Windowing includes
-#include <third_party/sdl/include/SDL.h>
-#include <rendering/XRRender.h>
+#include <IXRMirror.h>
 
 // OpenGL includes
 #include <glad/glad.h>
@@ -46,7 +41,7 @@
 #define TEXTURED_VERTEX_SHADER L"\\shaders\\vert-textured.glsl"
 #define TEXTURED_FRAGMENT_SHADER L"\\shaders\\frag-textured.glsl"
 
-class XRMirror_GL
+class XRMirror_GL : public IXRMirror
 {
   public:
 	// ** FUNCTIONS (PUBLIC) **/
@@ -65,25 +60,21 @@ class XRMirror_GL
 
 	/// Setup the graphics api objects needed for rendering to this xr mirror
 	/// @param[in] pRender		Pointer to the OpenXRProvider Library Render Manager
-	int Init( OpenXRProvider::XRRender *pRender );
+	const int Init( OpenXRProvider::XRRender *pRender ) override;
 
-	/// Getter for the SDL window
-	/// @return				The current GLFW desktop window (XR Mirror)
-	SDL_Window* GetWindow() { return m_pXRMirror; }
-
-	/// Blit (copy) swapchain image that's rendered to the HMD to the desktop screem (XR Mirror)
-	void BlitToWindow();
+	/// Blit (copy) swapchain image that's rendered to the HMD to the desktop screen (XR Mirror)
+	void BlitToWindow() override;
 
 	/// Clear texture
 	/// @param[in]	v4ClearColor	Color (r,g,b,a)
-	void Clear( glm::vec4 v4ClearColor );
+	void Clear( glm::vec4 v4ClearColor ) override;
 
 	/// Render to the swapchain image (texture) that'll be rendered to the user's HMD and blitted (copied) to
 	/// the Sandbox's window (XR Mirror)
 	/// @param[in]	eCurrentScene		The current sandbox scene/level to be rendered
 	/// @param[in] eEye					The eye (left/right) texture that will be rendered on
 	/// @param[in] nSwapchainIndex		The index of the swapchain image (texture)
-	void DrawFrame( SandboxCommon::ESandboxScene eCurrentScene, OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex );
+	void DrawFrame( SandboxCommon::ESandboxScene eCurrentScene, OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex ) override;
 
 	/// Load a texture file from disk
 	/// @param[in]	pTextureFile		The absolute file to the texture on disk
@@ -119,32 +110,8 @@ class XRMirror_GL
 private:
 	// ** MEMBER VARIABLES (PRIVATE) **/
 
-	/// The width of the desktop window 
-	int m_nScreenWidth = 1920;
-
-	/// The height of the desktop window 
-	int m_nScreenHeight = 1080;
-
-	/// The absolute path to the app executable
-	std::wstring m_sCurrentPath;
-
-	/// Clear color
-	glm::vec4 m_v4ClearColor { 0.5f, 0.9f, 1.0f, 1.0f };
-
-	/// The logger object
-	std::shared_ptr< spdlog::logger > m_pLogger;
-
-	/// Pointer to the helper utilities log (logger lives here)
-	SandboxCommon *m_pCommon;
-
-	/// Pointer to the SDL desktop window (XR Mirror)
-	SDL_Window *m_pXRMirror;
-
-	/// OpenXR Render Manager
-	OpenXRProvider::XRRender *m_pXRRender;
-
 	/// Pointer to the SDL context
-	SDL_GLContext m_pXRMirrorContext;
+	SDL_GLContext m_pGLWindowContext;
 
 	/// The OpenGL Vertex Buffer Object (cube) used in rendering processes
 	unsigned int cubeVBO;

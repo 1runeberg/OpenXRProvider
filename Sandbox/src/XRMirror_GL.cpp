@@ -26,20 +26,17 @@
 #include <XRMirror_GL.h>
 
 XRMirror_GL::XRMirror_GL( SandboxCommon *pCommon, int nWidth, int nHeight, const char *pTitle, std::wstring sCurrentPath, const char *sLogFile )
-	: m_pCommon( pCommon )
-	, m_nScreenWidth( nWidth )
-	, m_nScreenHeight( nHeight )
-	, m_sCurrentPath( sCurrentPath )
+	: IXRMirror( pCommon, nWidth, nHeight, pTitle, sCurrentPath, sLogFile )
 {	
 	// Initialize logger
 	std::vector< spdlog::sink_ptr > vLogSinks;
 	vLogSinks.push_back( std::make_shared< spdlog::sinks::stdout_color_sink_st >() );
 	vLogSinks.push_back( std::make_shared< spdlog::sinks::basic_file_sink_st >( sLogFile ) );
-	m_pLogger = std::make_shared< spdlog::logger >( "XRMirror - OpenGL", begin( vLogSinks ), end( vLogSinks ) );
+	Logger(std::make_shared< spdlog::logger >( "XRMirror - OpenGL", begin( vLogSinks ), end( vLogSinks ) ));
 
-	m_pLogger->set_level( spdlog::level::trace );
-	m_pLogger->set_pattern( "[%Y-%b-%d %a] [%T %z] [%^%L%$] [%n] %v" );
-	m_pLogger->info( "G'day from {}! Logging to: {}", "XRMirror - OpenGL", sLogFile );
+	Logger()->set_level( spdlog::level::trace );
+	Logger()->set_pattern( "[%Y-%b-%d %a] [%T %z] [%^%L%$] [%n] %v" );
+	Logger()->info( "G'day from {}! Logging to: {}", "XRMirror - OpenGL", sLogFile );
 
 	// Initialize sdl
 	SDL_Init( SDL_INIT_VIDEO );
@@ -48,28 +45,28 @@ XRMirror_GL::XRMirror_GL( SandboxCommon *pCommon, int nWidth, int nHeight, const
 	SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
 
 	// Create sdl window
-	m_pXRMirror = SDL_CreateWindow( pTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, nWidth, nHeight, SDL_WINDOW_OPENGL );
-	if ( !m_pXRMirror )
+	SDLWindow(SDL_CreateWindow( pTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, nWidth, nHeight, SDL_WINDOW_OPENGL ));
+	if ( !SDLWindow() )
 	{
 		std::string eMessage = "Failed to create SDL window";
-		m_pLogger->error( "{}", eMessage );
+		Logger()->error( "{}", eMessage );
 
 		throw eMessage;
 	}
 
 	// Create context
-	m_pXRMirrorContext = SDL_GL_CreateContext( m_pXRMirror );
-	if ( !m_pXRMirrorContext )
+	m_pGLWindowContext = SDL_GL_CreateContext( SDLWindow() );
+	if ( !m_pGLWindowContext )
 	{
 		std::string eMessage = "Failed to create SDL window context";
-		m_pLogger->error( "{}", eMessage );
+		Logger()->error( "{}", eMessage );
 
 		throw eMessage;
 	}
 
 	// Make context current
-	SDL_GL_MakeCurrent( m_pXRMirror, m_pXRMirrorContext );
-	m_pLogger->info( "Window for OpenXR Mirror context created" );
+	SDL_GL_MakeCurrent( SDLWindow(), m_pGLWindowContext );
+	Logger()->info( "Window for OpenXR Mirror context created" );
 
 	// Disable vsync
 	SDL_GL_SetSwapInterval( 0 );
@@ -78,30 +75,30 @@ XRMirror_GL::XRMirror_GL( SandboxCommon *pCommon, int nWidth, int nHeight, const
 	if ( !gladLoadGLLoader( ( GLADloadproc )SDL_GL_GetProcAddress ) )
 	{
 		std::string eMessage = "Failed to initialize GLAD";
-		m_pLogger->error( "{}", eMessage );
+		Logger()->error( "{}", eMessage );
 		throw eMessage;
 	}
 
 	// Create mirror
 	glViewport( 0, 0, nWidth, nHeight );
-	m_pLogger->info( "Mirror created {}x{}", nWidth, nHeight );
-	m_pLogger->info( "OpenGL ver {}.{} with shading language ver {} ", GLVersion.major, GLVersion.minor, ( char * )glGetString( GL_SHADING_LANGUAGE_VERSION ) );
-	m_pLogger->info( "OpenGL vendor: {}, renderer {}", ( char * )glGetString( GL_VENDOR ), ( char * )glGetString( GL_RENDERER ) );
+	Logger()->info( "Mirror created {}x{}", nWidth, nHeight );
+	Logger()->info( "OpenGL ver {}.{} with shading language ver {} ", GLVersion.major, GLVersion.minor, ( char * )glGetString( GL_SHADING_LANGUAGE_VERSION ) );
+	Logger()->info( "OpenGL vendor: {}, renderer {}", ( char * )glGetString( GL_VENDOR ), ( char * )glGetString( GL_RENDERER ) );
 }
 
 XRMirror_GL::~XRMirror_GL()
 {
 	// Delete logger
-	if ( m_pLogger )
+	if ( Logger() )
 		spdlog::drop( "XRMirror - OpenGL" );
 
 	// Delete context
-	if ( m_pXRMirrorContext )
-		SDL_GL_DeleteContext( m_pXRMirrorContext );
+	if ( m_pGLWindowContext )
+		SDL_GL_DeleteContext( m_pGLWindowContext );
 
 	// Destroy window
-	if ( m_pXRMirror )
-		SDL_DestroyWindow( m_pXRMirror );
+	if ( SDLWindow() )
+		SDL_DestroyWindow( SDLWindow() );
 
 	SDL_Quit();
 }
@@ -130,7 +127,7 @@ unsigned int XRMirror_GL::LoadTexture( const wchar_t* pTextureFile, GLuint nShad
 	if ( textureData )
 		glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, nWidth, nHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData );
 	else
-		m_pLogger->warn( "Unable to load cube texture from disk ({})", pTexture );
+		Logger()->warn( "Unable to load cube texture from disk ({})", pTexture );
 
 	stbi_image_free( textureData );
 
@@ -141,10 +138,10 @@ unsigned int XRMirror_GL::LoadTexture( const wchar_t* pTextureFile, GLuint nShad
 	return nTexture;
 }
 
-int XRMirror_GL::Init( OpenXRProvider::XRRender *pRender )
+const int XRMirror_GL::Init( OpenXRProvider::XRRender *pRender )
 {
 	assert( pRender );
-	m_pXRRender = pRender;
+	Render( pRender );
 
 	// Enable depth buffer testing
 	glFrontFace( GL_CW );
@@ -154,7 +151,7 @@ int XRMirror_GL::Init( OpenXRProvider::XRRender *pRender )
 	glGenBuffers( 1, &cubeVBO );
 
 	glBindBuffer( GL_ARRAY_BUFFER, cubeVBO );
-	glBufferData( GL_ARRAY_BUFFER, sizeof( m_pCommon->vCube ), m_pCommon->vCube, GL_STATIC_DRAW );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( Common()->vCube ), Common()->vCube, GL_STATIC_DRAW );
 
 	// Setup element buffer object (cube)
 	// glGenBuffers(1, &cubeEBO);
@@ -185,7 +182,7 @@ int XRMirror_GL::Init( OpenXRProvider::XRRender *pRender )
 	glGenBuffers( 1, &controllerVBO );
 
 	glBindBuffer( GL_ARRAY_BUFFER, controllerVBO );
-	glBufferData( GL_ARRAY_BUFFER, sizeof( m_pCommon->vControllerMesh ), m_pCommon->vControllerMesh, GL_STATIC_DRAW );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( Common()->vControllerMesh ), Common()->vControllerMesh, GL_STATIC_DRAW );
 
 	// Setup vertex array object (controller)
 	glGenVertexArrays( 1, &controllerVAO );
@@ -212,7 +209,7 @@ int XRMirror_GL::Init( OpenXRProvider::XRRender *pRender )
 	// Setup vertex buffer object (joint)
 	glGenBuffers( 1, &jointVBO );
 	glBindBuffer( GL_ARRAY_BUFFER, jointVBO );
-	glBufferData( GL_ARRAY_BUFFER, sizeof( m_pCommon->vJointMesh ), m_pCommon->vJointMesh, GL_STATIC_DRAW );
+	glBufferData( GL_ARRAY_BUFFER, sizeof( Common()->vJointMesh ), Common()->vJointMesh, GL_STATIC_DRAW );
 
 	// Setup vertex array object (joint)
 	glGenVertexArrays( 1, &jointVAO );
@@ -241,10 +238,10 @@ int XRMirror_GL::Init( OpenXRProvider::XRRender *pRender )
 	glBindFramebuffer( GL_FRAMEBUFFER, FBO );
 
 	// Create shader programs
-	nShaderVisMask = CreateShaderProgram( ( m_sCurrentPath + VIS_MASK_VERTEX_SHADER ).c_str(), ( m_sCurrentPath + VIS_MASK_FRAGMENT_SHADER ).c_str() );
-	nShaderLit = CreateShaderProgram( ( m_sCurrentPath + LIT_VERTEX_SHADER ).c_str(), ( m_sCurrentPath + LIT_FRAGMENT_SHADER ).c_str() );
-	nShaderUnlit =CreateShaderProgram( ( m_sCurrentPath + UNLIT_VERTEX_SHADER ).c_str(), ( m_sCurrentPath + UNLIT_FRAGMENT_SHADER ).c_str() );
-	nShaderTextured = CreateShaderProgram( ( m_sCurrentPath + TEXTURED_VERTEX_SHADER ).c_str(), ( m_sCurrentPath + TEXTURED_FRAGMENT_SHADER ).c_str() );
+	nShaderVisMask = CreateShaderProgram( ( CurrentPath() + VIS_MASK_VERTEX_SHADER ).c_str(), ( CurrentPath() + VIS_MASK_FRAGMENT_SHADER ).c_str() );
+	nShaderLit = CreateShaderProgram( ( CurrentPath() + LIT_VERTEX_SHADER ).c_str(), ( CurrentPath() + LIT_FRAGMENT_SHADER ).c_str() );
+	nShaderUnlit =CreateShaderProgram( ( CurrentPath() + UNLIT_VERTEX_SHADER ).c_str(), ( CurrentPath() + UNLIT_FRAGMENT_SHADER ).c_str() );
+	nShaderTextured = CreateShaderProgram( ( CurrentPath() + TEXTURED_VERTEX_SHADER ).c_str(), ( CurrentPath() + TEXTURED_FRAGMENT_SHADER ).c_str() );
 
 	if ( nShaderVisMask == 0 || nShaderLit == 0 || nShaderUnlit == 0 || nShaderTextured == 0 )
 		return -1;
@@ -258,12 +255,12 @@ int XRMirror_GL::Init( OpenXRProvider::XRRender *pRender )
 	glUniform3f( glGetUniformLocation( nShaderUnlit, "surfaceColor" ), 1.0f, 1.0f, 1.0f );
 
 	// Load textures for sea of cubes
-	m_vCubeTextures.push_back( LoadTexture( ( m_sCurrentPath + L"\\img\\t_bellevue_valve.png" ).c_str(), nShaderTextured, "texSample" ) );
-	m_vCubeTextures.push_back( LoadTexture( ( m_sCurrentPath + L"\\img\\t_munich_mein_schatz.png" ).c_str(), nShaderTextured, "texSample" ) );
-	m_vCubeTextures.push_back( LoadTexture( ( m_sCurrentPath + L"\\img\\t_hobart_mein_heim.png" ).c_str(), nShaderTextured, "texSample" ) );
-	m_vCubeTextures.push_back( LoadTexture( ( m_sCurrentPath + L"\\img\\t_hobart_rose.png" ).c_str(), nShaderTextured, "texSample" ) );
-	m_vCubeTextures.push_back( LoadTexture( ( m_sCurrentPath + L"\\img\\t_hobart_mein_kochen.png" ).c_str(), nShaderTextured, "texSample" ) );
-	m_vCubeTextures.push_back( LoadTexture( ( m_sCurrentPath + L"\\img\\t_hobart_sunset.png" ).c_str(), nShaderTextured, "texSample" ) );
+	m_vCubeTextures.push_back( LoadTexture( ( CurrentPath() + L"\\img\\t_bellevue_valve.png" ).c_str(), nShaderTextured, "texSample" ) );
+	m_vCubeTextures.push_back( LoadTexture( ( CurrentPath() + L"\\img\\t_munich_mein_schatz.png" ).c_str(), nShaderTextured, "texSample" ) );
+	m_vCubeTextures.push_back( LoadTexture( ( CurrentPath() + L"\\img\\t_hobart_mein_heim.png" ).c_str(), nShaderTextured, "texSample" ) );
+	m_vCubeTextures.push_back( LoadTexture( ( CurrentPath() + L"\\img\\t_hobart_rose.png" ).c_str(), nShaderTextured, "texSample" ) );
+	m_vCubeTextures.push_back( LoadTexture( ( CurrentPath() + L"\\img\\t_hobart_mein_kochen.png" ).c_str(), nShaderTextured, "texSample" ) );
+	m_vCubeTextures.push_back( LoadTexture( ( CurrentPath() + L"\\img\\t_hobart_sunset.png" ).c_str(), nShaderTextured, "texSample" ) );
 
 	return 0;
 }
@@ -271,8 +268,8 @@ int XRMirror_GL::Init( OpenXRProvider::XRRender *pRender )
 void XRMirror_GL::BlitToWindow()
 {
 	glBindFramebuffer( GL_DRAW_FRAMEBUFFER, 0 );
-	glViewport( 0, 0, m_pXRRender->GetTextureWidth(), m_pXRRender->GetTextureHeight() );
-	glBlitFramebuffer( 0, 0, m_pXRRender->GetTextureWidth(), m_pXRRender->GetTextureHeight(), 0, 0, m_nScreenWidth, m_nScreenHeight, GL_COLOR_BUFFER_BIT, GL_LINEAR );
+	glViewport( 0, 0, Render()->GetTextureWidth(), Render()->GetTextureHeight() );
+	glBlitFramebuffer( 0, 0, Render()->GetTextureWidth(), Render()->GetTextureHeight(), 0, 0, ScreenWidth(), ScreenHeight(), GL_COLOR_BUFFER_BIT, GL_LINEAR );
 }
 
 void XRMirror_GL::Clear( glm::vec4 v4ClearColor ) 
@@ -284,18 +281,18 @@ void XRMirror_GL::Clear( glm::vec4 v4ClearColor )
 void XRMirror_GL::DrawFrame( SandboxCommon::ESandboxScene eCurrentScene, OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex )
 {
 	glBindFramebuffer( GL_FRAMEBUFFER, FBO );
-	glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_pXRRender->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ), 0 );
+	glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, Render()->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ), 0 );
 
-	Clear( m_v4ClearColor );
+	Clear( ClearColor() );
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT );
 
 	// Check if hmd is tracking
-	if ( !m_pXRRender->GetHMDState()->IsPositionTracked || !m_pXRRender->GetHMDState()->IsPositionTracked )
+	if ( !Render()->GetHMDState()->IsPositionTracked || !Render()->GetHMDState()->IsPositionTracked )
 		return;
 
 	// Draw vismask on XR Mirror
-	uint32_t nVertCount = ( eEye == OpenXRProvider::EYE_LEFT ) ? ( uint32_t )m_pCommon->MaskVertices_Left()->size() : ( uint32_t )m_pCommon->MaskVertices_Right()->size();
-	float *vMask = ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pCommon->MaskVertices_Left()->data() : m_pCommon->MaskVertices_Left()->data();
+	uint32_t nVertCount = ( eEye == OpenXRProvider::EYE_LEFT ) ? ( uint32_t )Common()->MaskVertices_Left()->size() : ( uint32_t )Common()->MaskVertices_Right()->size();
+	float *vMask = ( eEye == OpenXRProvider::EYE_LEFT ) ? Common()->MaskVertices_Left()->data() : Common()->MaskVertices_Left()->data();
 
 	if ( nVertCount > 0 )
 	{
@@ -319,26 +316,26 @@ void XRMirror_GL::DrawFrame( SandboxCommon::ESandboxScene eCurrentScene, OpenXRP
 
 void XRMirror_GL::DrawSeaOfCubesScene( OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex, glm::vec3 cubeScale, float fSpacingPlane, float fSpacingHeight )
 {
-	assert( m_pXRRender );
+	assert( Render() );
 	assert( m_vCubeTextures.size() > 0 );
 
 	// Set eye projections if we haven't already
-	if ( !m_pCommon->EyeProjectionsSet() )
+	if ( !Common()->EyeProjectionsSet() )
 	{
-		m_pCommon->EyeProjectionLeft( m_pCommon->GetEyeProjection( m_pXRRender->GetHMDState()->LeftEye.FoV, 0.1f, 100.f ) );
-		m_pCommon->EyeProjectionRight( m_pCommon->GetEyeProjection( m_pXRRender->GetHMDState()->RightEye.FoV, 0.1f, 100.f ) );
-		m_pCommon->EyeProjectionsSet( true );
+		Common()->EyeProjectionLeft( Common()->GetEyeProjection( Render()->GetHMDState()->LeftEye.FoV, 0.1f, 100.f ) );
+		Common()->EyeProjectionRight( Common()->GetEyeProjection( Render()->GetHMDState()->RightEye.FoV, 0.1f, 100.f ) );
+		Common()->EyeProjectionsSet( true );
 	}
 
 	// Get eye view for this frame
-	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pXRRender->GetHMDState()->LeftEye.Pose : m_pXRRender->GetHMDState()->RightEye.Pose;
+	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? Render()->GetHMDState()->LeftEye.Pose : Render()->GetHMDState()->RightEye.Pose;
 
 	XrMatrix4x4f xrEyeView;
 	XrVector3f xrScale { 1.0, 1.0, 1.0f };
 	XrMatrix4x4f_CreateTranslationRotationScale( &xrEyeView, &eyePose.position, &eyePose.orientation, &xrScale );
 
 	glm::mat4 eyeView = glm::make_mat4( xrEyeView.m );
-	glm::mat4 eyeViewInverted = m_pCommon->InvertMatrix( eyeView );
+	glm::mat4 eyeViewInverted = Common()->InvertMatrix( eyeView );
 
 	// Generate sea of cubes
 	uint32_t nTextureCount = ( uint32_t )m_vCubeTextures.size();
@@ -370,7 +367,7 @@ void XRMirror_GL::DrawSeaOfCubesScene( OpenXRProvider::EXREye eEye, uint32_t nSw
 		}
 
 		// Set depth texture
-		const uint32_t depthTexture = GetDepth( m_pXRRender->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ) );
+		const uint32_t depthTexture = GetDepth( Render()->GetGraphicsAPI()->GetTexture2D( eEye, nSwapchainIndex ) );
 		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthTexture, 0 );
 
 		// Set shader
@@ -402,26 +399,26 @@ void XRMirror_GL::DrawSeaOfCubesScene( OpenXRProvider::EXREye eEye, uint32_t nSw
 
 void XRMirror_GL::DrawHandTrackingScene( OpenXRProvider::EXREye eEye, uint32_t nSwapchainIndex )
 {
-	assert( m_pXRRender );
+	assert( Render() );
 	assert( m_vCubeTextures.size() > 3 ); // We'll draw four large cubes in the scene
 
 	// Set eye projections if we haven't already
-	if ( !m_pCommon->EyeProjectionsSet() )
+	if ( !Common()->EyeProjectionsSet() )
 	{
-		m_pCommon->EyeProjectionLeft( m_pCommon->GetEyeProjection( m_pXRRender->GetHMDState()->LeftEye.FoV, 0.1f, 100.f ) );
-		m_pCommon->EyeProjectionRight( m_pCommon->GetEyeProjection( m_pXRRender->GetHMDState()->RightEye.FoV, 0.1f, 100.f ) );
-		m_pCommon->EyeProjectionsSet( true );
+		Common()->EyeProjectionLeft( Common()->GetEyeProjection( Render()->GetHMDState()->LeftEye.FoV, 0.1f, 100.f ) );
+		Common()->EyeProjectionRight( Common()->GetEyeProjection( Render()->GetHMDState()->RightEye.FoV, 0.1f, 100.f ) );
+		Common()->EyeProjectionsSet( true );
 	}
 
 	// Get eye view for this frame
-	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pXRRender->GetHMDState()->LeftEye.Pose : m_pXRRender->GetHMDState()->RightEye.Pose;
+	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? Render()->GetHMDState()->LeftEye.Pose : Render()->GetHMDState()->RightEye.Pose;
 
 	glm::mat4 eyeView( 1.0f );
 	glm::quat eyeRotation( eyePose.orientation.w, eyePose.orientation.x, eyePose.orientation.y, eyePose.orientation.z );
 	eyeView = glm::translate( eyeView, glm::vec3( eyePose.position.x, eyePose.position.y, eyePose.position.z ) );
 	eyeView = glm::rotate( eyeView, angle( eyeRotation ), axis( eyeRotation ) );
 
-	glm::mat4 eyeViewInverted = m_pCommon->InvertMatrix( eyeView );
+	glm::mat4 eyeViewInverted = Common()->InvertMatrix( eyeView );
 
 	// Generate four rotating cubes in scene
 	glm::vec3 vFourCubePositions[ 4 ] = {
@@ -453,7 +450,7 @@ void XRMirror_GL::DrawCube(
 	glm::vec3 cubeScale,
 	glm::vec3 cubeRotationOverTime )
 {
-	assert( m_pXRRender );
+	assert( Render() );
 
 	// Set cube texture
 	glUseProgram( nShaderTextured );
@@ -469,9 +466,9 @@ void XRMirror_GL::DrawCube(
 	cubeModel = glm::scale( cubeModel, cubeScale );
 
 	// Get eye pose
-	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pXRRender->GetHMDState()->LeftEye.Pose : m_pXRRender->GetHMDState()->RightEye.Pose;
+	XrPosef eyePose = ( eEye == OpenXRProvider::EYE_LEFT ) ? Render()->GetHMDState()->LeftEye.Pose : Render()->GetHMDState()->RightEye.Pose;
 
-	vEyeProjection[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pCommon->EyeProjectionLeft() : m_pCommon->EyeProjectionRight() ) * eyeView * cubeModel );
+	vEyeProjection[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? Common()->EyeProjectionLeft() : Common()->EyeProjectionRight() ) * eyeView * cubeModel );
 
 	// Draw cube
 	glBindBuffer( GL_ARRAY_BUFFER, cubeInstanceDataVBO );
@@ -486,16 +483,16 @@ void XRMirror_GL::DrawCube(
 
 void XRMirror_GL::DrawControllers( OpenXRProvider::EXREye eEye, glm::mat4 eyeView )
 {
-	assert( m_pXRRender );
+	assert( Render() );
 
 	// Setup model views
 	XrVector3f xrScale { 0.15f, 0.15f, 0.15f };
 
 	XrMatrix4x4f xrModelView_L;
-	XrMatrix4x4f_CreateTranslationRotationScale( &xrModelView_L, &m_pCommon->XrLocation_Left()->pose.position, &m_pCommon->XrLocation_Left()->pose.orientation, &xrScale );
+	XrMatrix4x4f_CreateTranslationRotationScale( &xrModelView_L, &Common()->XrLocation_Left()->pose.position, &Common()->XrLocation_Left()->pose.orientation, &xrScale );
 
 	XrMatrix4x4f xrModelView_R;
-	XrMatrix4x4f_CreateTranslationRotationScale( &xrModelView_R, &m_pCommon->XrLocation_Right()->pose.position, &m_pCommon->XrLocation_Right()->pose.orientation, &xrScale );
+	XrMatrix4x4f_CreateTranslationRotationScale( &xrModelView_R, &Common()->XrLocation_Right()->pose.position, &Common()->XrLocation_Right()->pose.orientation, &xrScale );
 
 	glm::mat4 controllerModel_L = glm::make_mat4( xrModelView_L.m );
 	glm::mat4 controllerModel_R = glm::make_mat4( xrModelView_R.m );
@@ -504,8 +501,8 @@ void XRMirror_GL::DrawControllers( OpenXRProvider::EXREye eEye, glm::mat4 eyeVie
 	glm::mat4 *vEyeProjections_LeftHand = new glm::mat4[ 1 ];  // max number of meshes in a single hand
 	glm::mat4 *vEyeProjections_RightHand = new glm::mat4[ 1 ]; // max number of meshes in a single hand
 
-	vEyeProjections_LeftHand[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pCommon->EyeProjectionLeft() : m_pCommon->EyeProjectionRight() ) * eyeView * controllerModel_L );
-	vEyeProjections_RightHand[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pCommon->EyeProjectionLeft() : m_pCommon->EyeProjectionRight() ) * eyeView * controllerModel_R );
+	vEyeProjections_LeftHand[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? Common()->EyeProjectionLeft() : Common()->EyeProjectionRight() ) * eyeView * controllerModel_L );
+	vEyeProjections_RightHand[ 0 ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? Common()->EyeProjectionLeft() : Common()->EyeProjectionRight() ) * eyeView * controllerModel_R );
 
 	// Set shader
 	glUseProgram( nShaderUnlit );
@@ -529,11 +526,11 @@ void XRMirror_GL::DrawControllers( OpenXRProvider::EXREye eEye, glm::mat4 eyeVie
 
 void XRMirror_GL::DrawHandJoints( OpenXRProvider::EXREye eEye, glm::mat4 eyeView )
 {
-	if ( !m_pCommon->ShouldDrawHandJoints() )
+	if ( !Common()->ShouldDrawHandJoints() )
 		return;
 
-	XrHandJointLocationsEXT *xrHandJoints_L = m_pCommon->XRHandTracking()->GetHandJointLocations( XR_HAND_LEFT_EXT );
-	XrHandJointLocationsEXT *xrHandJoints_R = m_pCommon->XRHandTracking()->GetHandJointLocations( XR_HAND_RIGHT_EXT );
+	XrHandJointLocationsEXT *xrHandJoints_L = Common()->XRHandTracking()->GetHandJointLocations( XR_HAND_LEFT_EXT );
+	XrHandJointLocationsEXT *xrHandJoints_R = Common()->XRHandTracking()->GetHandJointLocations( XR_HAND_RIGHT_EXT );
 
 	uint32_t nMeshIndex = 0;
 	glm::mat4 *vEyeProjections_LeftHand = new glm::mat4[ 26 ];	// max number of joint meshes in a single hand
@@ -549,7 +546,7 @@ void XRMirror_GL::DrawHandJoints( OpenXRProvider::EXREye eEye, glm::mat4 eyeView
 
 		glm::mat4 jointModel_L = glm::make_mat4( xrModelView_L.m );
 
-		vEyeProjections_LeftHand[ nMeshIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pCommon->EyeProjectionLeft() : m_pCommon->EyeProjectionRight() ) * eyeView * jointModel_L );
+		vEyeProjections_LeftHand[ nMeshIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? Common()->EyeProjectionLeft() : Common()->EyeProjectionRight() ) * eyeView * jointModel_L );
 
 		// Fill eye mvp for right hand joint meshes
 		XrMatrix4x4f xrModelView_R;
@@ -559,7 +556,7 @@ void XRMirror_GL::DrawHandJoints( OpenXRProvider::EXREye eEye, glm::mat4 eyeView
 
 		glm::mat4 jointModel_R = glm::make_mat4( xrModelView_R.m );
 
-		vEyeProjections_RightHand[ nMeshIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pCommon->EyeProjectionLeft() : m_pCommon->EyeProjectionRight() ) * eyeView * jointModel_R );
+		vEyeProjections_RightHand[ nMeshIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? Common()->EyeProjectionLeft() : Common()->EyeProjectionRight() ) * eyeView * jointModel_R );
 
 		++nMeshIndex;
 	}
@@ -590,7 +587,7 @@ void XRMirror_GL::FillEyeMVP( glm::mat4 *vEyeProjections, glm::mat4 eyeView, Ope
 	cubeModel = glm::translate( cubeModel, cubePosition );
 	cubeModel = glm::scale( cubeModel, cubeScale );
 
-	vEyeProjections[ nCubeIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pCommon->EyeProjectionLeft() : m_pCommon->EyeProjectionRight() ) * eyeView * cubeModel );
+	vEyeProjections[ nCubeIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? Common()->EyeProjectionLeft() : Common()->EyeProjectionRight() ) * eyeView * cubeModel );
 }
 
 void XRMirror_GL::FillEyeMVP_RotateOverTime(
@@ -615,7 +612,7 @@ void XRMirror_GL::FillEyeMVP_RotateOverTime(
 	cubeModel = glm::rotate( cubeModel, ( float )SDL_GetTicks() / 1000, cubeRotation );
 	cubeModel = glm::scale( cubeModel, cubeScale );
 
-	vEyeProjections[ nCubeIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? m_pCommon->EyeProjectionLeft() : m_pCommon->EyeProjectionRight() ) * eyeView * cubeModel );
+	vEyeProjections[ nCubeIndex ] = ( ( ( eEye == OpenXRProvider::EYE_LEFT ) ? Common()->EyeProjectionLeft() : Common()->EyeProjectionRight() ) * eyeView * cubeModel );
 }
 
 uint32_t XRMirror_GL::GetDepth( uint32_t nTexture, GLint nMinFilter, GLint nMagnitudeFilter, GLint nWrapS, GLint nWrapT, GLint nDepthFormat )
@@ -669,10 +666,10 @@ GLuint XRMirror_GL::CreateShaderProgram( const wchar_t *pVertexShaderFile, const
 
 	// Create a shader program
 	GLuint nShaderVisMask = glCreateProgram();
-	m_pLogger->info( "Shader program created ({})", nShaderVisMask );
+	Logger()->info( "Shader program created ({})", nShaderVisMask );
 
 	// Link shader to the program
-	m_pLogger->info( "Linking vertex ({}) and fragment ({}) shaders to shader program ({})", nVertexShaderID, nFragmentShaderID, nShaderVisMask );
+	Logger()->info( "Linking vertex ({}) and fragment ({}) shaders to shader program ({})", nVertexShaderID, nFragmentShaderID, nShaderVisMask );
 
 	glAttachShader( nShaderVisMask, nVertexShaderID );
 	glAttachShader( nShaderVisMask, nFragmentShaderID );
@@ -689,7 +686,7 @@ GLuint XRMirror_GL::CreateShaderProgram( const wchar_t *pVertexShaderFile, const
 	{
 		char eMessage[ MAX_STRING_LEN ];
 		glGetProgramInfoLog( nShaderVisMask, nReturnLogLength, NULL, &eMessage[ 0 ] );
-		m_pLogger->error( "Unable to link shader program ({}) to vertex ({}) and fragment ({}) shaders. {}", nShaderVisMask, nVertexShaderID, nFragmentShaderID, eMessage );
+		Logger()->error( "Unable to link shader program ({}) to vertex ({}) and fragment ({}) shaders. {}", nShaderVisMask, nVertexShaderID, nFragmentShaderID, eMessage );
 
 		return 0;
 	}
@@ -702,7 +699,7 @@ GLuint XRMirror_GL::CreateShaderProgram( const wchar_t *pVertexShaderFile, const
 	glDeleteShader( nFragmentShaderID );
 
 	// Return shader program id
-	m_pLogger->info( "Shader program ({}) succesfully created and linked to the vertex ({}) and fragment ({}) shaders", nShaderVisMask, nVertexShaderID, nFragmentShaderID );
+	Logger()->info( "Shader program ({}) succesfully created and linked to the vertex ({}) and fragment ({}) shaders", nShaderVisMask, nVertexShaderID, nFragmentShaderID );
 	return nShaderVisMask;
 }
 
@@ -711,14 +708,14 @@ GLuint XRMirror_GL::LoadShaderFromDisk( GLenum eShaderType, const char *pFilePat
 	GLuint nShaderID = glCreateShader( eShaderType );
 
 	// Read shader from disk
-	m_pLogger->info( "Reading shader file {}", pFilePath );
+	Logger()->info( "Reading shader file {}", pFilePath );
 
 	std::string sShaderCode;
 	std::ifstream inShaderStream( pFilePath, std::ios::in );
 
 	if ( !inShaderStream.is_open() )
 	{
-		m_pLogger->error( "Can't open shader file {}", pFilePath );
+		Logger()->error( "Can't open shader file {}", pFilePath );
 		return 0;
 	}
 
@@ -727,10 +724,10 @@ GLuint XRMirror_GL::LoadShaderFromDisk( GLenum eShaderType, const char *pFilePat
 	sShaderCode = sstr.str();
 	inShaderStream.close();
 
-	m_pLogger->info( "Shader file retrieved from disk ({})", pFilePath );
+	Logger()->info( "Shader file retrieved from disk ({})", pFilePath );
 
 	// Compile shader
-	m_pLogger->info( "Compiling shader" );
+	Logger()->info( "Compiling shader" );
 
 	char const *pShaderSrcPtr = sShaderCode.c_str();
 	glShaderSource( nShaderID, 1, &pShaderSrcPtr, NULL );
@@ -747,11 +744,11 @@ GLuint XRMirror_GL::LoadShaderFromDisk( GLenum eShaderType, const char *pFilePat
 	{
 		char eMessage[ MAX_STRING_LEN ];
 		glGetShaderInfoLog( nShaderID, nReturnLogLength, NULL, &eMessage[ 0 ] );
-		m_pLogger->error( "Unable to compile shader. {}", eMessage );
+		Logger()->error( "Unable to compile shader. {}", eMessage );
 
 		return 0;
 	}
 
-	m_pLogger->info( "Shader compiled successfully" );
+	Logger()->info( "Shader compiled successfully" );
 	return nShaderID;
 }

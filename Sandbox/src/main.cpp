@@ -276,7 +276,7 @@ int main( int argc, char *argv[] )
 		}
 
 		// SDL: present the back buffer
-		SDL_GL_SwapWindow( pXRMirror->GetWindow() );
+		SDL_GL_SwapWindow( pXRMirror->SDLWindow() );
 
 		// SDL: Poll events
 		PollSDLEvents();
