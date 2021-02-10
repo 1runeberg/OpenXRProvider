@@ -23,8 +23,16 @@
 
 #pragma once
 
+//#define XR_GRAPHICS_API_OPENGL 1
+#define XR_GRAPHICS_API_DX11 1
+
+#ifdef XR_GRAPHICS_API_OPENGL
 // Sandbox includes
 #include <XRMirror_GL.h>
+
+#elif XR_GRAPHICS_API_DX11
+#include <XRMirror_DX11.h>
+#endif
 
 // OpenXR Provider includes
 #include <OpenXRProvider.h>
@@ -72,8 +80,15 @@ char pAppLogFile[ MAX_PATH ] = "";
 /// Pointer to the Utilities (SandboxCommon) class instantiated and used by the sandbox app (logging utility lives here)
 SandboxCommon *pCommon = nullptr;
 
+#ifdef XR_GRAPHICS_API_OPENGL
 /// Pointer to the XRMirror_GL class that handles the desktop window where textures sent to the HMD are blitted (copied) to
 XRMirror_GL *pXRMirror = nullptr;
+
+#elif XR_GRAPHICS_API_DX11
+/// Pointer to the XRMirror_DX11 class that handles the desktop window where textures sent to the HMD are blitted (copied) to
+XRMirror_DX11 *pXRMirror = nullptr;
+
+#endif
 
 /// Stores the current OpenXR session state
 XrSessionState xrCurrentSessionState = XR_SESSION_STATE_UNKNOWN;

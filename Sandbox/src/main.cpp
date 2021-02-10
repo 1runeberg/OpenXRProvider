@@ -275,9 +275,11 @@ int main( int argc, char *argv[] )
 			}
 		}
 
+		#ifdef XR_GRAPHICS_API_GL
 		// SDL: present the back buffer
 		SDL_GL_SwapWindow( pXRMirror->SDLWindow() );
-
+		#endif // XR_GRAPHICS_API_GL
+		
 		// SDL: Poll events
 		PollSDLEvents();
 	} 
@@ -381,7 +383,11 @@ int AppSetup()
 	std::string sWindowTitle = APP_PROJECT_NAME;
 	sWindowTitle += ". Press: [1] Sea of Cubes (default), [2] Hand Tracking, [SPACEBAR] Toggle hands [ESC] Quit";
 
+#ifdef XR_GRAPHICS_API_OPENGL
 	pXRMirror = new XRMirror_GL( pCommon, APP_MIRROR_WIDTH, APP_MIRROR_HEIGHT, sWindowTitle.c_str(), sCurrentPath, pAppLogFile );
+#elif XR_GRAPHICS_API_DX11
+	pXRMirror = new XRMirror_DX11( pCommon, APP_MIRROR_WIDTH, APP_MIRROR_HEIGHT, sWindowTitle.c_str(), sCurrentPath, pAppLogFile );
+#endif
 
 	return 0;
 }

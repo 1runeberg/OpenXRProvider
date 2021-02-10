@@ -23,9 +23,11 @@
 
 #pragma once
 
-#include "../../Sandbox/third_party/glad/include/glad/glad.h"
-
 #include <rendering/XRGraphicsAwareTypes.h>
+
+#ifdef XR_USE_GRAPHICS_API_OPENGL
+	#include "../../Sandbox/third_party/glad/include/glad/glad.h"
+#endif
 
 namespace OpenXRProvider
 {

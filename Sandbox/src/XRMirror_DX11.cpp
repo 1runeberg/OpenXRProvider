@@ -36,13 +36,10 @@ XRMirror_DX11::XRMirror_DX11( SandboxCommon *pCommon, int nWidth, int nHeight, c
 
 	Logger()->set_level( spdlog::level::trace );
 	Logger()->set_pattern( "[%Y-%b-%d %a] [%T %z] [%^%L%$] [%n] %v" );
-	Logger()->info( "G'day from {}! Logging to: {}", "XRMirror - OpenGL", sLogFile );
+	Logger()->info( "G'day from {}! Logging to: {}", "XRMirror - DX11", sLogFile );
 
 	// Initialize sdl
 	SDL_Init( SDL_INIT_VIDEO );
-	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
-	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 3 );
-	SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
 
 	// Create sdl window
 	SDLWindow(SDL_CreateWindow( pTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, nWidth, nHeight, 0 ));
@@ -62,7 +59,7 @@ XRMirror_DX11::~XRMirror_DX11()
 {
 	// Delete logger
 	if ( Logger() )
-		spdlog::drop( "XRMirror - OpenGL" );
+		spdlog::drop( "XRMirror - DX11" );
 
 	// Destroy window
 	if ( SDLWindow() )
