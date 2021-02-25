@@ -145,6 +145,14 @@ namespace OpenXRProvider
 		m_pXRInputProfile_ValveIndex = new XRInputProfile_ValveIndex( m_pXRLogger );
 	}
 
+	XrPath XRInput::GetXRPath( const char *sPath ) 
+	{
+		XrPath xrPath;
+		xrStringToPath( m_pXRCore->GetXRInstance(), sPath, &xrPath );
+
+		return xrPath;
+	}
+
 	XrActionSet XRInput::CreateActionSet( const char *pName, const char *pLocalizedName, uint32_t nPriority ) 
 	{
 		assert( m_pXRCore && m_pXRCore->GetXRInstance() != XR_NULL_HANDLE );
@@ -302,16 +310,6 @@ namespace OpenXRProvider
 
 		m_pXRLogger->info( "Interaction profile suggested to runtime: {}", sInteractionProfilePath );
 
-		XrSessionActionSetsAttachInfo xrSessionActionSetsAttachInfo { XR_TYPE_SESSION_ACTION_SETS_ATTACH_INFO };
-		xrSessionActionSetsAttachInfo.countActionSets = ( uint32_t )m_vActionSets.size();
-		xrSessionActionSetsAttachInfo.actionSets = m_vActionSets.data();
-
-		m_xrLastCallResult = XR_CALL_SILENT( xrAttachSessionActionSets( m_pXRCore->GetXRSession(), &xrSessionActionSetsAttachInfo ), m_pXRLogger );
-
-		if ( m_xrLastCallResult == XR_SUCCESS )
-			m_pXRLogger->info(
-				"{} action sets attached to the current session ({})", xrSessionActionSetsAttachInfo.countActionSets, ( uint64_t )m_pXRCore->GetXRSession() );
-
 		return m_xrLastCallResult;
 	}
 
@@ -321,6 +319,16 @@ namespace OpenXRProvider
 
 		XrActiveActionSet xrActiveActionSet { xrActionSet, xrFilter };
 		m_vActiveActionSets.push_back( xrActiveActionSet );
+
+		XrSessionActionSetsAttachInfo xrSessionActionSetsAttachInfo { XR_TYPE_SESSION_ACTION_SETS_ATTACH_INFO };
+		xrSessionActionSetsAttachInfo.countActionSets = ( uint32_t )m_vActionSets.size();
+		xrSessionActionSetsAttachInfo.actionSets = m_vActionSets.data();
+
+		m_xrLastCallResult = XR_CALL_SILENT( xrAttachSessionActionSets( m_pXRCore->GetXRSession(), &xrSessionActionSetsAttachInfo ), m_pXRLogger );
+
+		if ( m_xrLastCallResult == XR_SUCCESS )
+			m_pXRLogger->info( "{} action sets attached to the current session ({})", xrSessionActionSetsAttachInfo.countActionSets, ( uint64_t )m_pXRCore->GetXRSession() );
+
 	}
 
 	XrResult XRInput::SyncActiveActionSetsData() 
@@ -394,6 +402,42 @@ namespace OpenXRProvider
 		m_xrLastCallResult = XR_CALL_SILENT( xrGetActionStatePose( m_pXRCore->GetXRSession(), &xrActionStateGetInfo, xrActionState ), m_pXRLogger );
 
 		return m_xrLastCallResult;
+	}
+
+	const char *XRInput::GetCurrentInteractionProfile( const char *sUserPath ) 
+	{
+		assert( m_pXRCore->GetXRSession() );
+
+		XrPath xrPath = GetXRPath( sUserPath );
+
+		XrInteractionProfileState xrInteractionProfileState { XR_TYPE_INTERACTION_PROFILE_STATE };
+		m_xrLastCallResult = xrGetCurrentInteractionProfile(m_pXRCore->GetXRSession(), xrPath, &xrInteractionProfileState);
+
+		XrPath xrInputProfilePath = GetXRPath( m_pXRInputProfile_ValveIndex->GetInputProfile() );
+
+		if ( m_xrLastCallResult == XR_SUCCESS )
+		{
+			if (xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_ValveIndex->GetInputProfile() ) )
+				return m_pXRInputProfile_ValveIndex->GetInputProfile();
+			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_KhronosSimple->GetInputProfile() ) )
+				return m_pXRInputProfile_KhronosSimple->GetInputProfile();
+			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_HTCVive->GetInputProfile() ) )
+				return m_pXRInputProfile_HTCVive->GetInputProfile();
+			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_HTCVivePro->GetInputProfile() ) )
+				return m_pXRInputProfile_HTCVivePro->GetInputProfile();
+			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_OculusTouch->GetInputProfile() ) )
+				return m_pXRInputProfile_OculusTouch->GetInputProfile();
+			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_OculusGo->GetInputProfile() ) )
+				return m_pXRInputProfile_OculusGo->GetInputProfile();
+			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_MicrosoftMR->GetInputProfile() ) )
+				return m_pXRInputProfile_MicrosoftMR->GetInputProfile();
+			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_MicrosoftXBox->GetInputProfile() ) )
+				return m_pXRInputProfile_MicrosoftXBox->GetInputProfile();
+			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_GoogleDaydream->GetInputProfile() ) )
+				return m_pXRInputProfile_GoogleDaydream->GetInputProfile();
+		}
+
+		return "";
 	}
 
 	XrResult XRInput::GenerateHaptic(

@@ -304,16 +304,26 @@ static void Callback_XR_Event( XrEventDataBuffer xrEvent )
 {
 	assert( pUtils && pUtils->GetLogger() );
 
+	const XrEventDataSessionStateChanged& xrEventDataSessionStateChanged = *reinterpret_cast<XrEventDataSessionStateChanged*>(&xrEvent);
+	const XrEventDataInteractionProfileChanged& xrEventDataInteractionProfileChanged = *reinterpret_cast<XrEventDataInteractionProfileChanged*>(&xrEvent);
+
 	switch ( xrEvent.type )
 	{
-		case XR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED:
-			const XrEventDataSessionStateChanged &xrEventDataSessionStateChanged = *reinterpret_cast< XrEventDataSessionStateChanged * >( &xrEvent );
-			
+		case XR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED:	
 			pUtils->GetLogger()->info( "Session State changing from {} to {}", 
 				OpenXRProvider::XrEnumToString( xrCurrentSessionState ), OpenXRProvider::XrEnumToString( xrEventDataSessionStateChanged.state ) );
 			
 			xrCurrentSessionState = xrEventDataSessionStateChanged.state;
 			
+			break;
+
+		case XR_TYPE_EVENT_DATA_INTERACTION_PROFILE_CHANGED:	
+			pUtils->GetLogger()->info( "Interaction Profile changed to Left: {}, Right: {} ", 
+				pXRProvider->Input()->GetCurrentInteractionProfile( "/user/hand/left" ),
+				pXRProvider->Input()->GetCurrentInteractionProfile("/user/hand/right") );
+			break;
+
+		default:
 			break;
 	}
 }

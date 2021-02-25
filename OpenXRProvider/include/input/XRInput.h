@@ -166,6 +166,11 @@ namespace OpenXRProvider
 		/// @return		XrResult		Result of retrieving the action state
 		XrResult GetActionStatePose( XrAction xrAction, XrActionStatePose *xrActionState );
 
+		/// Get the currently active interaction profile
+		/// @param[in]	sUserPath	The top level user path (e.g. "/user/hand/left")
+		/// @return		const char*	The currently active interaction profile
+		const char* GetCurrentInteractionProfile( const char* sUserPath );
+
 		/// Generate haptic feedback
 		/// @param[in]  xrAction		Haptics action
 		/// @param[in]	nDuration		Duration in nanoseconds
@@ -223,6 +228,11 @@ namespace OpenXRProvider
 		XRInputProfile_OculusGo *m_pXRInputProfile_OculusGo = nullptr;
 		XRInputProfile_OculusTouch *m_pXRInputProfile_OculusTouch = nullptr;
 		XRInputProfile_ValveIndex* m_pXRInputProfile_ValveIndex = nullptr;
+
+		/// Get the currently active interaction profile
+		/// @param[in]	sPath	The string path to get the OpenXR Path
+		/// @return		XrPath	The XrPath 
+		XrPath GetXRPath( const char* sPath );
 
 	};
 } // namespace OpenXRProvider
