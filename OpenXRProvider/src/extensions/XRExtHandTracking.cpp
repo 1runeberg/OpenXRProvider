@@ -102,16 +102,16 @@ namespace OpenXRProvider
 		bool bIsLeftHand = eHand == XR_HAND_LEFT_EXT;
 
 		// Check if app actually wants to grab hand joints data for this hand
-		if ( bIsLeftHand && !IsHandTrackingActive_Left() )
+		if ( bIsLeftHand && !IsActive_Left() )
 			return;
-		else if ( !bIsLeftHand && !IsHandTrackingActive_Right() )
+		else if ( !bIsLeftHand && !IsActive_Right() )
 			return;
 
 		// Check if app wants velocity data
 		if ( bIsLeftHand )
-			m_xrLocations_Left.next = GetHandJointVelocities_Left() ? &m_xrVelocities_Left : nullptr;
+			m_xrLocations_Left.next = IncludeVelocities_Left() ? &m_xrVelocities_Left : nullptr;
 		else
-			m_xrLocations_Right.next = GetHandJointVelocities_Right() ? &m_xrVelocities_Right : nullptr;
+			m_xrLocations_Right.next = IncludeVelocities_Right() ? &m_xrVelocities_Right : nullptr;
 
 		// Finally, get the hand joints data
 		XrHandJointsLocateInfoEXT xrHandJointsLocateInfo { XR_TYPE_HAND_JOINTS_LOCATE_INFO_EXT };
