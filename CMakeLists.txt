@@ -13,7 +13,7 @@ if(NOT PLATFORM)
 	if(CMAKE_SIZEOF_VOID_P MATCHES 8)
 	    set(PLATFORM 64)
 	else()
-        message(FATAL_ERROR "ERROR: Only 32-bit platforms are supported.")
+        message(FATAL_ERROR "ERROR: Only 64-bit platforms are supported.")
 	endif()
 endif()
 
