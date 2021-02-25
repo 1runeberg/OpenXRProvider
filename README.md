@@ -34,8 +34,8 @@ Detailed logs in the console and `bin/logs` directory could be of particular int
 
 **II. Building Pre-requisites**
 
-Visual Studio 2019 with C++ modules
-CMake 3.14.4 and above
+Visual Studio 2019 with C++ modules (or VS 2017)
+CMake 3.14.4 and above (https://cmake.org/download/) - Install with include in system path option
 
 
 **III. Building**
@@ -43,7 +43,7 @@ CMake 3.14.4 and above
  1. Clone or copy the repository from GitHub
  2. From the root directory of the repository, create a build directory (`mkdir build`)
  3. Go to the build directory (`cd build`)
- 4. Run CMake (`cmake ..`) A *openxr_provider.sln* file is generated in the build directory which you can then open and use in Visual Studio 2019
+ 4. Run CMake (`cmake ..` or for VS 2017 `cmake -G "Visual Studio 15 2017 Win64" ..`) A *openxr_provider.sln* file is generated in the build directory which you can then open and use in Visual Studio 2019
  5. Optional: Build the library and Sandbox application in CMake (`cmake --build .`)
 
 Note: Currently supports Windows x64, OpenGL 3.2 and above
