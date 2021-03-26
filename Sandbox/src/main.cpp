@@ -50,6 +50,8 @@
 
 int main()
 {
+	//Sleep(10000);
+
 	// Setup our sandbox application, which will be used for testing
 	if ( AppSetup() != 0 )
 		return -1;
@@ -275,6 +277,16 @@ int main()
 
 				pXRProvider->Input()->GetActionPose( xrAction_PoseLeft, nPredictedTime, &xrLocation_Left );
 				pXRProvider->Input()->GetActionPose( xrAction_PoseRight, nPredictedTime, &xrLocation_Right );
+
+				pUtils->GetLogger()->info("Left: pos ({}, {}, {}) rot ({}, {}, {}, {})", 
+					xrLocation_Left.pose.position.x, xrLocation_Left.pose.position.y, xrLocation_Left.pose.position.z,
+					xrLocation_Left.pose.orientation.x, xrLocation_Left.pose.orientation.y, xrLocation_Left.pose.orientation.z, xrLocation_Left.pose.orientation.w
+					);
+
+				pUtils->GetLogger()->info("Right: pos ({}, {}, {}) rot ({}, {}, {}, {})",
+					xrLocation_Right.pose.position.x, xrLocation_Right.pose.position.y, xrLocation_Right.pose.position.z,
+					xrLocation_Right.pose.orientation.x, xrLocation_Right.pose.orientation.y, xrLocation_Right.pose.orientation.z, xrLocation_Right.pose.orientation.w
+				);
 
 				// 3.4 Update any other input dependent poses (e.g. handtracking extension)
 				if ( bDrawHandJoints )
