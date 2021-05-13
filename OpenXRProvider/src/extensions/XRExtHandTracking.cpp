@@ -95,7 +95,7 @@ namespace OpenXRProvider
 			XR_CALL( xrGetInstanceProcAddr( m_xrInstance, "xrLocateHandJointsEXT", ( PFN_xrVoidFunction * )&xrLocateHandJointsEXT ), m_pXRLogger, true );
 	}
 
-	void XRExtHandTracking::LocateHandJoints( XrHandEXT eHand, XrSpace xrSpace, XrTime xrTime )
+	void XRExtHandTracking::LocateHandJoints( XrHandEXT eHand, XrSpace xrSpace, XrTime xrTime, XrHandJointsMotionRangeEXT eMotionrange )
 	{
 		assert( xrLocateHandJointsEXT );
 
@@ -117,6 +117,15 @@ namespace OpenXRProvider
 		XrHandJointsLocateInfoEXT xrHandJointsLocateInfo { XR_TYPE_HAND_JOINTS_LOCATE_INFO_EXT };
 		xrHandJointsLocateInfo.baseSpace = xrSpace;
 		xrHandJointsLocateInfo.time = xrTime;
+
+		// Check for motion range
+		xrHandJointsLocateInfo.next = NULL;
+		if ( eMotionrange == XR_HAND_JOINTS_MOTION_RANGE_CONFORMING_TO_CONTROLLER_EXT )
+		{
+			XrHandJointsMotionRangeInfoEXT xrHandJointsMotionRangeInfo{ XR_TYPE_HAND_JOINTS_MOTION_RANGE_INFO_EXT };
+			xrHandJointsMotionRangeInfo.handJointsMotionRange = eMotionrange;
+			xrHandJointsLocateInfo.next = &xrHandJointsMotionRangeInfo;
+		}
 
 		XR_CALL_SILENT(
 			xrLocateHandJointsEXT(

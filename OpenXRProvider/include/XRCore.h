@@ -27,6 +27,7 @@
 #include <XREventHandler.h>
 #include <rendering/XRGraphicsAwareTypes.h>
 #include <extensions/XRExtHandTracking.h>
+#include <extensions/XRExtHandJointsMotionRange.h>
 
 #define LOG_TITLE	"OpenXR"
 

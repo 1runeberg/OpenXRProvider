@@ -68,8 +68,9 @@ int main()
 
 	pXRVisibilityMask = new OpenXRProvider::XRExtVisibilityMask( pUtils->GetLogger() );
 	pXRHandTracking = new OpenXRProvider::XRExtHandTracking( pUtils->GetLogger() );
+	pXRHandJointsMotionRange = new OpenXRProvider::XRExtHandJointsMotionRange(pUtils->GetLogger());
 
-	std::vector< void * > RequestExtensions{ pXRVisibilityMask, pXRHandTracking };
+	std::vector< void * > RequestExtensions{ pXRVisibilityMask, pXRHandTracking, pXRHandJointsMotionRange };
 
 	// (2) Setup the application metadata which will be used by the OpenXR Provider
 	//     library to setup an instance and session with the OpenXR loader
@@ -279,8 +280,18 @@ int main()
 				// 3.4 Update any other input dependent poses (e.g. handtracking extension)
 				if ( bDrawHandJoints )
 				{
+					// Left Hand (Open Hand/Unobstructed)
 					pXRProvider->Core()->GetExtHandTracking()->LocateHandJoints( XR_HAND_LEFT_EXT, pXRProvider->Core()->GetXRSpace(), nPredictedTime );
-					pXRProvider->Core()->GetExtHandTracking()->LocateHandJoints( XR_HAND_RIGHT_EXT, pXRProvider->Core()->GetXRSpace(), nPredictedTime );
+
+					// Right Hand (With Controller if motion range is available)
+					if ( pXRHandJointsMotionRange!= nullptr )
+					{
+						pXRProvider->Core()->GetExtHandTracking()->LocateHandJoints(XR_HAND_RIGHT_EXT, pXRProvider->Core()->GetXRSpace(), nPredictedTime, XR_HAND_JOINTS_MOTION_RANGE_CONFORMING_TO_CONTROLLER_EXT );
+					}
+					else
+					{
+						pXRProvider->Core()->GetExtHandTracking()->LocateHandJoints(XR_HAND_RIGHT_EXT, pXRProvider->Core()->GetXRSpace(), nPredictedTime );
+					}
 				}
 			}
 		}

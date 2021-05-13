@@ -60,7 +60,7 @@ namespace OpenXRProvider
 
 		void Init( const XrInstance xrInstance, XrSession xrSession );
 
-		void LocateHandJoints( XrHandEXT eHand, XrSpace xrSpace, XrTime xrTime );
+		void LocateHandJoints( XrHandEXT eHand, XrSpace xrSpace, XrTime xrTime, XrHandJointsMotionRangeEXT eMotionrange = XR_HAND_JOINTS_MOTION_RANGE_UNOBSTRUCTED_EXT);
 
 		bool IsActive_Left() const { return bIsHandTrackingActive_Left; }
 		void IsActive_Left( bool val ) { bIsHandTrackingActive_Left = val; }

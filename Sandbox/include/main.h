@@ -183,6 +183,9 @@ OpenXRProvider::XRExtVisibilityMask *pXRVisibilityMask = nullptr;
 /// Pointer to the XRExtVisibilityMask class of the OpenXR Provider library which handles the OpenXR visibility mask extension for runtimes that support it
 OpenXRProvider::XRExtHandTracking* pXRHandTracking = nullptr;
 
+/// Pointer to the XrExtHandJointsMotionRange class of the OpenXR Provider library which handles specifying motion ranges for the hand joints for runtimes that support it
+OpenXRProvider::XRExtHandJointsMotionRange* pXRHandJointsMotionRange = nullptr;
+
 
 /// -------------------------------
 /// INPUTS
