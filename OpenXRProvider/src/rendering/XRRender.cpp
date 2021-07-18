@@ -575,7 +575,7 @@ namespace OpenXRProvider
 			{
 				xrSwapChainCreateInfo.usageFlags = XR_SWAPCHAIN_USAGE_SAMPLED_BIT | XR_SWAPCHAIN_USAGE_COLOR_ATTACHMENT_BIT;
 			}
-
+			
 			m_xrLastCallResult = XR_CALL( xrCreateSwapchain( m_pXRCore->GetXRSession(), &xrSwapChainCreateInfo, &xrSwapChain ), m_pXRLogger, true );
 
 			if ( bIsDepth )

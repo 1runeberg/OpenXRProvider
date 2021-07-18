@@ -1,0 +1,3 @@
+[submodule "Sandbox/third_party/DiligentEngine"]
+	path = Sandbox/third_party/DiligentEngine
+	url = https://github.com/DiligentGraphics/DiligentEngine.git

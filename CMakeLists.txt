@@ -17,28 +17,26 @@ if(NOT PLATFORM)
 	endif()
 endif()
 
-# Set the sandbox as the startup project in VS
+# Set the demo as the startup project in VS
 set_property (DIRECTORY PROPERTY VS_STARTUP_PROJECT "Sandbox")
 
 # OpenXR Provider
 add_subdirectory(OpenXRProvider)
+
+# Diligent DiligentEngine
+add_subdirectory(Sandbox/third_party/DiligentEngine)
 
 # Add additional libraries
 set (LIBS_INCLUDE 
     ${CMAKE_SOURCE_DIR}/OpenXRProvider/include
     ${CMAKE_SOURCE_DIR}/OpenXRProvider/spdlog
     ${CMAKE_SOURCE_DIR}/Sandbox/third_party
-    ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glad/include
-    ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glfw/include
     )
-
-set (LIBS_SOURCES
-    ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glad/src/glad.c)
 
 # Add project public include directories
 set (OPENXR_SANDBOX_INCLUDE
         ${CMAKE_SOURCE_DIR}/Sandbox
-		${CMAKE_SOURCE_DIR}/Sandbox/include
+        ${CMAKE_SOURCE_DIR}/Sandbox/src
         ${LIBS_INCLUDE}
 	)
 message(STATUS "Added OpenXR Sandbox public include directories: 
@@ -46,9 +44,8 @@ message(STATUS "Added OpenXR Sandbox public include directories:
 
 # Find all project header files
 file(GLOB OPENXR_SANDBOX_HEADERS
-        "${CMAKE_SOURCE_DIR}/Sandbox/*.h" 
-	    "${CMAKE_SOURCE_DIR}/Sandbox/include/*.h" 
         "${CMAKE_SOURCE_DIR}/Sandbox/src/*.h"
+        "${CMAKE_SOURCE_DIR}/Sandbox/src/*.hpp"
 	)
 message(STATUS "Found OpenXR Sandbox headers
     \ ${OPENXR_SANDBOX_HEADERS}")
@@ -56,10 +53,7 @@ message(STATUS "Found OpenXR Sandbox headers
 
 # Find all project source files
 file(GLOB OPENXR_SANDBOX_SOURCE
-        "${CMAKE_SOURCE_DIR}/Sandbox/*.cpp"
 	    "${CMAKE_SOURCE_DIR}/Sandbox/src/*.cpp"
-        "${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/*.glsl"
-        "${CMAKE_SOURCE_DIR}/Sandbox/third_party/stb/*.cpp"
 	)
 message(STATUS "Found OpenXR Sandbox source
     \  ${OPENXR_SANDBOX_SOURCE}")
@@ -70,10 +64,11 @@ include_directories(Sandbox PUBLIC
     )
 
 # Add project header and source files to project
-add_executable(Sandbox 
+add_executable(Sandbox WIN32
     ${OPENXR_SANDBOX_HEADERS} 
     ${OPENXR_SANDBOX_SOURCE}
     ${LIBS_SOURCES})
+target_compile_options(Sandbox PRIVATE -DUNICODE -DENGINE_DLL)
 
 # Set output directories
 set_target_properties(Sandbox PROPERTIES
@@ -85,17 +80,23 @@ set_target_properties(Sandbox PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_SOURCE_DIR}/bin"
 )
 
-# GLFW
-set(LIB_GLFW "${CMAKE_SOURCE_DIR}/Sandbox/third_party/glfw/lib/glfw3.lib")
-
-# OpenGL
-set(LIB_OPENGL "opengl32.lib")
-
 # Add libraries
 target_link_libraries(Sandbox PUBLIC 
     ${LIB_GLFW}
     opengl32.lib
-    OpenXRProvider)
+    OpenXRProvider
+    Diligent-Common
+    Diligent-GraphicsTools
+    Diligent-TextureLoader
+    Diligent-TargetPlatform
+    Diligent-Imgui
+    Diligent-NativeAppBase
+    Diligent-GraphicsEngineD3D11-shared
+    Diligent-GraphicsEngineOpenGL-shared
+    Diligent-GraphicsEngineD3D12-shared
+    Diligent-GraphicsEngineVk-shared
+    Diligent-Win32Platform
+    )
 
 # Post-Build
 add_custom_command(TARGET Sandbox POST_BUILD
@@ -110,38 +111,6 @@ add_custom_command(TARGET Sandbox POST_BUILD
             ${CMAKE_SOURCE_DIR}/OpenXRProvider/third_party/openxr_loader_windows/x64/bin/openxr_loader.dll
             ${CMAKE_SOURCE_DIR}/bin/openxr_loader.dll
 	
-        COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/vert-vismask.glsl
-            ${CMAKE_SOURCE_DIR}/bin/shaders/vert-vismask.glsl
-
-        COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/frag-vismask.glsl
-            ${CMAKE_SOURCE_DIR}/bin/shaders/frag-vismask.glsl
-
-        COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/vert-lit.glsl
-            ${CMAKE_SOURCE_DIR}/bin/shaders/vert-lit.glsl
-
-        COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/frag-lit.glsl
-            ${CMAKE_SOURCE_DIR}/bin/shaders/frag-lit.glsl
-         
-        COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/vert-unlit.glsl
-            ${CMAKE_SOURCE_DIR}/bin/shaders/vert-unlit.glsl
-
-        COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/frag-unlit.glsl
-            ${CMAKE_SOURCE_DIR}/bin/shaders/frag-unlit.glsl
-
-        COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/vert-textured.glsl
-            ${CMAKE_SOURCE_DIR}/bin/shaders/vert-textured.glsl
-
-        COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_SOURCE_DIR}/Sandbox/src/shaders/frag-textured.glsl
-            ${CMAKE_SOURCE_DIR}/bin/shaders/frag-textured.glsl
-
         COMMAND ${CMAKE_COMMAND} -E copy
             ${CMAKE_SOURCE_DIR}/Sandbox/img/t_bellevue_valve.png
             ${CMAKE_SOURCE_DIR}/bin/img/t_bellevue_valve.png

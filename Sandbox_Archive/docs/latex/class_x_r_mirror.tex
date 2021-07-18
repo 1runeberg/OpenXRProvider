@@ -1,0 +1,130 @@
+\hypertarget{class_x_r_mirror}{}\section{X\+R\+Mirror Class Reference}
+\label{class_x_r_mirror}\index{XRMirror@{XRMirror}}
+
+
+{\ttfamily \#include \char`\"{}X\+R\+Mirror.\+h\char`\"{}}
+
+
+
+Collaboration diagram for X\+R\+Mirror\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=149pt]{class_x_r_mirror__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_x_r_mirror_a8eef43790b56bb299df314080be53ad9}{X\+R\+Mirror}} (int n\+Width, int n\+Height, const char $\ast$p\+Title, const char $\ast$s\+Log\+File)
+\item 
+\mbox{\hyperlink{class_x_r_mirror_a2406d486889b31a1854d7d276a9e71f2}{$\sim$\+X\+R\+Mirror}} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \end{DoxyCompactList}\item 
+G\+L\+F\+Wwindow $\ast$ \mbox{\hyperlink{class_x_r_mirror_a966faccfee88f1f4ca2b8cfc881658c0}{Get\+Window}} ()
+\item 
+unsigned int \mbox{\hyperlink{class_x_r_mirror_aee8cb008c3732293fb45ef056a4f1fc6}{Load\+Texture}} (const wchar\+\_\+t $\ast$p\+Texture\+File, G\+Luint n\+Shader, const char $\ast$p\+Sampler\+Param, G\+Lint n\+Min\+Filter=G\+L\+\_\+\+L\+I\+N\+E\+AR, G\+Lint n\+Magnitude\+Filter=G\+L\+\_\+\+N\+E\+A\+R\+E\+ST, G\+Lint n\+WrapS=G\+L\+\_\+\+R\+E\+P\+E\+AT, G\+Lint n\+WrapT=G\+L\+\_\+\+R\+E\+P\+E\+AT)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_utils}{Utils}} $\ast$ \mbox{\hyperlink{class_x_r_mirror_aeb7f7a4cc3eb6fbe35d892876aac9fc0}{m\+\_\+p\+Utils}}
+\begin{DoxyCompactList}\small\item\em Pointer to the helper utilities log (logger lives here) \end{DoxyCompactList}\item 
+G\+L\+F\+Wwindow $\ast$ \mbox{\hyperlink{class_x_r_mirror_aa61d4a6537d0b5f41c24b831090075bd}{m\+\_\+p\+X\+R\+Mirror}}
+\begin{DoxyCompactList}\small\item\em Pointer to the G\+L\+FW desktop window (XR Mirror) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_x_r_mirror_a8eef43790b56bb299df314080be53ad9}\label{class_x_r_mirror_a8eef43790b56bb299df314080be53ad9}} 
+\index{XRMirror@{XRMirror}!XRMirror@{XRMirror}}
+\index{XRMirror@{XRMirror}!XRMirror@{XRMirror}}
+\subsubsection{\texorpdfstring{XRMirror()}{XRMirror()}}
+{\footnotesize\ttfamily X\+R\+Mirror\+::\+X\+R\+Mirror (\begin{DoxyParamCaption}\item[{int}]{n\+Width,  }\item[{int}]{n\+Height,  }\item[{const char $\ast$}]{p\+Title,  }\item[{const char $\ast$}]{s\+Log\+File }\end{DoxyParamCaption})}
+
+Class Constructor 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em n\+Width} & The width of the desktop window (XR Mirror) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Height} & The height of the desktop window (XR Mirror) \\
+\hline
+\mbox{\texttt{ in}}  & {\em p\+Title} & The title text that will be displayed on the console window \\
+\hline
+\mbox{\texttt{ in}}  & {\em s\+Log\+File} & The absolute path and filename of the log file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_x_r_mirror_a2406d486889b31a1854d7d276a9e71f2}\label{class_x_r_mirror_a2406d486889b31a1854d7d276a9e71f2}} 
+\index{XRMirror@{XRMirror}!````~XRMirror@{$\sim$XRMirror}}
+\index{````~XRMirror@{$\sim$XRMirror}!XRMirror@{XRMirror}}
+\subsubsection{\texorpdfstring{$\sim$XRMirror()}{~XRMirror()}}
+{\footnotesize\ttfamily X\+R\+Mirror\+::$\sim$\+X\+R\+Mirror (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Class Destructor. 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_x_r_mirror_a966faccfee88f1f4ca2b8cfc881658c0}\label{class_x_r_mirror_a966faccfee88f1f4ca2b8cfc881658c0}} 
+\index{XRMirror@{XRMirror}!GetWindow@{GetWindow}}
+\index{GetWindow@{GetWindow}!XRMirror@{XRMirror}}
+\subsubsection{\texorpdfstring{GetWindow()}{GetWindow()}}
+{\footnotesize\ttfamily G\+L\+F\+Wwindow$\ast$ X\+R\+Mirror\+::\+Get\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getter for the G\+L\+FW window \begin{DoxyReturn}{Returns}
+The current G\+L\+FW desktop window (XR Mirror) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_x_r_mirror_aee8cb008c3732293fb45ef056a4f1fc6}\label{class_x_r_mirror_aee8cb008c3732293fb45ef056a4f1fc6}} 
+\index{XRMirror@{XRMirror}!LoadTexture@{LoadTexture}}
+\index{LoadTexture@{LoadTexture}!XRMirror@{XRMirror}}
+\subsubsection{\texorpdfstring{LoadTexture()}{LoadTexture()}}
+{\footnotesize\ttfamily unsigned int X\+R\+Mirror\+::\+Load\+Texture (\begin{DoxyParamCaption}\item[{const wchar\+\_\+t $\ast$}]{p\+Texture\+File,  }\item[{G\+Luint}]{n\+Shader,  }\item[{const char $\ast$}]{p\+Sampler\+Param,  }\item[{G\+Lint}]{n\+Min\+Filter = {\ttfamily GL\+\_\+LINEAR},  }\item[{G\+Lint}]{n\+Magnitude\+Filter = {\ttfamily GL\+\_\+NEAREST},  }\item[{G\+Lint}]{n\+WrapS = {\ttfamily GL\+\_\+REPEAT},  }\item[{G\+Lint}]{n\+WrapT = {\ttfamily GL\+\_\+REPEAT} }\end{DoxyParamCaption})}
+
+Load a texture file from disk 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em p\+Texture\+File} & The absolute file to the texture on disk \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Shader} & The program id for the shader \\
+\hline
+\mbox{\texttt{ in}}  & {\em p\+Sampler\+Param} & The texture sampler2d parameter name \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Min\+Filter} & (optional\+: G\+L\+\_\+\+L\+I\+N\+E\+AR) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+Magnitude\+Filter} & (optional\+: G\+L\+\_\+\+N\+E\+A\+R\+E\+ST) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+WrapS} & (optional\+: G\+L\+\_\+\+R\+E\+P\+E\+AT) \\
+\hline
+\mbox{\texttt{ in}}  & {\em n\+WrapT} & (optional\+: G\+L\+\_\+\+R\+E\+P\+E\+AT) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+unsigned int The texture id of the loaded texture 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_x_r_mirror_aeb7f7a4cc3eb6fbe35d892876aac9fc0}\label{class_x_r_mirror_aeb7f7a4cc3eb6fbe35d892876aac9fc0}} 
+\index{XRMirror@{XRMirror}!m\_pUtils@{m\_pUtils}}
+\index{m\_pUtils@{m\_pUtils}!XRMirror@{XRMirror}}
+\subsubsection{\texorpdfstring{m\_pUtils}{m\_pUtils}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_utils}{Utils}}$\ast$ X\+R\+Mirror\+::m\+\_\+p\+Utils\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the helper utilities log (logger lives here) 
+
+\mbox{\Hypertarget{class_x_r_mirror_aa61d4a6537d0b5f41c24b831090075bd}\label{class_x_r_mirror_aa61d4a6537d0b5f41c24b831090075bd}} 
+\index{XRMirror@{XRMirror}!m\_pXRMirror@{m\_pXRMirror}}
+\index{m\_pXRMirror@{m\_pXRMirror}!XRMirror@{XRMirror}}
+\subsubsection{\texorpdfstring{m\_pXRMirror}{m\_pXRMirror}}
+{\footnotesize\ttfamily G\+L\+F\+Wwindow$\ast$ X\+R\+Mirror\+::m\+\_\+p\+X\+R\+Mirror\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to the G\+L\+FW desktop window (XR Mirror) 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_x_r_mirror_8h}{X\+R\+Mirror.\+h}}\item 
+src/\mbox{\hyperlink{_x_r_mirror_8cpp}{X\+R\+Mirror.\+cpp}}\end{DoxyCompactItemize}

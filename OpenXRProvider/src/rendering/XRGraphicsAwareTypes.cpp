@@ -23,8 +23,7 @@
 
 #pragma once
 
-#include "../../Sandbox/third_party/glad/include/glad/glad.h"
-
+#include <third_party/glad/include/glad/glad.h>
 #include <rendering/XRGraphicsAwareTypes.h>
 
 namespace OpenXRProvider
