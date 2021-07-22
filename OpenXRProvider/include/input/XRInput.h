@@ -30,6 +30,7 @@
 #include <input/XRInputProfile_GoogleDaydream.h>
 #include <input/XRInputProfile_HTCVive.h>
 #include <input/XRInputProfile_HTCVivePro.h>
+#include <input/XRInputProfile_HTCCosmos.h>
 #include <input/XRInputProfile_KhronosSimple.h>
 #include <input/XRInputProfile_MicrosoftMR.h>
 #include <input/XRInputProfile_MicrosoftXBox.h>
@@ -57,6 +58,9 @@ namespace OpenXRProvider
 
 		/// Input Profile object: HTC Vive
 		XRInputProfile_HTCVive *HTCVive() const { return m_pXRInputProfile_HTCVive; }
+
+		/// Input Profile object: HTC Cosmos
+		XRInputProfile_HTCCosmos *HTCCosmos() const { return m_pXRInputProfile_HTCCosmos; }
 
 		/// Input Profile object: HTC Vive Pro
 		XRInputProfile_HTCVivePro *HTCVivePro() const { return m_pXRInputProfile_HTCVivePro; }
@@ -221,6 +225,7 @@ namespace OpenXRProvider
 		// ** INPUT PROFILES ** //
 		XRInputProfile_GoogleDaydream *m_pXRInputProfile_GoogleDaydream = nullptr;
 		XRInputProfile_HTCVive *m_pXRInputProfile_HTCVive = nullptr;
+		XRInputProfile_HTCCosmos* m_pXRInputProfile_HTCCosmos = nullptr;
 		XRInputProfile_HTCVivePro *m_pXRInputProfile_HTCVivePro = nullptr;
 		XRInputProfile_KhronosSimple *m_pXRInputProfile_KhronosSimple = nullptr;
 		XRInputProfile_MicrosoftMR *m_pXRInputProfile_MicrosoftMR = nullptr;

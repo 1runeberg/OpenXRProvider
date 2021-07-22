@@ -91,6 +91,9 @@ namespace OpenXRProvider
 		if ( m_pXRInputProfile_HTCVive )
 			delete m_pXRInputProfile_HTCVive;
 
+		if ( m_pXRInputProfile_HTCCosmos )
+			delete m_pXRInputProfile_HTCCosmos;
+
 		if ( m_pXRInputProfile_HTCVivePro )
 			delete m_pXRInputProfile_HTCVivePro;
 
@@ -122,6 +125,9 @@ namespace OpenXRProvider
 
 		// HTC Vive
 		m_pXRInputProfile_HTCVive = new XRInputProfile_HTCVive( m_pXRLogger );
+
+		// HTC Cosmos
+		m_pXRInputProfile_HTCCosmos = new XRInputProfile_HTCCosmos( m_pXRLogger );
 
 		// HTC Vive Pro
 		m_pXRInputProfile_HTCVivePro = new XRInputProfile_HTCVivePro( m_pXRLogger );
@@ -423,6 +429,8 @@ namespace OpenXRProvider
 				return m_pXRInputProfile_KhronosSimple->GetInputProfile();
 			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_HTCVive->GetInputProfile() ) )
 				return m_pXRInputProfile_HTCVive->GetInputProfile();
+			else if ( xrInteractionProfileState.interactionProfile == GetXRPath(m_pXRInputProfile_HTCCosmos->GetInputProfile() ) )
+				return m_pXRInputProfile_HTCCosmos->GetInputProfile();
 			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_HTCVivePro->GetInputProfile() ) )
 				return m_pXRInputProfile_HTCVivePro->GetInputProfile();
 			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_OculusTouch->GetInputProfile() ) )

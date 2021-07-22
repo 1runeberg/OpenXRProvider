@@ -53,11 +53,11 @@ int main()
 	// Setup our sandbox application, which will be used for testing
 	if ( AppSetup() != 0 )
 		return -1;
-
+	//Sleep(10000);
 	#pragma region OPENXR_PROVIDER_SETUP
 
 	// SETUP OPENXR PROVIDER
-	// OpenXR Provider is a wrapper library to the official OpenXR loader.
+	////// OpenXR Provider is a wrapper library to the official OpenXR loader.
 	//
 	// This library provides classes that when instantiated, exposes to an app simpler access
 	// to any currently running OpenXR runtime (e.g SteamVR, OculusVR, etc) by abstracting away most
@@ -147,10 +147,11 @@ int main()
 	// 6.4 Create action bindings for every controller this app supports
 	CreateInputActionBindings();
 
-	// 6.5 Suggest controller-specific action bindings to the runtime (one call for each controller this app supports)
-	pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->ValveIndex()->ActionBindings(), pXRProvider->Input()->ValveIndex()->GetInputProfile() );
-	pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->HTCVive()->ActionBindings(), pXRProvider->Input()->HTCVive()->GetInputProfile() );
+	//// 6.5 Suggest controller-specific action bindings to the runtime (one call for each controller this app supports)
+	//pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->ValveIndex()->ActionBindings(), pXRProvider->Input()->ValveIndex()->GetInputProfile() );
+	//pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->HTCVive()->ActionBindings(), pXRProvider->Input()->HTCVive()->GetInputProfile() );
 	pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->OculusTouch()->ActionBindings(), pXRProvider->Input()->OculusTouch()->GetInputProfile() );
+	//pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->HTCCosmos()->ActionBindings(), pXRProvider->Input()->HTCCosmos()->GetInputProfile() );
 
 	// 6.6 Activate all action sets that we want to update per frame (this can also be changed per frame or anytime app wants to sync a different action set data)
 	pXRProvider->Input()->ActivateActionSet( xrActionSet_Main );
@@ -159,6 +160,7 @@ int main()
 	// (7) Optional: Cache anything your app needs in the frame loop
 
 	// 7.1 Test for activated instance extensions
+
 	bDrawHandJoints = pXRHandTracking->IsActive();
 
 	// 7.2 Get swapchain capacity
@@ -172,7 +174,7 @@ int main()
 	}
 
 	// (8) Optional: Register for OpenXR events
-	OpenXRProvider::XRCallback xrCallback = { XR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED };	// XR_TYPE_EVENT_DATA_BUFFER = Register for all events
+	OpenXRProvider::XRCallback xrCallback = { XR_TYPE_EVENT_DATA_BUFFER };	// XR_TYPE_EVENT_DATA_BUFFER = Register for all events
 	OpenXRProvider::XRCallback *pXRCallback = &xrCallback;
 	pXRCallback->callback = Callback_XR_Event;
 	pXRProvider->Core()->GetXREventHandler()->RegisterCallback( pXRCallback );
@@ -270,6 +272,9 @@ int main()
 				// 3.2 Process all received input states from previous sync call
 				ProcessInputStates();
 
+				std::string s = pXRProvider->Input()->GetCurrentInteractionProfile("/user/hand/left");
+				pUtils->GetLogger()->info("Interaction profile is: {}",s);
+
 				// 3.3 Update controller and/or other action poses
 				//     as we are not a pipelined app (single threaded), we're using one time period ahead of the current frame pose
 				uint64_t nPredictedTime = pXRProvider->Render()->GetPredictedDisplayTime() + pXRProvider->Render()->GetPredictedDisplayPeriod();
@@ -335,6 +340,7 @@ static void Callback_XR_Event( XrEventDataBuffer xrEvent )
 			break;
 
 		default:
+			pUtils->GetLogger()->info("Warning: Unhandled xrEvent triggered");
 			break;
 	}
 }
@@ -546,34 +552,51 @@ int GraphicsAPIObjectsSetup()
 void CreateInputActionBindings()
 {
 	// Valve Index
-	OpenXRProvider::XRInputProfile_ValveIndex *pValveIndex = pXRProvider->Input()->ValveIndex();
-	pXRProvider->Input()->CreateActionBinding( xrAction_PoseLeft, pValveIndex->Hand_Left, pValveIndex->Pose_Grip, pValveIndex->ActionBindings() );
-	pXRProvider->Input()->CreateActionBinding( xrAction_PoseRight, pValveIndex->Hand_Right, pValveIndex->Pose_Grip, pValveIndex->ActionBindings() );
+	//OpenXRProvider::XRInputProfile_ValveIndex *pValveIndex = pXRProvider->Input()->ValveIndex();
+	//pXRProvider->Input()->CreateActionBinding( xrAction_PoseLeft, pValveIndex->Hand_Left, pValveIndex->Pose_Grip, pValveIndex->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_PoseRight, pValveIndex->Hand_Right, pValveIndex->Pose_Grip, pValveIndex->ActionBindings() );
 
-	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pValveIndex->Hand_Left, pValveIndex->Button_Trigger_Click, pValveIndex->ActionBindings() );
-	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pValveIndex->Hand_Right, pValveIndex->Button_Trigger_Click, pValveIndex->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pValveIndex->Hand_Left, pValveIndex->Button_Trigger_Click, pValveIndex->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pValveIndex->Hand_Right, pValveIndex->Button_Trigger_Click, pValveIndex->ActionBindings() );
 
-	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pValveIndex->Hand_Left, pValveIndex->Output_Haptic, pValveIndex->ActionBindings() );
-	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pValveIndex->Hand_Right, pValveIndex->Output_Haptic, pValveIndex->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pValveIndex->Hand_Left, pValveIndex->Output_Haptic, pValveIndex->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pValveIndex->Hand_Right, pValveIndex->Output_Haptic, pValveIndex->ActionBindings() );
 
 	// Vive
-	OpenXRProvider::XRInputProfile_HTCVive *pHTCVive = pXRProvider->Input()->HTCVive();
-	pXRProvider->Input()->CreateActionBinding( xrAction_PoseLeft, pHTCVive->Hand_Left, pHTCVive->Pose_Grip, pHTCVive->ActionBindings() );
-	pXRProvider->Input()->CreateActionBinding( xrAction_PoseRight, pHTCVive->Hand_Right, pHTCVive->Pose_Grip, pHTCVive->ActionBindings() );
+	//OpenXRProvider::XRInputProfile_HTCVive *pHTCVive = pXRProvider->Input()->HTCVive();
+	//pXRProvider->Input()->CreateActionBinding( xrAction_PoseLeft, pHTCVive->Hand_Left, pHTCVive->Pose_Grip, pHTCVive->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_PoseRight, pHTCVive->Hand_Right, pHTCVive->Pose_Grip, pHTCVive->ActionBindings() );
 
-	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pHTCVive->Hand_Left, pHTCVive->Button_Trigger_Click, pHTCVive->ActionBindings() );
-	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pHTCVive->Hand_Right, pHTCVive->Button_Trigger_Click, pHTCVive->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pHTCVive->Hand_Left, pHTCVive->Button_Trigger_Click, pHTCVive->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pHTCVive->Hand_Right, pHTCVive->Button_Trigger_Click, pHTCVive->ActionBindings() );
 
-	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pHTCVive->Hand_Left, pHTCVive->Output_Haptic, pHTCVive->ActionBindings() );
-	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pHTCVive->Hand_Right, pHTCVive->Output_Haptic, pHTCVive->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pHTCVive->Hand_Left, pHTCVive->Output_Haptic, pHTCVive->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pHTCVive->Hand_Right, pHTCVive->Output_Haptic, pHTCVive->ActionBindings() );
+
+	// Cosmos
+	//OpenXRProvider::XRInputProfile_HTCCosmos *pHTCCosmos = pXRProvider->Input()->HTCCosmos();
+	//pXRProvider->Input()->CreateActionBinding( xrAction_PoseLeft, pHTCCosmos->Hand_Left, pHTCCosmos->Pose_Grip, pHTCCosmos->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_PoseRight, pHTCCosmos->Hand_Right, pHTCCosmos->Pose_Grip, pHTCCosmos->ActionBindings() );
+
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pHTCCosmos->Hand_Left, pHTCCosmos->Button_Trigger_Click, pHTCCosmos->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pHTCCosmos->Hand_Right, pHTCCosmos->Button_Trigger_Click, pHTCCosmos->ActionBindings() );
+
+	//pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pHTCCosmos->Hand_Left, pHTCCosmos->Output_Haptic, pHTCCosmos->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pHTCCosmos->Hand_Right, pHTCCosmos->Output_Haptic, pHTCCosmos->ActionBindings() );
 
 	// Oculus Touch
 	OpenXRProvider::XRInputProfile_OculusTouch *pOculus = pXRProvider->Input()->OculusTouch();
 	pXRProvider->Input()->CreateActionBinding( xrAction_PoseLeft, pOculus->Hand_Left, pOculus->Pose_Grip, pOculus->ActionBindings() );
 	pXRProvider->Input()->CreateActionBinding( xrAction_PoseRight, pOculus->Hand_Right, pOculus->Pose_Grip, pOculus->ActionBindings() );
 
-	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Left, pOculus->Button_Trigger_Value, pOculus->ActionBindings() );
-	pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Right, pOculus->Button_Trigger_Value, pOculus->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Left, pOculus->Button_Trigger_Value, pOculus->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Right, pOculus->Button_Trigger_Value, pOculus->ActionBindings() );
+
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Left, pOculus->Left_Button_X_Click, pOculus->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Right, pOculus->Right_Button_B_Click, pOculus->ActionBindings() );
+
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Left, pOculus->Left_Button_Y_Click, pOculus->ActionBindings() );
+	//pXRProvider->Input()->CreateActionBinding( xrAction_SwitchScene, pOculus->Hand_Right, pOculus->Right_Button_System_Click, pOculus->ActionBindings() );
 
 	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pOculus->Hand_Left, pOculus->Output_Haptic, pOculus->ActionBindings() );
 	pXRProvider->Input()->CreateActionBinding( xrAction_Haptic, pOculus->Hand_Right, pOculus->Output_Haptic, pOculus->ActionBindings() );
