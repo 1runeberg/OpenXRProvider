@@ -417,24 +417,31 @@ namespace OpenXRProvider
 
 		if ( m_xrLastCallResult == XR_SUCCESS )
 		{
-			if (xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_ValveIndex->GetInputProfile() ) )
-				return m_pXRInputProfile_ValveIndex->GetInputProfile();
-			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_KhronosSimple->GetInputProfile() ) )
-				return m_pXRInputProfile_KhronosSimple->GetInputProfile();
-			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_HTCVive->GetInputProfile() ) )
-				return m_pXRInputProfile_HTCVive->GetInputProfile();
-			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_HTCVivePro->GetInputProfile() ) )
-				return m_pXRInputProfile_HTCVivePro->GetInputProfile();
-			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_OculusTouch->GetInputProfile() ) )
-				return m_pXRInputProfile_OculusTouch->GetInputProfile();
-			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_OculusGo->GetInputProfile() ) )
-				return m_pXRInputProfile_OculusGo->GetInputProfile();
-			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_MicrosoftMR->GetInputProfile() ) )
-				return m_pXRInputProfile_MicrosoftMR->GetInputProfile();
-			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_MicrosoftXBox->GetInputProfile() ) )
-				return m_pXRInputProfile_MicrosoftXBox->GetInputProfile();
-			else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_GoogleDaydream->GetInputProfile() ) )
-				return m_pXRInputProfile_GoogleDaydream->GetInputProfile();
+			//if (xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_ValveIndex->GetInputProfile() ) )
+			//	return m_pXRInputProfile_ValveIndex->GetInputProfile();
+			//else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_KhronosSimple->GetInputProfile() ) )
+			//	return m_pXRInputProfile_KhronosSimple->GetInputProfile();
+			//else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_HTCVive->GetInputProfile() ) )
+			//	return m_pXRInputProfile_HTCVive->GetInputProfile();
+			//else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_HTCVivePro->GetInputProfile() ) )
+			//	return m_pXRInputProfile_HTCVivePro->GetInputProfile();
+			//else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_OculusTouch->GetInputProfile() ) )
+			//	return m_pXRInputProfile_OculusTouch->GetInputProfile();
+			//else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_OculusGo->GetInputProfile() ) )
+			//	return m_pXRInputProfile_OculusGo->GetInputProfile();
+			//else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_MicrosoftMR->GetInputProfile() ) )
+			//	return m_pXRInputProfile_MicrosoftMR->GetInputProfile();
+			//else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_MicrosoftXBox->GetInputProfile() ) )
+			//	return m_pXRInputProfile_MicrosoftXBox->GetInputProfile();
+			//else if ( xrInteractionProfileState.interactionProfile == GetXRPath( m_pXRInputProfile_GoogleDaydream->GetInputProfile() ) )
+			//	return m_pXRInputProfile_GoogleDaydream->GetInputProfile();
+
+			// Translate xrpath
+			char buf[ MAX_PATH ];
+			uint32_t nCapacity = 0;
+			xrPathToString( m_pXRCore->GetXRInstance(), xrInteractionProfileState.interactionProfile, MAX_PATH, &nCapacity, buf );
+			if (nCapacity > 0)
+				m_pXRLogger->info( "Interaction profile for {} changed to: {}", sUserPath, buf );
 		}
 
 		return "";

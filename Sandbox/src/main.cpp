@@ -50,6 +50,8 @@
 
 int main()
 {
+	//Sleep(10000);
+
 	// Setup our sandbox application, which will be used for testing
 	if ( AppSetup() != 0 )
 		return -1;
@@ -148,9 +150,29 @@ int main()
 	CreateInputActionBindings();
 
 	// 6.5 Suggest controller-specific action bindings to the runtime (one call for each controller this app supports)
-	pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->ValveIndex()->ActionBindings(), pXRProvider->Input()->ValveIndex()->GetInputProfile() );
-	pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->HTCVive()->ActionBindings(), pXRProvider->Input()->HTCVive()->GetInputProfile() );
-	pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->OculusTouch()->ActionBindings(), pXRProvider->Input()->OculusTouch()->GetInputProfile() );
+	//pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->ValveIndex()->ActionBindings(), pXRProvider->Input()->ValveIndex()->GetInputProfile() );
+	//pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->HTCVive()->ActionBindings(), pXRProvider->Input()->HTCVive()->GetInputProfile() );
+	//pXRProvider->Input()->SuggestActionBindings( pXRProvider->Input()->OculusTouch()->ActionBindings(), pXRProvider->Input()->OculusTouch()->GetInputProfile() );
+
+	// HTCX ----------------------------------
+	std::vector < XrActionSuggestedBinding > xrActionBindings;
+	XrPath xrPath, xrPathInput;
+
+	xrStringToPath( pXRProvider->Core()->GetXRInstance(), "/user/vive_tracker_htcx/role/chest/input/grip/pose", &xrPath );
+	XrActionSuggestedBinding xrActionSuggestedBinding;
+	xrActionSuggestedBinding.action = xrAction_PoseLeft;
+	xrActionSuggestedBinding.binding = xrPath;
+	xrActionBindings.push_back(xrActionSuggestedBinding);
+
+	xrStringToPath( pXRProvider->Core()->GetXRInstance(), "/user/vive_tracker_htcx/role/chest/input/trigger/click", &xrPathInput);
+	XrActionSuggestedBinding xrActionSuggestedBindingInput;
+	xrActionSuggestedBindingInput.action = xrAction_SwitchScene;
+	xrActionSuggestedBindingInput.binding = xrPathInput;
+	xrActionBindings.push_back(xrActionSuggestedBindingInput);
+
+
+	pXRProvider->Input()->SuggestActionBindings(&xrActionBindings, "/interaction_profiles/htc/vive_tracker_htcx" );
+	// ---------------------------------------------------
 
 	// 6.6 Activate all action sets that we want to update per frame (this can also be changed per frame or anytime app wants to sync a different action set data)
 	pXRProvider->Input()->ActivateActionSet( xrActionSet_Main );
@@ -172,7 +194,7 @@ int main()
 	}
 
 	// (8) Optional: Register for OpenXR events
-	OpenXRProvider::XRCallback xrCallback = { XR_TYPE_EVENT_DATA_SESSION_STATE_CHANGED };	// XR_TYPE_EVENT_DATA_BUFFER = Register for all events
+	OpenXRProvider::XRCallback xrCallback = { XR_TYPE_EVENT_DATA_BUFFER };	// XR_TYPE_EVENT_DATA_BUFFER = Register for all events
 	OpenXRProvider::XRCallback *pXRCallback = &xrCallback;
 	pXRCallback->callback = Callback_XR_Event;
 	pXRProvider->Core()->GetXREventHandler()->RegisterCallback( pXRCallback );
@@ -317,6 +339,13 @@ static void Callback_XR_Event( XrEventDataBuffer xrEvent )
 
 	const XrEventDataSessionStateChanged& xrEventDataSessionStateChanged = *reinterpret_cast<XrEventDataSessionStateChanged*>(&xrEvent);
 	const XrEventDataInteractionProfileChanged& xrEventDataInteractionProfileChanged = *reinterpret_cast<XrEventDataInteractionProfileChanged*>(&xrEvent);
+	const XrEventDataViveTrackerConnectedHTCX& xrEventDataViveTrackerConnectedHTCX = *reinterpret_cast<XrEventDataViveTrackerConnectedHTCX*>(&xrEvent);
+
+	XrResult result;
+	std::vector< XrViveTrackerPathsHTCX > vTrackerPaths;
+
+	PFN_xrEnumerateViveTrackerPathsHTCX xrEnumerateViveTrackerPathsHTCX = nullptr;
+	xrGetInstanceProcAddr( pXRProvider->Core()->GetXRInstance(), "xrEnumerateViveTrackerPathsHTCX", ( PFN_xrVoidFunction * )&xrEnumerateViveTrackerPathsHTCX );
 
 	switch ( xrEvent.type )
 	{
@@ -329,9 +358,44 @@ static void Callback_XR_Event( XrEventDataBuffer xrEvent )
 			break;
 
 		case XR_TYPE_EVENT_DATA_INTERACTION_PROFILE_CHANGED:	
-			pUtils->GetLogger()->info( "Interaction Profile changed to Left: {}, Right: {} ", 
-				pXRProvider->Input()->GetCurrentInteractionProfile( "/user/hand/left" ),
-				pXRProvider->Input()->GetCurrentInteractionProfile("/user/hand/right") );
+			pXRProvider->Input()->GetCurrentInteractionProfile("/user/hand/left");
+			pXRProvider->Input()->GetCurrentInteractionProfile("/user/hand/right");
+			pXRProvider->Input()->GetCurrentInteractionProfile( "/user/vive_tracker_htcx/role/chest" );
+			break;
+
+		case XR_TYPE_EVENT_DATA_VIVE_TRACKER_CONNECTED_HTCX:
+
+			uint32_t nCount;
+			char sPersistentPath[MAX_PATH];
+			xrPathToString(pXRProvider->Core()->GetXRInstance(), xrEventDataViveTrackerConnectedHTCX.paths->persistentPath, sizeof(sPersistentPath), &nCount, sPersistentPath);
+			pUtils->GetLogger()->info("[HTCX] Tracker connected event received: {}", sPersistentPath);
+
+			char sRolePath[ MAX_PATH ];
+			xrPathToString( pXRProvider->Core()->GetXRInstance(), xrEventDataViveTrackerConnectedHTCX.paths->rolePath, sizeof( sRolePath ), &nCount, sRolePath );
+			pUtils->GetLogger()->info( "[HTCX] Tracker connected event received: {}", sRolePath );
+
+			uint32_t nPaths;
+			result = xrEnumerateViveTrackerPathsHTCX( pXRProvider->Core()->GetXRInstance(), 0, &nPaths, nullptr );
+
+			if (result == XR_SUCCESS)
+			{
+				pUtils->GetLogger()->info("[HTCX] Num of tracker paths now active is {}", nPaths);
+
+				for (uint32_t i = 0; i < nPaths; i++)
+				{
+					XrViveTrackerPathsHTCX xrViveTrackerPaths{ XR_TYPE_VIVE_TRACKER_PATHS_HTCX };
+					vTrackerPaths.push_back(xrViveTrackerPaths);
+				}
+
+				result = xrEnumerateViveTrackerPathsHTCX(pXRProvider->Core()->GetXRInstance(), vTrackerPaths.size(), &nPaths, vTrackerPaths.data());
+			}
+
+
+			for ( uint32_t i = 0; i < vTrackerPaths.size(); i++ )
+			{
+				pUtils->GetLogger()->info("[HTCX] Active tracker: ({}) ({})", vTrackerPaths[i].persistentPath, vTrackerPaths[i].rolePath );
+			}
+
 			break;
 
 		default:

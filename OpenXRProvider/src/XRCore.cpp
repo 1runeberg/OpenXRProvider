@@ -264,8 +264,17 @@ namespace OpenXRProvider
 		bool bEnable = false;
 		for ( uint32_t i = 0; i < nExtensionCount; ++i )
 		{
+			// Add HTCX Tracker extension
+			if ( strcmp(XR_HTCX_VIVE_TRACKER_INTERACTION_EXTENSION_NAME, &vExtensions[ i ].extensionName[ 0 ] ) == 0 )
+			{
+				vXRExtensions.push_back(XR_HTCX_VIVE_TRACKER_INTERACTION_EXTENSION_NAME);
+				m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
+
+				bEnable = true;
+			}
+
 			// Check for graphics api extension
-			if ( strcmp( s_GraphicsExtensionName, &vExtensions[ i ].extensionName[ 0 ] ) == 0 )
+			else if ( strcmp( s_GraphicsExtensionName, &vExtensions[ i ].extensionName[ 0 ] ) == 0 )
 			{
 				// Add graphics api to the list of extensions that would be enabled when we create the openxr instance
 				vXRExtensions.push_back( s_GraphicsExtensionName );
