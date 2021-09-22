@@ -136,14 +136,19 @@ int main()
 
 	// 6.3 Create actions mapped to specific action set(s)
 	xrActionState_PoseLeft.type = XR_TYPE_ACTION_STATE_POSE;
-	xrAction_PoseLeft = pXRProvider->Input()->CreateAction( xrActionSet_Main, "pose_left", "Pose (Left)", XR_ACTION_TYPE_POSE_INPUT, 0, NULL );
+	std::vector<XrPath> vFilters;
+	vFilters.push_back(pXRProvider->Input()->GetXRPath("/user/vive_tracker_htcx/role/chest"));
+	xrAction_PoseLeft = pXRProvider->Input()->CreateAction( xrActionSet_Main, "pose_left", "Pose (Left)", XR_ACTION_TYPE_POSE_INPUT, 1, vFilters.data() );
+	//xrAction_PoseLeft = pXRProvider->Input()->CreateAction(xrActionSet_Main, "pose_left", "Pose (Left)", XR_ACTION_TYPE_POSE_INPUT, 0, NULL);
 
 	xrActionState_PoseRight.type = XR_TYPE_ACTION_STATE_POSE;
 	xrAction_PoseRight = pXRProvider->Input()->CreateAction( xrActionSet_Main, "pose_right", "Pose (Right)", XR_ACTION_TYPE_POSE_INPUT, 0, NULL );
 
 	xrActionState_SwitchScene.type = XR_TYPE_ACTION_STATE_BOOLEAN;
-	xrAction_SwitchScene = pXRProvider->Input()->CreateAction( xrActionSet_Main, "switch_scene", "Switch Scenes", XR_ACTION_TYPE_BOOLEAN_INPUT, 0, NULL );
+	xrAction_SwitchScene = pXRProvider->Input()->CreateAction( xrActionSet_Main, "switch_scene", "Switch Scenes", XR_ACTION_TYPE_BOOLEAN_INPUT, 1, vFilters.data() );
+	//xrAction_SwitchScene = pXRProvider->Input()->CreateAction(xrActionSet_Main, "switch_scene", "Switch Scenes", XR_ACTION_TYPE_BOOLEAN_INPUT, 0, NULL);
 	
+
 	xrAction_Haptic = pXRProvider->Input()->CreateAction( xrActionSet_Main, "haptic", "Haptic Feedback", XR_ACTION_TYPE_VIBRATION_OUTPUT, 0, NULL );
 
 	// 6.4 Create action bindings for every controller this app supports
@@ -158,13 +163,15 @@ int main()
 	std::vector < XrActionSuggestedBinding > xrActionBindings;
 	XrPath xrPath, xrPathInput;
 
-	xrStringToPath( pXRProvider->Core()->GetXRInstance(), "/user/vive_tracker_htcx/role/chest/input/grip/pose", &xrPath );
+	//xrStringToPath( pXRProvider->Core()->GetXRInstance(), "/user/vive_tracker_htcx/role/chest/input/grip/pose", &xrPath );
+	xrStringToPath(pXRProvider->Core()->GetXRInstance(), "/input/grip/pose", &xrPath);
 	XrActionSuggestedBinding xrActionSuggestedBinding;
 	xrActionSuggestedBinding.action = xrAction_PoseLeft;
 	xrActionSuggestedBinding.binding = xrPath;
 	xrActionBindings.push_back(xrActionSuggestedBinding);
 
-	xrStringToPath( pXRProvider->Core()->GetXRInstance(), "/user/vive_tracker_htcx/role/chest/input/trigger/click", &xrPathInput);
+	//xrStringToPath( pXRProvider->Core()->GetXRInstance(), "/user/vive_tracker_htcx/role/chest/input/trigger/click", &xrPathInput);
+	xrStringToPath(pXRProvider->Core()->GetXRInstance(), "/input/trigger/click", &xrPathInput);
 	XrActionSuggestedBinding xrActionSuggestedBindingInput;
 	xrActionSuggestedBindingInput.action = xrAction_SwitchScene;
 	xrActionSuggestedBindingInput.binding = xrPathInput;

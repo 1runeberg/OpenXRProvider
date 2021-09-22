@@ -185,6 +185,8 @@ namespace OpenXRProvider
 			float fFrequency = XR_FREQUENCY_UNSPECIFIED
 		);
 
+		XrPath GetXRPath(const char* sPath);
+
 	  private:
 		// ** FUNCTIONS (PRIVATE) **/
 
@@ -232,7 +234,7 @@ namespace OpenXRProvider
 		/// Get the currently active interaction profile
 		/// @param[in]	sPath	The string path to get the OpenXR Path
 		/// @return		XrPath	The XrPath 
-		XrPath GetXRPath( const char* sPath );
+
 
 	};
 } // namespace OpenXRProvider
