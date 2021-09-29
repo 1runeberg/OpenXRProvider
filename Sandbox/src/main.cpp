@@ -364,10 +364,11 @@ static void Callback_XR_Event( XrEventDataBuffer xrEvent )
 			
 			break;
 
-		case XR_TYPE_EVENT_DATA_INTERACTION_PROFILE_CHANGED:	
-			pXRProvider->Input()->GetCurrentInteractionProfile("/user/hand/left");
-			pXRProvider->Input()->GetCurrentInteractionProfile("/user/hand/right");
-			pXRProvider->Input()->GetCurrentInteractionProfile( "/user/vive_tracker_htcx/role/chest" );
+		case XR_TYPE_EVENT_DATA_INTERACTION_PROFILE_CHANGED:
+			pUtils->GetLogger()->info("AN INTERACTION PROFILE CHANGED!");
+			//pXRProvider->Input()->GetCurrentInteractionProfile("/user/hand/left");
+			//pXRProvider->Input()->GetCurrentInteractionProfile("/user/hand/right");
+			//pXRProvider->Input()->GetCurrentInteractionProfile( "/user/vive_tracker_htcx/role/chest" );
 			break;
 
 		case XR_TYPE_EVENT_DATA_VIVE_TRACKER_CONNECTED_HTCX:
