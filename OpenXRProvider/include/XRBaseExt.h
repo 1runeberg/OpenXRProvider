@@ -30,11 +30,6 @@ namespace OpenXRProvider
 	class XRBaseExt : public XRBase
 	{
      public:
-
-		/// Class Constructor
-		/// @param[in] pLogger	The logger object to use
-		XRBaseExt::XRBaseExt( std::shared_ptr< spdlog::logger > pLogger ) : XRBase( pLogger ) {}
-
 		/// Virtual function to get the official OpenXR extension name that the implementing class represents
 		virtual const char *GetExtensionName() const = 0;
 

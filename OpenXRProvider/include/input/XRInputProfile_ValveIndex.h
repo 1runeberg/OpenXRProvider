@@ -68,10 +68,10 @@ namespace OpenXRProvider
 		// ** FUNCTIONS (PUBLIC) **/
 
 		/// Class Constructor
-		XRInputProfile_ValveIndex( std::shared_ptr< spdlog::logger > pLogger );
+		XRInputProfile_ValveIndex() {}
 
 		/// Class Destructor
-		~XRInputProfile_ValveIndex();
+		~XRInputProfile_ValveIndex() {}
 
 		/// Return the input profile path for this controller
 		const char *GetInputProfile() const override { return "/interaction_profiles/valve/index_controller"; }

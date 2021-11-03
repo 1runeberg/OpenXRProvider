@@ -27,17 +27,12 @@
 
 namespace OpenXRProvider
 {
-	XRExtVisibilityMask::XRExtVisibilityMask( std::shared_ptr< spdlog::logger > pLogger )
-		: XRBaseExt( pLogger )
-	{
-	}
-
-	XRExtVisibilityMask::~XRExtVisibilityMask() {}
-
 	bool XRExtVisibilityMask::GetVisibilityMask( EXREye eEye, EMaskType eMaskType, std::vector< float > &vMaskVertices, std::vector< uint32_t > &vMaskIndices )
 	{
 		if ( m_xrInstance == XR_NULL_HANDLE || m_xrSession == XR_NULL_HANDLE )
 			return false;
+
+		GetLogMessage()->clear();
 
 		// Convert mask type to native OpenXR mask type
 		XrVisibilityMaskTypeKHR xrVisibilityMaskType = XR_VISIBILITY_MASK_TYPE_HIDDEN_TRIANGLE_MESH_KHR;
@@ -56,7 +51,7 @@ namespace OpenXRProvider
 
 		PFN_xrGetVisibilityMaskKHR xrGetVisibilityMaskKHR = nullptr;
 		m_xrLastCallResult =
-			XR_CALL( xrGetInstanceProcAddr( m_xrInstance, "xrGetVisibilityMaskKHR", ( PFN_xrVoidFunction * )&xrGetVisibilityMaskKHR ), m_pXRLogger, false );
+			XR_CALL( xrGetInstanceProcAddr( m_xrInstance, "xrGetVisibilityMaskKHR", ( PFN_xrVoidFunction * )&xrGetVisibilityMaskKHR ), GetLogMessage(), false );
 
 		if ( m_xrLastCallResult != XR_SUCCESS )
 			return false;
@@ -68,19 +63,19 @@ namespace OpenXRProvider
 
 		m_xrLastCallResult = XR_CALL_SILENT(
 			xrGetVisibilityMaskKHR( m_xrSession, XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO, eEye == EYE_LEFT ? 0 : 1, xrVisibilityMaskType, &pXRVisibilityMask ),
-			m_pXRLogger );
+			GetLogMessage() );
 
 		if ( m_xrLastCallResult != XR_SUCCESS )
 			return false;
 
 		if ( pXRVisibilityMask.indexCountOutput == 0 && pXRVisibilityMask.vertexCountOutput == 0 )
 		{
-			m_pXRLogger->warn( "Runtime does not have a Visibility Mask for eye ({})", eEye );
+			GetLogMessage()->append( "Runtime does not have a Visibility Mask" );
 			return false;
 		}
 		else if ( xrVisibilityMaskType == XR_VISIBILITY_MASK_TYPE_LINE_LOOP_KHR && pXRVisibilityMask.indexCountOutput % 3 != 0 )
 		{
-			m_pXRLogger->error( "Runtime returned an invalid Visibility Mask" );
+			GetLogMessage()->append( "Runtime returned an invalid Visibility Mask" );
 			return false;
 		}
 
@@ -103,17 +98,14 @@ namespace OpenXRProvider
 
 		m_xrLastCallResult = XR_CALL_SILENT(
 			xrGetVisibilityMaskKHR( m_xrSession, XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO, eEye == EYE_LEFT ? 0 : 1, xrVisibilityMaskType, &pXRVisibilityMask ),
-			m_pXRLogger );
+			GetLogMessage() );
 
 		if ( m_xrLastCallResult != XR_SUCCESS )
 			return false;
 
 		if ( !pXRVisibilityMask.indices || !pXRVisibilityMask.vertices )
 		{
-			m_pXRLogger->warn(
-				"Runtime did not return any indices or vertices for eye ({}). Try again on  "
-				"XrEventDataVisibilityMaskChangedKHR::XR_TYPE_EVENT_DATA_VISIBILITY_MASK_CHANGED_KHR",
-				eEye );
+			GetLogMessage()->append("Runtime did not return any indices or vertices.");
 			return false;
 		}
 

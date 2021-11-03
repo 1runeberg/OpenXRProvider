@@ -123,6 +123,9 @@ namespace OpenXRProvider
 		/// Process frame, call after app has rendered to the appropriate swapchain image(s)
 		bool ProcessXRFrame();
 
+		/// Get last log message
+		std::string* GetLogMessage() { return &m_sMessage; }
+
 	  private:
 		// ** FUNCTIONS (PRIVATE) **/
 
@@ -171,8 +174,8 @@ namespace OpenXRProvider
 		/// The graphics api dependent depth format in int64_t (e.g. GL_RGBA16, DXGI_FORMAT_R8G8B8A8_UNORM_SRGB, etc)
 		int64_t m_nDepthFormat = 0;
 		
-		/// The logger object
-		std::shared_ptr< spdlog::logger > m_pXRLogger;
+		/// Last log message
+		std::string m_sMessage;
 
 		/// Array of image textures (color texture2d) that is used by the OpenXR runtime to render images to the user's hmd
 		std::vector< XrSwapchain > m_vXRSwapChainsColor;

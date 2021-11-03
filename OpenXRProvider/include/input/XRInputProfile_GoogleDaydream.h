@@ -48,10 +48,10 @@ namespace OpenXRProvider
 		// ** FUNCTIONS (PUBLIC) **/
 
 		/// Class Constructor
-		XRInputProfile_GoogleDaydream( std::shared_ptr< spdlog::logger > pLogger );
+		XRInputProfile_GoogleDaydream() {}
 
 		/// Class Destructor
-		~XRInputProfile_GoogleDaydream();
+		~XRInputProfile_GoogleDaydream() {}
 
 		/// Return the input profile path for this controller
 		const char *GetInputProfile() const override { return "/interaction_profiles/google/daydream_controller"; }

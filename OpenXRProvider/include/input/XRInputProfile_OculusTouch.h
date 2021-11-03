@@ -69,10 +69,10 @@ namespace OpenXRProvider
 		// ** FUNCTIONS (PUBLIC) **/
 
 		/// Class Constructor
-		XRInputProfile_OculusTouch( std::shared_ptr< spdlog::logger > pLogger );
+		XRInputProfile_OculusTouch() {}
 
 		/// Class Destructor
-		~XRInputProfile_OculusTouch();
+		~XRInputProfile_OculusTouch() {}
 
 		/// Return the input profile path for this controller
 		const char *GetInputProfile() const override { return "/interaction_profiles/oculus/touch_controller"; }

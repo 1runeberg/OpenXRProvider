@@ -31,14 +31,11 @@ namespace OpenXRProvider
 	{
 	  public:
 		// ** FUNCTIONS (PUBLIC) **/
-
-		/// Class Constructor
-		/// @param[in] pLogger	The logger object to use
-		XRBase::XRBase( std::shared_ptr< spdlog::logger > pLogger )	: m_pXRLogger( pLogger )	{}
+		std::string *GetLogMessage() { return &m_sMessage; }
 
 		// ** MEMBER VARIABLES (PUBLIC) **/
 
-		/// Pointer to the logger object
-		std::shared_ptr< spdlog::logger > m_pXRLogger;
+		/// Last log message
+		std::string m_sMessage;
 	};
 } // namespace OpenXRProvider

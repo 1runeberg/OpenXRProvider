@@ -27,13 +27,5 @@
 
 namespace OpenXRProvider
 {
-	XRExtHandJointsMotionRange::XRExtHandJointsMotionRange( std::shared_ptr< spdlog::logger > pLogger )
-		: XRBaseExt( pLogger )
-	{
-	}
-
-	XRExtHandJointsMotionRange::~XRExtHandJointsMotionRange()
-	{
-	}
 
 } // namespace OpenXRProvider

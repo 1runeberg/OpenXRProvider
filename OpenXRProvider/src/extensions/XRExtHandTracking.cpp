@@ -27,30 +27,6 @@
 
 namespace OpenXRProvider
 {
-	XRExtHandTracking::XRExtHandTracking( std::shared_ptr< spdlog::logger > pLogger )
-		: XRBaseExt( pLogger )
-	{
-	}
-
-	XRExtHandTracking::~XRExtHandTracking()
-	{
-		PFN_xrDestroyHandTrackerEXT xrDestroyHandTrackerEXT = nullptr;
-		m_xrLastCallResult =
-			XR_CALL( xrGetInstanceProcAddr( m_xrInstance, "xrDestroyHandTrackerEXT", ( PFN_xrVoidFunction * )&xrDestroyHandTrackerEXT ), m_pXRLogger, true );
-
-		if ( m_HandTracker_Left )
-			m_xrLastCallResult = XR_CALL_SILENT( xrDestroyHandTrackerEXT( m_HandTracker_Left ), m_pXRLogger );
-
-		if ( m_xrLastCallResult == XR_SUCCESS )
-			m_pXRLogger->info( "Left Hand Tracker destroyed." );
-
-		if ( m_HandTracker_Right )
-			m_xrLastCallResult = XR_CALL_SILENT( xrDestroyHandTrackerEXT( m_HandTracker_Right ), m_pXRLogger );
-
-		if ( m_xrLastCallResult == XR_SUCCESS )
-			m_pXRLogger->info( "Right Hand Tracker destroyed." );
-	}
-
 	void XRExtHandTracking::Init( const XrInstance xrInstance, const XrSession xrSession )
 	{
 		assert( xrInstance != XR_NULL_HANDLE );
@@ -67,12 +43,12 @@ namespace OpenXRProvider
 
 		PFN_xrCreateHandTrackerEXT xrCreateHandTrackerEXT = nullptr;
 		m_xrLastCallResult =
-			XR_CALL( xrGetInstanceProcAddr( m_xrInstance, "xrCreateHandTrackerEXT", ( PFN_xrVoidFunction * )&xrCreateHandTrackerEXT ), m_pXRLogger, true );
+			XR_CALL( xrGetInstanceProcAddr( m_xrInstance, "xrCreateHandTrackerEXT", ( PFN_xrVoidFunction * )&xrCreateHandTrackerEXT ), GetLogMessage(), true );
 
-		m_xrLastCallResult = XR_CALL( xrCreateHandTrackerEXT( xrSession, &xrHandTrackerCreateInfo, &m_HandTracker_Left ), m_pXRLogger, true );
+		m_xrLastCallResult = XR_CALL( xrCreateHandTrackerEXT( xrSession, &xrHandTrackerCreateInfo, &m_HandTracker_Left ), GetLogMessage(), true );
 
 		xrHandTrackerCreateInfo.hand = XR_HAND_RIGHT_EXT;
-		m_xrLastCallResult = XR_CALL( xrCreateHandTrackerEXT( xrSession, &xrHandTrackerCreateInfo, &m_HandTracker_Right ), m_pXRLogger, true );
+		m_xrLastCallResult = XR_CALL( xrCreateHandTrackerEXT( xrSession, &xrHandTrackerCreateInfo, &m_HandTracker_Right ), GetLogMessage(), true );
 
 		// Setup hand joint velocities
 		m_xrVelocities_Left.jointCount = XR_HAND_JOINT_COUNT_EXT;
@@ -92,7 +68,7 @@ namespace OpenXRProvider
 
 		// Setup function locate hand joints function pointer
 		m_xrLastCallResult =
-			XR_CALL( xrGetInstanceProcAddr( m_xrInstance, "xrLocateHandJointsEXT", ( PFN_xrVoidFunction * )&xrLocateHandJointsEXT ), m_pXRLogger, true );
+			XR_CALL( xrGetInstanceProcAddr( m_xrInstance, "xrLocateHandJointsEXT", ( PFN_xrVoidFunction * )&xrLocateHandJointsEXT ), GetLogMessage(), true );
 	}
 
 	void XRExtHandTracking::LocateHandJoints( XrHandEXT eHand, XrSpace xrSpace, XrTime xrTime, XrHandJointsMotionRangeEXT eMotionrange )
@@ -130,7 +106,7 @@ namespace OpenXRProvider
 		XR_CALL_SILENT(
 			xrLocateHandJointsEXT(
 				bIsLeftHand ? m_HandTracker_Left : m_HandTracker_Right, &xrHandJointsLocateInfo, bIsLeftHand ? &m_xrLocations_Left : &m_xrLocations_Right ),
-			m_pXRLogger );
+			GetLogMessage() );
 	}
 
 } // namespace OpenXRProvider

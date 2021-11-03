@@ -56,10 +56,10 @@ namespace OpenXRProvider
 		// ** FUNCTIONS (PUBLIC) **/
 
 		/// Class Constructor
-		XRInputProfile_MicrosoftMR( std::shared_ptr< spdlog::logger > pLogger );
+		XRInputProfile_MicrosoftMR() {}
 
 		/// Class Destructor
-		~XRInputProfile_MicrosoftMR();
+		~XRInputProfile_MicrosoftMR() {}
 
 		/// Return the input profile path for this controller
 		const char *GetInputProfile() const override { return "/interaction_profiles/microsoft/motion_controller"; }

@@ -50,10 +50,10 @@ namespace OpenXRProvider
 		// ** FUNCTIONS (PUBLIC) **/
 
 		/// Class Constructor
-		XRInputProfile_OculusGo( std::shared_ptr< spdlog::logger > pLogger );
+		XRInputProfile_OculusGo() {}
 
 		/// Class Destructor
-		~XRInputProfile_OculusGo();
+		~XRInputProfile_OculusGo() {}
 
 		/// Return the input profile path for this controller
 		const char *GetInputProfile() const override { return "/interaction_profiles/oculus/go_controller"; }

@@ -39,44 +39,41 @@ namespace OpenXRProvider
 	XRRender::XRRender( XRCore *pXRCore, XRRenderInfo xrRenderInfo )
 		: m_pXRCore( pXRCore )
 	{
-		if ( !m_pXRCore && !m_pXRCore->GetLogger() )
+		if ( !m_pXRCore )
 			throw std::runtime_error( "Failed to create XR Render Manager. Invalid XR Manager provided." );
-
-		// Retain pointer to logger
-		m_pXRLogger = m_pXRCore->GetLogger();
 
 		// Check xr instance
 		if ( m_pXRCore->GetXRInstance() == XR_NULL_HANDLE )
 		{
-			std::string eMessage = "Failed to create XR Render manager due to an Invalid XR Instance. OpenXRProvider must be initialized properly before "
-								   "create an XR Render manager.";
-			m_pXRLogger->error( eMessage );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->clear();
+			GetLogMessage()->append( "Failed to create XR Render manager due to an Invalid XR Instance. OpenXRProvider must be initialized properly before "
+								   "create an XR Render manager." );
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
 		// Check xr session
 		if ( m_pXRCore->GetXRSession() == XR_NULL_HANDLE )
 		{
-			std::string eMessage = "Failed to create XR Render manager due to an Invalid XR Session. OpenXRProvider must be initialized properly before create "
-								   "an XR Render manager.";
-			m_pXRLogger->error( eMessage );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->clear();
+			GetLogMessage()->append( "Failed to create XR Render manager due to an Invalid XR Session. OpenXRProvider must be initialized properly before create "
+								   "an XR Render manager." );
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
 		// Check xr graphics api
 		if ( !m_pXRCore->GetGraphicsAPI() )
 		{
-			std::string eMessage = "Failed to create XR Render manager due to an Invalid Graphics API object. OpenXRProvider must be initialized properly "
-								   "before create an XR Render manager.";
-			m_pXRLogger->error( eMessage );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->clear();
+			GetLogMessage()->append( "Failed to create XR Render manager due to an Invalid Graphics API object. OpenXRProvider must be initialized properly "
+								   "before create an XR Render manager." );
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
 		// Get number of view configurations the runtime supports
 		uint32_t nViewConfigTypeCount = 0;
 		m_xrLastCallResult = XR_CALL(
 			xrEnumerateViewConfigurations( m_pXRCore->GetXRInstance(), m_pXRCore->GetXRSystemId(), 0, &nViewConfigTypeCount, nullptr ),
-			m_pXRLogger,
+			GetLogMessage(),
 			true );
 
 		// Retrieve all the view configuration types the runtime supports
@@ -84,7 +81,7 @@ namespace OpenXRProvider
 		m_xrLastCallResult = XR_CALL_SILENT(
 			xrEnumerateViewConfigurations(
 				m_pXRCore->GetXRInstance(), m_pXRCore->GetXRSystemId(), nViewConfigTypeCount, &nViewConfigTypeCount, xrViewConfigTypes.data() ),
-			m_pXRLogger );
+			GetLogMessage() );
 
 		// Look for Stereo (VR) config. TODO: XR_VIEW_CONFIGURATION_TYPE_PRIMARY_MONO (AR Support)
 		bool bStereoFound = false;
@@ -100,12 +97,10 @@ namespace OpenXRProvider
 		// Check if Stereo (VR) is supported by the runtime
 		if ( !bStereoFound )
 		{
-			std::string eMessage = ( "Failed to create XR Render manager. The active runtime does not support VR" );
-			m_pXRLogger->error( eMessage );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->clear();
+			GetLogMessage()->append ( "Failed to create XR Render manager. The active runtime does not support VR" );
+			throw std::runtime_error( *GetLogMessage() );
 		}
-
-		m_pXRLogger->info( "Runtime confirms VR support amongst its {} supported view configuration(s)", nViewConfigTypeCount );
 
 		// Get number of configuration views supported by the runtime
 		uint32_t nViewCount = 0;
@@ -122,17 +117,14 @@ namespace OpenXRProvider
 				nViewCount,
 				&nViewCount,
 				m_vXRViewConfigs.data() ),
-			m_pXRLogger,
+			GetLogMessage(),
 			true );
 
-		m_pXRLogger->info( "Successfully retrieved {} configuration views from the runtime. Should be two for VR (one for each eye)", nViewCount );
 
 		// Begin XR Session
 		XrSessionBeginInfo xrSessionBeginInfo = { XR_TYPE_SESSION_BEGIN_INFO };
 		xrSessionBeginInfo.primaryViewConfigurationType = XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO;
-		m_xrLastCallResult = XR_CALL( xrBeginSession( m_pXRCore->GetXRSession(), &xrSessionBeginInfo ), m_pXRLogger, true );
-
-		m_pXRLogger->info( "XR Session started (Handle {})", ( uint64_t )m_pXRCore->GetXRSession() );
+		m_xrLastCallResult = XR_CALL( xrBeginSession( m_pXRCore->GetXRSession(), &xrSessionBeginInfo ), GetLogMessage(), true );
 
 		// Allocate xr views
 		m_vXRViews.resize( nViewCount, { XR_TYPE_VIEW } );
@@ -140,10 +132,13 @@ namespace OpenXRProvider
 		// Final sanity check - view count must be 2 for VR support (one for each eye)
 		if ( nViewCount != k_nVRViewCount )
 		{
-			m_pXRLogger->error( "Something went wrong. Runtime returned {} views for VR support, while we expected exactly 2 (one for each eye)", nViewCount );
-			throw std::runtime_error( "Something went wrong. Runtime returned incorrect number of views for VR support. Expected 2 (one for each eye)" );
+			GetLogMessage()->clear();
+			GetLogMessage()->append( "Something went wrong.Runtime returned " );
+			GetLogMessage()->append( std::to_string(nViewCount) );
+			GetLogMessage()->append( " views for VR support, while we expected exactly 2 (one for each eye)" );
+
+			throw std::runtime_error( *GetLogMessage() );
 		}
-		m_pXRLogger->info( "{} XR views successfully (one for each eye)", nViewCount );
 
 		// Reset HMD state
 		m_pXRHMDState = new XRHMDState();
@@ -170,16 +165,12 @@ namespace OpenXRProvider
 
 			if ( m_xrLastCallResult != XR_SUCCESS )
 			{
-				const char *xrEnumStr = XrEnumToString( m_xrLastCallResult );
-				std::string eMessage = "Failed to generate swapchain color buffers with error ";
-				eMessage.append( xrEnumStr );
+				GetLogMessage()->clear();
+				GetLogMessage()->append( "Failed to generate swapchain color buffers with error " );
+				GetLogMessage()->append( XrEnumToString( m_xrLastCallResult ) );
 
-				m_pXRLogger->error( "{} ({})", eMessage, std::to_string( m_xrLastCallResult ) );
-				throw std::runtime_error( eMessage );
+				throw std::runtime_error( *GetLogMessage() );
 			}
-
-			m_pXRLogger->info(
-				"{} Swapchain color buffers generated for eye ({})", m_pXRCore->GetGraphicsAPI()->GetSwapchainImageCount( i == 0 ? EYE_LEFT : EYE_RIGHT, false ), i );
 		}
 
 		// Generate Swapchain images (depth)
@@ -191,21 +182,13 @@ namespace OpenXRProvider
 
 				if ( m_xrLastCallResult != XR_SUCCESS )
 				{
-					const char *xrEnumStr = XrEnumToString( m_xrLastCallResult );
-					std::string eMessage = "Failed to generate swapchain depth buffers with error ";
-					eMessage.append( xrEnumStr );
+					GetLogMessage()->clear();
+					GetLogMessage()->append( "Failed to generate swapchain depth buffers with error " );
+					GetLogMessage()->append( XrEnumToString( m_xrLastCallResult ) );
 
-					m_pXRLogger->error( "{} ({})", eMessage, std::to_string( m_xrLastCallResult ) );
-					throw std::runtime_error( eMessage );
+					throw std::runtime_error( *GetLogMessage() );
 				}
-
-				m_pXRLogger->info(
-					"{} Swapchain depth buffers generated for eye ({})", m_pXRCore->GetGraphicsAPI()->GetSwapchainImageCount( i == 0 ? EYE_LEFT : EYE_RIGHT, true ), i );
 			}
-		}
-		else
-		{
-			m_pXRLogger->info("Runtime does not support depth composition. No Swapchain depth buffers will be generated");
 		}
 
 		// Add supported extension - Visibility Mask
@@ -223,7 +206,8 @@ namespace OpenXRProvider
 				}
 			}
 
-		m_pXRLogger->info( "Render manager created successfully" );
+		GetLogMessage()->clear();
+		GetLogMessage()->append( "Render manager created successfully" );
 	}
 
 	XRRender::~XRRender()
@@ -244,20 +228,7 @@ namespace OpenXRProvider
 		{
 			if ( vXRSwapchains[ i ] != XR_NULL_HANDLE )
 			{
-				m_xrLastCallResult = XR_CALL_SILENT( xrDestroySwapchain( vXRSwapchains[ i ] ), m_pXRLogger );
-				if ( m_xrLastCallResult != XR_SUCCESS )
-				{
-					const char *xrEnumStr = XrEnumToString( m_xrLastCallResult );
-					std::string eMessage = "Unable to destroy swapchain with error ";
-					eMessage.append( xrEnumStr );
-
-					m_pXRLogger->error( "{} ({})", eMessage, std::to_string( m_xrLastCallResult ) );
-					throw std::runtime_error( eMessage );
-				}
-				else
-				{
-					m_pXRLogger->info( "Swapchain destroyed for eye ({})", i );
-				}
+				m_xrLastCallResult = XR_CALL_SILENT( xrDestroySwapchain( vXRSwapchains[ i ] ), GetLogMessage() );
 			}
 		}
 	}
@@ -276,7 +247,7 @@ namespace OpenXRProvider
 
 	bool XRRender::ProcessXRFrame()
 	{
-		assert( m_pXRCore && m_pXRLogger );
+		assert( m_pXRCore );
 
 		// ========================================================================
 		// (1) Wait for a new frame
@@ -284,7 +255,7 @@ namespace OpenXRProvider
 		XrFrameWaitInfo xrWaitFrameInfo { XR_TYPE_FRAME_WAIT_INFO };
 		XrFrameState xrFrameState { XR_TYPE_FRAME_STATE };
 
-		m_xrLastCallResult = XR_CALL_SILENT( xrWaitFrame( m_pXRCore->GetXRSession(), &xrWaitFrameInfo, &xrFrameState ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrWaitFrame( m_pXRCore->GetXRSession(), &xrWaitFrameInfo, &xrFrameState ), GetLogMessage() );
 		if ( m_xrLastCallResult != XR_SUCCESS )
 			return false;
 
@@ -295,7 +266,7 @@ namespace OpenXRProvider
 		// (2) Begin frame before doing any GPU work
 		// ========================================================================
 		XrFrameBeginInfo xrBeginFrameInfo { XR_TYPE_FRAME_BEGIN_INFO };
-		m_xrLastCallResult = XR_CALL_SILENT( xrBeginFrame( m_pXRCore->GetXRSession(), &xrBeginFrameInfo ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrBeginFrame( m_pXRCore->GetXRSession(), &xrBeginFrameInfo ), GetLogMessage() );
 		if ( m_xrLastCallResult != XR_SUCCESS )
 			return false;
 
@@ -318,7 +289,7 @@ namespace OpenXRProvider
 			m_xrLastCallResult = XR_CALL_SILENT(
 				xrLocateViews(
 					m_pXRCore->GetXRSession(), &xrFrameSpaceTimeInfo, &xrFrameViewState, ( uint32_t )m_vXRViews.size(), &nFoundViewsCount, m_vXRViews.data() ),
-				m_pXRLogger );
+				GetLogMessage() );
 
 			if ( m_xrLastCallResult != XR_SUCCESS )
 				return false;
@@ -348,7 +319,7 @@ namespace OpenXRProvider
 					const XrSwapchain xrSwapchain = m_vXRSwapChainsColor[ i ];
 					XrSwapchainImageAcquireInfo xrAcquireInfo { XR_TYPE_SWAPCHAIN_IMAGE_ACQUIRE_INFO };
 					uint32_t nImageIndex;
-					m_xrLastCallResult = XR_CALL_SILENT( xrAcquireSwapchainImage( xrSwapchain, &xrAcquireInfo, &nImageIndex ), m_pXRLogger );
+					m_xrLastCallResult = XR_CALL_SILENT( xrAcquireSwapchainImage( xrSwapchain, &xrAcquireInfo, &nImageIndex ), GetLogMessage() );
 
 					if ( m_xrLastCallResult != XR_SUCCESS )
 						return false;
@@ -358,7 +329,7 @@ namespace OpenXRProvider
 					// ----------------------------------------------------------------
 					XrSwapchainImageWaitInfo xrWaitInfo { XR_TYPE_SWAPCHAIN_IMAGE_WAIT_INFO };
 					xrWaitInfo.timeout = XR_INFINITE_DURATION;
-					m_xrLastCallResult = XR_CALL_SILENT( xrWaitSwapchainImage( xrSwapchain, &xrWaitInfo ), m_pXRLogger );
+					m_xrLastCallResult = XR_CALL_SILENT( xrWaitSwapchainImage( xrSwapchain, &xrWaitInfo ), GetLogMessage() );
 
 					if ( m_xrLastCallResult != XR_SUCCESS )
 						return false;
@@ -394,7 +365,7 @@ namespace OpenXRProvider
 					// (d) Release swapchain image
 					// ----------------------------------------------------------------
 					XrSwapchainImageReleaseInfo xrSwapChainRleaseInfo { XR_TYPE_SWAPCHAIN_IMAGE_RELEASE_INFO };
-					m_xrLastCallResult = XR_CALL_SILENT( xrReleaseSwapchainImage( xrSwapchain, &xrSwapChainRleaseInfo ), m_pXRLogger );
+					m_xrLastCallResult = XR_CALL_SILENT( xrReleaseSwapchainImage( xrSwapchain, &xrSwapChainRleaseInfo ), GetLogMessage() );
 
 					if ( m_xrLastCallResult != XR_SUCCESS )
 						return false;
@@ -421,7 +392,7 @@ namespace OpenXRProvider
 		xrEndFrameInfo.layerCount = ( uint32_t )xrFrameLayers.size();
 		xrEndFrameInfo.layers = xrFrameLayers.data();
 
-		m_xrLastCallResult = XR_CALL_SILENT( xrEndFrame( m_pXRCore->GetXRSession(), &xrEndFrameInfo ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrEndFrame( m_pXRCore->GetXRSession(), &xrEndFrameInfo ), GetLogMessage() );
 		if ( m_xrLastCallResult != XR_SUCCESS )
 			return false;
 
@@ -485,9 +456,11 @@ namespace OpenXRProvider
 		assert( m_pXRCore );
 		assert( m_pXRCore->GetXRSession() != XR_NULL_HANDLE );
 
+		GetLogMessage()->clear();
+
 		// Check number of swapchain formats supported by the runtime
 		uint32_t nNumOfSupportedFormats = 0;
-		m_xrLastCallResult = XR_CALL( xrEnumerateSwapchainFormats( m_pXRCore->GetXRSession(), 0, &nNumOfSupportedFormats, nullptr ), m_pXRLogger, true )
+		m_xrLastCallResult = XR_CALL( xrEnumerateSwapchainFormats( m_pXRCore->GetXRSession(), 0, &nNumOfSupportedFormats, nullptr ), GetLogMessage(), true )
 
 		// Get swapchain formats supported by the runtime
 		std::vector< int64_t > vRuntimeSwapChainFormats;
@@ -495,18 +468,22 @@ namespace OpenXRProvider
 
 		m_xrLastCallResult = XR_CALL(
 				xrEnumerateSwapchainFormats( m_pXRCore->GetXRSession(), nNumOfSupportedFormats, &nNumOfSupportedFormats, vRuntimeSwapChainFormats.data() ),
-			m_pXRLogger,
+			GetLogMessage(),
 			true )
 
 		// Look for a matching texture format that the app requested vs what's supported by the runtime
-		m_pXRLogger->info( "Runtime supports the following texture formats in order of preference:" );
+		GetLogMessage()->append( "Runtime supports the following texture formats in order of preference:" );
 		uint32_t nNum = 0;
 		int64_t nMatchColor = 0;
 		int64_t nMatchDepth = 0;
 
 		for ( int64_t SwapChainFormat : vRuntimeSwapChainFormats )
 		{
-			m_pXRLogger->info( "{}. {} ({})", ++nNum, m_pXRCore->GetGraphicsAPI()->GetTextureFormatName( SwapChainFormat ), SwapChainFormat );
+			GetLogMessage()->append( "\n" );
+			GetLogMessage()->append( std::to_string( ++nNum ) );
+			GetLogMessage()->append( ". " );
+			GetLogMessage()->append( m_pXRCore->GetGraphicsAPI()->GetTextureFormatName( SwapChainFormat ) );
+			GetLogMessage()->append( "\n" );
 
 			// Look for matching color texture format
 			for ( size_t i = 0; i < vAppTextureFormats.size(); i++ )
@@ -534,7 +511,10 @@ namespace OpenXRProvider
 			nMatchColor = vRuntimeSwapChainFormats[ 0 ];
 	
 		m_nTextureFormat = nMatchColor;
-		m_pXRLogger->info( "XR Texture color format will be {} ({})", m_pXRCore->GetGraphicsAPI()->GetTextureFormatName( nMatchColor ), nMatchColor );
+		GetLogMessage()->append( "\n" );
+		GetLogMessage()->append( "XR Texture color format will be: " );
+		GetLogMessage()->append( m_pXRCore->GetGraphicsAPI()->GetTextureFormatName( nMatchColor ) );
+		GetLogMessage()->append( "\n" );
 
 		// Process depth textures if available
 		if ( m_bDepthHandling && vAppDepthFormats.size() > 0 )
@@ -544,17 +524,24 @@ namespace OpenXRProvider
 				nMatchDepth = m_pXRCore->GetGraphicsAPI()->GetDefaultDepthFormat();
 
 			m_nDepthFormat = nMatchDepth;
-			m_pXRLogger->info( "XR Texture depth format will be {} ({})", m_pXRCore->GetGraphicsAPI()->GetTextureFormatName( nMatchDepth ), nMatchDepth );
+
+			GetLogMessage()->append( "\n" );
+			GetLogMessage()->append( "XR Texture depth format will be: " );
+			GetLogMessage()->append( m_pXRCore->GetGraphicsAPI()->GetTextureFormatName(nMatchDepth) );
+			GetLogMessage()->append( "\n" );
 		}
 		else
 		{
-			m_pXRLogger->info( "Session will not support depth textures" );
+			GetLogMessage()->append( "\n" );
+			GetLogMessage()->append( "Session will not support depth textures" );
 			m_bDepthHandling = false;
 		}	
 	}
 
 	void XRRender::GenerateSwapchains( bool bIsDepth )
 	{
+		GetLogMessage()->clear();
+
 		for ( size_t i = 0; i < m_vXRViews.size(); i++ )
 		{
 			XrSwapchain xrSwapChain;
@@ -576,29 +563,33 @@ namespace OpenXRProvider
 				xrSwapChainCreateInfo.usageFlags = XR_SWAPCHAIN_USAGE_SAMPLED_BIT | XR_SWAPCHAIN_USAGE_COLOR_ATTACHMENT_BIT;
 			}
 
-			m_xrLastCallResult = XR_CALL( xrCreateSwapchain( m_pXRCore->GetXRSession(), &xrSwapChainCreateInfo, &xrSwapChain ), m_pXRLogger, true );
+			m_xrLastCallResult = XR_CALL( xrCreateSwapchain( m_pXRCore->GetXRSession(), &xrSwapChainCreateInfo, &xrSwapChain ), GetLogMessage(), true );
 
 			if ( bIsDepth )
 			{
 				m_vXRSwapChainsDepth.push_back( xrSwapChain );
-				m_pXRLogger->info(
-					"Depth Swapchain created for eye ({}). Textures are {}x{} with {} sample(s) and {} Mip(s)",
-					i,
-					m_nTextureWidth,
-					m_nTextureHeight,
-					m_vXRViewConfigs[ i ].recommendedSwapchainSampleCount,
-					m_nTextureMipCount );
+
+				GetLogMessage()->append( "\n" );
+				GetLogMessage()->append( "Depth Swapchain created for eye (" );
+				GetLogMessage()->append( std::to_string( i ) );
+				GetLogMessage()->append( "). Texture size: " );
+				GetLogMessage()->append( std::to_string( m_nTextureWidth ) );
+				GetLogMessage()->append( "x" );
+				GetLogMessage()->append( std::to_string( m_nTextureHeight ) );
+				GetLogMessage()->append("\n");
 			}
 			else
 			{
 				m_vXRSwapChainsColor.push_back( xrSwapChain );
-				m_pXRLogger->info(
-					"Color Swapchain created for eye ({}). Textures are {}x{} with {} sample(s) and {} Mip(s)",
-					i,
-					m_nTextureWidth,
-					m_nTextureHeight,
-					m_vXRViewConfigs[ i ].recommendedSwapchainSampleCount,
-					m_nTextureMipCount );
+
+				GetLogMessage()->append( "\n" );
+				GetLogMessage()->append( "Color Swapchain created for eye (" );
+				GetLogMessage()->append( std::to_string( i ) );
+				GetLogMessage()->append( "). Texture size: " );
+				GetLogMessage()->append( std::to_string( m_nTextureWidth ) );
+				GetLogMessage()->append( "x" );
+				GetLogMessage()->append( std::to_string( m_nTextureHeight ) );
+				GetLogMessage()->append( "\n" );
 			}
 		}
 	}

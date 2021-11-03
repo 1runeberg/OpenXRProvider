@@ -42,10 +42,10 @@ namespace OpenXRProvider
 		// ** FUNCTIONS (PUBLIC) **/
 
 		/// Class Constructor
-		XRInputProfile_HTCVivePro( std::shared_ptr< spdlog::logger > pLogger );
+		XRInputProfile_HTCVivePro() {}
 
 		/// Class Destructor
-		~XRInputProfile_HTCVivePro();
+		~XRInputProfile_HTCVivePro() {}
 
 		/// Return the input profile path for this controller
 		const char *GetInputProfile() const override { return "/interaction_profiles/htc/vive_pro"; }

@@ -34,10 +34,21 @@ namespace OpenXRProvider
 
 		/// Class Constructor
 		/// @param[in] pLogger	Pointer to the logger object
-		XRExtHandTracking( std::shared_ptr< spdlog::logger > pLogger );
+		XRExtHandTracking() {}
 
 		/// Class Destructor
-		~XRExtHandTracking();
+		~XRExtHandTracking()
+		{
+			PFN_xrDestroyHandTrackerEXT xrDestroyHandTrackerEXT = nullptr;
+			m_xrLastCallResult = XR_CALL( xrGetInstanceProcAddr( m_xrInstance, "xrDestroyHandTrackerEXT", ( PFN_xrVoidFunction * )&xrDestroyHandTrackerEXT ), GetLogMessage(), true );
+
+			if ( m_HandTracker_Left )
+				m_xrLastCallResult = XR_CALL_SILENT( xrDestroyHandTrackerEXT( m_HandTracker_Left ), GetLogMessage() );
+
+			if ( m_HandTracker_Right )
+				m_xrLastCallResult = XR_CALL_SILENT( xrDestroyHandTrackerEXT( m_HandTracker_Right ), GetLogMessage() );
+		}
+
 		bool bPrecise;
 		/// Override from XRBaseExt returning the official OpenXR extension name that this object represents
 		const char *GetExtensionName() const override { return XR_EXT_HAND_TRACKING_EXTENSION_NAME; }

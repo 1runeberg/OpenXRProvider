@@ -30,14 +30,6 @@ namespace OpenXRProvider
 	class XRBaseInput : public XRBaseExt
 	{
      public:
-
-		/// Class Constructor
-		/// @param[in] pLogger	The logger object to use
-	   XRBaseInput::XRBaseInput( std::shared_ptr< spdlog::logger > pLogger )
-		   : XRBaseExt( pLogger )
-	   {
-	   }
-
 		/// Identify this class as an implementation of an openxr input profile
 		const char *GetExtensionName() const override { return "InputProfile"; }
 

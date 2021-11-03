@@ -28,5 +28,5 @@
 
 // OpenGL Includes
 #ifdef XR_USE_GRAPHICS_API_OPENGL
-	#include <gl/GL.h>
+//	#include <gl/GL.h>
 #endif

@@ -28,4 +28,5 @@
 	#define XR_USE_PLATFORM_WIN32 1
 	#include <Unknwn.h>
 	#include <wingdi.h>
+	#include <windows.h>
 #endif

@@ -66,9 +66,9 @@ int main()
 	// (1) Optional: Create Extension class(es) for the OpenXR extensions the app wants to activate.
 	//     There is no need to specify the graphics api extension as it will be automatically activated
 
-	pXRVisibilityMask = new OpenXRProvider::XRExtVisibilityMask( pUtils->GetLogger() );
-	pXRHandTracking = new OpenXRProvider::XRExtHandTracking( pUtils->GetLogger() );
-	pXRHandJointsMotionRange = new OpenXRProvider::XRExtHandJointsMotionRange(pUtils->GetLogger());
+	pXRVisibilityMask = new OpenXRProvider::XRExtVisibilityMask();
+	pXRHandTracking = new OpenXRProvider::XRExtHandTracking();
+	pXRHandJointsMotionRange = new OpenXRProvider::XRExtHandJointsMotionRange();
 
 	std::vector< void * > RequestExtensions{ pXRVisibilityMask, pXRHandTracking, pXRHandJointsMotionRange };
 
@@ -115,6 +115,9 @@ int main()
 	try
 	{
 		pXRProvider = new OpenXRProvider::XRProvider( xrAppInfo, xrAppGraphicsInfo, xrRenderInfo );
+		pUtils->GetLogger()->info( "XrProvider Core reports: {}", *pXRProvider->Core()->GetLogMessage() );
+		pUtils->GetLogger()->info( "XrProvider Render reports: {}", *pXRProvider->Render()->GetLogMessage() );
+		pUtils->GetLogger()->info( "XrProvider Input reports: {}", *pXRProvider->Input()->GetLogMessage() );
 	}
 	catch ( const std::exception &e )
 	{
@@ -131,6 +134,7 @@ int main()
 
 	// 6.2 Create action set(s)
 	xrActionSet_Main = pXRProvider->Input()->CreateActionSet( "main", "main", 0 );
+	pUtils->GetLogger()->info("XrProvider Input reports: {}", *pXRProvider->Input()->GetLogMessage());
 
 	// 6.3 Create actions mapped to specific action set(s)
 	xrActionState_PoseLeft.type = XR_TYPE_ACTION_STATE_POSE;
@@ -141,8 +145,9 @@ int main()
 
 	xrActionState_SwitchScene.type = XR_TYPE_ACTION_STATE_BOOLEAN;
 	xrAction_SwitchScene = pXRProvider->Input()->CreateAction( xrActionSet_Main, "switch_scene", "Switch Scenes", XR_ACTION_TYPE_BOOLEAN_INPUT, 0, NULL );
-	
+
 	xrAction_Haptic = pXRProvider->Input()->CreateAction( xrActionSet_Main, "haptic", "Haptic Feedback", XR_ACTION_TYPE_VIBRATION_OUTPUT, 0, NULL );
+
 
 	// 6.4 Create action bindings for every controller this app supports
 	CreateInputActionBindings();
@@ -154,7 +159,7 @@ int main()
 
 	// 6.6 Activate all action sets that we want to update per frame (this can also be changed per frame or anytime app wants to sync a different action set data)
 	pXRProvider->Input()->ActivateActionSet( xrActionSet_Main );
-
+	pUtils->GetLogger()->info("XrProvider Input reports: {}", *pXRProvider->Input()->GetLogMessage());
 
 	// (7) Optional: Cache anything your app needs in the frame loop
 

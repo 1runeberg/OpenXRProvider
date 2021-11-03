@@ -185,6 +185,9 @@ namespace OpenXRProvider
 			float fFrequency = XR_FREQUENCY_UNSPECIFIED
 		);
 
+		/// Get last log message
+		std::string *GetLogMessage() { return &m_sMessage; }
+
 	  private:
 		// ** FUNCTIONS (PRIVATE) **/
 
@@ -214,8 +217,8 @@ namespace OpenXRProvider
 		/// Action space map
 		std::map< XrAction, XrSpace > m_mapActionSpace;
 
-		/// Pointer to the logger
-		std::shared_ptr< spdlog::logger > m_pXRLogger;
+		/// Last log message
+		std::string m_sMessage;
 
 
 		// ** INPUT PROFILES ** //

@@ -69,9 +69,9 @@ namespace OpenXRProvider
 		/// @return		If  depth textures are supported and runtime supports it
 		bool GetIsDepthSupported() const { return m_bIsDepthSupported; }
 
-		/// Getter for the logger object
-		/// @return		Pointer to the logger object
-		std::shared_ptr< spdlog::logger > GetLogger() const { return m_pLogger; }
+		/// Getter for the log message
+		/// @return		Pointer to the log message
+		std::string* GetLogMessage() { return &m_sMessage; }
 
 		/// Getter for the Event Handler object that broadcasts events to listeners via their registered callback functions
 		/// @return		Pointer to the event handler object
@@ -169,8 +169,8 @@ namespace OpenXRProvider
 		/// Array of OpenXR enabled extension objects that are activated and supported by the currently active OpenXR runtime
 		std::vector< void * > m_vXRAppEnabledExtensions;
 
-		/// Pointer to the logger
-		std::shared_ptr< spdlog::logger > m_pLogger;
+		/// Last log message
+		std::string m_sMessage;
 
 		/// Pointer to the active Event Handler that broadcasts events to listeners via their registered callback functions
 		XREventHandler *m_pXREventHandler = nullptr;

@@ -68,10 +68,10 @@ namespace OpenXRProvider
 		// ** FUNCTIONS (PUBLIC) **/
 
 		/// Class Constructor
-		XRInputProfile_MicrosoftXBox( std::shared_ptr< spdlog::logger > pLogger );
+		XRInputProfile_MicrosoftXBox() {}
 
 		/// Class Destructor
-		~XRInputProfile_MicrosoftXBox();
+		~XRInputProfile_MicrosoftXBox() {}
 
 		/// Return the input profile path for this controller
 		const char *GetInputProfile() const override { return "/interaction_profiles/microsoft/xbox_controller"; }

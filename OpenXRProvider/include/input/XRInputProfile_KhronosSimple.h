@@ -45,10 +45,10 @@ namespace OpenXRProvider
 		// ** FUNCTIONS (PUBLIC) **/
 
 		/// Class Constructor
-		XRInputProfile_KhronosSimple( std::shared_ptr< spdlog::logger > pLogger );
+		XRInputProfile_KhronosSimple() {}
 
 		/// Class Destructor
-		~XRInputProfile_KhronosSimple();
+		~XRInputProfile_KhronosSimple() {}
 
 		/// Return the input profile path for this controller
 		const char *GetInputProfile() const override { return "/interaction_profiles/khr/simple_controller"; }

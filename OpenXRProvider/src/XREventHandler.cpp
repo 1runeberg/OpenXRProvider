@@ -27,7 +27,4 @@
 
 namespace OpenXRProvider
 {
-	XREventHandler::XREventHandler( std::shared_ptr< spdlog::logger > pLogger ) : XRBase( pLogger )	{}
-
-	XREventHandler::~XREventHandler() { m_pXRCallbacks.clear(); }
 }

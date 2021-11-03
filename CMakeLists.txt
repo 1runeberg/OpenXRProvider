@@ -23,11 +23,15 @@ set_property (DIRECTORY PROPERTY VS_STARTUP_PROJECT "Sandbox")
 # OpenXR Provider
 add_subdirectory(OpenXRProvider)
 
+
+# Header only libs (spdlog)
+set (INCLUDE_HEADER_LIBS ${CMAKE_SOURCE_DIR}/Sandbox/third_party)
+
 # Add additional libraries
 set (LIBS_INCLUDE 
     ${CMAKE_SOURCE_DIR}/OpenXRProvider/include
-    ${CMAKE_SOURCE_DIR}/OpenXRProvider/spdlog
     ${CMAKE_SOURCE_DIR}/Sandbox/third_party
+    ${CMAKE_SOURCE_DIR}/Sandbox/third_party/spdlog
     ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glad/include
     ${CMAKE_SOURCE_DIR}/Sandbox/third_party/glfw/include
     )

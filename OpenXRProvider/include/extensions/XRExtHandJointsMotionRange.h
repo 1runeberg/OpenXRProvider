@@ -33,11 +33,11 @@ namespace OpenXRProvider
 		// ** FUNCTIONS (PUBLIC) */
 
 		/// Class Constructor
-		/// @param[in] pLogger	Pointer to the logger object
-		XRExtHandJointsMotionRange( std::shared_ptr< spdlog::logger > pLogger );
+		 XRExtHandJointsMotionRange() {}
 
 		/// Class Destructor
-		~XRExtHandJointsMotionRange();
+		~XRExtHandJointsMotionRange() {}
+
 		bool bPrecise;
 
 		/// Override from XRBaseExt returning the official OpenXR extension name that this object represents

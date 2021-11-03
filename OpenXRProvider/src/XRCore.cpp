@@ -34,24 +34,11 @@ namespace OpenXRProvider
 		, m_nEngineVersion( xrAppInfo.EngineVersion )
 		, m_xrReferenceSpaceType( xrAppInfo.TrackingSpace == OpenXRProvider::TRACKING_ROOMSCALE ? XR_REFERENCE_SPACE_TYPE_STAGE : XR_REFERENCE_SPACE_TYPE_LOCAL )
 		, m_vAppRequestedExtensions( xrAppInfo.XRExtensions )
-	{
-		// Set Loggers
-		std::vector< spdlog::sink_ptr > vLogSinks;
+	{	
+		GetLogMessage()->clear();
 
-		// Add file logging if requested
-		if (xrAppInfo.LogFile)
-			vLogSinks.push_back( std::make_shared< spdlog::sinks::basic_file_sink_st >( xrAppInfo.LogFile ) );
-
-		vLogSinks.push_back( std::make_shared< spdlog::sinks::stdout_color_sink_st >() );	
-		m_pLogger = std::make_shared< spdlog::logger >( LOG_TITLE, begin( vLogSinks ), end( vLogSinks ) );
-
-		m_pLogger->set_level( spdlog::level::trace );
-		m_pLogger->set_pattern( "[%Y-%b-%d %a] [%T %z] [%^%L%$] [%n] %v" );
-		m_pLogger->info( "G'day from {}! Logging to: {}", LOG_TITLE, xrAppInfo.LogFile );
-		m_pLogger->info( "Logs powered by spdlog version {}.{}.{}", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH );
-	
 		// Create event handler
-		m_pXREventHandler = new XREventHandler( m_pLogger );
+		m_pXREventHandler = new XREventHandler();
 
 		// Initialize OpenXR
 		OpenXRInit( bEnableDepth );
@@ -76,17 +63,15 @@ namespace OpenXRProvider
 			
 		// Destroy OpenXR Reference Space
 		if ( m_xrSpace != XR_NULL_HANDLE )
-			m_xrLastCallResult = XR_CALL( xrDestroySpace( m_xrSpace ), m_pLogger, false );
+			m_xrLastCallResult = XR_CALL( xrDestroySpace( m_xrSpace ), GetLogMessage(), false );
 
 		// Destroy OpenXR Session
 		if ( m_xrSession != XR_NULL_HANDLE )
-			m_xrLastCallResult = XR_CALL( xrDestroySession( m_xrSession ), m_pLogger, false );
+			m_xrLastCallResult = XR_CALL( xrDestroySession( m_xrSession ), GetLogMessage(), false );
 
 		// Destroy OpenXR Instance
 		if ( m_xrInstance != XR_NULL_HANDLE )
-			m_xrLastCallResult = XR_CALL( xrDestroyInstance( m_xrInstance ), m_pLogger, false );
-
-		spdlog::shutdown();
+			m_xrLastCallResult = XR_CALL( xrDestroyInstance( m_xrInstance ), GetLogMessage(), false );
 	}
 
 	void XRCore::OpenXRInit( bool bEnableDepthTextureSupport )
@@ -131,17 +116,8 @@ namespace OpenXRProvider
 		// (3) Create an instance (object that allows communication to the runtime)
 		// ========================================================================
 
-		m_xrLastCallResult = XR_CALL( xrCreateInstance( &xrInstanceCreateInfo, &m_xrInstance ), m_pLogger, true );
-
-		m_pLogger->info( "..." );
-		m_pLogger->info( "XR Instance created: Handle {} with {} extension(s) enabled", ( uint64_t )m_xrInstance, nNumEnxtesions );
-		m_pLogger->info(
-			"Instance info: OpenXR version {}.{}.{}",
-			XR_VERSION_MAJOR( XR_CURRENT_API_VERSION ),
-			XR_VERSION_MINOR( XR_CURRENT_API_VERSION ),
-			XR_VERSION_PATCH( XR_CURRENT_API_VERSION ) );
-		m_pLogger->info( "Instance info: Application {} version {}", m_sAppName, m_nAppVersion );
-		m_pLogger->info( "Instance info: Engine {} version {}", m_sEngineName, m_nEngineVersion );
+		m_xrLastCallResult = XR_CALL( xrCreateInstance( &xrInstanceCreateInfo, &m_xrInstance ), GetLogMessage(), true );
+		GetLogMessage()->append( "\n XR Instance created.\n" );
 
 		// ========================================================================
 		// (4) Get xr system (representing a collection of physical xr devices) from active OpenXR runtime
@@ -152,18 +128,18 @@ namespace OpenXRProvider
 
 	void XRCore::WorldInit( XRAppGraphicsInfo *pXRAppGraphicsInfo )
 	{
+		GetLogMessage()->clear();
+
 		if ( m_xrInstance == XR_NULL_HANDLE )
 		{
-			std::string eMessage = "Aborting world init due to an invalid OpenXR Instance. Did OpenXRInit fail?";
-			m_pLogger->error( "{}", eMessage );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->append( "Error: Aborting world init due to an invalid OpenXR Instance. Did OpenXRInit fail?" );
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
 		if ( m_xrSystemId == XR_NULL_SYSTEM_ID )
 		{
-			std::string eMessage = "Aborting world init due to an invalid System Id. Did OpenXRInit fail?";
-			m_pLogger->error( "{}", eMessage );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->append( "Aborting world init due to an invalid System Id. Did OpenXRInit fail?" );
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
 		// ========================================================================
@@ -174,15 +150,14 @@ namespace OpenXRProvider
 
 		if ( m_xrLastCallResult != XR_SUCCESS )
 		{
-			const char *xrEnumStr = XrEnumToString( m_xrLastCallResult );
-			std::string eMessage = "Failed creating OpenXR Session with Error ";
-			eMessage.append( xrEnumStr );
+			GetLogMessage()->append( "\nFailed creating OpenXR Session with Error " );
+			GetLogMessage()->append( XrEnumToString( m_xrLastCallResult ) );
+			GetLogMessage()->append( "\n" );
 
-			m_pLogger->error( "{} ({})", eMessage, std::to_string( m_xrLastCallResult ) );
-			throw std::runtime_error( eMessage );
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
-		m_pLogger->info( "XR Session for this app successfully created (Handle {})", ( uint64_t )m_xrSession );
+		GetLogMessage()->append( "\nXR Session for this app successfully created.\n" );
 
 		// ========================================================================
 		// (2) Create a reference space (room-scale vs seated)
@@ -195,8 +170,8 @@ namespace OpenXRProvider
 		xrReferenceSpaceCreateInfo.poseInReferenceSpace = xrPose;
 		xrReferenceSpaceCreateInfo.referenceSpaceType = m_xrReferenceSpaceType;
 
-		m_xrLastCallResult = XR_CALL( xrCreateReferenceSpace( m_xrSession, &xrReferenceSpaceCreateInfo, &m_xrSpace ), m_pLogger, true );
-		m_pLogger->info( "XR Reference Space for this app successfully created (Handle {})", ( uint64_t )m_xrSpace );
+		m_xrLastCallResult = XR_CALL( xrCreateReferenceSpace( m_xrSession, &xrReferenceSpaceCreateInfo, &m_xrSpace ), GetLogMessage(), true );
+		GetLogMessage()->append( "XR Reference Space for this app successfully created." );
 
 		// ========================================================================
 		// (3) Keep track of instance extensions that's not render or input based
@@ -222,9 +197,8 @@ namespace OpenXRProvider
 	{
 		if ( m_xrInstance == XR_NULL_HANDLE )
 		{
-			std::string eMessage = "No OpenXR Instance found. Make sure to call Init first";
-			m_pLogger->error( "{}. Error ({})", eMessage, std::to_string( m_xrLastCallResult ) );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->append( "No OpenXR Instance found. Make sure to call Init first" );
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
 		// Get user's system info
@@ -232,13 +206,13 @@ namespace OpenXRProvider
 		xrSystemGetInfo.type = XR_TYPE_SYSTEM_GET_INFO;
 		xrSystemGetInfo.formFactor = XR_FORM_FACTOR_HEAD_MOUNTED_DISPLAY;
 
-		m_xrLastCallResult = XR_CALL( xrGetSystem( m_xrInstance, &xrSystemGetInfo, &m_xrSystemId ), m_pLogger, true );
+		m_xrLastCallResult = XR_CALL( xrGetSystem( m_xrInstance, &xrSystemGetInfo, &m_xrSystemId ), GetLogMessage(), true );
 
 		// Log user's system info
-		m_xrLastCallResult = XR_CALL( xrGetSystemProperties( m_xrInstance, m_xrSystemId, &m_xrSystemProperties ), m_pLogger, true );
+		m_xrLastCallResult = XR_CALL( xrGetSystemProperties( m_xrInstance, m_xrSystemId, &m_xrSystemProperties ), GetLogMessage(), true );
 
 		std::string systemName = m_xrSystemProperties.systemName;
-		m_pLogger->info( "Active runtime: {} (Vendor Id {}) ", m_xrSystemProperties.systemName, m_xrSystemProperties.vendorId );
+		GetLogMessage()->append( "\nActive runtime: " + systemName + "\n" ); 
 
 		return m_xrLastCallResult;
 	}
@@ -249,7 +223,7 @@ namespace OpenXRProvider
 
 		// Log and enable runtime's available extensions
 		uint32_t nExtensionCount;
-		m_xrLastCallResult = XR_CALL( xrEnumerateInstanceExtensionProperties( nullptr, 0, &nExtensionCount, nullptr ), m_pLogger, false );
+		m_xrLastCallResult = XR_CALL( xrEnumerateInstanceExtensionProperties( nullptr, 0, &nExtensionCount, nullptr ), GetLogMessage(), false );
 
 		std::vector< XrExtensionProperties > vExtensions;
 		for ( uint32_t i = 0; i < nExtensionCount; ++i )
@@ -258,9 +232,9 @@ namespace OpenXRProvider
 		}
 
 		m_xrLastCallResult =
-			XR_CALL( xrEnumerateInstanceExtensionProperties( nullptr, nExtensionCount, &nExtensionCount, vExtensions.data() ), m_pLogger, false );
+			XR_CALL( xrEnumerateInstanceExtensionProperties( nullptr, nExtensionCount, &nExtensionCount, vExtensions.data() ), GetLogMessage(), false );
 
-		m_pLogger->info( "Runtime supports the following extensions (* = will be enabled):" );
+		GetLogMessage()->append( "Runtime supports the following extensions (* = will be enabled):" );
 		bool bEnable = false;
 		for ( uint32_t i = 0; i < nExtensionCount; ++i )
 		{
@@ -269,7 +243,8 @@ namespace OpenXRProvider
 			{
 				// Add graphics api to the list of extensions that would be enabled when we create the openxr instance
 				vXRExtensions.push_back( s_GraphicsExtensionName );
-				m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
+				std::string sMessage = "\n*" + std::to_string( i + 1 ) + ". " + vExtensions[i].extensionName + std::to_string( vExtensions[i].extensionVersion ) + "\n"; 
+				GetLogMessage()->append( sMessage );
 
 				bEnable = true;
 			}
@@ -280,9 +255,10 @@ namespace OpenXRProvider
 			{
 				// Add depth handling to the list of extensions that would be enabled when we create the openxr instance
 				vXRExtensions.push_back( XR_KHR_COMPOSITION_LAYER_DEPTH_EXTENSION_NAME );
-				m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
-				m_bIsDepthSupported = true;
+				std::string sMessage = "\n*" + std::to_string( i + 1 ) + ". " + vExtensions[ i ].extensionName + std::to_string( vExtensions[ i ].extensionVersion ) + "\n";
+				GetLogMessage()->append( sMessage );
 
+				m_bIsDepthSupported = true;
 				bEnable = true;
 			}
 			else
@@ -302,7 +278,8 @@ namespace OpenXRProvider
 						xrRequestedExtension->IsActive( true );
 						m_vXRAppEnabledExtensions.push_back( m_vAppRequestedExtensions[ j ] );
 
-						m_pLogger->info( "*{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
+						std::string sMessage = "\n*" + std::to_string( i + 1 ) + ". " + vExtensions[ i ].extensionName + std::to_string( vExtensions[ i ].extensionVersion ) + "\n";
+						GetLogMessage()->append( sMessage );
 
 						bEnable = true;
 						break;
@@ -311,7 +288,11 @@ namespace OpenXRProvider
 			}
 			
 			if ( !bEnable )
-				m_pLogger->info( "{}. {} version {}", i + 1, vExtensions[ i ].extensionName, vExtensions[ i ].extensionVersion );
+			{
+				std::string sMessage = "\n" + std::to_string( i + 1 ) + ". " + vExtensions[ i ].extensionName + std::to_string( vExtensions[ i ].extensionVersion ) + "\n";
+				GetLogMessage()->append( sMessage );
+			}
+				
 			bEnable = false;
 		}
 	}
@@ -324,7 +305,7 @@ namespace OpenXRProvider
 		XrEventDataBuffer xrEvent { XR_TYPE_EVENT_DATA_BUFFER };
 		xrEvent.next = nullptr;
 
-		m_xrLastCallResult = XR_CALL_SILENT( xrPollEvent( m_xrInstance, &xrEvent ), m_pLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrPollEvent( m_xrInstance, &xrEvent ), GetLogMessage() );
 
 		// Stop evaluating if there's no event returned or the call fails
 		if ( xrEvent.type == XR_TYPE_EVENT_DATA_BUFFER )
@@ -345,7 +326,7 @@ namespace OpenXRProvider
 		XrSessionBeginInfo xrSessionBeginInfo { XR_TYPE_SESSION_BEGIN_INFO };
 		xrSessionBeginInfo.primaryViewConfigurationType = XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO;
 
-		m_xrLastCallResult = XR_CALL_SILENT( xrBeginSession( m_xrSession, &xrSessionBeginInfo ), m_pLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrBeginSession( m_xrSession, &xrSessionBeginInfo ), GetLogMessage() );
 		return m_xrLastCallResult;
 	}
 
@@ -357,7 +338,7 @@ namespace OpenXRProvider
 			return m_xrLastCallResult;
 		}
 
-		m_xrLastCallResult = XR_CALL_SILENT( xrEndSession( m_xrSession ), m_pLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrEndSession( m_xrSession ), GetLogMessage() );
 		return m_xrLastCallResult;
 	}
 

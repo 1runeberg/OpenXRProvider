@@ -48,10 +48,10 @@ namespace OpenXRProvider
 
 		/// Class Constructor
 		/// @param[in] pLogger	Pointer to the logger object
-		XRExtVisibilityMask( std::shared_ptr< spdlog::logger > pLogger );
+		XRExtVisibilityMask() {}
 
 		/// Class Destructor
-		~XRExtVisibilityMask();
+		~XRExtVisibilityMask() {}
 
 		/// Override from XRBaseExt returning the official OpenXR extension name that this object represents
 		const char *GetExtensionName() const override { return XR_KHR_VISIBILITY_MASK_EXTENSION_NAME; }

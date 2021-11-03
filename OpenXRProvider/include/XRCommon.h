@@ -30,11 +30,6 @@
 #include <vector>
 #include <map>
 
-// Logger includes
-#include <spdlog/sinks/basic_file_sink.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/spdlog.h>
-
 // Provider classes
 #include <XRBase.h>
 #include <XRBaseExt.h>
@@ -67,52 +62,67 @@ namespace OpenXRProvider
 	XR_ENUM_TYPE_STRINGIFY( XrReferenceSpaceType );
 
 	/// Execute a call to the OpenXR api and evaluate the result, will log success and fail and throw an exception if request
-	#define XR_CALL( xrCall, xrLogger, bThrow ) CheckXrResult( xrCall, xrLogger, bThrow, #xrCall, __FILE__, __LINE__ );
+	#define XR_CALL( xrCall, sMessage, bThrow ) CheckXrResult( xrCall, sMessage, bThrow, #xrCall, __FILE__, __LINE__ );
 	inline XrResult CheckXrResult(
 		XrResult xrResult,
-		std::shared_ptr< spdlog::logger > xrLogger,
+		std::string *sMessage,
 		bool bThrow,
 		const char *xrCall = nullptr,
 		const char *srcFile = nullptr,
 		int srcLineNum = 0 )
 	{
+		sMessage->clear();
+
 		if ( XR_UNQUALIFIED_SUCCESS( xrCall ) )
 		{
-			const char *xrEnumStr = XrEnumToString( xrResult );
-			std::string eMessage = "Error on OpenXR call ";
 			if ( xrCall )
-				eMessage.append( xrCall );
+				sMessage->append( xrCall );
 
-			xrLogger->error( "{}. Error ({}) {} in file {} line {}", eMessage, std::to_string( xrResult ), xrEnumStr, srcFile, srcLineNum );
+			sMessage->append( ": Error on OpenXR call. Error: " ); 
+			sMessage->append( XrEnumToString(xrResult) );
+
+			sMessage->append( " in file: ");
+			sMessage->append( srcFile );
+
+			sMessage->append( " line: " );
+			sMessage->append( std::to_string( srcLineNum ) );
 
 			if ( bThrow )
-				throw std::runtime_error( eMessage );
+				throw std::runtime_error( *sMessage );
 		}
 		else
 		{
-			xrLogger->info( "Success: {}", xrCall );
+			sMessage->append( xrCall );
+			sMessage->append( ": Success." );
 		}
 
 		return xrResult;
 	}
 
 	/// Execute a call to the OpenXR api and evaluate the result, will log failures only
-	#define XR_CALL_SILENT( xrCall, xrLogger ) CheckXrResult( xrCall, xrLogger, #xrCall, __FILE__, __LINE__ );
+	#define XR_CALL_SILENT( xrCall, sMessage ) CheckXrResult( xrCall, sMessage, #xrCall, __FILE__, __LINE__ );
 	inline XrResult CheckXrResult(
 		XrResult xrResult,
-		std::shared_ptr< spdlog::logger > xrLogger,
+		std::string* sMessage,
 		const char *xrCall = nullptr,
 		const char *srcFile = nullptr,
 		int srcLineNum = 0 )
 	{
+		sMessage->clear();
+
 		if ( XR_UNQUALIFIED_SUCCESS( xrCall ) )
 		{
-			const char *xrEnumStr = XrEnumToString( xrResult );
-			std::string eMessage = "Error on OpenXR call ";
 			if ( xrCall )
-				eMessage.append( xrCall );
+				sMessage->append( xrCall );
 
-			xrLogger->error( "{}. Error ({}) {} in file {} line {}", eMessage, std::to_string( xrResult ), xrEnumStr, srcFile, srcLineNum );
+			sMessage->append( ": Error on OpenXR call. Error: " );
+			sMessage->append( XrEnumToString( xrResult ) );
+
+			sMessage->append( " in file: " );
+			sMessage->append( srcFile );
+
+			sMessage->append( " line: " );
+			sMessage->append( std::to_string( srcLineNum ) );
 		}
 
 		return xrResult;

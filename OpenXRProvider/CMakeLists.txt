@@ -24,7 +24,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 endif()
 
 # Header only libs (spdlog)
-set (INCLUDE_HEADER_LIBS ${CMAKE_SOURCE_DIR}/OpenXRProvider/third_party)
+#set (INCLUDE_HEADER_LIBS ${CMAKE_SOURCE_DIR}/OpenXRProvider/third_party)
 
 # Set OpenXR location
 set (OPENXR_DIR ${CMAKE_SOURCE_DIR}/OpenXRProvider/third_party/openxr_loader_windows)
@@ -38,7 +38,7 @@ set (BIN_OPENXR "${OPENXR_DIR}/x64/bin/${BIN_OPENXR_FILE}")
 
 # OpenXR Provider
 file(GLOB OPENXR_PROVIDER_INCLUDE
-	"${CMAKE_SOURCE_DIR}/OpenXRProvider/*.h"
+    "${CMAKE_SOURCE_DIR}/OpenXRProvider/*.h"
     "${CMAKE_SOURCE_DIR}/OpenXRProvider/include/*.h"
     "${CMAKE_SOURCE_DIR}/OpenXRProvider/include/extensions/*.h"
     "${CMAKE_SOURCE_DIR}/OpenXRProvider/include/rendering/*.h"

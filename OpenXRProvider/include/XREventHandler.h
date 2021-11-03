@@ -34,10 +34,10 @@ namespace OpenXRProvider
 
 		/// Class Constructor
 		/// @param[in] pLogger	Pointer to the logger object
-		XREventHandler( std::shared_ptr< spdlog::logger > pLogger );
+		 XREventHandler() {}
 
 		/// Class Destructor
-		~XREventHandler();
+		~XREventHandler() { m_pXRCallbacks.clear(); }
 
 		/// Register a callback to the OpenXR Provider event system
 		/// @param[in] pLogger	Pointer to the logger object

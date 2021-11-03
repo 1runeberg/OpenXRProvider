@@ -31,40 +31,38 @@ namespace OpenXRProvider
 		: m_pXRCore( pXRCore )
 		, m_pXRRender( pXRRender )
 	{
-		if ( !m_pXRCore && !m_pXRCore->GetLogger() )
+		if ( !m_pXRCore )
 			throw std::runtime_error( "Failed to create XR Input Manager. Invalid XR Core provided." );
 
-		// Retain pointer to logger
-		m_pXRLogger = m_pXRCore->GetLogger();
+		GetLogMessage()->clear();
 
 		// Check xr render manager
 		if ( !m_pXRRender )
 		{
-			std::string eMessage = "Failed to create XR Input manager due to an Invalid XR Render Manager.";
-			m_pXRLogger->error( eMessage );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->append( "Failed to create XR Input manager due to an Invalid XR Render Manager." );
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
 		// Check xr instance
 		if ( m_pXRCore->GetXRInstance() == XR_NULL_HANDLE )
 		{
-			std::string eMessage = "Failed to create XR Input manager due to an Invalid XR Instance.";
-			m_pXRLogger->error( eMessage );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->append( "Failed to create XR Input manager due to an Invalid XR Instance." );
+
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
 		// Check xr session
 		if ( m_pXRCore->GetXRSession() == XR_NULL_HANDLE )
 		{
-			std::string eMessage = "Failed to create XR Input manager due to an Invalid XR Session.";
-			m_pXRLogger->error( eMessage );
-			throw std::runtime_error( eMessage );
+			GetLogMessage()->append( "Failed to create XR Input manager due to an Invalid XR Session." );
+
+			throw std::runtime_error( *GetLogMessage() );
 		}
 
 		// Generate all supported input profiles
 		GenerateInputProfiles();
 
-		m_pXRLogger->info( "Input manager created successfully" );
+		GetLogMessage()->append( "Input manager created successfully" );
 	}
 
 	XRInput::~XRInput()
@@ -118,31 +116,31 @@ namespace OpenXRProvider
 		assert( m_pXRCore && m_pXRCore->GetXRSession() != XR_NULL_HANDLE );
 
 		// Google Daydream
-		m_pXRInputProfile_GoogleDaydream = new XRInputProfile_GoogleDaydream( m_pXRLogger );
+		m_pXRInputProfile_GoogleDaydream = new XRInputProfile_GoogleDaydream();
 
 		// HTC Vive
-		m_pXRInputProfile_HTCVive = new XRInputProfile_HTCVive( m_pXRLogger );
+		m_pXRInputProfile_HTCVive = new XRInputProfile_HTCVive();
 
 		// HTC Vive Pro
-		m_pXRInputProfile_HTCVivePro = new XRInputProfile_HTCVivePro( m_pXRLogger );
+		m_pXRInputProfile_HTCVivePro = new XRInputProfile_HTCVivePro();
 
 		// Khronos Simple
-		m_pXRInputProfile_KhronosSimple = new XRInputProfile_KhronosSimple( m_pXRLogger );
+		m_pXRInputProfile_KhronosSimple = new XRInputProfile_KhronosSimple();
 
 		// Microsoft MR
-		m_pXRInputProfile_MicrosoftMR = new XRInputProfile_MicrosoftMR( m_pXRLogger );
+		m_pXRInputProfile_MicrosoftMR = new XRInputProfile_MicrosoftMR();
 
 		// Microsoft XBox
-		m_pXRInputProfile_MicrosoftXBox = new XRInputProfile_MicrosoftXBox(  m_pXRLogger );
+		m_pXRInputProfile_MicrosoftXBox = new XRInputProfile_MicrosoftXBox();
 
 		// Oculus Go
-		m_pXRInputProfile_OculusGo = new XRInputProfile_OculusGo( m_pXRLogger );
+		m_pXRInputProfile_OculusGo = new XRInputProfile_OculusGo();
 
 		// Oculus Touch
-		m_pXRInputProfile_OculusTouch = new XRInputProfile_OculusTouch( m_pXRLogger );
+		m_pXRInputProfile_OculusTouch = new XRInputProfile_OculusTouch();
 
 		// Valve Index Controller
-		m_pXRInputProfile_ValveIndex = new XRInputProfile_ValveIndex( m_pXRLogger );
+		m_pXRInputProfile_ValveIndex = new XRInputProfile_ValveIndex();
 	}
 
 	XrPath XRInput::GetXRPath( const char *sPath ) 
@@ -163,13 +161,10 @@ namespace OpenXRProvider
 		xrActionSetCreateInfo.priority = nPriority;
 
 		XrActionSet xrActionSet;
-		m_xrLastCallResult = XR_CALL_SILENT( xrCreateActionSet( m_pXRCore->GetXRInstance(), &xrActionSetCreateInfo, &xrActionSet ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrCreateActionSet( m_pXRCore->GetXRInstance(), &xrActionSetCreateInfo, &xrActionSet ), GetLogMessage() );
 
 		if ( m_xrLastCallResult == XR_SUCCESS )
 			m_vActionSets.push_back( xrActionSet );
-		else
-			m_pXRLogger->error( "Unable to create action set {}. Runtime returned {}. Action set names should only contain lower ASCII characters, numbers, dash, period or forward slash", 
-				pName, XrEnumToString( m_xrLastCallResult ) );
 
 		return xrActionSet;
 	}
@@ -178,6 +173,7 @@ namespace OpenXRProvider
 		XrActionType xrActionType, uint32_t nFilterCount, XrPath *xrFilters )
 	{
 		assert( xrActionSet != 0 && m_pXRCore->GetXRSession() != XR_NULL_HANDLE );
+		GetLogMessage()->clear();
 
 		// Create action
 		XrActionCreateInfo xrActionCreateInfo { XR_TYPE_ACTION_CREATE_INFO };
@@ -188,7 +184,7 @@ namespace OpenXRProvider
 		xrActionCreateInfo.subactionPaths = xrFilters;
 
 		XrAction xrAction;
-		m_xrLastCallResult = XR_CALL_SILENT( xrCreateAction( xrActionSet, &xrActionCreateInfo, &xrAction ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrCreateAction( xrActionSet, &xrActionCreateInfo, &xrAction ), GetLogMessage() );
 
 		if ( m_xrLastCallResult == XR_SUCCESS )
 		{
@@ -212,11 +208,6 @@ namespace OpenXRProvider
 				if ( m_xrLastCallResult == XR_SUCCESS )
 				{
 					m_mapActionSpace.insert( std::pair< XrAction, XrSpace >( xrAction, xrSpace ) );
-					m_pXRLogger->info( "Action {} created with reference space handle ({})", pName, ( uint64_t )xrSpace );
-				}
-				else
-				{
-					m_pXRLogger->error(	"Unable to create an action space for action {}. Result was {}", pName,	XrEnumToString( m_xrLastCallResult ) );
 				}
 
 				return xrAction;
@@ -224,13 +215,14 @@ namespace OpenXRProvider
 		}
 		else
 		{
-			m_pXRLogger->error( "Unable to create action {}. Runtime returned {}. Action names should only contain lower ASCII characters, numbers, dash, period or forward slash",
-				pName, XrEnumToString( m_xrLastCallResult ) );
-
 			return xrAction;
 		}
 
-		m_pXRLogger->info( "Action {} created", pName );
+		GetLogMessage()->append( "\n" );
+		GetLogMessage()->append( "Action " );
+		GetLogMessage()->append( pName );
+		GetLogMessage()->append( " created.\n " );
+
 		return xrAction;
 	}
 
@@ -238,7 +230,7 @@ namespace OpenXRProvider
 	{
 		assert( sString && m_pXRCore && m_pXRCore->GetXRInstance() != XR_NULL_HANDLE );
 
-		m_xrLastCallResult = XR_CALL_SILENT( xrStringToPath( m_pXRCore->GetXRInstance(), sString, xrPath ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrStringToPath( m_pXRCore->GetXRInstance(), sString, xrPath ), GetLogMessage() );
 
 		return m_xrLastCallResult;
 	}
@@ -287,13 +279,15 @@ namespace OpenXRProvider
 			m_pXRCore->GetXRSession() != XR_NULL_HANDLE 
 		);
 
+		GetLogMessage()->clear();
+
 		XrPath xrPath;
 		xrStringToPath( m_pXRCore->GetXRInstance(), sInteractionProfilePath, &xrPath );
 
 		m_xrLastCallResult = XR_ERROR_VALIDATION_FAILURE;
 		if ( vActionBindings->size() < 1 )
 		{
-			m_pXRLogger->error( "No action bindings found. Create action bindings prior to calling SuggestActionBindings()" );
+			GetLogMessage()->append( "No action bindings found. Create action bindings prior to calling SuggestActionBindings()" );
 			return m_xrLastCallResult;
 		}
 		
@@ -303,12 +297,14 @@ namespace OpenXRProvider
 		xrInteractionProfileSuggestedBinding.countSuggestedBindings = ( uint32_t )vActionBindings->size();
 
 		m_xrLastCallResult = XR_CALL_SILENT( xrSuggestInteractionProfileBindings( 
-			m_pXRCore->GetXRInstance(), &xrInteractionProfileSuggestedBinding ), m_pXRLogger );
+			m_pXRCore->GetXRInstance(), &xrInteractionProfileSuggestedBinding ), GetLogMessage() );
 
 		if ( m_xrLastCallResult != XR_SUCCESS )
 			return m_xrLastCallResult;
 
-		m_pXRLogger->info( "Interaction profile suggested to runtime: {}", sInteractionProfilePath );
+		GetLogMessage()->append( "Interaction profile suggested to runtime: " );
+		GetLogMessage()->append( sInteractionProfilePath );
+		GetLogMessage()->append( "\n" );
 
 		return m_xrLastCallResult;
 	}
@@ -316,6 +312,7 @@ namespace OpenXRProvider
 	void XRInput::ActivateActionSet( XrActionSet xrActionSet, XrPath xrFilter /*= XR_NULL_PATH */ ) 
 	{ 
 		assert( xrActionSet != XR_NULL_HANDLE );
+		GetLogMessage()->clear();
 
 		XrActiveActionSet xrActiveActionSet { xrActionSet, xrFilter };
 		m_vActiveActionSets.push_back( xrActiveActionSet );
@@ -324,11 +321,14 @@ namespace OpenXRProvider
 		xrSessionActionSetsAttachInfo.countActionSets = ( uint32_t )m_vActionSets.size();
 		xrSessionActionSetsAttachInfo.actionSets = m_vActionSets.data();
 
-		m_xrLastCallResult = XR_CALL_SILENT( xrAttachSessionActionSets( m_pXRCore->GetXRSession(), &xrSessionActionSetsAttachInfo ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrAttachSessionActionSets( m_pXRCore->GetXRSession(), &xrSessionActionSetsAttachInfo ), GetLogMessage() );
 
 		if ( m_xrLastCallResult == XR_SUCCESS )
-			m_pXRLogger->info( "{} action sets attached to the current session ({})", xrSessionActionSetsAttachInfo.countActionSets, ( uint64_t )m_pXRCore->GetXRSession() );
-
+		{
+			GetLogMessage()->append( "\n" );
+			GetLogMessage()->append( std::to_string( xrSessionActionSetsAttachInfo.countActionSets ) );
+			GetLogMessage()->append( " action sets attached to the current session.\n" );
+		}
 	}
 
 	XrResult XRInput::SyncActiveActionSetsData() 
@@ -342,7 +342,7 @@ namespace OpenXRProvider
 		xrActionSyncInfo.countActiveActionSets = ( uint32_t )m_vActiveActionSets.size();
 		xrActionSyncInfo.activeActionSets = m_vActiveActionSets.data();
 
-		m_xrLastCallResult = XR_CALL_SILENT( xrSyncActions( m_pXRCore->GetXRSession(), &xrActionSyncInfo ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrSyncActions( m_pXRCore->GetXRSession(), &xrActionSyncInfo ), GetLogMessage() );
 
 		return m_xrLastCallResult;
 	}
@@ -366,7 +366,7 @@ namespace OpenXRProvider
 		XrActionStateGetInfo xrActionStateGetInfo { XR_TYPE_ACTION_STATE_GET_INFO };
 		xrActionStateGetInfo.action = xrAction;
 		m_xrLastCallResult = XR_CALL_SILENT( xrGetActionStateBoolean( 
-			m_pXRCore->GetXRSession(), &xrActionStateGetInfo, xrActionState ), m_pXRLogger );
+			m_pXRCore->GetXRSession(), &xrActionStateGetInfo, xrActionState ), GetLogMessage() );
 
 		return m_xrLastCallResult;
 	}
@@ -377,7 +377,7 @@ namespace OpenXRProvider
 
 		XrActionStateGetInfo xrActionStateGetInfo { XR_TYPE_ACTION_STATE_GET_INFO };
 		xrActionStateGetInfo.action = xrAction;
-		m_xrLastCallResult = XR_CALL_SILENT( xrGetActionStateFloat( m_pXRCore->GetXRSession(), &xrActionStateGetInfo, xrActionState ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrGetActionStateFloat( m_pXRCore->GetXRSession(), &xrActionStateGetInfo, xrActionState ), GetLogMessage() );
 
 		return m_xrLastCallResult;
 	}
@@ -388,7 +388,7 @@ namespace OpenXRProvider
 
 		XrActionStateGetInfo xrActionStateGetInfo { XR_TYPE_ACTION_STATE_GET_INFO };
 		xrActionStateGetInfo.action = xrAction;
-		m_xrLastCallResult = XR_CALL_SILENT( xrGetActionStateVector2f( m_pXRCore->GetXRSession(), &xrActionStateGetInfo, xrActionState ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrGetActionStateVector2f( m_pXRCore->GetXRSession(), &xrActionStateGetInfo, xrActionState ), GetLogMessage() );
 
 		return m_xrLastCallResult;
 	}
@@ -399,7 +399,7 @@ namespace OpenXRProvider
 
 		XrActionStateGetInfo xrActionStateGetInfo { XR_TYPE_ACTION_STATE_GET_INFO };
 		xrActionStateGetInfo.action = xrAction;
-		m_xrLastCallResult = XR_CALL_SILENT( xrGetActionStatePose( m_pXRCore->GetXRSession(), &xrActionStateGetInfo, xrActionState ), m_pXRLogger );
+		m_xrLastCallResult = XR_CALL_SILENT( xrGetActionStatePose( m_pXRCore->GetXRSession(), &xrActionStateGetInfo, xrActionState ), GetLogMessage());
 
 		return m_xrLastCallResult;
 	}
@@ -457,7 +457,7 @@ namespace OpenXRProvider
 		xrHapticActionInfo.action = xrAction;
 
 		m_xrLastCallResult = XR_CALL_SILENT( 
-			xrApplyHapticFeedback( m_pXRCore->GetXRSession(), &xrHapticActionInfo, ( const XrHapticBaseHeader * )&xrHapticVibration ), m_pXRLogger );
+			xrApplyHapticFeedback( m_pXRCore->GetXRSession(), &xrHapticActionInfo, ( const XrHapticBaseHeader * )&xrHapticVibration ), GetLogMessage());
 
 		return m_xrLastCallResult;
 	}
