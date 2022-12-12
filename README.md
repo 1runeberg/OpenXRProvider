@@ -1,5 +1,7 @@
 # OpenXR Provider Library
 
+## NOTE: This is being rewritten from the gorund up for PC and mobile and focus on Vulkan. Repo here: https://github.com/1runeberg/OpenXRProvider_v2
+
 Provides application and engine developers a simpler method to access OpenXR runtimes (e.g. SteamVR, Oculus, WMR, Monado, etc) without having to wade through the intricacies of directly using the raw OpenXR Loader library. 
 
 
